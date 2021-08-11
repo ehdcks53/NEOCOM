@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!-- header -->
 <header class="site-header navbar-sticky">
 <div class="topbar d-flex justify-content-between">
@@ -51,21 +51,36 @@
 	<!-- 툴바 -->
 	<div class="toolbar d-flex">
 		<div class="toolbar-item">
-			<a href="#">
+			<a class="#">
 				<div>
 					<i class="icon-users"></i><span class="text-label">회원가입</span>
 				</div>
 			</a>
 		</div>
 		<div class="toolbar-item">
-			<a href="${pageContext.request.contextPath }/login">
+			<c:if test="${sessionScope.id ==null }">
+			<a class="#" href="${pageContext.request.contextPath }/login">
 				<div>
-					<i class="icon-user"></i><span class="text-label">로그인</span>
+
+					<i class="icon-user"></i>
+					<span class="text-label">로그인</span>
 				</div>
 			</a>
+			</c:if>
+			<c:if test="${sessionScope.id !=null }">
+				<a class="#" href="${pageContext.request.contextPath }/memlogout">
+					<div>
+						<i class="icon-user"></i>
+						<span class="text-label">로그아웃</span>
+					</div>
+				</a>
+
+			</c:if>
+
 		</div>
 		<div class="toolbar-item">
-			<a href="#">
+			<a class="#" href="${pageContext.request.contextPath }/cartlist?id=${sessionScope.id}">
+
 				<div>
 					<span class="cart-icon">
 						<i class="icon-shopping-cart"></i>
@@ -134,7 +149,7 @@
 		<ul>
 			<li class="has-submenu active"><a href="#">메뉴1</a>
 			</li>
-			<li class="has-megamenu"><a href="${pageContext.request.contextPath }/goods_list">Shop</a>
+			<li class="has-megamenu"><a href="#">Shop</a>
 				<ul class="mega-menu">
 					<li><span class="mega-menu-title">대분류1</span>
 						<ul class="sub-menu">
@@ -202,21 +217,21 @@
 	<div class="toolbar">
 		<div class="toolbar-inner">
 			<div class="toolbar-item">
-				<a href="#">
+				<a class="#">
 					<div>
 						<i class="icon-users"></i><span class="text-label">회원가입</span>
 					</div>
 				</a>
 			</div>
 			<div class="toolbar-item">
-				<a href="${pageContext.request.contextPath }/login">
+				<a class="#">
 					<div>
 						<i class="icon-user"></i><span class="text-label">로그인</span>
 					</div>
 				</a>
 			</div>
 			<div class="toolbar-item">
-				<a href="#">
+				<a class="#">
 					<div>
 						<span class="cart-icon">
 							<i class="icon-shopping-cart"></i>

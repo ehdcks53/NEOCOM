@@ -73,10 +73,10 @@
 					</div>
 					<h4 class="margin-bottom-1x text-center">로그인 하기</h4>
 					<div class="form-group input-group">
-						<input class="form-control" type="text" placeholder="id" required>
+						<input class="form-control" type="text" name="id" placeholder="id" required>
 					</div>
 					<div class="form-group input-group">
-						<input class="form-control" type="password" placeholder="pwd" required>
+						<input class="form-control" type="password" name="pwd" placeholder="pwd" required>
 					</div>
 					
 					 <div class="d-flex flex-wrap justify-content-between padding-bottom-1x">
@@ -90,6 +90,7 @@
 					</div>
 					<div class="text-center text-sm-right">
 						<button class="btn btn-primary margin-bottom-none" type="submit">로그인</button>
+							<div style='color:red;'>${errMsg }</div>
 					</div>
 				</div>
 			</form>
