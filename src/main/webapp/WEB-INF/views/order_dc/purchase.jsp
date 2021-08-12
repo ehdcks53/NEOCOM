@@ -29,7 +29,7 @@
     <!-- Main Template Styles-->
     <link id="mainStyles" rel="stylesheet" media="screen" href="static/frontend/assets/css/styles.min.css">
     <!-- Modernizr-->
-    <script src="js/modernizr.min.js"></script>
+    <script src="static/frontend/assets/js/modernizr.min.js"></script>
 
 </head>
 <body>
@@ -53,7 +53,7 @@
        	    		<td></td>
        	    		<td>${product_name }</td>
        	    		<td>${selling_price }</td>
-       	    		<td>수량</td>
+       	    		<td>${product_count }</td>
        	    		<td>${selling_price }</td>
        	    	</tr>
             </thead>
@@ -72,117 +72,127 @@
 						<h4 class="step-title">4. 리뷰</h4>
 					</a>
 				</div>
-				<h4>Billing Address</h4>
-				<hr class="padding-bottom-1x">
-				<div class="row">
-					<div class="col-sm-6">
-						<div class="form-group">
-							<label for="checkout-name">주문자 이름</label> <input
-								class="form-control" type="text" id="checkout-name">
-						</div>
-					</div>
-					<div class="col-sm-6">
-						<div class="form-group">
-							<label for="checkout-ln">ㅎ</label> <input
-								class="form-control" type="text" id="checkout-ln">
-						</div>
-					</div>
-				</div>
-				<div class="row">
-					<div class="col-sm-6">
-						<div class="form-group">
-							<label for="checkout-email">휴대폰 번호</label> <input
-								class="form-control" type="text" id="checkout-phone">
-						</div>
-					</div>
-					<div class="col-sm-6">
-						<div class="form-group">
-							<label for="checkout-phone">f</label> <input
-								class="form-control" type="text" id="checkout-aa">
-						</div>
-					</div>
-				</div>
-				<div class="row">
-					<div class="col-sm-6">
-						<div class="form-group">
-							<label for="checkout-address">주소</label> <input
-								class="form-control" type="text" id="checkout-zip_code">
-								<input
-								class="form-control" type="text" id="checkout-address">
-								<input
-								class="form-control" type="text" id="checkout-address_detail">
-						</div>
-					</div>
-					<div class="col-sm-6">
-						<div class="form-group">
-							<label for="checkout-country">Country</label> <select
-								class="form-control" id="checkout-country">
-								<option>Choose country</option>
-								<option>Australia</option>
-								<option>Canada</option>
-								<option>France</option>
-								<option>Germany</option>
-								<option>Switzerland</option>
-								<option>USA</option>
-							</select>
-						</div>
-					</div>
-				</div>
-				<div class="row">
-					<div class="col-sm-6">
-						<div class="form-group">
-							<label for="checkout-city">City</label> <select
-								class="form-control" id="checkout-city">
-								<option>Choose city</option>
-								<option>Amsterdam</option>
-								<option>Berlin</option>
-								<option>Geneve</option>
-								<option>New York</option>
-								<option>Paris</option>
-							</select>
-						</div>
-					</div>
-					<div class="col-sm-6">
-						<div class="form-group">
-							<label for="checkout-zip">ZIP Code</label> <input
-								class="form-control" type="text" id="checkout-zip">
-						</div>
-					</div>
-				</div>
-				<div class="row padding-bottom-1x">
-					<div class="col-sm-6">
-						<div class="form-group">
-							<label for="checkout-address1">Address 1</label> <input
-								class="form-control" type="text" id="checkout-address1">
-						</div>
-					</div>
-					<div class="col-sm-6">
-						<div class="form-group">
-							<label for="checkout-address2">Address 2</label> <input
-								class="form-control" type="text" id="checkout-address2">
-						</div>
-					</div>
-				</div>
-				<h4>Shipping Address</h4>
-				<hr class="padding-bottom-1x">
-				<div class="form-group">
-					<div class="custom-control custom-checkbox">
-						<input class="custom-control-input" type="checkbox"
-							id="same_address" checked> <label
-							class="custom-control-label" for="same_address">Same as
-							billing address</label>
-					</div>
-				</div>
-				<div class="d-flex justify-content-between paddin-top-1x mt-4">
-					<a class="btn btn-outline-secondary" href="cart.html"><i
-						class="icon-arrow-left"></i><span class="hidden-xs-down">&nbsp;Back
-							To Cart</span></a><button id="check_module" class="btn btn-primary" 
-							type="button"><span
-						class="hidden-xs-down">결제하기&nbsp;</span><i
-						class="icon-arrow-right"></i></button>
+				<h4>주문 정보</h4>
+				<form name="sub1" method="post" action="${pageContext.request.contextPath }/purchase">
+				
+					<input type="hidden" name="tot_price" value="${selling_price }">
+					<input type="hidden" name="product_id" value="${product_id }">
+				
+					<hr class="padding-bottom-1x">
+					<div class="row">
 						
-
-				</div>
+						<div class="col-sm-6">
+							<div class="form-group">
+								<label for="checkout-name">주문자 이름</label> <input
+									class="form-control" type="text"
+									name="orderer_name" id="orderer_name">
+							</div>
+						</div>
+						<div class="col-sm-6">
+							<div class="form-group">
+								<label for="checkout-ln">할인코드</label> <input
+									class="form-control" type="text" 
+									name="discount_ref_no" id="discount_ref_no">
+							</div>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-sm-6">
+							<div class="form-group">
+								<label for="checkout-email">수령인 이름</label> <input
+									class="form-control" type="text" 
+									name="recipient_name" id="recipient_name">
+							</div>
+						</div>
+						<div class="col-sm-6">
+							<div class="form-group">
+								<label for="checkout-">배송비</label> <input
+									class="form-control" type="text" 
+									name="delevery_cost" id="delevery_cost">
+							</div>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-sm-6">
+							<div class="form-group">
+								<label for="checkout-address">주소</label> <input
+									class="form-control" type="text" 
+									name="zip_code" id="zip_code">
+									<input class="form-control" type="text"
+									name="order_address" id="order_address">
+									<input	class="form-control" type="text"
+									name="order_address_detail" id="order_address_detail">
+							</div>
+						</div>
+						<div class="col-sm-6">
+							<div class="form-group">
+								<label for="checkout-country">Country</label> <select
+									class="form-control" id="checkout-country">
+									<option>Choose country</option>
+									<option>Australia</option>
+									<option>Canada</option>
+									<option>France</option>
+									<option>Germany</option>
+									<option>Switzerland</option>
+									<option>USA</option>
+								</select>
+							</div>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-sm-6">
+							<div class="form-group">
+								<label for="checkout-city">City</label> <select
+									class="form-control" id="checkout-city">
+									<option>Choose city</option>
+									<option>Amsterdam</option>
+									<option>Berlin</option>
+									<option>Geneve</option>
+									<option>New York</option>
+									<option>Paris</option>
+								</select>
+							</div>
+						</div>
+						<div class="col-sm-6">
+							<div class="form-group">
+								<label for="checkout-zip">ZIP Code</label> <input
+									class="form-control" type="text" id="checkout-zip">
+							</div>
+						</div>
+					</div>
+					<div class="row padding-bottom-1x">
+						<div class="col-sm-6">
+							<div class="form-group">
+								<label for="checkout-address1">Address 1</label> <input
+									class="form-control" type="text" id="checkout-address1">
+							</div>
+						</div>
+						<div class="col-sm-6">
+							<div class="form-group">
+								<label for="checkout-address2">Address 2</label> <input
+									class="form-control" type="text" id="checkout-address2">
+							</div>
+						</div>
+					</div>
+					<h4>Shipping Address</h4>
+					<hr class="padding-bottom-1x">
+					<div class="form-group">
+						<div class="custom-control custom-checkbox">
+							<input class="custom-control-input" type="checkbox"
+								id="same_address" checked> <label
+								class="custom-control-label" for="same_address">Same as
+								billing address</label>
+						</div>
+					</div>
+					<div class="d-flex justify-content-between paddin-top-1x mt-4">
+						<a class="btn btn-outline-secondary" href="cart.html"><i
+							class="icon-arrow-left"></i><span class="hidden-xs-down">&nbsp;Back
+								To Cart</span></a><button onclick="payment()" class="btn btn-primary" 
+								type="button"><span
+							class="hidden-xs-down">결제하기&nbsp;</span><i
+							class="icon-arrow-right"></i></button>
+					</div>
+				</form>
 			</div>
 			<!-- Sidebar          -->
 			<div class="col-xl-3 col-lg-4">
@@ -190,18 +200,18 @@
 					<div class="padding-top-2x hidden-lg-up"></div>
 					<!-- Order Summary Widget-->
 					<section class="widget widget-order-summary">
-						<h3 class="widget-title">Order Summary</h3>
+						<h3 class="widget-title">주문정보(Order Summary)</h3>
 						<table class="table">
 							<tr>
-								<td>Cart Subtotal:</td>
+								<td>장바구니 총액(Cart Subtotal):</td>
 								<td class="text-gray-dark">$2,548.50</td>
 							</tr>
 							<tr>
-								<td>Shipping:</td>
+								<td>배송비(Shipping): </td>
 								<td class="text-gray-dark">$26.50</td>
 							</tr>
 							<tr>
-								<td>Estimated tax:</td>
+								<td>추정세(Estimated tax):</td>
 								<td class="text-gray-dark">$9.72</td>
 							</tr>
 							<tr>
@@ -284,73 +294,15 @@
 			</div>
 		</div>
 	</div>
-
 </body>
-<script>
-	$("#check_module").click(function() {
-		var IMP = window.IMP; // 생략가능
-		IMP.init('imp55782149');
-		// 'iamport' 대신 부여받은 "가맹점 식별코드"를 사용
-		// i'mport 관리자 페이지 -> 내정보 -> 가맹점식별코드
-		IMP.request_pay({
-			pg : 'inicis', // version 1.1.0부터 지원.
-			/*
-			 'kakao':카카오페이,
-			 html5_inicis':이니시스(웹표준결제)
-			 'nice':나이스페이
-			 'jtnet':제이티넷
-			 'uplus':LG유플러스
-			 'danal':다날
-			 'payco':페이코
-			 'syrup':시럽페이
-			 'paypal':페이팔
-			 */
-
-			pay_method : 'card',
-			/*
-			 'samsung':삼성페이,
-			 'card':신용카드,
-			 'trans':실시간계좌이체,
-			 'vbank':가상계좌,
-			 'phone':휴대폰소액결제
-			 */
-			merchant_uid : 'merchant_' + new Date().getTime(),
-			/*
-			 merchant_uid에 경우
-			 https://docs.iamport.kr/implementation/payment
-			 위에 url에 따라가시면 넣을 수 있는 방법이 있습니다.
-			 참고하세요.
-			 나중에 포스팅 해볼게요.
-			 */
-			name : '${product_name }',
-			//결제창에서 보여질 이름
-			amount : ${selling_price },
-			//가격
-			buyer_email : 'iamport@siot.do',
-			buyer_name : '구매자이름',
-			buyer_tel : '010-1234-5678',
-			buyer_addr : '서울특별시 강남구 삼성동',
-			buyer_postcode : '123-456',
-			m_redirect_url : 'https://www.yourdomain.com/payments/complete'
-		/*
-		 모바일 결제시,
-		 결제가 끝나고 랜딩되는 URL을 지정
-		 (카카오페이, 페이코, 다날의 경우는 필요없음. PC와 마찬가지로 callback함수로 결과가 떨어짐)
-		 */
-		}, function(rsp) {
-			console.log(rsp);
-			if (rsp.success) {
-				var msg = '결제가 완료되었습니다.';
-				msg += '고유ID : ' + rsp.imp_uid;
-				msg += '상점 거래ID : ' + rsp.merchant_uid;
-				msg += '결제 금액 : ' + rsp.paid_amount;
-				msg += '카드 승인번호 : ' + rsp.apply_num;
-			} else {
-				var msg = '결제에 실패하였습니다.';
-				msg += '에러내용 : ' + rsp.error_msg;
-			}
-			alert(msg);
-		});
-	});
+<script type="text/javascript">	
+function payment() {
+        if (document.getElementById("orderer_name").value == "") {
+            alert("이름을 입력하세요.");
+            return false;
+  }else
+   document.sub1.submit();
+}
 </script>
+
 </html>
