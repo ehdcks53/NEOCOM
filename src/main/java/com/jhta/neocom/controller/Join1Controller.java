@@ -11,7 +11,7 @@ import com.jhta.neocom.model.MemberVo;
 
 @Controller
 public class Join1Controller {
-	@RequestMapping(value="/join1", method = RequestMethod.GET)
+	@RequestMapping(value="/account/join1", method = RequestMethod.GET)
 	public String join1Form() {
 		return "frontend/account/join1";
 	}
