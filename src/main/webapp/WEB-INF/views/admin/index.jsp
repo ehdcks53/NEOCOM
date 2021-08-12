@@ -4,17 +4,23 @@
 <html lang="en">
 <head>
 	<meta charset="utf-8" />
-	<title>Color Admin | HTML Startup</title>
+	<title>ADMIN</title>
 	<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport" />
 	<meta content="" name="description" />
 	<meta content="" name="author" />
 	
 	<!-- ================== BEGIN core-css ================== -->
 	<link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet" />
-	<link href="../static/admin/assets/css/vendor.min.css" rel="stylesheet" />
-	<link href="../static/admin/assets/css/default/app.min.css" rel="stylesheet" />
+	<link href="${pageContext.request.contextPath}/static/admin/assets/css/vendor.min.css" rel="stylesheet" />
+	<link href="${pageContext.request.contextPath}/static/admin/assets/css/default/app.min.css" rel="stylesheet" />
 	<!-- ================== END core-css ================== -->
 	
+	<!-- ================== BEGIN page-css ================== -->
+	<link href="${pageContext.request.contextPath}/static/admin/assets/plugins/jvectormap-next/jquery-jvectormap.css" rel="stylesheet" />
+	<link href="${pageContext.request.contextPath}/static/admin/assets/plugins/bootstrap-calendar/css/bootstrap_calendar.css" rel="stylesheet" />
+	<link href="${pageContext.request.contextPath}/static/admin/assets/plugins/gritter/css/jquery.gritter.css" rel="stylesheet" />
+	<link href="${pageContext.request.contextPath}/static/admin/assets/plugins/nvd3/build/nv.d3.css" rel="stylesheet" />
+	<!-- ================== END page-css ================== -->
 	
 </head>
 <body>
@@ -25,197 +31,230 @@
 	<!-- END #loader -->
 	<!-- BEGIN #app -->
 	<div id="app" class="app app-header-fixed app-sidebar-fixed">
-		<!-- BEGIN #header -->
-		<div id="header" class="app-header">
-			<!-- BEGIN navbar-header -->
-			<div class="navbar-header">
-				<a href="index.html" class="navbar-brand"><span class="navbar-logo"></span> <b>Color</b> Admin</a>
-				<button type="button" class="navbar-mobile-toggler" data-toggle="app-sidebar-mobile">
-					<span class="icon-bar"></span>
-					<span class="icon-bar"></span>
-					<span class="icon-bar"></span>
-				</button>
-			</div>
-			<!-- END navbar-header -->
-			
-			<!-- BEGIN header-nav -->
-			<div class="navbar-nav">
-				<div class="navbar-item navbar-form">
-					<form action="" method="POST" name="search">
-						<div class="form-group">
-							<input type="text" class="form-control" placeholder="Enter keyword" />
-							<button type="submit" class="btn btn-search"><i class="fa fa-search"></i></button>
-						</div>
-					</form>
-				</div>
-				<div class="navbar-item dropdown">
-					<a href="#" data-bs-toggle="dropdown" class="navbar-link dropdown-toggle fs-14px">
-						<i class="fa fa-bell"></i>
-						<span class="badge">0</span>
-					</a>
-					<div class="dropdown-menu media-list dropdown-menu-end">
-						<div class="dropdown-header">NOTIFICATIONS (0)</div>
-						<div class="text-center w-300px py-3">
-							No notification found
-						</div>
-					</div>
-				</div>
-				<div class="navbar-item navbar-user dropdown">
-					<a href="#" class="navbar-link dropdown-toggle d-flex align-items-center" data-bs-toggle="dropdown">
-						<div class="image image-icon bg-gray-800 text-gray-600">
-							<i class="fa fa-user"></i>
-						</div>
-						<span class="d-none d-md-inline">Adam Schwartz</span> <b class="caret ms-10px"></b>
-					</a>
-					<div class="dropdown-menu dropdown-menu-end me-1">
-						<a href="javascript:;" class="dropdown-item">Edit Profile</a>
-						<a href="javascript:;" class="dropdown-item"><span class="badge badge-danger float-end">2</span> Inbox</a>
-						<a href="javascript:;" class="dropdown-item">Calendar</a>
-						<a href="javascript:;" class="dropdown-item">Setting</a>
-						<a href="${pageContext.request.contextPath }/admin/cate/cateinsert" class="dropdown-item">카테고리추가</a>
-                   		<a href="${pageContext.request.contextPath }/admin/product/productinsert" class="dropdown-item">상품추가</a>
-                   		<a href="${pageContext.request.contextPath }/admin/product/productlist" class="dropdown-item">상품 관리</a>
-                   		<a href="${pageContext.request.contextPath }/admin/cate/catelist" class="dropdown-item">카테고리 관리</a>
-						<div class="dropdown-divider"></div>
-						<a href="javascript:;" class="dropdown-item">Log Out</a>
-					</div>
-				</div>
-			</div>
-			<!-- END header-nav -->
-		</div>
-		<!-- END #header -->
-		<!-- BEGIN #sidebar -->
-		<div id="sidebar" class="app-sidebar">
-			<!-- BEGIN scrollbar -->
-			<div class="app-sidebar-content" data-scrollbar="true" data-height="100%">
-				<!-- BEGIN menu -->
-				<div class="menu">
-					<div class="menu-profile">
-						<a href="javascript:;" class="menu-profile-link" data-toggle="app-sidebar-profile" data-target="#appSidebarProfileMenu">
-							<div class="menu-profile-cover with-shadow"></div>
-							<div class="menu-profile-image menu-profile-image-icon bg-gray-900 text-gray-600">
-								<i class="fa fa-user"></i>
-							</div>
-							<div class="menu-profile-info">
-								<div class="d-flex align-items-center">
-									<div class="flex-grow-1">
-										Sean Ngu
-									</div>
-									<div class="menu-caret ms-auto"></div>
-								</div>
-								<small>Front end developer</small>
-							</div>
-						</a>
-					</div>
-					<div id="appSidebarProfileMenu" class="collapse">
-						<div class="menu-item pt-5px">
-							<a href="javascript:;" class="menu-link">
-								<div class="menu-icon"><i class="fa fa-cog"></i></div>
-								<div class="menu-text">Settings</div>
-							</a>
-						</div>
-						<div class="menu-item">
-							<a href="javascript:;" class="menu-link">
-								<div class="menu-icon"><i class="fa fa-pencil-alt"></i></div>
-								<div class="menu-text"> Send Feedback</div>
-							</a>
-						</div>
-						<div class="menu-item pb-5px">
-							<a href="javascript:;" class="menu-link">
-								<div class="menu-icon"><i class="fa fa-question-circle"></i></div>
-								<div class="menu-text"> Helps</div>
-							</a>
-						</div>
-						<div class="menu-divider m-0"></div>
-					</div>
-					<div class="menu-header">Navigation</div>
-					<div class="menu-item active">
-						<a href="index.html" class="menu-link">
-							<div class="menu-icon">
-								<i class="fa fa-th-large"></i>
-							</div>
-							<div class="menu-text">Home</div>
-						</a>
-					</div>
-					
-					<div class="menu-item has-sub">
-						<a href="javascript:;" class="menu-link">
-							<div class="menu-icon">
-								<i class="fa fa-align-left"></i>
-							</div>
-							<div class="menu-text">Menu Level</div>
-							<div class="menu-caret"></div>
-						</a>
-						<div class="menu-submenu">
-							<div class="menu-item has-sub">
-								<a href="javascript:;" class="menu-link">
-									<div class="menu-text">Menu 1.1</div>
-									<div class="menu-caret"></div>
-								</a>
-								<div class="menu-submenu">
-									<div class="menu-item has-sub">
-										<a href="javascript:;" class="menu-link">
-											<div class="menu-text">Menu 2.1</div>
-											<div class="menu-caret"></div>
-										</a>
-										<div class="menu-submenu">
-											<div class="menu-item"><a href="javascript:;" class="menu-link"><div class="menu-text">Menu 3.1</div></a></div>
-											<div class="menu-item"><a href="javascript:;" class="menu-link"><div class="menu-text">Menu 3.2</div></a></div>
-										</div>
-									</div>
-									<div class="menu-item"><a href="javascript:;" class="menu-link"><div class="menu-text">Menu 2.2</div></a></div>
-									<div class="menu-item"><a href="javascript:;" class="menu-link"><div class="menu-text">Menu 2.3</div></a></div>
-								</div>
-							</div>
-							<div class="menu-item"><a href="javascript:;" class="menu-link"><div class="menu-text">Menu 1.2</div></a></div>
-							<div class="menu-item"><a href="javascript:;" class="menu-link"><div class="menu-text">Menu 1.3</div></a></div>
-						</div>
-					</div>
-					
-					<!-- BEGIN minify-button -->
-					<div class="menu-item d-flex">
-						<a href="javascript:;" class="app-sidebar-minify-btn ms-auto" data-toggle="app-sidebar-minify"><i class="fa fa-angle-double-left"></i></a>
-					</div>
-					<!-- END minify-button -->
-					
-				</div>
-				<!-- END menu -->
-			</div>
-			<!-- END scrollbar -->
-		</div>
-		<div class="app-sidebar-bg"></div>
-		<div class="app-sidebar-mobile-backdrop"><a href="#" data-dismiss="app-sidebar-mobile" class="stretched-link"></a></div>
-		<!-- END #sidebar -->
+	<jsp:include page="inc/header.jsp" />
+
+		<jsp:include page="inc/sidebar.jsp" />
 		
 		<!-- BEGIN #content -->
 		<div id="content" class="app-content">
-			<!-- BEGIN breadcrumb -->
-			<ol class="breadcrumb float-xl-end">
-				<li class="breadcrumb-item"><a href="javascript:;">Home</a></li>
-				<li class="breadcrumb-item"><a href="javascript:;">Library</a></li>
-				<li class="breadcrumb-item active">Data</li>
-			</ol>
-			<!-- END breadcrumb -->
 			<!-- BEGIN page-header -->
-			<h1 class="page-header">Page Header <small>header small text goes here...</small></h1>
+			<h1 class="page-header">DASHBOARD</h1>
 			<!-- END page-header -->
 			
-			<!-- BEGIN panel -->
-			<div class="panel panel-inverse">
-				<div class="panel-heading">
-					<h4 class="panel-title">Panel Title here</h4>
-					<div class="panel-heading-btn">
-						<a href="javascript:;" class="btn btn-xs btn-icon btn-default" data-toggle="panel-expand"><i class="fa fa-expand"></i></a>
-						<a href="javascript:;" class="btn btn-xs btn-icon btn-success" data-toggle="panel-reload"><i class="fa fa-redo"></i></a>
-						<a href="javascript:;" class="btn btn-xs btn-icon btn-warning" data-toggle="panel-collapse"><i class="fa fa-minus"></i></a>
-						<a href="javascript:;" class="btn btn-xs btn-icon btn-danger" data-toggle="panel-remove"><i class="fa fa-times"></i></a>
+			<!-- BEGIN row -->
+			<div class="row">
+				<!-- BEGIN col-3 -->
+				<div class="col-xl-3 col-md-6">
+					<div class="widget widget-stats bg-teal">
+						<div class="stats-icon stats-icon-lg"><i class="fa fa-globe fa-fw"></i></div>
+						<div class="stats-content">
+							<div class="stats-title">방문자 수</div>
+							<div class="stats-number">아직구현안함</div>
+							<div class="stats-progress progress">
+								<div class="progress-bar" style="width: 0.0%;"></div>
+							</div>
+							<div class="stats-desc">저번 주 대비 증가량 (0.0%)</div>
+						</div>
 					</div>
 				</div>
-				<div class="panel-body">
-					Panel Content Here
+				<!-- END col-3 -->
+				<!-- BEGIN col-3 -->
+				<div class="col-xl-3 col-md-6">
+					<div class="widget widget-stats bg-blue">
+						<div class="stats-icon stats-icon-lg"><i class="fa fa-dollar-sign fa-fw"></i></div>
+						<div class="stats-content">
+							<div class="stats-title">순이익</div>
+							<div class="stats-number">아직구현안함</div>
+							<div class="stats-progress progress">
+								<div class="progress-bar" style="width: 40.0%;"></div>
+							</div>
+							<div class="stats-desc">저번 주 대비 증가량 (40.0%)</div>
+						</div>
+					</div>
 				</div>
+				<!-- END col-3 -->
+				<!-- BEGIN col-3 -->
+				<div class="col-xl-3 col-md-6">
+					<div class="widget widget-stats bg-indigo">
+						<div class="stats-icon stats-icon-lg"><i class="fa fa-archive fa-fw"></i></div>
+						<div class="stats-content">
+							<div class="stats-title">주문 증가</div>
+							<div class="stats-number">아직구현안함</div>
+							<div class="stats-progress progress">
+								<div class="progress-bar" style="width: 50.0%;"></div>
+							</div>
+							<div class="stats-desc">저번 주 대비 증가량 (50.0%)</div>
+						</div>
+					</div>
+				</div>
+				<!-- END col-3 -->
+				<!-- BEGIN col-3 -->
+				<div class="col-xl-3 col-md-6">
+					<div class="widget widget-stats bg-dark">
+						<div class="stats-icon stats-icon-lg"><i class="fa fa-comment-alt fa-fw"></i></div>
+						<div class="stats-content">
+							<div class="stats-title">게시글 등록수</div>
+							<div class="stats-number">아직구현안함</div>
+							<div class="stats-progress progress">
+								<div class="progress-bar" style="width: 70.0%;"></div>
+							</div>
+							<div class="stats-desc">저번 주 대비 증가량 (70.0%)</div>
+						</div>
+					</div>
+				</div>
+				<!-- END col-3 -->
 			</div>
-			<!-- END panel -->
+			<!-- END row -->
+			<!-- BEGIN row -->
+			<div class="row">
+				<!-- BEGIN col-8 -->
+				<div class="col-xl-8">
+					<div class="widget-chart with-sidebar inverse-mode">
+						<div class="widget-chart-content bg-dark">
+							<h4 class="chart-title">
+								카테고리별 판매량
+								<small></small>
+							</h4>
+							<div id="visitors-line-chart" class="widget-chart-full-width nvd3-inverse-mode" style="height: 260px;"></div>
+						</div>
+						<div class="widget-chart-sidebar bg-gray-900">
+							<div class="chart-number">
+								5,000,000
+								<small>총 순이익</small>
+							</div>
+							<div class="flex-grow-1 d-flex align-items-center">
+								<div id="visitors-donut-chart" class="nvd3-inverse-mode" style="height: 180px"></div>
+							</div>
+							<ul class="chart-legend fs-11px">
+								<li><i class="fa fa-circle fa-fw text-blue fs-9px me-5px t-minus-1"></i> 30.0% <span>CPU</span></li>
+								<li><i class="fa fa-circle fa-fw text-teal fs-9px me-5px t-minus-1"></i> 60.0% <span>VGA</span></li>
+								<li><i class="fa fa-circle fa-fw text-teal fs-9px me-5px t-minus-1"></i> 10.0% <span>RAM</span></li>
+							</ul>
+						</div>
+					</div>
+				</div>
+				<!-- END col-8 -->
+				<!-- BEGIN col-4 -->
+				<div class="col-xl-4">
+					<div class="panel panel-inverse" data-sortable-id="index-1">
+						<div class="panel-heading">
+							<h4 class="panel-title">
+								카테고리별 판매량
+							</h4>
+						</div>
+						<div id="visitors-map" class="bg-gray-900" style="height: 170px;"></div>
+						<div class="list-group">
+							<a href="javascript:;" class="list-group-item rounded-0 list-group-item-action list-group-item-inverse d-flex justify-content-between align-items-center text-ellipsis">
+								1. VGA
+								<span class="badge bg-teal fs-10px">60.00%</span>
+							</a>
+							<a href="javascript:;" class="list-group-item list-group-item-action list-group-item-inverse d-flex justify-content-between align-items-center text-ellipsis">
+								2. CPU
+								<span class="badge bg-blue fs-10px">30.00%</span>
+							</a>
+							<a href="javascript:;" class="list-group-item list-group-item-action list-group-item-inverse d-flex justify-content-between align-items-center text-ellipsis">
+								3. RAM
+								<span class="badge bg-gray-600 fs-10px">10.00%</span>
+							</a>
+						</div>
+					</div>
+				</div>
+				<!-- END col-4 -->
+			</div>
+			<!-- END row -->
+			<!-- BEGIN row -->
+			<div class="row">
+			  
+				<!-- BEGIN col-4 -->
+				<div class="col-xl-4 col-lg-6">
+					<!-- BEGIN panel -->
+					<div class="panel panel-inverse" data-sortable-id="index-3">
+						<div class="panel-heading">
+							<h4 class="panel-title">오늘의 일정</h4>
+						</div>
+						<div id="schedule-calendar" class="bootstrap-calendar"></div>
+						<hr class="m-0 bg-gray-500" />
+						<div class="list-group list-group-flush">
+							<a href="javascript:;" class="list-group-item list-group-item-action d-flex justify-content-between align-items-center text-ellipsis">
+								판매 리포팅
+								<span class="badge bg-teal fs-10px">09:00</span>
+							</a> 
+							<a href="javascript:;" class="list-group-item list-group-item-action d-flex justify-content-between align-items-center text-ellipsis rounded-bottom">
+								판매부서와 미팅
+								<span class="badge bg-blue fs-10px">14:25</span>
+							</a>
+						</div>
+					</div>
+					<!-- END panel -->
+				</div>
+				<!-- END col-4 -->
+				<!-- BEGIN col-4 -->
+				<div class="col-xl-4 col-lg-6">
+					<!-- BEGIN panel -->
+					<div class="panel panel-inverse" data-sortable-id="index-4">
+						<div class="panel-heading">
+							<h4 class="panel-title">오늘의 신규 가입자</h4>
+							<span class="badge bg-teal">15</span>
+						</div>
+						<ul class="registered-users-list">
+							<li>
+								<h4 class="username text-ellipsis">
+									Savory Posh
+									<small>Algerian</small>
+								</h4>
+							</li>
+							<li>
+								<h4 class="username text-ellipsis">
+									Ancient Caviar
+									<small>Korean</small>
+								</h4>
+							</li>
+							<li>
+								<h4 class="username text-ellipsis">
+									Marble Lungs
+									<small>Indian</small>
+								</h4>
+							</li>
+							<li>
+								<h4 class="username text-ellipsis">
+									Blank Bloke
+									<small>Japanese</small>
+								</h4>
+							</li>
+							<li>
+								<h4 class="username text-ellipsis">
+									Hip Sculling
+									<small>Cuban</small>
+								</h4>
+							</li>
+							<li>
+								<h4 class="username text-ellipsis">
+									Flat Moon
+									<small>Nepalese</small>
+								</h4>
+							</li>
+							<li>
+								<h4 class="username text-ellipsis">
+									Packed Puffs
+									<small>Malaysian</small>
+								</h4>
+							</li>
+							<li>
+								<h4 class="username text-ellipsis">
+									Clay Hike
+									<small>Swedish</small>
+								</h4>
+							</li>
+						</ul>
+						<div class="panel-footer text-center">
+							<a href="javascript:;" class="text-decoration-none text-inverse">View All</a>
+						</div>
+					</div>
+					<!-- END panel -->
+				</div>
+				<!-- END col-4 -->
+			</div>
+			<!-- END row -->
 		</div>
 		<!-- END #content -->
 		
@@ -226,10 +265,17 @@
 	<!-- END #app -->
 	
 	<!-- ================== BEGIN core-js ================== -->
-	<script src="../static/admin/assets/js/vendor.min.js"></script>
-	<script src="../static/admin/assets/js/app.min.js"></script>
-	<script src="../static/admin/assets/js/theme/default.min.js"></script>
+	<script src=" ${pageContext.request.contextPath}/static/admin/assets/js/vendor.min.js"></script>
+	<script src=" ${pageContext.request.contextPath}/static/admin/assets/js/app.min.js"></script>
+	<script src=" ${pageContext.request.contextPath}/static/admin/assets/js/theme/default.min.js"></script>
 	<!-- ================== END core-js ================== -->
 	
+		<!-- ================== BEGIN page-js ================== -->
+	<script src=" ${pageContext.request.contextPath}/static/admin/assets/plugins/d3/d3.min.js"></script>
+	<script src=" ${pageContext.request.contextPath}/static/admin/assets/plugins/nvd3/build/nv.d3.min.js"></script>
+	<script src=" ${pageContext.request.contextPath}/static/admin/assets/plugins/jvectormap-next/jquery-jvectormap.min.js"></script>
+	<script src=" ${pageContext.request.contextPath}/static/admin/assets/plugins/jvectormap-next/jquery-jvectormap-world-mill.js"></script>
+	<script src=" ${pageContext.request.contextPath}/static/admin/assets/plugins/bootstrap-calendar/js/bootstrap_calendar.min.js"></script>
+	<!-- ================== END page-js ================== -->
 </body>
 </html>

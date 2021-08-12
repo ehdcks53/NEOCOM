@@ -33,15 +33,15 @@ public class Join2Controller {
 		
 	}
 	*/
-	@RequestMapping(value="/join2", method = RequestMethod.POST) 
+	@RequestMapping(value="/account/join2", method = RequestMethod.POST) 
 	public String join(@Valid @ModelAttribute MemberVo memberVo,BindingResult result, Model model) {
 		if(result.hasErrors()) {
 			System.out.println("에러발생!!");
-			return "/frontend/join2";
+			return "/frontend/account/join2";
 		}
 		System.out.println("오예성공");
 		service.insert(memberVo);
-		return "/frontend/join3";
+		return "/frontend/account/join3";
 		
 	}
 		 

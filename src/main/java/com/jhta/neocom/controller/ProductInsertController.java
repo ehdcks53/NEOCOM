@@ -19,55 +19,48 @@ import com.jhta.neocom.model.Product_ImgVo;
 import com.jhta.neocom.service.ImgFileService;
 import com.jhta.neocom.service.ProductService;
 
-
-
-
-
-
 @Controller
 public class ProductInsertController {
-		@Autowired private ProductService service;
-		@Autowired private ImgFileService service1;
-		@Autowired ServletContext sc;
-		
-		@GetMapping("/admin/product/productInsert")
-		public String insertForm() {
-			return "/admin/product/productInsert";
-			
-		}
-		
-	
-		
-		@PostMapping("/admin/product/productInsert")
-		public String insert(ProductVo vo,Model model,MultipartFile img,Product_ImgVo vo1,String img_category) {
-			//업로드할 폴더의 절대 경로 구하기
-			String img_path=sc.getRealPath("/resources/upload");
-			System.out.println(img_path);
-			String img_name_origin=img.getOriginalFilename(); //전송된 파일명
-			String img_name_save=UUID.randomUUID() + "_" +img_name_origin;
-			long img_size=img.getSize();
-			try {
-				service.insert(vo);
-				InputStream is=img.getInputStream();
-				FileOutputStream fos=new FileOutputStream(img_path+"\\"+img_name_save);
-				FileCopyUtils.copy(is, fos);
-				is.close();
-				fos.close();
-				//2.업로드된 파일정보 DB에 저장하기
-				System.out.println(vo.getProduct_id()); 
-				vo1=new Product_ImgVo(0,vo.getProduct_id(),img_name_save,img_name_origin,img_path,img_size,img_category);
-				service1.insert(vo1);
-				
-				
-				model.addAttribute("code", "successs");
-			}catch(Exception e) {
-				e.printStackTrace();
-				model.addAttribute("code","fail");
-			}
-			return "/admin/product/result";
-		}
+	@Autowired
+	private ProductService service;
+	@Autowired
+	private ImgFileService service1;
+	@Autowired
+	ServletContext sc;
+
+	@GetMapping("/admin/product/productInsert")
+	public String insertForm() {
+		return "/admin/menu/product/productInsert";
 
 	}
 
+	@PostMapping("/admin/product/productInsert")
+	public String insert(ProductVo vo, Model model, MultipartFile img, Product_ImgVo vo1, String img_category) {
+		// 업로드할 폴더의 절대 경로 구하기
+		String img_path = sc.getRealPath("/resources/upload");
+		System.out.println(img_path);
+		String img_name_origin = img.getOriginalFilename(); // 전송된 파일명
+		String img_name_save = UUID.randomUUID() + "_" + img_name_origin;
+		long img_size = img.getSize();
+		try {
+			service.insert(vo);
+			InputStream is = img.getInputStream();
+			FileOutputStream fos = new FileOutputStream(img_path + "\\" + img_name_save);
+			FileCopyUtils.copy(is, fos);
+			is.close();
+			fos.close();
+			// 2.업로드된 파일정보 DB에 저장하기
+			System.out.println(vo.getProduct_id());
+			vo1 = new Product_ImgVo(0, vo.getProduct_id(), img_name_save, img_name_origin, img_path, img_size,
+					img_category);
+			service1.insert(vo1);
 
+			model.addAttribute("code", "successs");
+		} catch (Exception e) {
+			e.printStackTrace();
+			model.addAttribute("code", "fail");
+		}
+		return "/admin/menu/product/result";
+	}
 
+}

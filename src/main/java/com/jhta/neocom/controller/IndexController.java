@@ -12,18 +12,18 @@ public class IndexController {
         return "admin/index";
     }
 
+    
     @RequestMapping(value = "/")
     public String frontendIndex() {
 
         return "frontend/index";
     }
 
-    
-    @RequestMapping(value = "/index_original")
+    @RequestMapping(value 
+= "/index_original")
     public String frontendIndex_original() {
 
         return "frontend/index_original";
     }
-
 
 }
