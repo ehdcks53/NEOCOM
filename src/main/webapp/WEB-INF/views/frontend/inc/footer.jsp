@@ -2,7 +2,7 @@
     pageEncoding="UTF-8"%>
 
 <!-- footer -->
-<footer class="site-footer" style="background-image: url(static/frontend/assets/img/footer-bg.png);">
+<footer class="site-footer" style="background-image: url(${pageContext.request.contextPath}/static/frontend/assets/img/footer-bg.png);">
 <div class="container">
 	<div class="row">
 		<!-- 풋터 카테고리 -->
