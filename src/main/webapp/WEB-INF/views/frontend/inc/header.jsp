@@ -51,7 +51,7 @@
 	<!-- 툴바 -->
 	<div class="toolbar d-flex">
 		<div class="toolbar-item">
-			<a href="${pageContext.request.contextPath }/join1">
+			<a href="${pageContext.request.contextPath }/account/join1">
 				<div><i class="icon-pocket"></i><span class="text-label">회원가입</span></div>
 			</a>
 		</div>
