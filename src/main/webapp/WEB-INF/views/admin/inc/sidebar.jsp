@@ -91,7 +91,7 @@
 									</div>
 									<div class="menu-item has-sub">
 										<a href="javascript:;" class="menu-link">
-											<a href="${pageContext.request.contextPath }/admin/product/productinsert" class="menu-link"><div class="menu-text">상품 추가</div></a>
+											<a href="${pageContext.request.contextPath}/admin/product/productinsert" class="menu-link"><div class="menu-text">상품 추가</div></a>
 										</a>
 									</div>
 								</div>
