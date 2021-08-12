@@ -51,7 +51,7 @@
 	<!-- 툴바 -->
 	<div class="toolbar d-flex">
 		<div class="toolbar-item">
-			<a href="#">
+			<a href="${pageContext.request.contextPath }/join1">
 				<div>
 					<i class="icon-users"></i><span class="text-label">회원가입</span>
 				</div>
