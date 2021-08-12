@@ -1,4 +1,4 @@
-package com.jhta.neocom.controller;
+package com.jhta.neocom.admin.controller;
 
 import java.io.FileOutputStream;
 import java.io.InputStream;
@@ -28,9 +28,9 @@ public class ProductInsertController {
 	@Autowired
 	ServletContext sc;
 
-	@GetMapping("/admin/product/productInsert")
+	@GetMapping("/admin/product/productinsert")
 	public String insertForm() {
-		return "/admin/menu/product/productInsert";
+		return "/admin/menu/product/productinsert";
 
 	}
 
