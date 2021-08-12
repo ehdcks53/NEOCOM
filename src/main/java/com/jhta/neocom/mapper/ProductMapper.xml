@@ -48,7 +48,7 @@
                 <include refid="search"/> 
                 order by aa.product_id desc
                  )a 
-  		<![CDATA[	where rnum>=#{startRow} and rnum<=#{endRow} ]]>
+  		
             order by rnum desc
   </select>
   

@@ -155,8 +155,8 @@
 		<div class="col-lg-3 col-md-4 col-sm-6">
 			<div class="product-card mb-30">
 				<a class="product-thumb" href="#"><img
-					src="${vo.thumnail }"
-					alt="${vo.thumnail }"></a>
+					src="${vo.img_thumnail }"
+					alt="${vo.img_thumnail }"></a>
 				<div class="product-card-body">
 					<div class="product-category">
 						<a href="#">${vo.brand }</a>
