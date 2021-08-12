@@ -26,8 +26,8 @@
 </head>
 <body>
 
-<!-- footer -->
-<jsp:include page="header.jsp"/>
+<!-- header -->
+<jsp:include page="inc/header.jsp"/>
 
 
 <!-- 메인 슬라이더 -->
@@ -179,7 +179,7 @@
 
 
 <!-- footer -->
-<jsp:include page="footer.jsp"/>
+<jsp:include page="inc/footer.jsp"/>
 
 	<!-- Back To Top Button--><a class="scroll-to-top-btn" href="#"><i class="icon-chevron-up"></i></a>
 	<!-- Backdrop-->
