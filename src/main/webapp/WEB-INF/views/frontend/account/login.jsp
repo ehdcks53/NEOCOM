@@ -25,13 +25,8 @@
 </head>
 <body>
 
-<<<<<<< HEAD:src/main/webapp/WEB-INF/views/frontend/login/login.jsp
-<!-- footer -->
-<jsp:include page="../inc/header.jsp"/>
-=======
 <!-- header -->
 <jsp:include page="/WEB-INF/views/frontend/inc/header.jsp"/>
->>>>>>> 02fafede38269c3a73a2e78122aee67f9206e0a7:src/main/webapp/WEB-INF/views/frontend/account/login.jsp
 
 
 <!-- 페이지 타이틀 -->
@@ -106,11 +101,7 @@
 
 
 <!-- footer -->
-<<<<<<< HEAD:src/main/webapp/WEB-INF/views/frontend/login/login.jsp
-<jsp:include page="../inc/footer.jsp"/>
-=======
 <jsp:include page="/WEB-INF/views/frontend/inc/footer.jsp"/>
->>>>>>> 02fafede38269c3a73a2e78122aee67f9206e0a7:src/main/webapp/WEB-INF/views/frontend/account/login.jsp
 
 	<!-- Back To Top Button--><a class="scroll-to-top-btn" href="#"><i class="icon-chevron-up"></i></a>
 	<!-- Backdrop-->
