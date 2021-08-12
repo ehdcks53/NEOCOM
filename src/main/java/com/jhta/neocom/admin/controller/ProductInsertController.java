@@ -1,4 +1,4 @@
-package com.jhta.neocom.controller;
+package com.jhta.neocom.admin.controller;
 
 import java.io.FileOutputStream;
 import java.io.InputStream;
@@ -42,6 +42,7 @@ public class ProductInsertController {
 		String img_name_origin = img.getOriginalFilename(); // 전송된 파일명
 		String img_name_save = UUID.randomUUID() + "_" + img_name_origin;
 		long img_size = img.getSize();
+		String img_thumnail=img_path+"\\"+img_name_save;
 		try {
 			service.insert(vo);
 			InputStream is = img.getInputStream();
@@ -50,9 +51,9 @@ public class ProductInsertController {
 			is.close();
 			fos.close();
 			// 2.업로드된 파일정보 DB에 저장하기
-			System.out.println(vo.getProduct_id());
+			
 			vo1 = new Product_ImgVo(0, vo.getProduct_id(), img_name_save, img_name_origin, img_path, img_size,
-					img_category);
+					img_category,img_thumnail);
 			service1.insert(vo1);
 
 			model.addAttribute("code", "successs");

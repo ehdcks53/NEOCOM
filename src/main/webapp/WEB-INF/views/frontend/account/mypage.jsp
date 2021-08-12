@@ -56,66 +56,38 @@
 
 
 <!-- 페이지 컨텐트 -->
-<div class="container padding-bottom-3x">
+<div class="container padding-bottom-3x mb-2">
 <div class="row">
-	<!-- 마이페이지 주문내역 -->
-	<div class="col-lg col-md-8 order-md-2">
-		<h6 class="text-muted text-lg text-upppercase">주문내역</h6>
-		<hr class="margin-bottom-1x">
-		<div class="table-responsive">
-			<table class="table table-striped text-center">
-				<thead>
-					<tr>
-						<th>주문번호</th>
-						<th>주문일</th>
-						<th>상품명</th>
-						<th>총금액</th>
-						<th></th>
-					</tr>
-				</thead>
-				<tbody>
-					<tr>
-						<td>1</td>
-						<td>2021.08.12</td>
-						<td>상품명</td>
-						<td>500,000원</td>
-						<td><button class="btn btn-sm btn-outline-info" type="button">상세보기</button></td>
-					</tr>
-					<tr>
-						<td>2</td>
-						<td>2021.08.12</td>
-						<td>상품명</td>
-						<td>500,000원</td>
-						<td><button class="btn btn-sm btn-outline-info" type="button">상세보기</button></td>
-					</tr>
-					<tr>
-						<td>3</td>
-						<td>2021.08.12</td>
-						<td>상품명</td>
-						<td>500,000원</td>
-						<td><button class="btn btn-sm btn-outline-info" type="button">상세보기</button></td>
-					</tr>
-					<tr>
-						<td>4</td>
-						<td>2021.08.12</td>
-						<td>상품명</td>
-						<td>500,000원</td>
-						<td><button class="btn btn-sm btn-outline-info" type="button">상세보기</button></td>
-					</tr>
-					<tr>
-						<td>5</td>
-						<td>2021.08.12</td>
-						<td>상품명</td>
-						<td>500,000원</td>
-						<td><button class="btn btn-sm btn-outline-info" type="button">상세보기</button></td>
-					</tr>
-				</tbody>
-			</table>
+	<!-- 마이페이지 사이드바 -->
+	<div class="col-lg-3">
+		<aside class="user-info-wrapper">
+			<div class="user-cover" style="background-image: url(${pageContext.request.contextPath}/static/frontend/assets/img/account/user-cover-img.jpg);">
+				<!-- 뱃지 -->
+			</div>
+			<div class="user-info">
+				<!-- 프로필이미지 부분 
+				<div class="user-avatar">
+					<a class="edit-avatar" href="#"></a><img src="" alt="">
+				</div>
+				프로필이미지 부분 -->
+				<div class="user-data">
+					<h4 class="h5">OOO 회원님</h4><span>가나다라마바사</span>
+				</div>
+			</div>
+		</aside>
+		<div id="listActive">
+		<nav class="list-group">
+			<a class="list-group-item with-badge active" href="${pageContext.request.contextPath }/account/mypage_order">주문내역</a>
+			<a class="list-group-item with-badge" href="${pageContext.request.contextPath }/account/mypage">배송지 관리</a>
+			<a class="list-group-item with-badge" href="${pageContext.request.contextPath }/account/mypage">문의내역</a>
+			<a class="list-group-item with-badge" href="${pageContext.request.contextPath }/account/mypage">관심상품</a>
+			<a class="list-group-item with-badge" href="${pageContext.request.contextPath }/account/mypage">나의 리뷰</a>
+			<a class="list-group-item with-badge" href="${pageContext.request.contextPath }/account/mypage">개인 정보 관리</a>
+		</nav>
 		</div>
 	</div>
 	
-	<!-- 마이페이지 사이드 -->
-	<jsp:include page="inc/mypage_sidebar.jsp"/>
+	
 </div>
 </div>
 <!-- 페이지 컨텐트 끝 -->
@@ -130,5 +102,23 @@
 	<!-- JavaScript (jQuery) libraries, plugins and custom scripts-->
 	<script src="${pageContext.request.contextPath}/static/frontend/assets/js/vendor.min.js"></script>
 	<script src="${pageContext.request.contextPath}/static/frontend/assets/js/scripts.min.js"></script>
+	<script src="${pageContext.request.contextPath}/static/frontend/assets/js/jquery-3.6.0.min.js"></script>
+<script type="text/javascript">
+	
+
+
+		
+		var listContainer = document.getElementById("listActive");
+		var lists = listContainer.getElementsByClassName("list-group-item with-badge");
+		for (var i = 0; i < lists.length; i++) {
+			lists[i].addEventListener("click", function() {
+			  var current = document.getElementsByClassName("active");
+			  current[0].className = current[0].className.replace(" active", "");
+			  this.className += " active";
+		  });
+		}
+	
+	
+</script>
 </body>
 </html>
