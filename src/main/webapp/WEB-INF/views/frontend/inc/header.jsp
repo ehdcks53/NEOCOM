@@ -8,7 +8,7 @@
 	<!-- 로고 -->
 	<div class="site-branding d-flex">
 		<a class="site-logo align-self-center" href="${pageContext.request.contextPath }/">
-		<img src="static/frontend/assets/img/logo/neocomlogo2.png" alt="neocom">
+		<img src="${pageContext.request.contextPath}/static/frontend/assets/img/logo/neocomlogo.png" alt="neocom">
 		</a>
 	</div>
 	
@@ -21,16 +21,16 @@
 					<button class="btn btn-secondary dropdown-toggle" data-toggle="dropdown"><i class="icon-menu text-lg"></i>&nbsp;카테고리</button>
 					<div class="dropdown-menu mega-dropdown">
 						<div class="row">
-							<div class="col-sm-3"><a class="d-block navi-link text-center mb-30" href="#"><img class="d-block" src="static/frontend/assets/img/shop/header-categories/01.jpg"><span class="text-gray-dark">분류1</span></a></div>
-							<div class="col-sm-3"><a class="d-block navi-link text-center mb-30" href="#"><img class="d-block" src="static/frontend/assets/img/shop/header-categories/02.jpg"><span class="text-gray-dark">분류2</span></a></div>
-							<div class="col-sm-3"><a class="d-block navi-link text-center mb-30" href="#"><img class="d-block" src="static/frontend/assets/img/shop/header-categories/03.jpg"><span class="text-gray-dark">분류3</span></a></div>
-							<div class="col-sm-3"><a class="d-block navi-link text-center mb-30" href="#"><img class="d-block" src="static/frontend/assets/img/shop/header-categories/04.jpg"><span class="text-gray-dark">분류4</span></a></div>
+							<div class="col-sm-3"><a class="d-block navi-link text-center mb-30" href="#"><img class="d-block" src="${pageContext.request.contextPath}/static/frontend/assets/img/shop/header-categories/01.jpg"><span class="text-gray-dark">분류1</span></a></div>
+							<div class="col-sm-3"><a class="d-block navi-link text-center mb-30" href="#"><img class="d-block" src="${pageContext.request.contextPath}/static/frontend/assets/img/shop/header-categories/02.jpg"><span class="text-gray-dark">분류2</span></a></div>
+							<div class="col-sm-3"><a class="d-block navi-link text-center mb-30" href="#"><img class="d-block" src="${pageContext.request.contextPath}/static/frontend/assets/img/shop/header-categories/03.jpg"><span class="text-gray-dark">분류3</span></a></div>
+							<div class="col-sm-3"><a class="d-block navi-link text-center mb-30" href="#"><img class="d-block" src="${pageContext.request.contextPath}/static/frontend/assets/img/shop/header-categories/04.jpg"><span class="text-gray-dark">분류4</span></a></div>
 						</div>
 						<div class="row">
-							<div class="col-sm-3"><a class="d-block navi-link text-center mb-30" href="#"><img class="d-block" src="static/frontend/assets/img/shop/header-categories/05.jpg"><span class="text-gray-dark">분류5</span></a></div>
-							<div class="col-sm-3"><a class="d-block navi-link text-center mb-30" href="#"><img class="d-block" src="static/frontend/assets/img/shop/header-categories/06.jpg"><span class="text-gray-dark">분류6</span></a></div>
-							<div class="col-sm-3"><a class="d-block navi-link text-center mb-30" href="#"><img class="d-block" src="static/frontend/assets/img/shop/header-categories/07.jpg"><span class="text-gray-dark">분류7</span></a></div>
-							<div class="col-sm-3"><a class="d-block navi-link text-center mb-30" href="#"><img class="d-block" src="static/frontend/assets/img/shop/header-categories/08.jpg"><span class="text-gray-dark">분류8</span></a></div>
+							<div class="col-sm-3"><a class="d-block navi-link text-center mb-30" href="#"><img class="d-block" src="${pageContext.request.contextPath}/static/frontend/assets/img/shop/header-categories/05.jpg"><span class="text-gray-dark">분류5</span></a></div>
+							<div class="col-sm-3"><a class="d-block navi-link text-center mb-30" href="#"><img class="d-block" src="${pageContext.request.contextPath}/static/frontend/assets/img/shop/header-categories/06.jpg"><span class="text-gray-dark">분류6</span></a></div>
+							<div class="col-sm-3"><a class="d-block navi-link text-center mb-30" href="#"><img class="d-block" src="${pageContext.request.contextPath}/static/frontend/assets/img/shop/header-categories/07.jpg"><span class="text-gray-dark">분류7</span></a></div>
+							<div class="col-sm-3"><a class="d-block navi-link text-center mb-30" href="#"><img class="d-block" src="${pageContext.request.contextPath}/static/frontend/assets/img/shop/header-categories/08.jpg"><span class="text-gray-dark">분류8</span></a></div>
 						</div>
 					</div>
 				</div>
@@ -52,16 +52,22 @@
 	<div class="toolbar d-flex">
 		<div class="toolbar-item">
 			<a href="#">
-				<div>
-					<i class="icon-users"></i><span class="text-label">회원가입</span>
-				</div>
+				<div><i class="icon-pocket"></i><span class="text-label">회원가입</span></div>
 			</a>
 		</div>
 		<div class="toolbar-item">
-			<a href="${pageContext.request.contextPath }/login">
-				<div>
-					<i class="icon-user"></i><span class="text-label">로그인</span>
-				</div>
+			<a href="${pageContext.request.contextPath }/account/login">
+				<div><i class="icon-user"></i><span class="text-label">로그인</span></div>
+			</a>
+		</div>
+		<div class="toolbar-item">
+			<a href="#">
+				<div><i class="icon-slash"></i><span class="text-label">로그아웃</span></div>
+			</a>
+		</div>
+		<div class="toolbar-item">
+			<a href="${pageContext.request.contextPath }/account/mypage">
+				<div><i class="icon-box"></i><span class="text-label">마이페이지</span></div>
 			</a>
 		</div>
 		<div class="toolbar-item">
@@ -77,7 +83,7 @@
 			<!-- 장바구니 아이콘 드롭다운(기능 구현 가능하면 유지, 불가할 경우 지우기) -->
 			<div class="toolbar-dropdown cart-dropdown widget-cart">
 				<div class="entry">
-					<div class="entry-thumb"><a href="#"><img src="static/frontend/assets/img/shop/widget/04.jpg" alt=""></a></div>
+					<div class="entry-thumb"><a href="#"><img src="${pageContext.request.contextPath}/static/frontend/assets/img/shop/widget/04.jpg" alt=""></a></div>
 					<div class="entry-content">
 						<h4 class="entry-title"><a href="#">캐논카메라</a></h4>
 						<span class="entry-meta">1,000,000 ￦</span>
@@ -85,7 +91,7 @@
 					<div class="entry-delete"><i class="icon-x"></i></div>
 				</div>
 				<div class="entry">
-					<div class="entry-thumb"><a href="#"><img src="static/frontend/assets/img/shop/widget/05.jpg" alt=""></a></div>
+					<div class="entry-thumb"><a href="#"><img src="${pageContext.request.contextPath}/static/frontend/assets/img/shop/widget/05.jpg" alt=""></a></div>
 					<div class="entry-content">
 						<h4 class="entry-title"><a href="#">아이폰</a></h4>
 						<span class="entry-meta">1,000,000 ￦</span>
@@ -114,16 +120,16 @@
 		<button class="btn btn-secondary dropdown-toggle" data-toggle="dropdown"><i class="icon-menu text-lg"></i>&nbsp;카테고리</button>
 		<div class="dropdown-menu mega-dropdown">
 			<div class="row">
-				<div class="col-sm-3"><a class="d-block navi-link text-center mb-30" href="#"><img class="d-block" src="static/frontend/assets/img/shop/header-categories/01.jpg"><span class="text-gray-dark">분류1</span></a></div>
-				<div class="col-sm-3"><a class="d-block navi-link text-center mb-30" href="#"><img class="d-block" src="static/frontend/assets/img/shop/header-categories/02.jpg"><span class="text-gray-dark">분류2</span></a></div>
-				<div class="col-sm-3"><a class="d-block navi-link text-center mb-30" href="#"><img class="d-block" src="static/frontend/assets/img/shop/header-categories/03.jpg"><span class="text-gray-dark">분류3</span></a></div>
-				<div class="col-sm-3"><a class="d-block navi-link text-center mb-30" href="#"><img class="d-block" src="static/frontend/assets/img/shop/header-categories/04.jpg"><span class="text-gray-dark">분류4</span></a></div>
+				<div class="col-sm-3"><a class="d-block navi-link text-center mb-30" href="#"><img class="d-block" src="${pageContext.request.contextPath}/static/frontend/assets/img/shop/header-categories/01.jpg"><span class="text-gray-dark">분류1</span></a></div>
+				<div class="col-sm-3"><a class="d-block navi-link text-center mb-30" href="#"><img class="d-block" src="${pageContext.request.contextPath}/static/frontend/assets/img/shop/header-categories/02.jpg"><span class="text-gray-dark">분류2</span></a></div>
+				<div class="col-sm-3"><a class="d-block navi-link text-center mb-30" href="#"><img class="d-block" src="${pageContext.request.contextPath}/static/frontend/assets/img/shop/header-categories/03.jpg"><span class="text-gray-dark">분류3</span></a></div>
+				<div class="col-sm-3"><a class="d-block navi-link text-center mb-30" href="#"><img class="d-block" src="${pageContext.request.contextPath}/static/frontend/assets/img/shop/header-categories/04.jpg"><span class="text-gray-dark">분류4</span></a></div>
 			</div>
 			<div class="row">
-				<div class="col-sm-3"><a class="d-block navi-link text-center mb-30" href="#"><img class="d-block" src="static/frontend/assets/img/shop/header-categories/05.jpg"><span class="text-gray-dark">분류5</span></a></div>
-				<div class="col-sm-3"><a class="d-block navi-link text-center mb-30" href="#"><img class="d-block" src="static/frontend/assets/img/shop/header-categories/06.jpg"><span class="text-gray-dark">분류6</span></a></div>
-				<div class="col-sm-3"><a class="d-block navi-link text-center mb-30" href="#"><img class="d-block" src="static/frontend/assets/img/shop/header-categories/07.jpg"><span class="text-gray-dark">분류7</span></a></div>
-				<div class="col-sm-3"><a class="d-block navi-link text-center mb-30" href="#"><img class="d-block" src="static/frontend/assets/img/shop/header-categories/08.jpg"><span class="text-gray-dark">분류8</span></a></div>
+				<div class="col-sm-3"><a class="d-block navi-link text-center mb-30" href="#"><img class="d-block" src="${pageContext.request.contextPath}/static/frontend/assets/img/shop/header-categories/05.jpg"><span class="text-gray-dark">분류5</span></a></div>
+				<div class="col-sm-3"><a class="d-block navi-link text-center mb-30" href="#"><img class="d-block" src="${pageContext.request.contextPath}/static/frontend/assets/img/shop/header-categories/06.jpg"><span class="text-gray-dark">분류6</span></a></div>
+				<div class="col-sm-3"><a class="d-block navi-link text-center mb-30" href="#"><img class="d-block" src="${pageContext.request.contextPath}/static/frontend/assets/img/shop/header-categories/07.jpg"><span class="text-gray-dark">분류7</span></a></div>
+				<div class="col-sm-3"><a class="d-block navi-link text-center mb-30" href="#"><img class="d-block" src="${pageContext.request.contextPath}/static/frontend/assets/img/shop/header-categories/08.jpg"><span class="text-gray-dark">분류8</span></a></div>
 			</div>
 		</div>
 	</div>
@@ -134,7 +140,7 @@
 		<ul>
 			<li class="has-submenu active"><a href="#">메뉴1</a>
 			</li>
-			<li class="has-megamenu"><a href="${pageContext.request.contextPath }/goods_list">Shop</a>
+			<li class="has-megamenu"><a href="${pageContext.request.contextPath }/shop/product_list">Shop</a>
 				<ul class="mega-menu">
 					<li><span class="mega-menu-title">대분류1</span>
 						<ul class="sub-menu">
@@ -203,16 +209,22 @@
 		<div class="toolbar-inner">
 			<div class="toolbar-item">
 				<a href="#">
-					<div>
-						<i class="icon-users"></i><span class="text-label">회원가입</span>
-					</div>
+					<div><i class="icon-pocket"></i><span class="text-label">회원가입</span></div>
 				</a>
 			</div>
 			<div class="toolbar-item">
-				<a href="${pageContext.request.contextPath }/login">
-					<div>
-						<i class="icon-user"></i><span class="text-label">로그인</span>
-					</div>
+				<a href="${pageContext.request.contextPath }/account/login">
+					<div><i class="icon-user"></i><span class="text-label">로그인</span></div>
+				</a>
+			</div>
+			<div class="toolbar-item">
+			<a href="#">
+				<div><i class="icon-slash"></i><span class="text-label">로그아웃</span></div>
+			</a>
+			</div>
+			<div class="toolbar-item">
+				<a href="${pageContext.request.contextPath }/account/mypage">
+					<div><i class="icon-box"></i><span class="text-label">마이페이지</span></div>
 				</a>
 			</div>
 			<div class="toolbar-item">
@@ -228,7 +240,7 @@
 				<!-- 장바구니 아이콘 드롭다운(기능 구현 가능하면 유지, 불가할 경우 지우기) -->
 				<div class="toolbar-dropdown cart-dropdown widget-cart">
 					<div class="entry">
-						<div class="entry-thumb"><a href="#"><img src="static/frontend/assets/img/shop/widget/04.jpg" alt=""></a></div>
+						<div class="entry-thumb"><a href="#"><img src="${pageContext.request.contextPath}/static/frontend/assets/img/shop/widget/04.jpg" alt=""></a></div>
 						<div class="entry-content">
 							<h4 class="entry-title"><a href="#">캐논카메라</a></h4>
 							<span class="entry-meta">1,000,000 ￦</span>
@@ -236,7 +248,7 @@
 						<div class="entry-delete"><i class="icon-x"></i></div>
 					</div>
 					<div class="entry">
-						<div class="entry-thumb"><a href="#"><img src="static/frontend/assets/img/shop/widget/05.jpg" alt=""></a></div>
+						<div class="entry-thumb"><a href="#"><img src="${pageContext.request.contextPath}/static/frontend/assets/img/shop/widget/05.jpg" alt=""></a></div>
 						<div class="entry-content">
 							<h4 class="entry-title"><a href="#">아이폰</a></h4>
 							<span class="entry-meta">1,000,000 ￦</span>
