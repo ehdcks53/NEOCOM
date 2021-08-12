@@ -48,6 +48,10 @@ public class ProductListController {
 //		mv.setViewName("/admin/cate/catelist");
 		return mv;
 		
+		
+		
+		
+		
 	
 	}
 }
