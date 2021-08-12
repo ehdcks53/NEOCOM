@@ -14,29 +14,29 @@
 <meta name="author" content="Rokaux">
 <!-- Favicon and Apple Icons-->
 <link rel="icon" type="image/x-icon"
-	href="static/frontend/assets/favicon&icon/favicon.ico">
+	href="${pageContext.request.contextPath}/static/frontend/assets/favicon&icon/favicon.ico">
 <link rel="icon" type="image/png"
-	href="static/frontend/assets/favicon&icon/favicon.png">
+	href="${pageContext.request.contextPath}/static/frontend/assets/favicon&icon/favicon.png">
 <link rel="apple-touch-icon"
-	href="static/frontend/assets/favicon&icon/touch-icon-iphone.png">
+	href="${pageContext.request.contextPath}/static/frontend/assets/favicon&icon/touch-icon-iphone.png">
 <link rel="apple-touch-icon" sizes="152x152"
-	href="static/frontend/assets/favicon&icon/touch-icon-ipad.png">
+	href="${pageContext.request.contextPath}/static/frontend/assets/favicon&icon/touch-icon-ipad.png">
 <link rel="apple-touch-icon" sizes="180x180"
-	href="static/frontend/assets/favicon&icon/touch-icon-iphone-retina.png">
+	href="${pageContext.request.contextPath}/static/frontend/assets/favicon&icon/touch-icon-iphone-retina.png">
 <link rel="apple-touch-icon" sizes="167x167"
-	href="static/frontend/assets/favicon&icon/touch-icon-ipad-retina.png">
+	href="${pageContext.request.contextPath}/static/frontend/assets/favicon&icon/touch-icon-ipad-retina.png">
 <!-- Vendor Styles including: Bootstrap, Font Icons, Plugins, etc.-->
 <link rel="stylesheet" media="screen"
-	href="static/frontend/assets/css/vendor.min.css">
+	href="${pageContext.request.contextPath}/static/frontend/assets/css/vendor.min.css">
 <!-- Main Template Styles-->
 <link id="mainStyles" rel="stylesheet" media="screen"
-	href="static/frontend/assets/css/styles.min.css">
+	href="${pageContext.request.contextPath}/static/frontend/assets/css/styles.min.css">
 <!-- Modernizr-->
-<script src="static/frontend/assets/js/modernizr.min.js"></script>
+<script src="${pageContext.request.contextPath}/static/frontend/assets/js/modernizr.min.js"></script>
 </head>
 <body>
 	<!-- footer -->
-	<jsp:include page="header.jsp" />
+	<jsp:include page="/WEB-INF/views/frontend/inc/header.jsp" />
 
 
 	<!-- 페이지 타이틀 -->
@@ -469,14 +469,14 @@
 	<!-- 페이지 컨텐트 끝 -->
 
 	<!-- footer -->
-	<jsp:include page="footer.jsp" />
+	<jsp:include page="/WEB-INF/views/frontend/inc/footer.jsp" />
 
 	<!-- Back To Top Button-->
 	<a class="scroll-to-top-btn" href="#"><i class="icon-chevron-up"></i></a>
 	<!-- Backdrop-->
 	<div class="site-backdrop"></div>
 	<!-- JavaScript (jQuery) libraries, plugins and custom scripts-->
-	<script src="static/frontend/assets/js/vendor.min.js"></script>
-	<script src="static/frontend/assets/js/scripts.min.js"></script>
+	<script src="${pageContext.request.contextPath}/static/frontend/assets/js/vendor.min.js"></script>
+	<script src="${pageContext.request.contextPath}/static/frontend/assets/js/scripts.min.js"></script>
 </body>
 </html>
