@@ -19,7 +19,7 @@
 	<dependencies>
 		
 
-		<!-- hibernate  추가했습니당 -->
+		<!-- hibernate  추가했습니당  -->
         <dependency>
             <groupId>org.hibernate</groupId>
             <artifactId>hibernate-annotations</artifactId>
