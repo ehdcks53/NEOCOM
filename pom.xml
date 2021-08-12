@@ -10,7 +10,7 @@
 	<groupId>com.jhta</groupId>
 	<artifactId>neocom</artifactId>
 	<version>0.0.1</version>
-	<packaging>jar</packaging>
+	<packaging>war</packaging>
 	<name>neocom</name>
 	<description>Final Project for jhta</description>
 	<properties>

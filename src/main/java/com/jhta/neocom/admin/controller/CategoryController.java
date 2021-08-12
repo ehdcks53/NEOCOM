@@ -4,6 +4,7 @@ import com.jhta.neocom.model.CategoryVo;
 import com.jhta.neocom.service.CategoryService;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -19,6 +20,9 @@ import org.springframework.web.servlet.ModelAndView;
 public class CategoryController {
     @Autowired
     private CategoryService service;
+
+    @Value("spring.servlet.multipart.location")
+    private String path;
 
     // INSERT
     @GetMapping("/admin/cate/cateinsert")
@@ -66,6 +70,7 @@ public class CategoryController {
     // LIST
     @RequestMapping("/admin/cate/catelist")
     public ModelAndView list_admin() {
+        System.out.println("패스:" + path);
         ModelAndView mv = new ModelAndView("/admin/menu/cate/catelist");
         mv.addObject("list", service.list());
 
