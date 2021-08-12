@@ -1,4 +1,4 @@
-package com.jhta.neocom.controller;
+package com.jhta.neocom.admin.controller;
 
 import com.jhta.neocom.model.CategoryVo;
 import com.jhta.neocom.service.CategoryService;
