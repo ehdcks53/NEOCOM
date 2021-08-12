@@ -15,5 +15,6 @@ public class Product_ImgVo {
 	private String img_path; //이미지 저장경로
 	private long img_size; //이미지 사이즈
 	private String img_category; //이미지카테고리
+	private String img_thumnail;//이미지불러오기용
 
 }
