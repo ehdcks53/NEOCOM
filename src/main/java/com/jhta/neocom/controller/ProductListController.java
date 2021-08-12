@@ -33,7 +33,7 @@ public class ProductListController {
 		map.put("startRow", startRow);
 		map.put("endRow", endRow);
 		List<HashMap<String, Object>> list = service.list(map);
-		System.out.println("list확인" + list);
+		
 
 		ModelAndView mv = new ModelAndView("/admin/menu/product/imglist");
 		mv.addObject("list", list);

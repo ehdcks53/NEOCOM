@@ -28,14 +28,16 @@ public class ProductInsertController {
 	@Autowired
 	ServletContext sc;
 
+
 	@GetMapping("/admin/product/productinsert")
 	public String insertForm() {
 		return "/admin/menu/product/productinsert";
 
 	}
+	
 
 	@PostMapping("/admin/product/productInsert")
-	public String insert(ProductVo vo, Model model, MultipartFile img, Product_ImgVo vo1, String img_category) {
+	public String insert(ProductVo vo, Model model, MultipartFile img, Product_ImgVo vo1, String img_category,String img_thumnail) {
 		// 업로드할 폴더의 절대 경로 구하기
 		String img_path = sc.getRealPath("/resources/upload");
 		System.out.println(img_path);
@@ -52,7 +54,11 @@ public class ProductInsertController {
 			// 2.업로드된 파일정보 DB에 저장하기
 			System.out.println(vo.getProduct_id());
 			vo1 = new Product_ImgVo(0, vo.getProduct_id(), img_name_save, img_name_origin, img_path, img_size,
-					img_category);
+					img_category,img_thumnail);
+
+   
+
+
 			service1.insert(vo1);
 
 			model.addAttribute("code", "successs");
