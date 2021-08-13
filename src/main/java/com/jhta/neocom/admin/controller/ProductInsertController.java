@@ -4,8 +4,6 @@ import java.io.FileOutputStream;
 import java.io.InputStream;
 import java.util.UUID;
 
-import javax.servlet.ServletContext;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
@@ -28,8 +26,6 @@ public class ProductInsertController {
 	private ProductService service;
 	@Autowired
 	private ImgFileService service1;
-	@Autowired
-	ServletContext sc;
 
 	@GetMapping("/admin/product/productinsert")
 	public String insertForm() {

@@ -5,12 +5,6 @@ import java.util.List;
 
 import com.jhta.neocom.model.ProductVo;
 
-
-
-
-
-
-
 public interface ProductMapper {
 	int insert(ProductVo vo);
 	List<HashMap<String, Object>> list(HashMap<String,Object> map);
