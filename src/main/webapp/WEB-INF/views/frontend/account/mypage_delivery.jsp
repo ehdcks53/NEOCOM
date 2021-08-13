@@ -82,7 +82,6 @@
 			<a class="list-group-item" href="#">개인 정보 관리</a>
 		</nav>
 	</div>
-	
 </div>
 </div>
 <!-- 페이지 컨텐트 끝 -->
@@ -97,5 +96,23 @@
 	<!-- JavaScript (jQuery) libraries, plugins and custom scripts-->
 	<script src="${pageContext.request.contextPath}/static/frontend/assets/js/vendor.min.js"></script>
 	<script src="${pageContext.request.contextPath}/static/frontend/assets/js/scripts.min.js"></script>
+	<script src="${pageContext.request.contextPath}/static/frontend/assets/js/jquery-3.6.0.min.js"></script>
+<script type="text/javascript">
+	
+
+
+		
+		var listContainer = document.getElementById("listActive");
+		var lists = listContainer.getElementsByClassName("list-group-item with-badge");
+		for (var i = 0; i < lists.length; i++) {
+			lists[i].addEventListener("click", function() {
+			  var current = document.getElementsByClassName("active");
+			  current[0].className = current[0].className.replace(" active", "");
+			  this.className += " active";
+		  });
+		}
+	
+	
+</script>
 </body>
 </html>

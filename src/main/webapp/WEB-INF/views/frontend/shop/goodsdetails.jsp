@@ -1,38 +1,92 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="utf-8">
-    <title>Unishop | Universal E-Commerce Template
+    <title>Single Product
     </title>
     <!-- SEO Meta Tags-->
     <meta name="description" content="Unishop - Universal E-Commerce Template">
     <meta name="keywords" content="shop, e-commerce, modern, flat style, responsive, online store, business, mobile, blog, bootstrap 4, html5, css3, jquery, js, gallery, slider, touch, creative, clean">
     <meta name="author" content="Rokaux">
+    <!-- Mobile Specific Meta Tag-->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <!-- Favicon and Apple Icons-->
-    <link rel="icon" type="image/x-icon" href="${pageContext.request.contextPath}/static//frontend/assets/favicon&icon/favicon.ico">
-    <link rel="icon" type="image/png" href="static/frontend/assets/favicon&icon/favicon.png">
-    <link rel="apple-touch-icon" href="static/frontend/assets/favicon&icon/touch-icon-iphone.png">
-    <link rel="apple-touch-icon" sizes="152x152" href="static/frontend/assets/favicon&icon/touch-icon-ipad.png">
-    <link rel="apple-touch-icon" sizes="180x180" href="static/frontend/assets/favicon&icon/touch-icon-iphone-retina.png">
-    <link rel="apple-touch-icon" sizes="167x167" href="static/frontend/assets/favicon&icon/touch-icon-ipad-retina.png">
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
+    <link rel="icon" type="image/png" href="favicon.png">
+    <link rel="apple-touch-icon" href="touch-icon-iphone.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="touch-icon-ipad.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="touch-icon-iphone-retina.png">
+    <link rel="apple-touch-icon" sizes="167x167" href="touch-icon-ipad-retina.png">
     <!-- Vendor Styles including: Bootstrap, Font Icons, Plugins, etc.-->
-    <link rel="stylesheet" media="screen" href="static/frontend/assets/css/vendor.min.css">
+    <link rel="stylesheet" media="screen" href="css/vendor.min.css">
     <!-- Main Template Styles-->
-    <link id="mainStyles" rel="stylesheet" media="screen" href="static/frontend/assets/css/styles.min.css">
+    <link id="mainStyles" rel="stylesheet" media="screen" href="css/styles.min.css">
     <!-- Modernizr-->
-    <script src="static/frontend/assets/js/modernizr.min.js"></script>
+    <script src="js/modernizr.min.js"></script>
   </head>
   <!-- Body-->
   <body>
+    <!-- Leave a Review-->
+    <form class="modal fade" method="post" id="leaveReview" tabindex="-1">
+      <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h4 class="modal-title">Leave a Review</h4>
+            <button class="close" type="button" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+          </div>
+          <div class="modal-body">
+            <div class="row">
+              <div class="col-sm-6">
+                <div class="form-group">
+                  <label for="review-name">Your Name</label>
+                  <input class="form-control" type="text" id="review-name" required>
+                </div>
+              </div>
+              <div class="col-sm-6">
+                <div class="form-group">
+                  <label for="review-email">Your Email</label>
+                  <input class="form-control" type="email" id="review-email" required>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-sm-6">
+                <div class="form-group">
+                  <label for="review-subject">Subject</label>
+                  <input class="form-control" type="text" id="review-subject" required>
+                </div>
+              </div>
+              <div class="col-sm-6">
+                <div class="form-group">
+                  <label for="review-rating">Rating</label>
+                  <select class="form-control" id="review-rating">
+                    <option>5 Stars</option>
+                    <option>4 Stars</option>
+                    <option>3 Stars</option>
+                    <option>2 Stars</option>
+                    <option>1 Star</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="review-message">Review</label>
+              <textarea class="form-control" id="review-message" rows="8" required></textarea>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button class="btn btn-primary" type="submit">Submit Review</button>
+          </div>
+        </div>
+      </div>
+    </form>
     <!-- Header-->
     <!-- Remove "navbar-sticky" class to make navigation bar scrollable with the page.-->
     <header class="site-header navbar-sticky">
       <!-- Topbar-->
       <div class="topbar d-flex justify-content-between">
         <!-- Logo-->
-        <div class="site-branding d-flex"><a class="site-logo align-self-center" href="index.html"><img src="static/frontend/assets/img/logo/logo.png" alt="Unishop"></a></div>
+        <div class="site-branding d-flex"><a class="site-logo align-self-center" href="index.html"><img src="img/logo/logo.png" alt="Unishop"></a></div>
         <!-- Search / Categories-->
         <div class="search-box-wrap d-flex">
           <div class="search-box-inner align-self-center">
@@ -41,16 +95,16 @@
                 <button class="btn btn-secondary dropdown-toggle" data-toggle="dropdown"><i class="icon-menu text-lg"></i>&nbsp;Categories</button>
                 <div class="dropdown-menu mega-dropdown">
                   <div class="row">
-                    <div class="col-sm-3"><a class="d-block navi-link text-center mb-30" href="shop-grid-ls.html"><img class="d-block" src="static/frontend/assets/img/shop/header-categories/01.jpg"><span class="text-gray-dark">Computers &amp; Accessories</span></a></div>
-                    <div class="col-sm-3"><a class="d-block navi-link text-center mb-30" href="shop-grid-ls.html"><img class="d-block" src="static/frontend/assets/img/shop/header-categories/02.jpg"><span class="text-gray-dark">Smartphones &amp; Tablets</span></a></div>
-                    <div class="col-sm-3"><a class="d-block navi-link text-center mb-30" href="shop-grid-ls.html"><img class="d-block" src="static/frontend/assets/img/shop/header-categories/03.jpg"><span class="text-gray-dark">TV, Video &amp; Audio</span></a></div>
-                    <div class="col-sm-3"><a class="d-block navi-link text-center mb-30" href="shop-grid-ls.html"><img class="d-block" src="static/frontend/assets/img/shop/header-categories/04.jpg"><span class="text-gray-dark">Cameras, Photo &amp; Video</span></a></div>
+                    <div class="col-sm-3"><a class="d-block navi-link text-center mb-30" href="shop-grid-ls.html"><img class="d-block" src="img/shop/header-categories/01.jpg"><span class="text-gray-dark">Computers &amp; Accessories</span></a></div>
+                    <div class="col-sm-3"><a class="d-block navi-link text-center mb-30" href="shop-grid-ls.html"><img class="d-block" src="img/shop/header-categories/02.jpg"><span class="text-gray-dark">Smartphones &amp; Tablets</span></a></div>
+                    <div class="col-sm-3"><a class="d-block navi-link text-center mb-30" href="shop-grid-ls.html"><img class="d-block" src="img/shop/header-categories/03.jpg"><span class="text-gray-dark">TV, Video &amp; Audio</span></a></div>
+                    <div class="col-sm-3"><a class="d-block navi-link text-center mb-30" href="shop-grid-ls.html"><img class="d-block" src="img/shop/header-categories/04.jpg"><span class="text-gray-dark">Cameras, Photo &amp; Video</span></a></div>
                   </div>
                   <div class="row">
-                    <div class="col-sm-3"><a class="d-block navi-link text-center mb-30" href="shop-grid-ls.html"><img class="d-block" src="static/frontend/assets/img/shop/header-categories/05.jpg"><span class="text-gray-dark">Headphones</span></a></div>
-                    <div class="col-sm-3"><a class="d-block navi-link text-center mb-30" href="shop-grid-ls.html"><img class="d-block" src="static/frontend/assets/img/shop/header-categories/06.jpg"><span class="text-gray-dark">Wearable Electronics</span></a></div>
-                    <div class="col-sm-3"><a class="d-block navi-link text-center mb-30" href="shop-grid-ls.html"><img class="d-block" src="static/frontend/assets/img/shop/header-categories/07.jpg"><span class="text-gray-dark">Printers &amp; Ink</span></a></div>
-                    <div class="col-sm-3"><a class="d-block navi-link text-center mb-30" href="shop-grid-ls.html"><img class="d-block" src="static/frontend/assets/img/shop/header-categories/08.jpg"><span class="text-gray-dark">Video Games</span></a></div>
+                    <div class="col-sm-3"><a class="d-block navi-link text-center mb-30" href="shop-grid-ls.html"><img class="d-block" src="img/shop/header-categories/05.jpg"><span class="text-gray-dark">Headphones</span></a></div>
+                    <div class="col-sm-3"><a class="d-block navi-link text-center mb-30" href="shop-grid-ls.html"><img class="d-block" src="img/shop/header-categories/06.jpg"><span class="text-gray-dark">Wearable Electronics</span></a></div>
+                    <div class="col-sm-3"><a class="d-block navi-link text-center mb-30" href="shop-grid-ls.html"><img class="d-block" src="img/shop/header-categories/07.jpg"><span class="text-gray-dark">Printers &amp; Ink</span></a></div>
+                    <div class="col-sm-3"><a class="d-block navi-link text-center mb-30" href="shop-grid-ls.html"><img class="d-block" src="img/shop/header-categories/08.jpg"><span class="text-gray-dark">Video Games</span></a></div>
                   </div>
                 </div>
               </div>
@@ -66,7 +120,7 @@
           <div class="toolbar-item visible-on-mobile mobile-menu-toggle"><a href="#">
               <div><i class="icon-menu"></i><span class="text-label">Menu</span></div></a></div>
           <div class="toolbar-item hidden-on-mobile"><a href="#">
-              <div><i class="flag-icon"><img src="static/frontend/assets/img/flags/EN.png" alt="English"></i><span class="text-label">Eng / Usd</span></div></a>
+              <div><i class="flag-icon"><img src="img/flags/EN.png" alt="English"></i><span class="text-label">Eng / Usd</span></div></a>
             <ul class="toolbar-dropdown lang-dropdown">
               <li class="px-3 pt-1 pb-2">
                 <select class="form-control form-control-sm">
@@ -76,9 +130,9 @@
                   <option value="usd">¥ JPY</option>
                 </select>
               </li>
-              <li><a href="#"><i class="flag-icon"><img src="static/frontend/assets/img/flags/FR.png" alt="Français"></i>&nbsp;Français</a></li>
-              <li><a href="#"><i class="flag-icon"><img src="static/frontend/assets/img/flags/DE.png" alt="Deutsch"></i>&nbsp;Deutsch</a></li>
-              <li><a href="#"><i class="flag-icon"><img src="static/frontend/assets/img/flags/IT.png" alt="Italiano"></i>&nbsp;Italiano</a></li>
+              <li><a href="#"><i class="flag-icon"><img src="img/flags/FR.png" alt="Français"></i>&nbsp;Français</a></li>
+              <li><a href="#"><i class="flag-icon"><img src="img/flags/DE.png" alt="Deutsch"></i>&nbsp;Deutsch</a></li>
+              <li><a href="#"><i class="flag-icon"><img src="img/flags/IT.png" alt="Italiano"></i>&nbsp;Italiano</a></li>
             </ul>
           </div>
           <div class="toolbar-item hidden-on-mobile"><a href="product-comparison.html">
@@ -95,7 +149,7 @@
             <div class="toolbar-dropdown cart-dropdown widget-cart hidden-on-mobile">
               <!-- Entry-->
               <div class="entry">
-                <div class="entry-thumb"><a href="shop-single.html"><img src="static/frontend/assets/img/shop/widget/04.jpg" alt="Product"></a></div>
+                <div class="entry-thumb"><a href="shop-single.html"><img src="img/shop/widget/04.jpg" alt="Product"></a></div>
                 <div class="entry-content">
                   <h4 class="entry-title"><a href="shop-single.html">Canon EOS M50 Mirrorless Camera</a></h4><span class="entry-meta">1 x $910.00</span>
                 </div>
@@ -103,7 +157,7 @@
               </div>
               <!-- Entry-->
               <div class="entry">
-                <div class="entry-thumb"><a href="shop-single.html"><img src="static/frontend/assets/img/shop/widget/05.jpg" alt="Product"></a></div>
+                <div class="entry-thumb"><a href="shop-single.html"><img src="img/shop/widget/05.jpg" alt="Product"></a></div>
                 <div class="entry-content">
                   <h4 class="entry-title"><a href="shop-single.html">Apple iPhone X 256 GB Space Gray</a></h4><span class="entry-meta">1 x $1,450.00</span>
                 </div>
@@ -111,7 +165,7 @@
               </div>
               <!-- Entry-->
               <div class="entry">
-                <div class="entry-thumb"><a href="shop-single.html"><img src="static/frontend/assets/img/shop/widget/06.jpg" alt="Product"></a></div>
+                <div class="entry-thumb"><a href="shop-single.html"><img src="img/shop/widget/06.jpg" alt="Product"></a></div>
                 <div class="entry-content">
                   <h4 class="entry-title"><a href="shop-single.html">HP LaserJet Pro Laser Printer</a></h4><span class="entry-meta">1 x $188.50</span>
                 </div>
@@ -139,7 +193,7 @@
           <!-- Toolbar-->
           <div class="toolbar">
             <div class="toolbar-item"><a href="#">
-                <div><i class="flag-icon"><img src="static/frontend/assets/img/flags/EN.png" alt="English"></i><span class="text-label">Eng / Usd</span></div></a>
+                <div><i class="flag-icon"><img src="img/flags/EN.png" alt="English"></i><span class="text-label">Eng / Usd</span></div></a>
               <ul class="toolbar-dropdown lang-dropdown w-100">
                 <li class="px-3 pt-1 pb-2">
                   <select class="form-control form-control-sm">
@@ -149,9 +203,9 @@
                     <option value="usd">¥ JPY</option>
                   </select>
                 </li>
-                <li><a href="#"><i class="flag-icon"><img src="static/frontend/assets/img/flags/FR.png" alt="Français"></i>&nbsp;Français</a></li>
-                <li><a href="#"><i class="flag-icon"><img src="static/frontend/assets/img/flags/DE.png" alt="Deutsch"></i>&nbsp;Deutsch</a></li>
-                <li><a href="#"><i class="flag-icon"><img src="static/frontend/assets/img/flags/IT.png" alt="Italiano"></i>&nbsp;Italiano</a></li>
+                <li><a href="#"><i class="flag-icon"><img src="img/flags/FR.png" alt="Français"></i>&nbsp;Français</a></li>
+                <li><a href="#"><i class="flag-icon"><img src="img/flags/DE.png" alt="Deutsch"></i>&nbsp;Deutsch</a></li>
+                <li><a href="#"><i class="flag-icon"><img src="img/flags/IT.png" alt="Italiano"></i>&nbsp;Italiano</a></li>
               </ul>
             </div>
             <div class="toolbar-item"><a href="product-comparison.html">
@@ -162,13 +216,13 @@
           <!-- Slideable (Mobile) Menu-->
           <nav class="slideable-menu">
             <ul class="menu" data-initial-height="385">
-              <li class="has-children active"><span><a href="index.html">Home</a><span class="sub-menu-toggle"></span></span>
+              <li class="has-children"><span><a href="index.html">Home</a><span class="sub-menu-toggle"></span></span>
                 <ul class="slideable-submenu">
-                    <li class="active"><a href="index.html">Hero Slider</a></li>
+                    <li><a href="index.html">Hero Slider</a></li>
                     <li><a href="home-featured-categories.html">Categories Grid</a></li>
                 </ul>
               </li>
-              <li class="has-children"><span><a href="shop-grid-ls.html">Shop</a><span class="sub-menu-toggle"></span></span>
+              <li class="has-children active"><span><a href="shop-grid-ls.html">Shop</a><span class="sub-menu-toggle"></span></span>
                 <ul class="slideable-submenu">
                     <li><a href="shop-categories.html">Shop Categories</a></li>
                   <li class="has-children"><span><a href="shop-grid-ls.html">Shop Grid</a><span class="sub-menu-toggle"></span></span>
@@ -185,7 +239,7 @@
                         <li><a href="shop-list-ns.html">List No Sidebar</a></li>
                     </ul>
                   </li>
-                    <li><a href="shop-single.html">Single Product</a></li>
+                    <li class="active"><a href="shop-single.html">Single Product</a></li>
                     <li><a href="cart.html">Cart</a></li>
                   <li class="has-children"><span><a href="checkout-address.html">Checkout</a><span class="sub-menu-toggle"></span></span>
                     <ul class="slideable-submenu">
@@ -295,37 +349,37 @@
           <button class="btn btn-secondary dropdown-toggle" data-toggle="dropdown"><i class="icon-menu text-lg"></i>&nbsp;Categories</button>
           <div class="dropdown-menu mega-dropdown">
             <div class="row">
-              <div class="col-sm-3"><a class="d-block navi-link text-center mb-30" href="shop-grid-ls.html"><img class="d-block" src="static/frontend/assets/img/shop/header-categories/01.jpg"><span class="text-gray-dark">Computers &amp; Accessories</span></a></div>
-              <div class="col-sm-3"><a class="d-block navi-link text-center mb-30" href="shop-grid-ls.html"><img class="d-block" src="static/frontend/assets/img/shop/header-categories/02.jpg"><span class="text-gray-dark">Smartphones &amp; Tablets</span></a></div>
-              <div class="col-sm-3"><a class="d-block navi-link text-center mb-30" href="shop-grid-ls.html"><img class="d-block" src="static/frontend/assets/img/shop/header-categories/03.jpg"><span class="text-gray-dark">TV, Video &amp; Audio</span></a></div>
-              <div class="col-sm-3"><a class="d-block navi-link text-center mb-30" href="shop-grid-ls.html"><img class="d-block" src="static/frontend/assets/img/shop/header-categories/04.jpg"><span class="text-gray-dark">Cameras, Photo &amp; Video</span></a></div>
+              <div class="col-sm-3"><a class="d-block navi-link text-center mb-30" href="shop-grid-ls.html"><img class="d-block" src="img/shop/header-categories/01.jpg"><span class="text-gray-dark">Computers &amp; Accessories</span></a></div>
+              <div class="col-sm-3"><a class="d-block navi-link text-center mb-30" href="shop-grid-ls.html"><img class="d-block" src="img/shop/header-categories/02.jpg"><span class="text-gray-dark">Smartphones &amp; Tablets</span></a></div>
+              <div class="col-sm-3"><a class="d-block navi-link text-center mb-30" href="shop-grid-ls.html"><img class="d-block" src="img/shop/header-categories/03.jpg"><span class="text-gray-dark">TV, Video &amp; Audio</span></a></div>
+              <div class="col-sm-3"><a class="d-block navi-link text-center mb-30" href="shop-grid-ls.html"><img class="d-block" src="img/shop/header-categories/04.jpg"><span class="text-gray-dark">Cameras, Photo &amp; Video</span></a></div>
             </div>
             <div class="row">
-              <div class="col-sm-3"><a class="d-block navi-link text-center mb-30" href="shop-grid-ls.html"><img class="d-block" src="static/frontend/assets/img/shop/header-categories/05.jpg"><span class="text-gray-dark">Headphones</span></a></div>
-              <div class="col-sm-3"><a class="d-block navi-link text-center mb-30" href="shop-grid-ls.html"><img class="d-block" src="static/frontend/assets/img/shop/header-categories/06.jpg"><span class="text-gray-dark">Wearable Electronics</span></a></div>
-              <div class="col-sm-3"><a class="d-block navi-link text-center mb-30" href="shop-grid-ls.html"><img class="d-block" src="static/frontend/assets/img/shop/header-categories/07.jpg"><span class="text-gray-dark">Printers &amp; Ink</span></a></div>
-              <div class="col-sm-3"><a class="d-block navi-link text-center mb-30" href="shop-grid-ls.html"><img class="d-block" src="static/frontend/assets/img/shop/header-categories/08.jpg"><span class="text-gray-dark">Video Games</span></a></div>
+              <div class="col-sm-3"><a class="d-block navi-link text-center mb-30" href="shop-grid-ls.html"><img class="d-block" src="img/shop/header-categories/05.jpg"><span class="text-gray-dark">Headphones</span></a></div>
+              <div class="col-sm-3"><a class="d-block navi-link text-center mb-30" href="shop-grid-ls.html"><img class="d-block" src="img/shop/header-categories/06.jpg"><span class="text-gray-dark">Wearable Electronics</span></a></div>
+              <div class="col-sm-3"><a class="d-block navi-link text-center mb-30" href="shop-grid-ls.html"><img class="d-block" src="img/shop/header-categories/07.jpg"><span class="text-gray-dark">Printers &amp; Ink</span></a></div>
+              <div class="col-sm-3"><a class="d-block navi-link text-center mb-30" href="shop-grid-ls.html"><img class="d-block" src="img/shop/header-categories/08.jpg"><span class="text-gray-dark">Video Games</span></a></div>
             </div>
           </div>
         </div>
         <!-- Main Navigation-->
         <nav class="site-menu">
           <ul>
-            <li class="has-submenu active"><a href="index.html">Home</a>
+            <li class="has-submenu"><a href="index.html">Home</a>
               <ul class="sub-menu">
-                <li class="active has-children"><a href="index.html">Hero Slider</a>
+                <li class="has-children"><a href="index.html">Hero Slider</a>
                   <ul class="sub-menu w-400 p-0 overflow-hidden">
-                    <li><a class="p-0" href="index.html"><img src="static/frontend/assets/img/banners/home01.jpg" alt="Hero Slider Home"></a></li>
+                    <li><a class="p-0" href="index.html"><img src="img/banners/home01.jpg" alt="Hero Slider Home"></a></li>
                   </ul>
                 </li>
                 <li class="has-children"><a href="home-featured-categories.html">Categories Grid</a>
                   <ul class="sub-menu w-400 p-0 overflow-hidden">
-                    <li><a class="p-0" href="home-featured-categories.html"><img src="static/frontend/assets/img/banners/home02.jpg" alt="Categories Grid Home"></a></li>
+                    <li><a class="p-0" href="home-featured-categories.html"><img src="img/banners/home02.jpg" alt="Categories Grid Home"></a></li>
                   </ul>
                 </li>
               </ul>
             </li>
-            <li class="has-submenu"><a href="shop-grid-ls.html">Shop</a>
+            <li class="has-submenu active"><a href="shop-grid-ls.html">Shop</a>
               <ul class="sub-menu">
                   <li><a href="shop-categories.html">Shop Categories</a></li>
                 <li class="has-children"><a href="shop-grid-ls.html">Shop Grid</a>
@@ -342,7 +396,7 @@
                       <li><a href="shop-list-ns.html">List No Sidebar</a></li>
                   </ul>
                 </li>
-                  <li><a href="shop-single.html">Single Product</a></li>
+                  <li class="active"><a href="shop-single.html">Single Product</a></li>
                   <li><a href="cart.html">Cart</a></li>
                 <li class="has-children"><a href="checkout-address.html">Checkout</a>
                   <ul class="sub-menu">             
@@ -401,7 +455,7 @@
                     </div>
                   </div>
                 </li>
-                <li><a class="card border-0 bg-secondary rounded-0" href="shop-grid-ls.html"><img class="d-block mx-auto" alt="Samsung Galaxy S9" src="static/frontend/assets/img/banners/mega-menu.jpg"></a></li>
+                <li><a class="card border-0 bg-secondary rounded-0" href="shop-grid-ls.html"><img class="d-block mx-auto" alt="Samsung Galaxy S9" src="img/banners/mega-menu.jpg"></a></li>
               </ul>
             </li>
             <li class="has-submenu"><a href="account-orders.html">Account</a>
@@ -507,7 +561,7 @@
               <div class="toolbar-dropdown cart-dropdown widget-cart">
                 <!-- Entry-->
                 <div class="entry">
-                  <div class="entry-thumb"><a href="shop-single.html"><img src="static/frontend/assets/img/shop/widget/04.jpg" alt="Product"></a></div>
+                  <div class="entry-thumb"><a href="shop-single.html"><img src="img/shop/widget/04.jpg" alt="Product"></a></div>
                   <div class="entry-content">
                     <h4 class="entry-title"><a href="shop-single.html">Canon EOS M50 Mirrorless Camera</a></h4><span class="entry-meta">1 x $910.00</span>
                   </div>
@@ -515,7 +569,7 @@
                 </div>
                 <!-- Entry-->
                 <div class="entry">
-                  <div class="entry-thumb"><a href="shop-single.html"><img src="static/frontend/assets/img/shop/widget/05.jpg" alt="Product"></a></div>
+                  <div class="entry-thumb"><a href="shop-single.html"><img src="img/shop/widget/05.jpg" alt="Product"></a></div>
                   <div class="entry-content">
                     <h4 class="entry-title"><a href="shop-single.html">Apple iPhone X 256 GB Space Gray</a></h4><span class="entry-meta">1 x $1,450.00</span>
                   </div>
@@ -523,7 +577,7 @@
                 </div>
                 <!-- Entry-->
                 <div class="entry">
-                  <div class="entry-thumb"><a href="shop-single.html"><img src="static/frontend/assets/img/shop/widget/06.jpg" alt="Product"></a></div>
+                  <div class="entry-thumb"><a href="shop-single.html"><img src="img/shop/widget/06.jpg" alt="Product"></a></div>
                   <div class="entry-content">
                     <h4 class="entry-title"><a href="shop-single.html">HP LaserJet Pro Laser Printer</a></h4><span class="entry-meta">1 x $188.50</span>
                   </div>
@@ -542,324 +596,305 @@
         </div>
       </div>
     </header>
-    <!-- Page Content-->
-    <!-- Main Slider-->
-    <section class="hero-slider" style="background-image: url(static/frontend/assets/img/hero-slider/main-bg.jpg);">
-      <div class="owl-carousel large-controls dots-inside" data-owl-carousel="{ &quot;nav&quot;: true, &quot;dots&quot;: true, &quot;loop&quot;: true, &quot;autoplay&quot;: true, &quot;autoplayTimeout&quot;: 7000 }">
-        <div class="item">
-          <div class="container padding-top-3x">
-            <div class="row justify-content-center align-items-center">
-              <div class="col-lg-5 col-md-6 padding-bottom-2x text-md-left text-center">
-                <div class="from-bottom"><img class="d-inline-block w-150 mb-4" src="static/frontend/assets/img/hero-slider/logo02.png" alt="Puma">
-                  <div class="h2 text-body mb-2 pt-1">Google Home - Smart Speaker</div>
-                  <div class="h2 text-body mb-4 pb-1">starting at <span class="text-medium">$129.00</span></div>
-                </div><a class="btn btn-primary scale-up delay-1" href="shop-grid-ls.html">View Offers&nbsp;<i class="icon-arrow-right"></i></a>
-              </div>
-              <div class="col-md-6 padding-bottom-2x mb-3"><img class="d-block mx-auto" src="static/frontend/assets/img/hero-slider/02.png" alt="Puma Backpack"></div>
-            </div>
-          </div>
-        </div>
-        <div class="item">
-          <div class="container padding-top-3x">
-            <div class="row justify-content-center align-items-center">
-              <div class="col-lg-5 col-md-6 padding-bottom-2x text-md-left text-center">
-                <div class="from-bottom"><img class="d-inline-block w-150 mb-3" src="static/frontend/assets/img/hero-slider/logo01.png" alt="Sony">
-                  <div class="h2 text-body mb-2 pt-1">Modern Powerful Laptop</div>
-                  <div class="h2 text-body mb-4 pb-1">for only <span class="text-medium">$1,459.99</span></div>
-                </div><a class="btn btn-primary scale-up delay-1" href="shop-single.html">Shop Now&nbsp;<i class="icon-arrow-right"></i></a>
-              </div>
-              <div class="col-md-6 padding-bottom-2x mb-3"><img class="d-block mx-auto" src="static/frontend/assets/img/hero-slider/01.png" alt="Chuck Taylor All Star II"></div>
-            </div>
-          </div>
-        </div>
-        <div class="item">
-          <div class="container padding-top-3x">
-            <div class="row justify-content-center align-items-center">
-              <div class="col-lg-5 col-md-6 padding-bottom-2x text-md-left text-center">
-                <div class="from-bottom"><img class="d-inline-block w-150 mb-3" src="static/frontend/assets/img/hero-slider/logo03.png" alt="Motorola">
-                  <div class="h2 text-body mb-2 pt-1">Beats Studio by Dr.Dre</div>
-                  <div class="h2 text-body mb-4 pb-1">for only <span class="text-medium">$349.50</span></div>
-                </div><a class="btn btn-primary scale-up delay-1" href="shop-single.html">Shop Now&nbsp;<i class="icon-arrow-right"></i></a>
-              </div>
-              <div class="col-md-6 padding-bottom-2x mb-3"><img class="d-block mx-auto" src="static/frontend/assets/img/hero-slider/03.png" alt="Moto 360"></div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-    <!-- Top Categories/Deals-->
-    <section class="container padding-top-3x padding-bottom-2x">
-      <div class="row">
-        <div class="col-lg-4 col-sm-6">
-          <div class="card border-0 bg-secondary mb-30">
-            <div class="card-body d-table w-100">
-              <div class="d-table-cell align-middle"><img class="d-block w-100" src="static/frontend/assets/img/shop/categories/29.png" alt="Image"></div>
-              <div class="d-table-cell align-middle pl-2">
-                <h3 class="h6 text-thin">Tablets, Smartphones <br><strong>And more...</strong></h3>
-                <h4 class="h6 d-table w-100 text-thin"><span class="d-table-cell align-bottom" style="line-height: 1.2;">UP<br>TO&nbsp;</span><span class="d-table-cell align-bottom h1 text-medium">50%</span><span class="d-table-cell align-bottom">&nbsp;off</span></h4><a class="text-decoration-none" href="shop-grid-ls.html">Shop now&nbsp;<i class="icon-chevron-right d-inline-block align-middle text-lg"></i></a>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="col-lg-4 col-sm-6">
-          <div class="card border-0 bg-secondary mb-30">
-            <div class="card-body d-table w-100">
-              <div class="d-table-cell align-middle"><img class="d-block w-100" src="static/frontend/assets/img/shop/categories/30.png" alt="Image"></div>
-              <div class="d-table-cell align-middle pl-2">
-                <h3 class="h6 text-thin">DJ Phantom <span style='white-space: nowrap;'>HD Video Drone</span> <br><strong>Arrives</strong></h3>
-                <h4 class="h6 d-table w-100 text-thin"><span class="d-table-cell align-top text-right" style="line-height: 1.2;">From&nbsp;<br><strong>$&nbsp;</strong></span><span class="d-table-cell align-top h1 text-medium">990</span></h4><a class="text-decoration-none" href="shop-grid-ls.html">Shop now&nbsp;<i class="icon-chevron-right d-inline-block align-middle text-lg"></i></a>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="col-lg-4 col-sm-6">
-          <div class="card border-0 bg-secondary mb-30">
-            <div class="card-body d-table w-100">
-              <div class="d-table-cell align-middle"><img class="d-block w-100" src="static/frontend/assets/img/shop/categories/31.png" alt="Image"></div>
-              <div class="d-table-cell align-middle pl-2">
-                <h3 class="h6 text-thin">Watches, Fitness Bands <br><strong>And more...</strong></h3>
-                <h4 class="h6 d-table w-100 text-thin"><span class="d-table-cell align-bottom" style="line-height: 1.2;">UP<br>TO&nbsp;</span><span class="d-table-cell align-bottom h1 text-medium">39%</span><span class="d-table-cell align-bottom">&nbsp;off</span></h4><a class="text-decoration-none" href="shop-grid-ls.html">Shop now&nbsp;<i class="icon-chevron-right d-inline-block align-middle text-lg"></i></a>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-    <!-- Featured Products-->
-    <section class="container padding-bottom-2x mb-2">
-      <h2 class="h3 pb-3 text-center">Featured Products</h2>
-      <div class="row">
-        <div class="col-lg-3 col-md-4 col-sm-6">
-          <div class="product-card mb-30">
-            <div class="product-badge bg-danger">Sale</div><a class="product-thumb" href="shop-single.html"><img src="static/frontend/assets/img/shop/products/01.jpg" alt="Product"></a>
-            <div class="product-card-body">
-              <div class="product-category"><a href="#">Smart home</a></div>
-              <h3 class="product-title"><a href="shop-single.html">Echo Dot (2nd Generation)</a></h3>
-              <h4 class="product-price">
-                <del>$62.00</del>$49.99
-              </h4>
-            </div>
-            <div class="product-button-group"><a class="product-button btn-wishlist" href="#"><i class="icon-heart"></i><span>Wishlist</span></a><a class="product-button btn-compare" href="#"><i class="icon-repeat"></i><span>Compare</span></a><a class="product-button" href="#" data-toast data-toast-type="success" data-toast-position="topRight" data-toast-icon="icon-check-circle" data-toast-title="Product" data-toast-message="successfuly added to cart!"><i class="icon-shopping-cart"></i><span>To Cart</span></a></div>
-          </div>
-        </div>
-        <div class="col-lg-3 col-md-4 col-sm-6">
-          <div class="product-card mb-30">
-              <div class="rating-stars"><i class="icon-star filled"></i><i class="icon-star filled"></i><i class="icon-star filled"></i><i class="icon-star filled"></i><i class="icon-star"></i>
-              </div><a class="product-thumb" href="shop-single.html"><img src="static/frontend/assets/img/shop/products/02.jpg" alt="Product"></a>
-            <div class="product-card-body">
-              <div class="product-category"><a href="#">Photo cameras</a></div>
-              <h3 class="product-title"><a href="shop-single.html">Aberg Best 21 Mega Pixels</a></h3>
-              <h4 class="product-price">$35.00</h4>
-            </div>
-            <div class="product-button-group"><a class="product-button btn-wishlist" href="#"><i class="icon-heart"></i><span>Wishlist</span></a><a class="product-button btn-compare" href="#"><i class="icon-repeat"></i><span>Compare</span></a><a class="product-button" href="#" data-toast data-toast-type="success" data-toast-position="topRight" data-toast-icon="icon-check-circle" data-toast-title="Product" data-toast-message="successfuly added to cart!"><i class="icon-shopping-cart"></i><span>To Cart</span></a></div>
-          </div>
-        </div>
-        <div class="col-lg-3 col-md-4 col-sm-6">
-          <div class="product-card mb-30"><a class="product-thumb" href="shop-single.html"><img src="static/frontend/assets/img/shop/products/05.jpg" alt="Product"></a>
-            <div class="product-card-body">
-              <div class="product-category"><a href="#">Headphones</a></div>
-              <h3 class="product-title"><a href="shop-single.html">Zeus Bluetooth Headphones</a></h3>
-              <h4 class="product-price">$28.99</h4>
-            </div>
-            <div class="product-button-group"><a class="product-button btn-wishlist" href="#"><i class="icon-heart"></i><span>Wishlist</span></a><a class="product-button btn-compare" href="#"><i class="icon-repeat"></i><span>Compare</span></a><a class="product-button" href="#" data-toast data-toast-type="success" data-toast-position="topRight" data-toast-icon="icon-check-circle" data-toast-title="Product" data-toast-message="successfuly added to cart!"><i class="icon-shopping-cart"></i><span>To Cart</span></a></div>
-          </div>
-        </div>
-        <div class="col-lg-3 col-md-4 col-sm-6">
-          <div class="product-card mb-30"><a class="product-thumb" href="shop-single.html"><img src="static/frontend/assets/img/shop/products/07.jpg" alt="Product"></a>
-            <div class="product-card-body">
-              <div class="product-category"><a href="#">Smartphones</a></div>
-              <h3 class="product-title"><a href="shop-single.html">Samsung Galaxy S9+</a></h3>
-              <h4 class="product-price">$839.99</h4>
-            </div>
-            <div class="product-button-group"><a class="product-button btn-wishlist" href="#"><i class="icon-heart"></i><span>Wishlist</span></a><a class="product-button btn-compare" href="#"><i class="icon-repeat"></i><span>Compare</span></a><a class="product-button" href="#" data-toast data-toast-type="success" data-toast-position="topRight" data-toast-icon="icon-check-circle" data-toast-title="Product" data-toast-message="successfuly added to cart!"><i class="icon-shopping-cart"></i><span>To Cart</span></a></div>
-          </div>
-        </div>
-        <div class="col-lg-3 col-md-4 col-sm-6">
-          <div class="product-card mb-30">
-              <div class="rating-stars"><i class="icon-star filled"></i><i class="icon-star filled"></i><i class="icon-star filled"></i><i class="icon-star"></i><i class="icon-star"></i>
-              </div><a class="product-thumb" href="shop-single.html"><img src="static/frontend/assets/img/shop/products/11.jpg" alt="Product"></a>
-            <div class="product-card-body">
-              <div class="product-category"><a href="#">Headphones</a></div>
-              <h3 class="product-title"><a href="shop-single.html">Edifier W855BT Bluetooth</a></h3>
-              <h4 class="product-price">$99.75</h4>
-            </div>
-            <div class="product-button-group"><a class="product-button btn-wishlist" href="#"><i class="icon-heart"></i><span>Wishlist</span></a><a class="product-button btn-compare" href="#"><i class="icon-repeat"></i><span>Compare</span></a><a class="product-button" href="#" data-toast data-toast-type="success" data-toast-position="topRight" data-toast-icon="icon-check-circle" data-toast-title="Product" data-toast-message="successfuly added to cart!"><i class="icon-shopping-cart"></i><span>To Cart</span></a></div>
-          </div>
-        </div>
-        <div class="col-lg-3 col-md-4 col-sm-6">
-          <div class="product-card mb-30">
-            <div class="product-badge bg-secondary border-default text-body">Out of stock</div><a class="product-thumb" href="shop-single.html"><img src="static/frontend/assets/img/shop/products/03.jpg" alt="Product"></a>
-            <div class="product-card-body">
-              <div class="product-category"><a href="#">Computers, laptops</a></div>
-              <h3 class="product-title"><a href="shop-single.html">Microsoft Surface Pro 4</a></h3>
-              <h4 class="product-price">$1,049.10</h4>
-            </div>
-            <div class="product-button-group"><a class="product-button btn-wishlist" href="#"><i class="icon-heart"></i><span>Wishlist</span></a><a class="product-button btn-compare" href="#"><i class="icon-repeat"></i><span>Compare</span></a><a class="product-button" href="shop-single.html"><i class="icon-arrow-right"></i><span>Details</span></a></div>
-          </div>
-        </div>
-        <div class="col-lg-3 col-md-4 col-sm-6">
-          <div class="product-card mb-30"><a class="product-thumb" href="shop-single.html"><img src="static/frontend/assets/img/shop/products/12.jpg" alt="Product"></a>
-            <div class="product-card-body">
-              <div class="product-category"><a href="#">Wearable electornics</a></div>
-              <h3 class="product-title"><a href="shop-single.html">Apple Watch Series 3</a></h3>
-              <h4 class="product-price">$329.10</h4>
-            </div>
-            <div class="product-button-group"><a class="product-button btn-wishlist" href="#"><i class="icon-heart"></i><span>Wishlist</span></a><a class="product-button btn-compare" href="#"><i class="icon-repeat"></i><span>Compare</span></a><a class="product-button" href="#" data-toast data-toast-type="success" data-toast-position="topRight" data-toast-icon="icon-check-circle" data-toast-title="Product" data-toast-message="successfuly added to cart!"><i class="icon-shopping-cart"></i><span>To Cart</span></a></div>
-          </div>
-        </div>
-        <div class="col-lg-3 col-md-4 col-sm-6">     
-          <div class="product-card mb-30">
-            <div class="product-badge bg-danger">Sale</div><a class="product-thumb" href="shop-single.html"><img src="static/frontend/assets/img/shop/products/09.jpg" alt="Product"></a>
-            <div class="product-card-body">
-              <div class="product-category"><a href="#">Action cameras</a></div>
-              <h3 class="product-title"><a href="shop-single.html">Samsung Gear 360 Camera</a></h3>
-              <h4 class="product-price">
-                <del>$74.00</del>$68.00
-              </h4>
-            </div>
-            <div class="product-button-group"><a class="product-button btn-wishlist" href="#"><i class="icon-heart"></i><span>Wishlist</span></a><a class="product-button btn-compare" href="#"><i class="icon-repeat"></i><span>Compare</span></a><a class="product-button" href="#" data-toast data-toast-type="success" data-toast-position="topRight" data-toast-icon="icon-check-circle" data-toast-title="Product" data-toast-message="successfuly added to cart!"><i class="icon-shopping-cart"></i><span>To Cart</span></a></div>
-          </div>
-        </div>
-      </div>
-      <div class="text-center"><a class="btn btn-outline-secondary" href="shop-grid-ls.html">View All Products</a></div>
-    </section>
-    <!-- CTA-->
-    <section class="fw-section padding-top-4x padding-bottom-8x" style="background-image: url(static/frontend/assets/img/banners/shop-banner-bg-02.jpg);"><span class="overlay" style="opacity: .7;"></span>
-      <div class="container text-center">
-        <div class="d-inline-block bg-danger text-white text-lg py-2 px-3 rounded">Limited Time Offer</div>
-        <div class="display-4 text-white py-4">Ultimate Printing Solution From</div>
-        <div class="d-inline-block w-200 pt-2"><img class="d-block w-100" src="static/frontend/assets/img/banners/shop-banner-logo.png" alt="Canon"></div>
-        <div class="pt-5"></div>
-        <div class="countdown countdown-inverse" data-date-time="12/30/2019 12:00:00">
-          <div class="item">
-            <div class="days">00</div><span class="days_ref">Days</span>
-          </div>
-          <div class="item">
-            <div class="hours">00</div><span class="hours_ref">Hours</span>
-          </div>
-          <div class="item">
-            <div class="minutes">00</div><span class="minutes_ref">Mins</span>
-          </div>
-          <div class="item">
-            <div class="seconds">00</div><span class="seconds_ref">Secs</span>
-          </div>
-        </div>
-      </div>
-    </section><a class="d-block position-relative mx-auto" href="shop-grid-ls.html" style="max-width: 682px; margin-top: -130px; z-index: 10;"><img class="d-block w-100" src="static/frontend/assets/img/banners/shop-banner-02.png" alt="Printers"></a>
-    <!-- Staff Picks (Widgets)-->
-    <section class="container padding-top-3x padding-bottom-2x">
-      <h2 class="h3 pb-3 text-center">Staff Picks</h2>
-      <div class="row pt-1">
-        <div class="col-md-4 col-sm-6">
-          <div class="widget widget-featured-products">
-            <h3 class="widget-title">Best Sellers</h3>
-            <!-- Entry-->
-            <div class="entry">
-              <div class="entry-thumb"><a href="shop-single.html"><img src="static/frontend/assets/img/shop/widget/01.jpg" alt="Product"></a></div>
-              <div class="entry-content">
-                <h4 class="entry-title"><a href="shop-single.html">GoPro Hero4 Silver</a></h4><span class="entry-meta">$287.99</span>
-              </div>
-            </div>
-            <!-- Entry-->
-            <div class="entry">
-              <div class="entry-thumb"><a href="shop-single.html"><img src="static/frontend/assets/img/shop/widget/02.jpg" alt="Product"></a></div>
-              <div class="entry-content">
-                <h4 class="entry-title"><a href="shop-single.html">Puro Sound Labs BT2200</a></h4><span class="entry-meta">$95.99</span>
-              </div>
-            </div>
-            <!-- Entry-->
-            <div class="entry">
-              <div class="entry-thumb"><a href="shop-single.html"><img src="static/frontend/assets/img/shop/widget/03.jpg" alt="Product"></a></div>
-              <div class="entry-content">
-                <h4 class="entry-title"><a href="shop-single.html">HP OfficeJet Pro 8710</a></h4><span class="entry-meta">$89.70</span>
-              </div>
-            </div><a class="btn btn-outline-secondary btn-sm mb-0" href="shop-grid-ls.html">View More</a>
-          </div>
-        </div>
-        <div class="col-md-4 col-sm-6">
-          <div class="widget widget-featured-products">
-            <h3 class="widget-title">New Arrivals</h3>
-            <!-- Entry-->
-            <div class="entry pb-2">
-              <div class="entry-thumb"><a href="shop-single.html"><img src="static/frontend/assets/img/shop/widget/05.jpg" alt="Product"></a></div>
-              <div class="entry-content">
-                <h4 class="entry-title"><a href="shop-single.html">iPhone X 256 GB Space Gray</a></h4><span class="entry-meta">$1,450.00</span>
-              </div>
-            </div>
-            <!-- Entry-->
-            <div class="entry">
-              <div class="entry-thumb"><a href="shop-single.html"><img src="static/frontend/assets/img/shop/widget/04.jpg" alt="Product"></a></div>
-              <div class="entry-content">
-                <h4 class="entry-title"><a href="shop-single.html">Canon EOS M50 Mirrorless Camera</a></h4><span class="entry-meta">$910.00</span>
-              </div>
-            </div>
-            <!-- Entry-->
-            <div class="entry">
-              <div class="entry-thumb"><a href="shop-single.html"><img src="static/frontend/assets/img/shop/widget/07.jpg" alt="Product"></a></div>
-              <div class="entry-content">
-                <h4 class="entry-title"><a href="shop-single.html">Microsoft Xbox One S</a></h4><span class="entry-meta">$298.99</span>
-              </div>
-            </div><a class="btn btn-outline-secondary btn-sm mb-0" href="shop-grid-ls.html">View More</a>
-          </div>
-        </div>
-        <div class="col-md-4 col-sm-6">
-          <div class="widget widget-featured-products">
-            <h3 class="widget-title">Top Rated</h3>
-            <!-- Entry-->
-            <div class="entry pb-2">
-              <div class="entry-thumb"><a href="shop-single.html"><img src="static/frontend/assets/img/shop/widget/08.jpg" alt="Product"></a></div>
-              <div class="entry-content">
-                <h4 class="entry-title"><a href="shop-single.html">Samsung Gear 360 VR Camera</a></h4><span class="entry-meta">$68.00</span>
-              </div>
-            </div>
-            <!-- Entry-->
-            <div class="entry">
-              <div class="entry-thumb"><a href="shop-single.html"><img src="static/frontend/assets/img/shop/widget/09.jpg" alt="Product"></a></div>
-              <div class="entry-content">
-                <h4 class="entry-title"><a href="shop-single.html">Samsung Galaxy S9+ 64 GB</a></h4><span class="entry-meta">$839.99</span>
-              </div>
-            </div>
-            <!-- Entry-->
-            <div class="entry">
-              <div class="entry-thumb"><a href="shop-single.html"><img src="static/frontend/assets/img/shop/widget/10.jpg" alt="Product"></a></div>
-              <div class="entry-content">
-                <h4 class="entry-title"><a href="shop-single.html">Zeus Bluetooth Headphones</a></h4><span class="entry-meta">$28.99</span>
-              </div>
-            </div><a class="btn btn-outline-secondary btn-sm mb-0" href="shop-grid-ls.html">View More</a>
-          </div>
-        </div>
-      </div>
-    </section>
-    <!-- Popular Brands Carousel-->
-    <section class="bg-secondary padding-top-3x padding-bottom-3x">
+    <!-- Page Title-->
+    <div class="page-title">
       <div class="container">
-        <h2 class="h3 text-center mb-30 pb-3">Popular Brands</h2>
-        <div class="owl-carousel" data-owl-carousel="{ &quot;nav&quot;: false, &quot;dots&quot;: false, &quot;loop&quot;: true, &quot;autoplay&quot;: true, &quot;autoplayTimeout&quot;: 4000, &quot;responsive&quot;: {&quot;0&quot;:{&quot;items&quot;:2}, &quot;470&quot;:{&quot;items&quot;:3},&quot;630&quot;:{&quot;items&quot;:4},&quot;991&quot;:{&quot;items&quot;:5},&quot;1200&quot;:{&quot;items&quot;:6}} }"><img class="d-block w-110 opacity-75 m-auto" src="static/frontend/assets/img/brands/01.png" alt="IBM"><img class="d-block w-110 opacity-75 m-auto" src="static/frontend/assets/img/brands/02.png" alt="Sony"><img class="d-block w-110 opacity-75 m-auto" src="static/frontend/assets/img/brands/03.png" alt="HP"><img class="d-block w-110 opacity-75 m-auto" src="static/frontend/assets/img/brands/04.png" alt="Canon"><img class="d-block w-110 opacity-75 m-auto" src="static/frontend/assets/img/brands/05.png" alt="Bosh"><img class="d-block w-110 opacity-75 m-auto" src="static/frontend/assets/img/brands/06.png" alt="Dell"><img class="d-block w-110 opacity-75 m-auto" src="static/frontend/assets/img/brands/07.png" alt="Samsung"></div>
+        <div class="column">
+          <h1>Single Product</h1>
+        </div>
+        <div class="column">
+          <ul class="breadcrumbs">
+            <li><a href="index.html">Home</a>
+            </li>
+            <li class="separator">&nbsp;</li>
+            <li><a href="shop-grid-ls.html">Shop</a>
+            </li>
+            <li class="separator">&nbsp;</li>
+            <li>Single Product</li>
+          </ul>
+        </div>
       </div>
-    </section>
-    <!-- Services-->
-    <section class="container padding-top-3x padding-bottom-2x">
+    </div>
+    <!-- Page Content-->
+    <div class="container padding-bottom-3x">
       <div class="row">
-        <div class="col-md-3 col-sm-6 text-center mb-30"><img class="d-block w-90 img-thumbnail rounded mx-auto mb-4" src="static/frontend/assets/img/services/01.png" alt="Shipping">
-          <h6 class="mb-2">Free Worldwide Shipping</h6>
-          <p class="text-sm text-muted mb-0">Free shipping for all orders over $100</p>
+        <!-- Poduct Gallery-->
+        <div class="col-md-6">
+          <div class="product-gallery">
+            <div class="gallery-wrapper">
+              <div class="gallery-item video-btn text-center"><a href="#" data-toggle="tooltip" data-type="video" data-video="&lt;div class=&quot;wrapper&quot;&gt;&lt;div class=&quot;video-wrapper&quot;&gt;&lt;iframe class=&quot;pswp__video&quot; width=&quot;960&quot; height=&quot;640&quot; src=&quot;https://www.youtube.com/embed/CjNjcrQZtd8&quot; frameborder=&quot;0&quot; allowfullscreen&gt;&lt;/iframe&gt;&lt;/div&gt;&lt;/div&gt;" title="Watch video"></a></div>
+            </div><span class="product-badge bg-danger">Sale</span>
+            <div class="product-carousel owl-carousel gallery-wrapper">
+              <div class="gallery-item" data-hash="one"><a href="img/shop/single/01.jpg" data-size="1000x667"><img src="img/shop/single/01.jpg" alt="Product"></a></div>
+              <div class="gallery-item" data-hash="two"><a href="img/shop/single/02.jpg" data-size="1000x667"><img src="img/shop/single/02.jpg" alt="Product"></a></div>
+              <div class="gallery-item" data-hash="three"><a href="img/shop/single/03.jpg" data-size="1000x667"><img src="img/shop/single/03.jpg" alt="Product"></a></div>
+              <div class="gallery-item" data-hash="four"><a href="img/shop/single/04.jpg" data-size="1000x667"><img src="img/shop/single/04.jpg" alt="Product"></a></div>
+              <div class="gallery-item" data-hash="five"><a href="img/shop/single/05.jpg" data-size="1000x667"><img src="img/shop/single/05.jpg" alt="Product"></a></div>
+            </div>
+            <ul class="product-thumbnails">
+              <li class="active"><a href="#one"><img src="img/shop/single/th01.jpg" alt="Product"></a></li>
+              <li><a href="#two"><img src="img/shop/single/th02.jpg" alt="Product"></a></li>
+              <li><a href="#three"><img src="img/shop/single/th03.jpg" alt="Product"></a></li>
+              <li><a href="#four"><img src="img/shop/single/th04.jpg" alt="Product"></a></li>
+              <li><a href="#five"><img src="img/shop/single/th05.jpg" alt="Product"></a></li>
+            </ul>
+          </div>
         </div>
-        <div class="col-md-3 col-sm-6 text-center mb-30"><img class="d-block w-90 img-thumbnail rounded mx-auto mb-4" src="static/frontend/assets/img/services/02.png" alt="Money Back">
-          <h6 class="mb-2">Money Back Guarantee</h6>
-          <p class="text-sm text-muted mb-0">We return money within 30 days</p>
-        </div>
-        <div class="col-md-3 col-sm-6 text-center mb-30"><img class="d-block w-90 img-thumbnail rounded mx-auto mb-4" src="static/frontend/assets/img/services/03.png" alt="Support">
-          <h6 class="mb-2">24/7 Customer Support</h6>
-          <p class="text-sm text-muted mb-0">Friendly 24/7 customer support</p>
-        </div>
-        <div class="col-md-3 col-sm-6 text-center mb-30"><img class="d-block w-90 img-thumbnail rounded mx-auto mb-4" src="static/frontend/assets/img/services/04.png" alt="Payment">
-          <h6 class="mb-2">Secure Online Payment</h6>
-          <p class="text-sm text-muted mb-0">We posess SSL / Secure Certificate</p>
+        <!-- Product Info-->
+        <div class="col-md-6">
+          <div class="padding-top-2x mt-2 hidden-md-up"></div>
+          <div class="sp-categories pb-3"><i class="icon-tag"></i><a href="#">Drones,</a><a href="#">Action cameras</a></div>
+          <h2 class="mb-3">GoPro Karma Camera Drone</h2><span class="h3 d-block">
+            <del class="text-muted">$958.00</del>&nbsp; $899.00</span>
+          <p class="text-muted">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dicta voluptatibus quos ea dolore rem, molestias laudantium et explicabo... <a href='#details' class='scroll-to'>More info</a></p>
+          <div class="row margin-top-1x">
+            <div class="col-sm-6">
+              <div class="form-group">
+                <label for="size">Choose color</label>
+                <select class="form-control" id="size">
+                  <option>White/Gray/Black</option>
+                  <option>Black</option>
+                  <option>Black/White/Red</option>
+                </select>
+              </div>
+            </div>
+            <div class="col-sm-6">
+              <div class="form-group">
+                <label for="color">Battery capacity</label>
+                <select class="form-control" id="color">
+                  <option>5100 mAh</option>
+                  <option>6200 mAh</option>
+                  <option>8000 mAh</option>
+                </select>
+              </div>
+            </div>
+          </div>
+          <div class="row align-items-end pb-4">
+            <div class="col-sm-4">
+              <div class="form-group mb-0">
+                <label for="quantity">Quantity</label>
+                <select class="form-control" id="quantity">
+                  <option>1</option>
+                  <option>2</option>
+                  <option>3</option>
+                  <option>4</option>
+                  <option>5</option>
+                </select>
+              </div>
+            </div>
+            <div class="col-sm-8">
+              <div class="pt-4 hidden-sm-up"></div>
+              <button class="btn btn-primary btn-block m-0" data-toast data-toast-type="success" data-toast-position="topRight" data-toast-icon="icon-check-circle" data-toast-title="Product" data-toast-message="successfuly added to cart!"><i class="icon-bag"></i> Add to Cart</button>
+            </div>
+          </div>
+          <div class="pt-1 mb-4"><span class="text-medium">SKU:</span> #21457832</div>
+          <hr class="mb-2">
+          <div class="d-flex flex-wrap justify-content-between">
+            <div class="mt-2 mb-2">
+              <button class="btn btn-outline-secondary btn-sm btn-wishlist"><i class="icon-heart"></i>&nbsp;To Wishlist</button>
+              <button class="btn btn-outline-secondary btn-sm btn-compare"><i class="icon-repeat"></i>&nbsp;Compare</button>
+            </div>
+            <div class="mt-2 mb-2"><span class="text-muted">Share:&nbsp;&nbsp;</span>
+              <div class="d-inline-block"><a class="social-button shape-rounded sb-facebook" href="#" data-toggle="tooltip" data-placement="top" title="Facebook"><i class="socicon-facebook"></i></a><a class="social-button shape-rounded sb-twitter" href="#" data-toggle="tooltip" data-placement="top" title="Twitter"><i class="socicon-twitter"></i></a><a class="social-button shape-rounded sb-instagram" href="#" data-toggle="tooltip" data-placement="top" title="Instagram"><i class="socicon-instagram"></i></a><a class="social-button shape-rounded sb-google-plus" href="#" data-toggle="tooltip" data-placement="top" title="Google +"><i class="socicon-googleplus"></i></a></div>
+            </div>
+          </div>
         </div>
       </div>
-    </section>
+    </div>
+    <!-- Product Details-->
+    <div class="bg-secondary padding-top-3x padding-bottom-2x mb-3" id="details">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-6">
+            <h3 class="h4">Details</h3>
+            <p class="mb-4">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat.</p>
+            <h3 class="h4">Features</h3>
+            <ul class="list-icon mb-4">
+              <li><i class="icon-check text-success"></i>Capture 4K30 Video and 12MP Photos</li>
+              <li><i class="icon-check text-success"></i>Game-Style Controller with Touchscreen</li>
+              <li><i class="icon-check text-success"></i>View Live Camera Feed</li>
+              <li><i class="icon-check text-success"></i>Full Control of HERO6 Black</li>
+              <li><i class="icon-check text-success"></i>Use App for Dedicated Camera Operation</li>
+            </ul>
+          </div>
+          <div class="col-md-6">
+            <h3 class="h4">Specifications</h3>
+            <ul class="list-unstyled mb-4">
+              <li><strong>Weight:</strong> 35.5oz (1006g)</li>
+              <li><strong>Maximum Speed:</strong> 	35 mph (15 m/s)</li>
+              <li><strong>Maximum Distance:</strong> 	Up to 9,840ft (3,000m)</li>
+              <li><strong>Operating Frequency:</strong> 2.4GHz</li>
+              <li><strong>Manufacturer:</strong> GoPro, USA</li>
+            </ul>
+            <h3 class="h4">Shipping Options:</h3>
+            <ul class="list-unstyled mb-4">
+              <li><strong>Courier:</strong> 2 - 4 days, $22.50</li>
+              <li><strong>Local Shipping:</strong> up to one week, $10.00</li>
+              <li><strong>UPS Ground Shipping:</strong> 4 - 6 days, $18.00</li>
+              <li><strong>Unishop Global Export:</strong> 3 - 4 days, $25.00</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Reviews-->
+    <div class="container padding-top-2x">
+      <div class="row">
+        <div class="col-md-4 mb-4">
+          <div class="card border-default">
+            <div class="card-body">
+              <div class="text-center">
+                <div class="d-inline align-baseline display-3 mr-1">4.2</div>
+                <div class="d-inline align-baseline text-sm text-warning mr-1">
+                    <div class="rating-stars"><i class="icon-star filled"></i><i class="icon-star filled"></i><i class="icon-star filled"></i><i class="icon-star filled"></i><i class="icon-star"></i>
+                    </div>
+                </div>
+              </div>
+              <div class="pt-3">
+                <label class="text-medium text-sm">5 stars <span class='text-muted'>- 38</span></label>
+                <div class="progress margin-bottom-1x">
+                  <div class="progress-bar bg-warning" role="progressbar" style="width: 75%; height: 2px;" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"></div>
+                </div>
+                <label class="text-medium text-sm">4 stars <span class='text-muted'>- 10</span></label>
+                <div class="progress margin-bottom-1x">
+                  <div class="progress-bar bg-warning" role="progressbar" style="width: 20%; height: 2px;" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100"></div>
+                </div>
+                <label class="text-medium text-sm">3 stars <span class='text-muted'>- 3</span></label>
+                <div class="progress margin-bottom-1x">
+                  <div class="progress-bar bg-warning" role="progressbar" style="width: 7%; height: 2px;" aria-valuenow="7" aria-valuemin="0" aria-valuemax="100"></div>
+                </div>
+                <label class="text-medium text-sm">2 stars <span class='text-muted'>- 1</span></label>
+                <div class="progress margin-bottom-1x">
+                  <div class="progress-bar bg-warning" role="progressbar" style="width: 3%; height: 2px;" aria-valuenow="3" aria-valuemin="0" aria-valuemax="100"></div>
+                </div>
+                <label class="text-medium text-sm">1 star <span class='text-muted'>- 0</span></label>
+                <div class="progress mb-2">
+                  <div class="progress-bar bg-warning" role="progressbar" style="width: 0; height: 2px;" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
+                </div>
+              </div>
+              <div class="pt-2"><a class="btn btn-warning btn-block" href="#" data-toggle="modal" data-target="#leaveReview">Leave a Review</a></div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-8">
+          <h3 class="padding-bottom-1x">Latest Reviews</h3>
+          <!-- Review-->
+          <div class="comment">
+            <div class="comment-author-ava"><img src="img/reviews/02.jpg" alt="Comment author"></div>
+            <div class="comment-body">
+              <div class="comment-header d-flex flex-wrap justify-content-between">
+                <h4 class="comment-title">My husband love his new...</h4>
+                <div class="mb-2">
+                    <div class="rating-stars"><i class="icon-star filled"></i><i class="icon-star filled"></i><i class="icon-star filled"></i><i class="icon-star filled"></i><i class="icon-star"></i>
+                    </div>
+                </div>
+              </div>
+              <p class="comment-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor...</p>
+              <div class="comment-footer"><span class="comment-meta">Maggie Scott</span></div>
+            </div>
+          </div>
+          <!-- Review-->
+          <div class="comment">
+            <div class="comment-author-ava"><img src="img/reviews/03.jpg" alt="Comment author"></div>
+            <div class="comment-body">
+              <div class="comment-header d-flex flex-wrap justify-content-between">
+                <h4 class="comment-title">Awesome quality for the price</h4>
+                <div class="mb-2">
+                    <div class="rating-stars"><i class="icon-star filled"></i><i class="icon-star filled"></i><i class="icon-star filled"></i><i class="icon-star filled"></i><i class="icon-star filled"></i>
+                    </div>
+                </div>
+              </div>
+              <p class="comment-text">Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium...</p>
+              <div class="comment-footer"><span class="comment-meta">Jacob Hammond</span></div>
+            </div>
+          </div>
+          <!-- View All Button--><a class="btn btn-secondary btn-block" href="#">View All Reviews</a>
+        </div>
+      </div>
+    </div>
+    <div class="container padding-bottom-3x mb-1">             
+      <!-- Related Products Carousel-->
+      <h3 class="text-center padding-top-2x mt-2 padding-bottom-1x">You May Also Like</h3>
+      <!-- Carousel-->
+      <div class="owl-carousel" data-owl-carousel="{ &quot;nav&quot;: false, &quot;dots&quot;: true, &quot;margin&quot;: 30, &quot;responsive&quot;: {&quot;0&quot;:{&quot;items&quot;:1},&quot;576&quot;:{&quot;items&quot;:2},&quot;768&quot;:{&quot;items&quot;:3},&quot;991&quot;:{&quot;items&quot;:4},&quot;1200&quot;:{&quot;items&quot;:4}} }">
+        <!-- Product-->
+        <div class="product-card">
+          <div class="product-badge bg-danger">Sale</div><a class="product-thumb" href="shop-single.html"><img src="img/shop/products/01.jpg" alt="Product"></a>
+          <div class="product-card-body">
+            <div class="product-category"><a href="#">Smart home</a></div>
+            <h3 class="product-title"><a href="shop-single.html">Echo Dot (2nd Generation)</a></h3>
+            <h4 class="product-price">
+              <del>$62.00</del>$49.99
+            </h4>
+          </div>
+          <div class="product-button-group"><a class="product-button btn-wishlist" href="#"><i class="icon-heart"></i><span>Wishlist</span></a><a class="product-button btn-compare" href="#"><i class="icon-repeat"></i><span>Compare</span></a><a class="product-button" href="#" data-toast data-toast-type="success" data-toast-position="topRight" data-toast-icon="icon-check-circle" data-toast-title="Product" data-toast-message="successfuly added to cart!"><i class="icon-shopping-cart"></i><span>To Cart</span></a></div>
+        </div>
+        <!-- Product-->
+        <div class="product-card"><a class="product-thumb" href="shop-single.html"><img src="img/shop/products/11.jpg" alt="Product"></a>
+          <div class="product-card-body">
+            <div class="product-category"><a href="#">Headphones</a></div>
+            <h3 class="product-title"><a href="shop-single.html">Edifier W855BT Bluetooth</a></h3>
+            <h4 class="product-price">$99.75</h4>
+          </div>
+          <div class="product-button-group"><a class="product-button btn-wishlist" href="#"><i class="icon-heart"></i><span>Wishlist</span></a><a class="product-button btn-compare" href="#"><i class="icon-repeat"></i><span>Compare</span></a><a class="product-button" href="#" data-toast data-toast-type="success" data-toast-position="topRight" data-toast-icon="icon-check-circle" data-toast-title="Product" data-toast-message="successfuly added to cart!"><i class="icon-shopping-cart"></i><span>To Cart</span></a></div>
+        </div>
+        <!-- Product-->
+        <div class="product-card">
+            <div class="rating-stars"><i class="icon-star filled"></i><i class="icon-star filled"></i><i class="icon-star filled"></i><i class="icon-star filled"></i><i class="icon-star filled"></i>
+            </div><a class="product-thumb" href="shop-single.html"><img src="img/shop/products/06.jpg" alt="Product"></a>
+          <div class="product-card-body">
+            <div class="product-category"><a href="#">Video games</a></div>
+            <h3 class="product-title"><a href="shop-single.html">Xbox One S White</a></h3>
+            <h4 class="product-price">$298.99</h4>
+          </div>
+          <div class="product-button-group"><a class="product-button btn-wishlist" href="#"><i class="icon-heart"></i><span>Wishlist</span></a><a class="product-button btn-compare" href="#"><i class="icon-repeat"></i><span>Compare</span></a><a class="product-button" href="#" data-toast data-toast-type="success" data-toast-position="topRight" data-toast-icon="icon-check-circle" data-toast-title="Product" data-toast-message="successfuly added to cart!"><i class="icon-shopping-cart"></i><span>To Cart</span></a></div>
+        </div>
+        <!-- Product-->
+        <div class="product-card"><a class="product-thumb" href="shop-single.html"><img src="img/shop/products/07.jpg" alt="Product"></a>
+          <div class="product-card-body">
+            <div class="product-category"><a href="#">Smartphones</a></div>
+            <h3 class="product-title"><a href="shop-single.html">Samsung Galaxy S9+</a></h3>
+            <h4 class="product-price">$839.99</h4>
+          </div>
+          <div class="product-button-group"><a class="product-button btn-wishlist" href="#"><i class="icon-heart"></i><span>Wishlist</span></a><a class="product-button btn-compare" href="#"><i class="icon-repeat"></i><span>Compare</span></a><a class="product-button" href="#" data-toast data-toast-type="success" data-toast-position="topRight" data-toast-icon="icon-check-circle" data-toast-title="Product" data-toast-message="successfuly added to cart!"><i class="icon-shopping-cart"></i><span>To Cart</span></a></div>
+        </div>
+        <!-- Product-->
+        <div class="product-card">
+          <div class="product-badge bg-secondary border-default text-body">Out of stock</div><a class="product-thumb" href="shop-single.html"><img src="img/shop/products/12.jpg" alt="Product"></a>
+          <div class="product-card-body">
+            <div class="product-category"><a href="#">Wearable electornics</a></div>
+            <h3 class="product-title"><a href="shop-single.html">Apple Watch Series 3</a></h3>
+            <h4 class="product-price">$329.10</h4>
+          </div>
+          <div class="product-button-group"><a class="product-button btn-wishlist" href="#"><i class="icon-heart"></i><span>Wishlist</span></a><a class="product-button btn-compare" href="#"><i class="icon-repeat"></i><span>Compare</span></a><a class="product-button" href="shop-single.html"><i class="icon-arrow-right"></i><span>Details</span></a></div>
+        </div>
+        <!-- Product-->
+        <div class="product-card">
+            <div class="rating-stars"><i class="icon-star filled"></i><i class="icon-star filled"></i><i class="icon-star filled"></i><i class="icon-star filled"></i><i class="icon-star"></i>
+            </div><a class="product-thumb" href="shop-single.html"><img src="img/shop/products/10.jpg" alt="Product"></a>
+          <div class="product-card-body">
+            <div class="product-category"><a href="#">Printers &amp; Ink</a></div>
+            <h3 class="product-title"><a href="shop-single.html">HP LaserJet Pro Printer</a></h3>
+            <h4 class="product-price">$249.50</h4>
+          </div>
+          <div class="product-button-group"><a class="product-button btn-wishlist" href="#"><i class="icon-heart"></i><span>Wishlist</span></a><a class="product-button btn-compare" href="#"><i class="icon-repeat"></i><span>Compare</span></a><a class="product-button" href="#" data-toast data-toast-type="success" data-toast-position="topRight" data-toast-icon="icon-check-circle" data-toast-title="Product" data-toast-message="successfuly added to cart!"><i class="icon-shopping-cart"></i><span>To Cart</span></a></div>
+        </div>
+        <!-- Product-->
+        <div class="product-card">
+          <div class="product-badge bg-danger">Sale</div><a class="product-thumb" href="shop-single.html"><img src="img/shop/products/09.jpg" alt="Product"></a>
+          <div class="product-card-body">
+            <div class="product-category"><a href="#">Action cameras</a></div>
+            <h3 class="product-title"><a href="shop-single.html">Samsung Gear 360 Camera</a></h3>
+            <h4 class="product-price">
+              <del>$74.00</del>$68.00
+            </h4>
+          </div>
+          <div class="product-button-group"><a class="product-button btn-wishlist" href="#"><i class="icon-heart"></i><span>Wishlist</span></a><a class="product-button btn-compare" href="#"><i class="icon-repeat"></i><span>Compare</span></a><a class="product-button" href="#" data-toast data-toast-type="success" data-toast-position="topRight" data-toast-icon="icon-check-circle" data-toast-title="Product" data-toast-message="successfuly added to cart!"><i class="icon-shopping-cart"></i><span>To Cart</span></a></div>
+        </div>
+      </div>
+    </div>
     <!-- Site Footer-->
-    <footer class="site-footer" style="background-image: url(static/frontend/assets/img/footer-bg.png);">
+    <footer class="site-footer" style="background-image: url(img/footer-bg.png);">
       <div class="container">
         <div class="row">
           <div class="col-lg-6">
@@ -958,7 +993,7 @@
                   <button class="btn btn-primary btn-block mt-0" type="submit">Subscribe</button>
                 </div>
               </form>
-              <div class="pt-3"><img class="d-block" style="width: 324px;" alt="Cerdit Cards" src="static/frontend/assets/img/credit-cards-footer.png"></div>
+              <div class="pt-3"><img class="d-block" style="width: 324px;" alt="Cerdit Cards" src="img/credit-cards-footer.png"></div>
             </section>
           </div>
         </div>
@@ -966,11 +1001,46 @@
         <p class="footer-copyright">© All rights reserved. Made with &nbsp;<i class="icon-heart text-danger"></i><a href="http://rokaux.com/" target="_blank"> &nbsp;by rokaux</a></p>
       </div>
     </footer>
+    <!-- Photoswipe container-->
+    <div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+      <div class="pswp__bg"></div>
+      <div class="pswp__scroll-wrap">
+        <div class="pswp__container">
+          <div class="pswp__item"></div>
+          <div class="pswp__item"></div>
+          <div class="pswp__item"></div>
+        </div>
+        <div class="pswp__ui pswp__ui--hidden">
+          <div class="pswp__top-bar">
+            <div class="pswp__counter"></div>
+            <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+            <button class="pswp__button pswp__button--share" title="Share"></button>
+            <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+            <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+            <div class="pswp__preloader">
+              <div class="pswp__preloader__icn">
+                <div class="pswp__preloader__cut">
+                  <div class="pswp__preloader__donut"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+            <div class="pswp__share-tooltip"></div>
+          </div>
+          <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)"></button>
+          <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)"></button>
+          <div class="pswp__caption">
+            <div class="pswp__caption__center"></div>
+          </div>
+        </div>
+      </div>
+    </div>
     <!-- Back To Top Button--><a class="scroll-to-top-btn" href="#"><i class="icon-chevron-up"></i></a>
     <!-- Backdrop-->
     <div class="site-backdrop"></div>
     <!-- JavaScript (jQuery) libraries, plugins and custom scripts-->
-    <script src="static/frontend/assets/js/vendor.min.js"></script>
-    <script src="static/frontend/assets/js/scripts.min.js"></script>
+    <script src="js/vendor.min.js"></script>
+    <script src="js/scripts.min.js"></script>
   </body>
 </html>

@@ -18,12 +18,12 @@ public class LoginController {
 	@Autowired
 	private MemberInfoService service;
 
-	@GetMapping("/login")
+	@GetMapping("/account/login")
 	public String login() {
-		return "frontend/login";
+		return "frontend/account/login";
 	}
 
-	@PostMapping("/login")
+	@PostMapping("/account/login")
 	public String login(String id, String pwd, HttpSession session, Model model) {
 		HashMap<String, String> map = new HashMap<String, String>();
 		int mem_no = service.searchNo(id);
@@ -39,7 +39,7 @@ public class LoginController {
 
 		} else {
 			model.addAttribute("errMsg", "아이디 또는 비밀번호가 맞지않습니다.");
-			return "frontend/login";
+			return "frontend/account/login";
 		}
 	}
 
