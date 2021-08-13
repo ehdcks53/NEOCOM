@@ -1,7 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-
 <html lang="ko">
 <head>
 <meta charset="UTF-8">
@@ -84,15 +83,15 @@
 <!-- 메인 슬라이더 끝 -->
 
 
-<!-- deals 
+<!-- deals -->
 <section class="container padding-top-3x">
 
 </section>
- deals 끝 -->
+<!-- deals 끝 -->
 
 
 <!-- New Arrivals -->
-<section class="container padding-top-3x padding-bottom-2x mb-2">
+<section class="container padding-bottom-2x mb-2">
 	<h2 class="h3 pb-3 text-center">New Arrivals</h2>
 	<div class="row">
 		<div class="col-lg-3 col-md-4 col-sm-6">
@@ -103,7 +102,7 @@
 				<a class="product-thumb" href="#"><img src="${pageContext.request.contextPath}/static/frontend/assets/img/shop/products/01.jpg" alt=""></a>
 				<div class="product-card-body">
 					<div class="product-category"><a href="#">브랜드명</a></div>
-					<h3 class="product-title"><a href="#">상품명1</a></h3>
+					<h3 class="product-title"><a href="${pageContext.request.contextPath }/productlistDC">상품목록test(dc)</a></h3>
 					<h4 class="product-price"><del>원가</del>할인가	</h4>
 				</div>	
 				<div class="product-button-group">
@@ -214,7 +213,6 @@
 
 <!-- footer -->
 <jsp:include page="/WEB-INF/views/frontend/inc/footer.jsp"/>
-
 
     <!-- Back To Top Button--><a class="scroll-to-top-btn" href="#"><i class="icon-chevron-up"></i></a>
     <!-- Backdrop-->

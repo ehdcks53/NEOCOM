@@ -68,4 +68,12 @@
 		availability =#{availability}
 		where product_id=#{product_id}
 	</update>
+	
+	<select id="select" parameterType="int" resultType="com.jhta.neocom.model.ProductVo">
+  		select * from product where product_id=#{product_id}
+  	</select>
+  	
+  	<select id="listTest" resultType="com.jhta.neocom.model.ProductVo">
+  		select * from product
+  	</select>
 </mapper>
