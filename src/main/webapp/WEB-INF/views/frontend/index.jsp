@@ -2,6 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%@taglib uri="http://www.springframework.org/tags" prefix="spring"%> 
 <!DOCTYPE html>
 
 <html lang="ko">
@@ -150,13 +151,15 @@
 	<section class="container padding-top-3x padding-bottom-2x mb-2">
 		<h2 class="h3 pb-3 text-center">New Arrivals</h2>
 		<div class="row">
-			<c:forEach var="vo" items="${list }">
+		<c:forEach var="vo" items="${list }">
 				
 		<div class="col-lg-3 col-md-4 col-sm-6">
 			<div class="product-card mb-30">
-				<a class="product-thumb" href="#"><img
-					src="${vo.img_thumnail }"
-					alt="${vo.img_thumnail }"></a>
+				<a class="product-thumb" href="#">
+				<img src="<c:url value="/upload/${vo.img_name_save}" />" />
+				</a>
+
+					
 				<div class="product-card-body">
 					<div class="product-category">
 						<a href="#">${vo.brand }</a>
