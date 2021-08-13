@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
-<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+    pageEncoding="UTF-8"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!-- header -->
 <header class="site-header navbar-sticky">
 	<div class="topbar d-flex justify-content-between">
@@ -139,7 +140,7 @@
 
 			
 			<div class="toolbar-item">
-				<a href="${pageContext.request.contextPath }/account/mypage">
+				<a href="${pageContext.request.contextPath }/account/mypage_order">
 					<div>
 						<i class="icon-box"></i><span class="text-label">마이페이지</span>
 					</div>
@@ -147,7 +148,7 @@
 			</div>
 
 			<div class="toolbar-item">
-				<a href="#">
+				<a class="#">
 					<div>
 						<span class="cart-icon"> <i class="icon-shopping-cart"></i>
 							<span class="count-label">0</span>

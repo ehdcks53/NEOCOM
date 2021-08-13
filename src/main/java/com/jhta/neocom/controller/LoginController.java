@@ -2,14 +2,19 @@ package com.jhta.neocom.controller;
 
 import java.util.HashMap;
 
+
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
+import javax.servlet.http.HttpSession;
+
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.CookieValue;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -25,8 +30,16 @@ import com.jhta.neocom.util.MemberLoginInfo;
 
 
 
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+
+import com.jhta.neocom.model.MemberInfoVo;
+import com.jhta.neocom.service.MemberInfoService;
+
+
 @Controller
 public class LoginController {
+
 	@Autowired private MemberService memberService;
 	
 	@RequestMapping(value = "/account/login", method = RequestMethod.GET)
@@ -60,4 +73,5 @@ public class LoginController {
 	}
 	
 
+	
 }

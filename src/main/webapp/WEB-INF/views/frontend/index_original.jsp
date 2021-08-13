@@ -11,7 +11,7 @@
     <meta name="keywords" content="shop, e-commerce, modern, flat style, responsive, online store, business, mobile, blog, bootstrap 4, html5, css3, jquery, js, gallery, slider, touch, creative, clean">
     <meta name="author" content="Rokaux">
     <!-- Favicon and Apple Icons-->
-    <link rel="icon" type="image/x-icon" href="static/frontend/assets/favicon&icon/favicon.ico">
+    <link rel="icon" type="image/x-icon" href="${pageContext.request.contextPath}/static//frontend/assets/favicon&icon/favicon.ico">
     <link rel="icon" type="image/png" href="static/frontend/assets/favicon&icon/favicon.png">
     <link rel="apple-touch-icon" href="static/frontend/assets/favicon&icon/touch-icon-iphone.png">
     <link rel="apple-touch-icon" sizes="152x152" href="static/frontend/assets/favicon&icon/touch-icon-ipad.png">

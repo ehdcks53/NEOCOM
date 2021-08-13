@@ -23,8 +23,12 @@
 	<!-- Modernizr-->
 	<script src="${pageContext.request.contextPath}/static/frontend/assets/js/modernizr.min.js"></script>
 <style>
-.table tbody tr td {
-	height: 100px;
+.table {
+	margin-left:auto;
+	margin-right:auto;
+}
+.table tbody tr td{
+	height:60px;
 	vertical-align: middle;
 }
 </style>
@@ -39,15 +43,15 @@
 <div class="page-title">
 	<div class="container">
 		<div class="column">
-			<!-- 페이지명 적어주세요 -->
-			<h1>마이페이지</h1>
+			<h1>공지사항</h1>
 		</div>
 		<div class="column">
 			<ul class="breadcrumbs">
-				<!-- 페이지 경로 넣어주세요 -->
 				<li><a href="#">Home</a></li>
 				<li class="separator">&nbsp;</li>
-				<li>My Page</li>
+				<li><a href="#">Community</a></li>
+				<li class="separator">&nbsp;</li>
+				<li>Notice Board</li>
 			</ul>
 		</div>
 	</div>
@@ -56,66 +60,109 @@
 
 
 <!-- 페이지 컨텐트 -->
-<div class="container padding-bottom-3x">
+<div class="container padding-bottom-3x mb-2">
 <div class="row">
-	<!-- 마이페이지 주문내역 -->
-	<div class="col-lg col-md-8 order-md-2">
-		<h6 class="text-muted text-lg text-upppercase">주문내역</h6>
+	<!-- 커뮤니티 사이드바 
+	<div class="col-lg-2">
+		<nav class="list-group">
+			<a class="list-group-item with-badge active" href="${pageContext.request.contextPath }/community/notice_board">공지사항</a>
+			<a class="list-group-item" href="#">자유게시판</a>
+			<a class="list-group-item" href="#">Q&A</a>
+			<a class="list-group-item" href="#">갤러리</a>
+		</nav>
+	</div>
+	 커뮤니티 사이드바 끝 -->
+	
+	<!-- 공지사항 테이블 -->
+	<div class="col-lg-12 col-md-10 order-md-2 text-center">
 		<hr class="margin-bottom-1x">
 		<div class="table-responsive">
-			<table class="table table-striped text-center">
+			<table class="table table-hover">
 				<thead>
 					<tr>
-						<th>주문번호</th>
-						<th>주문일</th>
-						<th>상품명</th>
-						<th>총금액</th>
-						<th></th>
+						<th style="width:100px;">#</th>
+						<th>컬럼명</th>
+						<th>컬럼명</th>
+						<th>컬럼명</th>
+						<th>컬럼명</th>
 					</tr>
 				</thead>
 				<tbody>
+					<!-- forEach 구문 시작 라인 -->
 					<tr>
 						<td>1</td>
-						<td>2021.08.12</td>
-						<td>상품명</td>
-						<td>500,000원</td>
-						<td><button class="btn btn-sm btn-outline-info" type="button">상세보기</button></td>
+						<td>데이터1</td>
+						<td>데이터2</td>
+						<td>데이터3</td>
+						<td>데이터4</td>
 					</tr>
 					<tr>
 						<td>2</td>
-						<td>2021.08.12</td>
-						<td>상품명</td>
-						<td>500,000원</td>
-						<td><button class="btn btn-sm btn-outline-info" type="button">상세보기</button></td>
+						<td>데이터1</td>
+						<td>데이터2</td>
+						<td>데이터3</td>
+						<td>데이터4</td>
 					</tr>
 					<tr>
 						<td>3</td>
-						<td>2021.08.12</td>
-						<td>상품명</td>
-						<td>500,000원</td>
-						<td><button class="btn btn-sm btn-outline-info" type="button">상세보기</button></td>
+						<td>데이터1</td>
+						<td>데이터2</td>
+						<td>데이터3</td>
+						<td>데이터4</td>
 					</tr>
 					<tr>
 						<td>4</td>
-						<td>2021.08.12</td>
-						<td>상품명</td>
-						<td>500,000원</td>
-						<td><button class="btn btn-sm btn-outline-info" type="button">상세보기</button></td>
+						<td>데이터1</td>
+						<td>데이터2</td>
+						<td>데이터3</td>
+						<td>데이터4</td>
 					</tr>
 					<tr>
 						<td>5</td>
-						<td>2021.08.12</td>
-						<td>상품명</td>
-						<td>500,000원</td>
-						<td><button class="btn btn-sm btn-outline-info" type="button">상세보기</button></td>
+						<td>데이터1</td>
+						<td>데이터2</td>
+						<td>데이터3</td>
+						<td>데이터4</td>
+					</tr>
+					<tr>
+						<td>6</td>
+						<td>데이터1</td>
+						<td>데이터2</td>
+						<td>데이터3</td>
+						<td>데이터4</td>
+					</tr>
+					<tr>
+						<td>7</td>
+						<td>데이터1</td>
+						<td>데이터2</td>
+						<td>데이터3</td>
+						<td>데이터4</td>
+					</tr>
+					<tr>
+						<td>8</td>
+						<td>데이터1</td>
+						<td>데이터2</td>
+						<td>데이터3</td>
+						<td>데이터4</td>
+					</tr>
+					<tr>
+						<td>9</td>
+						<td>데이터1</td>
+						<td>데이터2</td>
+						<td>데이터3</td>
+						<td>데이터4</td>
+					</tr>
+					<tr>
+						<td>10</td>
+						<td>데이터1</td>
+						<td>데이터2</td>
+						<td>데이터3</td>
+						<td>데이터4</td>
 					</tr>
 				</tbody>
 			</table>
 		</div>
 	</div>
-	
-	<!-- 마이페이지 사이드 -->
-	<jsp:include page="inc/mypage_sidebar.jsp"/>
 </div>
 </div>
 <!-- 페이지 컨텐트 끝 -->
