@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@taglib prefix="form" uri="http://www.springframework.org/tags/form" %>    
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -22,6 +23,11 @@
 	<link id="mainStyles" rel="stylesheet" media="screen" href="${pageContext.request.contextPath}/static/frontend/assets/css/styles.min.css">
 	<!-- Modernizr-->
 	<script src="${pageContext.request.contextPath}/static/frontend/assets/js/modernizr.min.js"></script>
+	<style type="text/css">
+            .errormsg {
+                color: red; padding-left: 10px; padding-top: 5px;
+            }
+        </style>
 </head>
 <body>
 
@@ -52,7 +58,7 @@
 	<div class="row">
 		<div class="col-md-3"></div>
 		<div class="col-md-6">
-			<form class="card" method="post">
+			<form class="card" method="post" action="${pageContext.request.contextPath }/account/login">
 				<div class="card-body">
 					<div class="row margin-bottom-1x">
 						<div class="col-xl-4 col-md-6 col-sm-4">
@@ -73,16 +79,18 @@
 					</div>
 					<h4 class="margin-bottom-1x text-center">로그인 하기</h4>
 					<div class="form-group input-group">
-						<input class="form-control" type="text" placeholder="id" required>
+						<input class="form-control" type="text" name="id" placeholder="ID">
+						
 					</div>
 					<div class="form-group input-group">
-						<input class="form-control" type="password" placeholder="pwd" required>
+						<input class="form-control" type="password" name="password" placeholder="PWD">
+						<div class="errormsg">${errMsg }</div>
 					</div>
 					
 					 <div class="d-flex flex-wrap justify-content-between padding-bottom-1x">
 						<!-- 로그인 이력 저장 기능 구현하면 넣고 아니면 빼기 -->
 						<div class="custom-control custom-checkbox">
-							<input class="custom-control-input" type="checkbox" id="remember_login">
+							
 							<label class="custom-control-label" for="remember_login">로그인 저장</label>
 						</div>
 						<!-- 아이디/비밀번호 찾기 -->
