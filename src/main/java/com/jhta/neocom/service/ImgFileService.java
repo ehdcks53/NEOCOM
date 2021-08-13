@@ -28,10 +28,6 @@ public class ImgFileService {
 
 	}
 
-	public int getCount(HashMap<String, Object> map) {
-		return mapper.count(map);
-	}
-
 	public Product_ImgVo find(int product_img_no) {
 		return mapper.find(product_img_no);
 	}
