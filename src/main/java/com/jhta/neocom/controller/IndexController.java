@@ -1,21 +1,58 @@
 package com.jhta.neocom.controller;
 
+import java.util.HashMap;
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.ModelAndView;
+
+import com.jhta.neocom.service.ProductService;
+import com.jhta.neocom.util.PageUtil;
 
 @Controller
 public class IndexController {
+	@Value("${spring.servlet.multipart.location}")
+	private String uploadFilePath;
 
-    @RequestMapping(value = "/")
-    public String frontendIndex() {
+	@Autowired
+	ProductService service;
 
-        return "frontend/index";
-    }
+	@RequestMapping(value = "/")
 
-    @RequestMapping(value = "/index_original")
-    public String frontendIndex_original() {
+	public ModelAndView frontend(@RequestParam(value = "pageNum", defaultValue = "1") int pageNum, String field,
+			String keyword) {
+		HashMap<String, Object> map = new HashMap<String, Object>();
+		map.put("field", field);
+		map.put("keyword", keyword);
 
-        return "frontend/index_original";
-    }
+		int totalRowCount = service.getCount(map);// 전체 글의 갯수
+		PageUtil pu = new PageUtil(pageNum, 10, 10, totalRowCount);
+
+		int startRow = pu.getStartRow();
+		int endRow = pu.getEndRow();
+
+		map.put("startRow", startRow);
+		map.put("endRow", endRow);
+		List<HashMap<String, Object>> list = service.list(map);
+
+		ModelAndView mv = new ModelAndView("/frontend/index");
+		mv.addObject("list", list);
+		mv.addObject("pu", pu);
+		mv.addObject("field", field);
+		mv.addObject("keyword", keyword);
+
+		return mv;
+
+	}
+
+	@RequestMapping(value = "/index_original")
+	public String frontendIndex_original() {
+
+		return "frontend/index_original";
+	}
 
 }

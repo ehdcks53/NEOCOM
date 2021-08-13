@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!-- header -->
 <header class="site-header navbar-sticky">
 <div class="topbar d-flex justify-content-between">
@@ -51,7 +51,7 @@
 	<!-- 툴바 -->
 	<div class="toolbar d-flex">
 		<div class="toolbar-item">
-			<a href="#">
+			<a href="${pageContext.request.contextPath }/account/join1">
 				<div><i class="icon-pocket"></i><span class="text-label">회원가입</span></div>
 			</a>
 		</div>
@@ -66,12 +66,23 @@
 			</a>
 		</div>
 		<div class="toolbar-item">
-			<a href="${pageContext.request.contextPath }/account/mypage">
+			<a href="${pageContext.request.contextPath }/account/mypage_order">
 				<div><i class="icon-box"></i><span class="text-label">마이페이지</span></div>
 			</a>
+			<c:if test="${sessionScope.id !=null }">
+				<a class="#" href="${pageContext.request.contextPath }/memlogout">
+					<div>
+						<i class="icon-user"></i>
+						<span class="text-label">로그아웃</span>
+					</div>
+				</a>
+
+			</c:if>
+
 		</div>
 		<div class="toolbar-item">
-			<a href="#">
+			<a class="#" href="${pageContext.request.contextPath }/cartlist?id=${sessionScope.id}">
+
 				<div>
 					<span class="cart-icon">
 						<i class="icon-shopping-cart"></i>
@@ -138,7 +149,7 @@
 	<!-- navbar 메인 네비게이션 -->
 	<nav class="site-menu">
 		<ul>
-			<li class="has-submenu active"><a href="#">메뉴1</a>
+			<li class="has-submenu active"><a href="#">Home</a>
 			</li>
 			<li class="has-megamenu"><a href="${pageContext.request.contextPath }/shop/product_list">Shop</a>
 				<ul class="mega-menu">
@@ -178,27 +189,18 @@
 			</li>
 			<li class="has-submenu"><a href="#">Service</a>
 				<ul class="sub-menu">
-					<li><a href="#">분류1</a></li>
-					<li><a href="#">분류2</a></li>
-					<li><a href="#">분류3</a></li>
-					<li><a href="#">분류4</a></li>
+					<li><a href="#">견적문의</a></li>
 				</ul>
 			</li>
-			<li class="has-submenu"><a href="#">메뉴2</a>
+			<li class="has-submenu"><a href="#">Community</a>
 				<ul class="sub-menu">
-					<li><a href="#">분류1</a></li>
-					<li><a href="#">분류2</a></li>
-					<li><a href="#">분류3</a></li>
-					<li><a href="#">분류4</a></li>
+					<li><a href="${pageContext.request.contextPath }/community/notice_board">공지사항</a></li>
+					<li><a href="#">자유게시판</a></li>
+					<li><a href="#">Q&A</a></li>
+					<li><a href="#">갤러리</a></li>
 				</ul>
 			</li>
-			<li class="has-submenu"><a href="#">메뉴3</a>
-				<ul class="sub-menu">
-					<li><a href="#">분류1</a></li>
-					<li><a href="#">분류2</a></li>
-					<li><a href="#">분류3</a></li>
-					<li><a href="#">분류4</a></li>
-				</ul>
+			<li class="has-submenu"><a href="#">About Us</a>
 			</li>
 		</ul>
 	</nav>
@@ -208,7 +210,7 @@
 	<div class="toolbar">
 		<div class="toolbar-inner">
 			<div class="toolbar-item">
-				<a href="#">
+				<a href="${pageContext.request.contextPath }/account/join1">
 					<div><i class="icon-pocket"></i><span class="text-label">회원가입</span></div>
 				</a>
 			</div>
@@ -223,12 +225,12 @@
 			</a>
 			</div>
 			<div class="toolbar-item">
-				<a href="${pageContext.request.contextPath }/account/mypage">
+				<a href="${pageContext.request.contextPath }/account/mypage_order">
 					<div><i class="icon-box"></i><span class="text-label">마이페이지</span></div>
 				</a>
 			</div>
 			<div class="toolbar-item">
-				<a href="#">
+				<a class="#">
 					<div>
 						<span class="cart-icon">
 							<i class="icon-shopping-cart"></i>

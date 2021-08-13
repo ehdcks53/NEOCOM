@@ -25,13 +25,8 @@
 </head>
 <body>
 
-<<<<<<< HEAD:src/main/webapp/WEB-INF/views/frontend/login/login.jsp
-<!-- footer -->
-<jsp:include page="../inc/header.jsp"/>
-=======
 <!-- header -->
 <jsp:include page="/WEB-INF/views/frontend/inc/header.jsp"/>
->>>>>>> 02fafede38269c3a73a2e78122aee67f9206e0a7:src/main/webapp/WEB-INF/views/frontend/account/login.jsp
 
 
 <!-- 페이지 타이틀 -->
@@ -78,10 +73,10 @@
 					</div>
 					<h4 class="margin-bottom-1x text-center">로그인 하기</h4>
 					<div class="form-group input-group">
-						<input class="form-control" type="text" placeholder="id" required>
+						<input class="form-control" type="text" name="id" placeholder="id" required>
 					</div>
 					<div class="form-group input-group">
-						<input class="form-control" type="password" placeholder="pwd" required>
+						<input class="form-control" type="password" name="pwd" placeholder="pwd" required>
 					</div>
 					
 					 <div class="d-flex flex-wrap justify-content-between padding-bottom-1x">
@@ -95,6 +90,7 @@
 					</div>
 					<div class="text-center text-sm-right">
 						<button class="btn btn-primary margin-bottom-none" type="submit">로그인</button>
+							<div style='color:red;'>${errMsg }</div>
 					</div>
 				</div>
 			</form>
@@ -106,11 +102,7 @@
 
 
 <!-- footer -->
-<<<<<<< HEAD:src/main/webapp/WEB-INF/views/frontend/login/login.jsp
-<jsp:include page="../inc/footer.jsp"/>
-=======
 <jsp:include page="/WEB-INF/views/frontend/inc/footer.jsp"/>
->>>>>>> 02fafede38269c3a73a2e78122aee67f9206e0a7:src/main/webapp/WEB-INF/views/frontend/account/login.jsp
 
 	<!-- Back To Top Button--><a class="scroll-to-top-btn" href="#"><i class="icon-chevron-up"></i></a>
 	<!-- Backdrop-->

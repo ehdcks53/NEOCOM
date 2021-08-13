@@ -10,8 +10,8 @@
 	<meta name="keywords" content="shop, e-commerce, modern, flat style, responsive, online store, business, mobile, blog, bootstrap 4, html5, css3, jquery, js, gallery, slider, touch, creative, clean">
 	<meta name="author" content="Rokaux">
 	<!-- Favicon and Apple Icons-->
-	<link rel="icon" type="image/x-icon" href="${pageContext.request.contextPath}/static/frontend/assets/favicon&icon/neocom_favicon.ico">
-	<link rel="icon" type="image/png" href="${pageContext.request.contextPath}/static/frontend/assets/favicon&icon/neocom_favicon.png">
+	<link rel="icon" type="image/x-icon" href="${pageContext.request.contextPath}/static/frontend/assets/favicon&icon/favicon.ico">
+	<link rel="icon" type="image/png" href="${pageContext.request.contextPath}/static/frontend/assets/favicon&icon/favicon.png">
 	<link rel="apple-touch-icon" href="${pageContext.request.contextPath}/static/frontend/assets/favicon&icon/touch-icon-iphone.png">
 	<link rel="apple-touch-icon" sizes="152x152" href="${pageContext.request.contextPath}/static/frontend/assets/favicon&icon/touch-icon-ipad.png">
 	<link rel="apple-touch-icon" sizes="180x180" href="${pageContext.request.contextPath}/static/frontend/assets/favicon&icon/touch-icon-iphone-retina.png">
@@ -22,16 +22,15 @@
 	<link id="mainStyles" rel="stylesheet" media="screen" href="${pageContext.request.contextPath}/static/frontend/assets/css/styles.min.css">
 	<!-- Modernizr-->
 	<script src="${pageContext.request.contextPath}/static/frontend/assets/js/modernizr.min.js"></script>
+	<style type="text/css">
+		h6{font-size: 15px; text-align: center;}
+		.form-group{padding-left: 30px; margin: auto;}
+	</style>
 </head>
 <body>
 
-<<<<<<< HEAD:src/main/webapp/WEB-INF/views/frontend/login/login.jsp
-<!-- footer -->
-<jsp:include page="../inc/header.jsp"/>
-=======
 <!-- header -->
 <jsp:include page="/WEB-INF/views/frontend/inc/header.jsp"/>
->>>>>>> 02fafede38269c3a73a2e78122aee67f9206e0a7:src/main/webapp/WEB-INF/views/frontend/account/login.jsp
 
 
 <!-- 페이지 타이틀 -->
@@ -53,64 +52,44 @@
 
 
 <!-- 페이지 컨텐트 -->
-<div class="container padding-bottom-3x mb-2">
+<div class="container mb-2">
 	<div class="row">
 		<div class="col-md-3"></div>
 		<div class="col-md-6">
 			<form class="card" method="post">
-				<div class="card-body">
-					<div class="row margin-bottom-1x">
-						<div class="col-xl-4 col-md-6 col-sm-4">
-							<a class="btn btn-sm btn-block facebook-btn" href="#">
-								<i class="socicon-facebook"></i>&nbsp; Facebook login
-							</a>
-						</div>
-						<div class="col-xl-4 col-md-6 col-sm-4">
-							<a class="btn btn-sm btn-block google-btn" href="#">
-								<i class="socicon-google"></i>&nbsp; Google login
-							</a>
-						</div>
-						<div class="col-xl-4 col-md-6 col-sm-4">
-							<a class="btn btn-sm btn-block google-btn" href="#">
-								<i class="socicon-googleplus"></i>&nbsp; Google+ login
-							</a>
-						</div>
-					</div>
-					<h4 class="margin-bottom-1x text-center">로그인 하기</h4>
-					<div class="form-group input-group">
-						<input class="form-control" type="text" placeholder="id" required>
-					</div>
-					<div class="form-group input-group">
-						<input class="form-control" type="password" placeholder="pwd" required>
-					</div>
-					
-					 <div class="d-flex flex-wrap justify-content-between padding-bottom-1x">
-						<!-- 로그인 이력 저장 기능 구현하면 넣고 아니면 빼기 -->
-						<div class="custom-control custom-checkbox">
-							<input class="custom-control-input" type="checkbox" id="remember_login">
-							<label class="custom-control-label" for="remember_login">로그인 저장</label>
-						</div>
-						<!-- 아이디/비밀번호 찾기 -->
-						<a class="navi-link" href="#">아이디/비밀번호 찾기</a>
-					</div>
-					<div class="text-center text-sm-right">
-						<button class="btn btn-primary margin-bottom-none" type="submit">로그인</button>
-					</div>
+				<div class="card-body">	
+					<h3 class="margin-bottom-1x text-center">회원가입완료!</h3>
+					<h6>축하합니다 성공적으로 회원가입이 되었습니다!</h6>
 				</div>
 			</form>
 		</div>
-		<div class="col-md-3"></div>
 	</div>
 </div>
+<div class="container mb-2">
+<div class="row">
+		<div class="col-md-3"></div>
+		<div class="col-md-6">
+             <form class="row" action="${pageContext.request.contextPath }/" method="post">
+                <div class="form-group">
+                <a href="/">
+                <button class="btn btn-primary margin-bottom-none" type="submit">메인페이지</button>
+                </a>
+                </div>
+             </form>
+              		
+		</div>
+	<div class="col-md-3"></div>
+</div>	
+</div>
+					
+			
+		
+		
 <!-- 페이지 컨텐트 끝 -->
 
 
 <!-- footer -->
-<<<<<<< HEAD:src/main/webapp/WEB-INF/views/frontend/login/login.jsp
-<jsp:include page="../inc/footer.jsp"/>
-=======
 <jsp:include page="/WEB-INF/views/frontend/inc/footer.jsp"/>
->>>>>>> 02fafede38269c3a73a2e78122aee67f9206e0a7:src/main/webapp/WEB-INF/views/frontend/account/login.jsp
 
 	<!-- Back To Top Button--><a class="scroll-to-top-btn" href="#"><i class="icon-chevron-up"></i></a>
 	<!-- Backdrop-->

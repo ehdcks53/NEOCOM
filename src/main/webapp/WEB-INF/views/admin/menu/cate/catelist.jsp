@@ -79,7 +79,10 @@
 											<td>${vo.category_parent }</td>
 											<td>${vo.category_order }</td>
 											<td><a href="${pageContext.request.contextPath }/admin/cate/delete?category_id=${vo.category_id }" class="btn btn-sm btn-primary w-60px me-1">삭제</a></td>
-											<td><a href="${pageContext.request.contextPath }/admin/cate/update?category_id=${vo.category_id }" class="btn btn-sm btn-white w-60px">수정</a></td>
+											<%-- <td><a href="${pageContext.request.contextPath }/admin/cate/update?category_id=${vo.category_id }" class="btn btn-sm btn-white w-60px">수정</a></td> --%>
+											<td><a href="#modal-dialog" class="open_modal btn btn-sm btn-white w-60px" data-bs-toggle="modal" 
+											data-id="${vo.category_id}" data-name="${vo.category_name}" data-parent="${vo.category_parent}"
+											data-order="${vo.category_parent}">수정</a></td>
 										</tr>
 									</c:forEach>
 								</tbody>
@@ -98,6 +101,51 @@
 		<!-- BEGIN scroll to top btn -->
 		<a href="javascript:;" class="btn btn-icon btn-circle btn-success btn-scroll-to-top" data-toggle="scroll-to-top"><i class="fa fa-angle-up"></i></a>
 		<!-- END scroll to top btn -->
+
+		<!-- #modal-dialog -->
+		<div class="modal fade" id="modal-dialog">
+		<div class="modal-dialog">
+			<div class="modal-content">
+			<div class="modal-header">
+				<h4 class="modal-title">카테고리 수정</h4>
+				<button type="button" class="btn-close" data-bs-dismiss="modal" aria-hidden="true"></button>
+			</div>
+			<div class="modal-body">
+				<form method="post" id="category" action="${pageContext.request.contextPath}/admin/cate/update">
+					<div class="row mb-15px">
+						<label class="form-label col-form-label col-md-3">카테고리 코드</label>
+							<div class="col-md-9">
+								<input type="text" id="category_id" class="form-control mb-5px" readonly/>
+							</div>
+					</div>
+					<div class="row mb-15px">
+						<label class="form-label col-form-label col-md-3">카테고리명</label>
+							<div class="col-md-9">
+								<input type="text" id="category_name" class="form-control mb-5px"/>
+							</div>
+					</div>
+					<div class="row mb-15px">
+						<label class="form-label col-form-label col-md-3">카테고리 상위코드</label>
+							<div class="col-md-9">
+								<input type="text" id="category_parent" class="form-control mb-5px"/>
+							</div>
+					</div>
+					<div class="row mb-15px">
+						<label class="form-label col-form-label col-md-3">카테고리 순서</label>
+							<div class="col-md-9">
+								<input type="text" id="category_order" class="form-control mb-5px"/>
+							</div>
+					</div>
+				</form>
+			</div>
+			<div class="modal-footer">
+				<a href="javascript:;" class="btn btn-white" data-bs-dismiss="modal">닫기</a>
+				<a href="javascript:;" class="btn btn-success">수정</a>
+			</div>
+			</div>
+		</div>
+		</div>
+		
 	</div>
 	<!-- END #app -->
 	
@@ -119,6 +167,20 @@
 	<!-- ================== END page-js ================== -->
     <!-- script -->
     <script>
+		$(document).on("click", ".open_modal", function () {
+			var id = $(this).data('id');
+			var name = $(this).data('name');
+			var parent = $(this).data('parent');
+			var order = $(this).data('order');
+			console.log(id, name, parent, order);
+			$("#category_id").val(id);
+			$("#category_name").val(name);
+			$("#category_parent").val(parent);
+			$("#category_order").val(order);
+		});
+		$(document).on("click", "" , function (){
+
+		});
     	$('#data-table-responsive').DataTable({
         	responsive: true,
 			lengthMenu: [10,20,30,50],
@@ -138,6 +200,7 @@
             },
           	},
     	});
+
     </script>
 </body>
 </html>
