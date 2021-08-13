@@ -6,6 +6,7 @@ import java.util.List;
 import javax.servlet.ServletContext;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -19,6 +20,8 @@ import com.jhta.neocom.util.PageUtil;
 
 @Controller
 public class IndexController {
+	 @Value("${spring.servlet.multipart.location}")
+	    private String uploadFilePath;
 
 	@Autowired ProductService service;
 	@Autowired ImgFileService service1;
@@ -48,23 +51,11 @@ public class IndexController {
     		mv.addObject("pu", pu);
     		mv.addObject("field", field);
     		mv.addObject("keyword", keyword);
-    		// mv.setViewName("/admin/cate/catelist");
+    		
     		System.out.println(list);
     		String img_path = sc.getRealPath("/resources/upload");
     		System.out.println("img_path"+img_path);
-//    		
-//    		Product_ImgVo vo=service1.find(product_img_no);
-//    		
-//    		String dir=sc.getRealPath("/resources/upload");
-//    		File f=new File(dir +"\\" + vo.getImg_name_save());//다운로드할 파일에 대한 정보를 갖는 File객체
-////    		String filename=vo.getOrgfilename();//다운로드창에 보여질 파일명
-////    		long filesize=vo.getFilesize();//다운로드할 파일크기
-////    		//다운로드할 파일정보를 모델객체에 담기
-////    		model.addAttribute("file",f);
-////    		model.addAttribute("filename",filename);
-////    		model.addAttribute("filesize",filesize);
-////    		return "filedownloadView";
-//    		mv.addObject("file",f);
+
     		return mv;
         
     }
