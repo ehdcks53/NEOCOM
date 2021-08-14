@@ -74,12 +74,12 @@
 								<tbody>
 									<c:forEach var="vo" items="${list }" varStatus="status">
 										<tr class="even">
-											<td>${}</td>
-											<td>${}</td>
-											<td>${}</td>
-											<td>${}</td>
-											<td><a href="${pageContext.request.contextPath }/admin/?=${ }" class="btn btn-sm btn-primary w-60px me-1">삭제</a></td>
-											<td><a href="${pageContext.request.contextPath }/admin/?=${ }" class="btn btn-sm btn-white w-60px">수정</a></td>
+											<td></td>
+											<td></td>
+											<td></td>
+											<td></td>
+											<td><a href="${pageContext.request.contextPath }/admin/?" class="btn btn-sm btn-primary w-60px me-1">삭제</a></td>
+											<td><a href="${pageContext.request.contextPath }/admin/?" class="btn btn-sm btn-white w-60px">수정</a></td>
 										</tr>
 									</c:forEach>
 								</tbody>
