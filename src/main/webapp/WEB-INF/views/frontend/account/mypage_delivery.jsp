@@ -22,6 +22,12 @@
 	<link id="mainStyles" rel="stylesheet" media="screen" href="${pageContext.request.contextPath}/static/frontend/assets/css/styles.min.css">
 	<!-- Modernizr-->
 	<script src="${pageContext.request.contextPath}/static/frontend/assets/js/modernizr.min.js"></script>
+<style>
+.table tbody tr td {
+	height: 100px;
+	vertical-align: middle;
+}
+</style>
 </head>
 <body>
 
@@ -33,13 +39,13 @@
 <div class="page-title">
 	<div class="container">
 		<div class="column">
-			<h1>로그인</h1>
+			<h1>마이페이지</h1>
 		</div>
 		<div class="column">
 			<ul class="breadcrumbs">
 				<li><a href="#">Home</a></li>
 				<li class="separator">&nbsp;</li>
-				<li>Login</li>
+				<li>My Page</li>
 			</ul>
 		</div>
 	</div>
@@ -49,54 +55,34 @@
 
 <!-- 페이지 컨텐트 -->
 <div class="container padding-bottom-3x mb-2">
-	<div class="row">
-		<div class="col-md-3"></div>
-		<div class="col-md-6">
-			<form class="card" method="post">
-				<div class="card-body">
-					<div class="row margin-bottom-1x">
-						<div class="col-xl-4 col-md-6 col-sm-4">
-							<a class="btn btn-sm btn-block facebook-btn" href="#">
-								<i class="socicon-facebook"></i>&nbsp; Facebook login
-							</a>
-						</div>
-						<div class="col-xl-4 col-md-6 col-sm-4">
-							<a class="btn btn-sm btn-block google-btn" href="#">
-								<i class="socicon-google"></i>&nbsp; Google login
-							</a>
-						</div>
-						<div class="col-xl-4 col-md-6 col-sm-4">
-							<a class="btn btn-sm btn-block google-btn" href="#">
-								<i class="socicon-googleplus"></i>&nbsp; Google+ login
-							</a>
-						</div>
-					</div>
-					<h4 class="margin-bottom-1x text-center">로그인 하기</h4>
-					<div class="form-group input-group">
-						<input class="form-control" type="text" name="id" placeholder="id" required>
-					</div>
-					<div class="form-group input-group">
-						<input class="form-control" type="password" name="pwd" placeholder="pwd" required>
-					</div>
-					
-					 <div class="d-flex flex-wrap justify-content-between padding-bottom-1x">
-						<!-- 로그인 이력 저장 기능 구현하면 넣고 아니면 빼기 -->
-						<div class="custom-control custom-checkbox">
-							<input class="custom-control-input" type="checkbox" id="remember_login">
-							<label class="custom-control-label" for="remember_login">로그인 저장</label>
-						</div>
-						<!-- 아이디/비밀번호 찾기 -->
-						<a class="navi-link" href="#">아이디/비밀번호 찾기</a>
-					</div>
-					<div class="text-center text-sm-right">
-						<button class="btn btn-primary margin-bottom-none" type="submit">로그인</button>
-							<div style='color:red;'>${errMsg }</div>
-					</div>
+<div class="row">
+	<!-- 마이페이지 사이드바 -->
+	<div class="col-lg-3">
+		<aside class="user-info-wrapper">
+			<div class="user-cover" style="background-image: url(${pageContext.request.contextPath}/static/frontend/assets/img/account/user-cover-img.jpg);">
+				<!-- 뱃지 -->
+			</div>
+			<div class="user-info">
+				<!-- 프로필이미지 부분 
+				<div class="user-avatar">
+					<a class="edit-avatar" href="#"></a><img src="" alt="">
 				</div>
-			</form>
-		</div>
-		<div class="col-md-3"></div>
+				프로필이미지 부분 -->
+				<div class="user-data">
+					<h4 class="h5">OOO 회원님</h4><span>가나다라마바사</span>
+				</div>
+			</div>
+		</aside>
+		<nav class="list-group">
+			<a class="list-group-item" href="${pageContext.request.contextPath }/account/mypage_order">주문내역</a>
+			<a class="list-group-item with-badge active" href="${pageContext.request.contextPath }/account/mypage_delivery">배송지 관리</a>
+			<a class="list-group-item" href="#">문의내역</a>
+			<a class="list-group-item" href="#">관심상품</a>
+			<a class="list-group-item" href="#">나의 리뷰</a>
+			<a class="list-group-item" href="#">개인 정보 관리</a>
+		</nav>
 	</div>
+</div>
 </div>
 <!-- 페이지 컨텐트 끝 -->
 
@@ -110,5 +96,23 @@
 	<!-- JavaScript (jQuery) libraries, plugins and custom scripts-->
 	<script src="${pageContext.request.contextPath}/static/frontend/assets/js/vendor.min.js"></script>
 	<script src="${pageContext.request.contextPath}/static/frontend/assets/js/scripts.min.js"></script>
+	<script src="${pageContext.request.contextPath}/static/frontend/assets/js/jquery-3.6.0.min.js"></script>
+<script type="text/javascript">
+	
+
+
+		
+		var listContainer = document.getElementById("listActive");
+		var lists = listContainer.getElementsByClassName("list-group-item with-badge");
+		for (var i = 0; i < lists.length; i++) {
+			lists[i].addEventListener("click", function() {
+			  var current = document.getElementsByClassName("active");
+			  current[0].className = current[0].className.replace(" active", "");
+			  this.className += " active";
+		  });
+		}
+	
+	
+</script>
 </body>
 </html>

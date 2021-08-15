@@ -23,8 +23,12 @@
 	<!-- Modernizr-->
 	<script src="${pageContext.request.contextPath}/static/frontend/assets/js/modernizr.min.js"></script>
 <style>
-.table tbody tr td {
-	height: 100px;
+.table {
+	margin-left:auto;
+	margin-right:auto;
+}
+.table tbody tr td{
+	height:60px;
 	vertical-align: middle;
 }
 </style>
@@ -39,15 +43,15 @@
 <div class="page-title">
 	<div class="container">
 		<div class="column">
-			<!-- 페이지명 적어주세요 -->
-			<h1>마이페이지</h1>
+			<h1>공지사항</h1>
 		</div>
 		<div class="column">
 			<ul class="breadcrumbs">
-				<!-- 페이지 경로 넣어주세요 -->
 				<li><a href="#">Home</a></li>
 				<li class="separator">&nbsp;</li>
-				<li>My Page</li>
+				<li><a href="#">Community</a></li>
+				<li class="separator">&nbsp;</li>
+				<li>Notice Board</li>
 			</ul>
 		</div>
 	</div>
@@ -58,36 +62,107 @@
 <!-- 페이지 컨텐트 -->
 <div class="container padding-bottom-3x mb-2">
 <div class="row">
-	<!-- 마이페이지 사이드바 -->
-	<div class="col-lg-3">
-		<aside class="user-info-wrapper">
-			<div class="user-cover" style="background-image: url(${pageContext.request.contextPath}/static/frontend/assets/img/account/user-cover-img.jpg);">
-				<!-- 뱃지 -->
-			</div>
-			<div class="user-info">
-				<!-- 프로필이미지 부분 
-				<div class="user-avatar">
-					<a class="edit-avatar" href="#"></a><img src="" alt="">
-				</div>
-				프로필이미지 부분 -->
-				<div class="user-data">
-					<h4 class="h5">OOO 회원님</h4><span>가나다라마바사</span>
-				</div>
-			</div>
-		</aside>
-		<div id="listActive">
+	<!-- 커뮤니티 사이드바 
+	<div class="col-lg-2">
 		<nav class="list-group">
-			<a class="list-group-item with-badge active" href="${pageContext.request.contextPath }/account/mypage_order">주문내역</a>
-			<a class="list-group-item with-badge" href="${pageContext.request.contextPath }/account/mypage">배송지 관리</a>
-			<a class="list-group-item with-badge" href="${pageContext.request.contextPath }/account/mypage">문의내역</a>
-			<a class="list-group-item with-badge" href="${pageContext.request.contextPath }/account/mypage">관심상품</a>
-			<a class="list-group-item with-badge" href="${pageContext.request.contextPath }/account/mypage">나의 리뷰</a>
-			<a class="list-group-item with-badge" href="${pageContext.request.contextPath }/account/mypage">개인 정보 관리</a>
+			<a class="list-group-item with-badge active" href="${pageContext.request.contextPath }/community/notice_board">공지사항</a>
+			<a class="list-group-item" href="#">자유게시판</a>
+			<a class="list-group-item" href="#">Q&A</a>
+			<a class="list-group-item" href="#">갤러리</a>
 		</nav>
+	</div>
+	 커뮤니티 사이드바 끝 -->
+	
+	<!-- 공지사항 테이블 -->
+	<div class="col-lg-12 col-md-10 order-md-2 text-center">
+		<hr class="margin-bottom-1x">
+		<div class="table-responsive">
+			<table class="table table-hover">
+				<thead>
+					<tr>
+						<th style="width:100px;">#</th>
+						<th>컬럼명</th>
+						<th>컬럼명</th>
+						<th>컬럼명</th>
+						<th>컬럼명</th>
+					</tr>
+				</thead>
+				<tbody>
+					<!-- forEach 구문 시작 라인 -->
+					<tr>
+						<td>1</td>
+						<td>데이터1</td>
+						<td>데이터2</td>
+						<td>데이터3</td>
+						<td>데이터4</td>
+					</tr>
+					<tr>
+						<td>2</td>
+						<td>데이터1</td>
+						<td>데이터2</td>
+						<td>데이터3</td>
+						<td>데이터4</td>
+					</tr>
+					<tr>
+						<td>3</td>
+						<td>데이터1</td>
+						<td>데이터2</td>
+						<td>데이터3</td>
+						<td>데이터4</td>
+					</tr>
+					<tr>
+						<td>4</td>
+						<td>데이터1</td>
+						<td>데이터2</td>
+						<td>데이터3</td>
+						<td>데이터4</td>
+					</tr>
+					<tr>
+						<td>5</td>
+						<td>데이터1</td>
+						<td>데이터2</td>
+						<td>데이터3</td>
+						<td>데이터4</td>
+					</tr>
+					<tr>
+						<td>6</td>
+						<td>데이터1</td>
+						<td>데이터2</td>
+						<td>데이터3</td>
+						<td>데이터4</td>
+					</tr>
+					<tr>
+						<td>7</td>
+						<td>데이터1</td>
+						<td>데이터2</td>
+						<td>데이터3</td>
+						<td>데이터4</td>
+					</tr>
+					<tr>
+						<td>8</td>
+						<td>데이터1</td>
+						<td>데이터2</td>
+						<td>데이터3</td>
+						<td>데이터4</td>
+					</tr>
+					<tr>
+						<td>9</td>
+						<td>데이터1</td>
+						<td>데이터2</td>
+						<td>데이터3</td>
+						<td>데이터4</td>
+					</tr>
+					<tr>
+						<td>10</td>
+						<td>데이터1</td>
+						<td>데이터2</td>
+						<td>데이터3</td>
+						<td>데이터4</td>
+					</tr>
+				</tbody>
+			</table>
 		</div>
 	</div>
-	
-	
 </div>
 </div>
 <!-- 페이지 컨텐트 끝 -->
@@ -102,23 +177,5 @@
 	<!-- JavaScript (jQuery) libraries, plugins and custom scripts-->
 	<script src="${pageContext.request.contextPath}/static/frontend/assets/js/vendor.min.js"></script>
 	<script src="${pageContext.request.contextPath}/static/frontend/assets/js/scripts.min.js"></script>
-	<script src="${pageContext.request.contextPath}/static/frontend/assets/js/jquery-3.6.0.min.js"></script>
-<script type="text/javascript">
-	
-
-
-		
-		var listContainer = document.getElementById("listActive");
-		var lists = listContainer.getElementsByClassName("list-group-item with-badge");
-		for (var i = 0; i < lists.length; i++) {
-			lists[i].addEventListener("click", function() {
-			  var current = document.getElementsByClassName("active");
-			  current[0].className = current[0].className.replace(" active", "");
-			  this.className += " active";
-		  });
-		}
-	
-	
-</script>
 </body>
 </html>

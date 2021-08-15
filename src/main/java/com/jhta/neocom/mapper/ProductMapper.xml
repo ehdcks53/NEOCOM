@@ -22,7 +22,7 @@
 	</sql>
 
 	<!--해당 전체 상품의 갯수 -->
-	<select id="count" parameterType="hashmap" resultType="int">
+	<select id="count" parameterType="int" resultType="int">
 		select IFnull(count(*),0) from product
 		<include refid="search" />
 	</select>
@@ -37,7 +37,7 @@
 	<select id="list" parameterType="hashmap" resultType="hashmap">
 		select a.* from 
 		 (
-		SELECT @rownum:=@rownum+1  rnum, aa.*,bb.product_img_no,bb.img_name_save,bb.img_name_origin,bb.img_path,bb.img_size,bb.img_category,bb.img_thumnail FROM 
+		SELECT @rownum:=@rownum+1  rnum, aa.*,bb.product_img_no,bb.img_name_save,bb.img_name_origin,bb.img_path,bb.img_size,bb.img_category FROM 
 				product aa inner join product_img bb 
                   on aa.product_id= bb.product_id, 
   				(SELECT @ROWNUM := 0) R
@@ -64,4 +64,12 @@
 		availability =#{availability}
 		where product_id=#{product_id}
 	</update>
+
+	<select id="select" parameterType="int" resultType="com.jhta.neocom.model.ProductVo">
+  		select * from product where product_id=#{product_id}
+  	</select>
+
+	<select id="listTest" resultType="com.jhta.neocom.model.ProductVo">
+  		select * from product
+  	</select>
 </mapper>

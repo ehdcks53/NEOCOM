@@ -4,7 +4,6 @@
 <%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@taglib uri="http://www.springframework.org/tags" prefix="spring"%> 
 <!DOCTYPE html>
-
 <html lang="ko">
 <head>
 <meta charset="UTF-8">
@@ -138,28 +137,24 @@
 	</section>
 	<!-- 메인 슬라이더 끝 -->
 
-
 	<!-- deals 
-<section class="container padding-top-3x">
+	<section class="container padding-top-3x">
 
-</section>
- deals 끝 -->
-
-
+	</section>
+	deals 끝 -->
 	<!-- New Arrivals -->
 
 	<section class="container padding-top-3x padding-bottom-2x mb-2">
 		<h2 class="h3 pb-3 text-center">New Arrivals</h2>
 		<div class="row">
 		<c:forEach var="vo" items="${list }">
-				
+
+
 		<div class="col-lg-3 col-md-4 col-sm-6">
 			<div class="product-card mb-30">
 				<a class="product-thumb" href="#">
-				<img src="<c:url value="/upload/${vo.img_name_save}" />" />
+					<img src="<c:url value="/upload/${vo.img_name_save}" />" />
 				</a>
-
-					
 				<div class="product-card-body">
 					<div class="product-category">
 						<a href="#">${vo.brand }</a>
@@ -221,17 +216,13 @@
 
 	<!-- footer -->
 	<jsp:include page="/WEB-INF/views/frontend/inc/footer.jsp" />
-
-
-	<!-- Back To Top Button-->
-	<a class="scroll-to-top-btn" href="#"><i class="icon-chevron-up"></i></a>
-	<!-- Backdrop-->
-	<div class="site-backdrop"></div>
-	<!-- JavaScript (jQuery) libraries, plugins and custom scripts-->
-	<script
-		src="${pageContext.request.contextPath}/static/frontend/assets/js/vendor.min.js"></script>
-	<script
-		src="${pageContext.request.contextPath}/static/frontend/assets/js/scripts.min.js"></script>
-</body>
+	
+    <!-- Back To Top Button--><a class="scroll-to-top-btn" href="#"><i class="icon-chevron-up"></i></a>
+    <!-- Backdrop-->
+    <div class="site-backdrop"></div>
+    <!-- JavaScript (jQuery) libraries, plugins and custom scripts-->
+    <script src="${pageContext.request.contextPath}/static/frontend/assets/js/vendor.min.js"></script>
+    <script src="${pageContext.request.contextPath}/static/frontend/assets/js/scripts.min.js"></script>
+  </body>
 
 </html>

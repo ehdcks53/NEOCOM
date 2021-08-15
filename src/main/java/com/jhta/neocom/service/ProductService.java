@@ -39,6 +39,12 @@ public class ProductService {
 	public int update(ProductVo vo) {
 		return mapper.update(vo);
 	}
+	public List<ProductVo> listTest(){
+		return mapper.listTest();
+	}
+	public ProductVo select(int product_id) {
+		return mapper.select(product_id);
+	}
 	
 	
 

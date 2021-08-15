@@ -12,4 +12,6 @@ public interface ProductMapper {
 	int delete(int product_id);
 	ProductVo find(int product_id);
 	int update(ProductVo vo);
+	List<ProductVo> listTest();
+	ProductVo select(int product_id);
 }
