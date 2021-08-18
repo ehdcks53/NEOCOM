@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.jhta.neocom.model.MemberVo;
 import com.jhta.neocom.service.MemberService;
-
+//주석
 @Controller
 public class Join2Controller {
 	@Autowired
