@@ -2,7 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<!-- header -->
+<!-- header  -->
 <header class="site-header navbar-sticky">
 	<div class="topbar d-flex justify-content-between">
 

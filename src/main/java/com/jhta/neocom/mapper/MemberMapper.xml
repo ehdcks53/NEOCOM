@@ -14,3 +14,4 @@
 		select id,password from member_Info where id=#{id} and password=#{password}
 	</select>
 </mapper>
+<!-- 주석 -->

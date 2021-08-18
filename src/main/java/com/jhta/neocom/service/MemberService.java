@@ -8,7 +8,7 @@ import org.springframework.stereotype.Service;
 
 import com.jhta.neocom.mapper.MemberMapper;
 import com.jhta.neocom.model.MemberVo;
-
+//주석
 @Service
 public class MemberService {
 	@Autowired private MemberMapper mapper;
