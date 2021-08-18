@@ -1,6 +1,7 @@
 package com.jhta.neocom.service;
 
 import java.util.HashMap;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -32,6 +33,10 @@ public class OrderMainService {
 
 	public int updateno(HashMap<String, Object> map) {
 		return mapper.updateno(map);
+	}
+	
+	public List<OrderMainVo> myOrderList(int mem_no){
+		return mapper.myOrderList(mem_no);
 	}
 
 }

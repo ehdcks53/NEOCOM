@@ -26,4 +26,11 @@
  	<update id="updateno" parameterType="Hashmap">
  		update order_main set order_no=#{order_no} where order_no=#{order_no2} 
  	</update>
+ 	
+ 	<select id="myOrderList" resultType="com.jhta.neocom.model.OrderMainVo" parameterType="int">
+ 		select order_no,product_name,img_name_save,order_date,tot_price,order_status from order_main om LEFT JOIN 
+ 		product p on om.product_id = p.product_id JOIN product_img pi ON p.product_id = pi.product_id 
+ 		where mem_no=#{mem_no} order by order_no desc
+ 	</select>
+ 	
   </mapper>

@@ -28,4 +28,7 @@ public class MemberService {
 	public MemberVo isMember(HashMap<String, String> map) {
 		return mapper.isMember(map);
 	}
+	public int searchNo(String id) {
+		return mapper.searchNo(id);
+	}
 }

@@ -24,8 +24,6 @@ public class ProductListDCController {
 	public ModelAndView list(HttpSession session) {
 		List<ProductVo> productlist=service.listTest();
 		System.out.println(productlist);
-		Object mem_no=session.getAttribute("mem_no");
-		System.out.println(mem_no+"gd");
 		ModelAndView mv=new ModelAndView("frontend/order/productlist");
 		mv.addObject("productlist",productlist);
 		return mv;

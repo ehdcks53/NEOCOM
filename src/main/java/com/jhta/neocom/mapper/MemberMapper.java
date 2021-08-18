@@ -13,4 +13,6 @@ public interface MemberMapper {
 	int select(String id);
 	
 	MemberVo isMember(HashMap<String, String> map);
+	
+	int searchNo(String id);
 }
