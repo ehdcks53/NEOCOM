@@ -28,14 +28,17 @@ public class ImgFileService {
 	public int getCount(HashMap<String,Object> map) {
 		return mapper.count(map);
 	}
-	public Product_ImgVo find(int product_img_no) {
-		return mapper.find(product_img_no);
+	public List<Product_ImgVo> find(int product_id) {
+		return mapper.find(product_id);
 	}
 	public int delete(int product_img_no) {
 		return mapper.delete(product_img_no);
 	}
 	public int update(Product_ImgVo vo) {
 		return mapper.update(vo);
+	}
+	public Product_ImgVo selectone(int product_id) {
+		return mapper.selectone(product_id);
 	}
 	
 	

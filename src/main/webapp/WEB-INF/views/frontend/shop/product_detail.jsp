@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -33,11 +35,11 @@
 <div class="page-title">
 	<div class="container">
 		<div class="column">
-			<h1>상품 상세페이지</h1>
+			<h1 style="font-size:50px">${cvo }</h1>
 		</div>
 		<div class="column">
 			<ul class="breadcrumbs">
-				<li><a href="#">Home</a></li>
+				<li><a href="${pageContext.request.contextPath}/">Home</a></li>
 				<li class="separator">&nbsp;</li>
 				<li><a href="#">Shop</a></li>
 				<li class="separator">&nbsp;</li>
@@ -50,9 +52,11 @@
 
 
 <!-- 페이지 컨텐트 -->
+
 <div class="container padding-bottom-3x">
 <div class="row">
 	<!-- 상품이미지 -->
+	
 	<div class="col-md-6">
 		<div class="product-gallery">
 			<div class="gallery-wrapper">
@@ -60,33 +64,31 @@
 					<button class="btn btn-outline-secondary btn-sm btn-wishlist"><i class="icon-heart"></i>&nbsp; 관심상품</button>
 				</div>
 			</div>
+			
 			<div class="product-carousel owl-carousel gallery-wrapper">
+			
 				<div class="gallery-item" data-hash="one">
-					<a href="${pageContext.request.contextPath}/static/frontend/assets/img/shop/single/01.jpg" data-size="1000x667"><img src="${pageContext.request.contextPath}/static/frontend/assets/img/shop/single/01.jpg" alt=""></a>
+					<a href="${pageContext.request.contextPath}/static/frontend/assets/img/shop/single/01.jpg" data-size="1000x667"><img src="<c:url value='/upload/${list[0].img_name_save}' />" alt="<c:url value='/upload/${img.img_name_save}' />"/></a>
 				</div>
-				<div class="gallery-item" data-hash="two">
-					<a href="${pageContext.request.contextPath}/static/frontend/assets/img/shop/single/02.jpg" data-size="1000x667"><img src="${pageContext.request.contextPath}/static/frontend/assets/img/shop/single/02.jpg" alt=""></a>
-				</div>
-				<div class="gallery-item" data-hash="three">
-					<a href="${pageContext.request.contextPath}/static/frontend/assets/img/shop/single/03.jpg" data-size="1000x667"><img src="${pageContext.request.contextPath}/static/frontend/assets/img/shop/single/03.jpg" alt=""></a>
-				</div>
+				
+			
+				
 			</div>
-			<ul class="product-thumbnails">
-				<li class="active"><a href="#one"><img src="${pageContext.request.contextPath}/static/frontend/assets/img/shop/single/01.jpg" alt=""></a></li>
-				<li><a href="#two"><img src="${pageContext.request.contextPath}/static/frontend/assets/img/shop/single/02.jpg" alt=""></a></li>
-				<li><a href="#three"><img src="${pageContext.request.contextPath}/static/frontend/assets/img/shop/single/03.jpg" alt=""></a></li>
-			</ul>
+			
+			
 		</div>
 	</div>
 	<!-- 상품정보 -->
-	<div class="col-md-6">
+	<div class="col-md-6"> 
 		<div class="padding-top-2x mt-2 hidden-md-up"></div>
 		<div class="sp-categories pb-3">
 			<i class="icon-tag"></i>상품분류
 		</div>
-		<h2 class="mb-3">상품명</h2>
-		<span class="h3 d-block"><del class="text-muted">원가</del>&nbsp; 할인가</span>
-		<p class="text-muted">////////////// 상품정보 간단하게 요약해서 두 줄 정도로 요약 //////////////</p>
+		<h2 class="mb-3">${goods.product_name }</h2>
+		<span class="h3 d-block"><del class="text-muted"><fmt:formatNumber pattern="###,###,###" value="${goods.selling_price }"/>원</del>&nbsp; 할인가</span>
+		<c:forEach var="clist" items="${clist }">
+		<p class="text-muted">${clist.category_name }</p>
+		</c:forEach>
 		<div class="row margin-top-2x">
 			<div class="col-sm-6">
 				<div class="form-group">
@@ -132,23 +134,17 @@
 </div>
 </div>
 
+
 <!-- 상품설명 -->
 <div class="bg-secondary padding-top-3x padding-bottom-2x mb-3" id="details">
 <div class="container">
 <div class="row">
-	<div class="col-md-6">
-		<h3 class="h4">상품설명</h3>
-		<p class="mb-4">가나다라마바사</p>
+	<div class="col-md-11">
+		<h3 class="h4">상품정보</h3>
+		
+		<img src="<c:url value='/upload/${list[1].img_name_save}' />" alt="<c:url value='/upload/${img.img_name_save}' />"/>
 	</div>
-	<div class="col-md-6">
-		<h3 class="h4">부가설명</h3>
-		<ul class="list-unstyled mb-4">
-			<li><strong>무게 : </strong>1000</li>
-			<li><strong>무게 : </strong>1000</li>
-			<li><strong>무게 : </strong>1000</li>
-			<li><strong>무게 : </strong>1000</li>
-		</ul>
-	</div>
+	
 </div>
 </div>
 </div>
@@ -171,6 +167,7 @@
 					</div>
 				</div>
 			</div>
+			
 			<div class="pt-3">
 				<!-- 5점 -->
 				<label class="text-medium text-sm">5stars <span class="text-muted"> --- 20</span></label>
