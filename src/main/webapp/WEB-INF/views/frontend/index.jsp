@@ -157,7 +157,7 @@
 						<a href="#">${vo.brand }</a>
 					</div>
 					<h3 class="product-title">
-						<a href="#">${vo.product_name }</a>
+						<a href="${pageContext.request.contextPath }/productDetail?mem_no=${sessionScope.mem_no}&product_id=${vo.product_id}">상품보기:${vo.product_name }</a>
 						
 					</h3>
 					<h4 class="product-price">${vo.selling_price }원</h4>
@@ -165,7 +165,8 @@
 				<div class="product-button-group">
 					<a class="product-button btn-wishlist" href="#"><i
 						class="icon-heart"></i><span>관심상품</span></a> <a class="product-button"
-						href="#" data-toast data-toast-type="success"
+						href="${pageContext.request.contextPath }/insertCart?mem_no=${sessionScope.mem_no}&
+			product_id=${vo.product_id}" data-toast data-toast-type="success"
 						data-toast-position="topRight" data-toast-icon="icon-check-circle"
 						data-toast-title=" " data-toast-message="장바구니에 상품을 담았습니다!"> <i
 						class="icon-shopping-cart"></i><span>장바구니</span>
