@@ -12,7 +12,10 @@ public interface ImgFileMapper {
 
 	int delete(int product_img_no);
 
-	Product_ImgVo find(int product_img_no);
+	List<Product_ImgVo> find(int product_id);
 
 	int update(Product_ImgVo vo);
+
+	Product_ImgVo selectone(int product_id);
+
 }

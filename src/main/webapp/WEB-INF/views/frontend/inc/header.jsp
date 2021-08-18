@@ -1,9 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<!-- header -->
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<!-- header   -->
 <header class="site-header navbar-sticky">
-<div class="topbar d-flex justify-content-between">
+	<div class="topbar d-flex justify-content-between">
 
 	<!-- 로고 -->
 	<div class="site-branding d-flex">
@@ -11,7 +12,7 @@
 		<img src="${pageContext.request.contextPath}/static/frontend/assets/img/logo/neocomlogo.png" alt="neocom">
 		</a>
 	</div>
-	
+
 	<!-- 검색 및 카테고리 -->
 	<div class="search-box-wrap d-flex">
 		<div class="search-box-inner align-self-center">
@@ -21,16 +22,16 @@
 					<button class="btn btn-secondary dropdown-toggle" data-toggle="dropdown"><i class="icon-menu text-lg"></i>&nbsp;카테고리</button>
 					<div class="dropdown-menu mega-dropdown">
 						<div class="row">
-							<div class="col-sm-3"><a class="d-block navi-link text-center mb-30" href="#"><img class="d-block" src="${pageContext.request.contextPath}/static/frontend/assets/img/shop/header-categories/01.jpg"><span class="text-gray-dark">분류1</span></a></div>
-							<div class="col-sm-3"><a class="d-block navi-link text-center mb-30" href="#"><img class="d-block" src="${pageContext.request.contextPath}/static/frontend/assets/img/shop/header-categories/02.jpg"><span class="text-gray-dark">분류2</span></a></div>
-							<div class="col-sm-3"><a class="d-block navi-link text-center mb-30" href="#"><img class="d-block" src="${pageContext.request.contextPath}/static/frontend/assets/img/shop/header-categories/03.jpg"><span class="text-gray-dark">분류3</span></a></div>
-							<div class="col-sm-3"><a class="d-block navi-link text-center mb-30" href="#"><img class="d-block" src="${pageContext.request.contextPath}/static/frontend/assets/img/shop/header-categories/04.jpg"><span class="text-gray-dark">분류4</span></a></div>
+							<div class="col-sm-3"><a class="d-block navi-link text-center mb-30" href="${pageContext.request.contextPath }/shop/product_list?field=category_id&keyword=3"><img class="d-block" src="${pageContext.request.contextPath}/static/frontend/assets/img/shop/header-categories/cpu.png"><span class="text-gray-dark">CPU</span></a></div>
+							<div class="col-sm-3"><a class="d-block navi-link text-center mb-30" href="#"><img class="d-block" src="${pageContext.request.contextPath}/static/frontend/assets/img/shop/header-categories/mainboard.png"><span class="text-gray-dark">메인보드</span></a></div>
+							<div class="col-sm-3"><a class="d-block navi-link text-center mb-30" href="#"><img class="d-block" src="${pageContext.request.contextPath}/static/frontend/assets/img/shop/header-categories/ram.png"><span class="text-gray-dark">RAM</span></a></div>
+							<div class="col-sm-3"><a class="d-block navi-link text-center mb-30" href="#"><img class="d-block" src="${pageContext.request.contextPath}/static/frontend/assets/img/shop/header-categories/vga.png"><span class="text-gray-dark">그래픽카드</span></a></div>
 						</div>
 						<div class="row">
-							<div class="col-sm-3"><a class="d-block navi-link text-center mb-30" href="#"><img class="d-block" src="${pageContext.request.contextPath}/static/frontend/assets/img/shop/header-categories/05.jpg"><span class="text-gray-dark">분류5</span></a></div>
-							<div class="col-sm-3"><a class="d-block navi-link text-center mb-30" href="#"><img class="d-block" src="${pageContext.request.contextPath}/static/frontend/assets/img/shop/header-categories/06.jpg"><span class="text-gray-dark">분류6</span></a></div>
-							<div class="col-sm-3"><a class="d-block navi-link text-center mb-30" href="#"><img class="d-block" src="${pageContext.request.contextPath}/static/frontend/assets/img/shop/header-categories/07.jpg"><span class="text-gray-dark">분류7</span></a></div>
-							<div class="col-sm-3"><a class="d-block navi-link text-center mb-30" href="#"><img class="d-block" src="${pageContext.request.contextPath}/static/frontend/assets/img/shop/header-categories/08.jpg"><span class="text-gray-dark">분류8</span></a></div>
+							<div class="col-sm-3"><a class="d-block navi-link text-center mb-30" href="#"><img class="d-block" src="${pageContext.request.contextPath}/static/frontend/assets/img/shop/header-categories/ssd.png"><span class="text-gray-dark">SSD</span></a></div>
+							<div class="col-sm-3"><a class="d-block navi-link text-center mb-30" href="#"><img class="d-block" src="${pageContext.request.contextPath}/static/frontend/assets/img/shop/header-categories/hdd.png"><span class="text-gray-dark">HDD</span></a></div>
+							<div class="col-sm-3"><a class="d-block navi-link text-center mb-30" href="#"><img class="d-block" src="${pageContext.request.contextPath}/static/frontend/assets/img/shop/header-categories/power.png"><span class="text-gray-dark">파워</span></a></div>
+							<div class="col-sm-3"><a class="d-block navi-link text-center mb-30" href="#"><img class="d-block" src="${pageContext.request.contextPath}/static/frontend/assets/img/shop/header-categories/peripherals.jpg"><span class="text-gray-dark">주변기기</span></a></div>
 						</div>
 					</div>
 				</div>
@@ -47,41 +48,44 @@
 		</div>
 	</div>
 	<!-- 검색 및 카테고리 끝 -->
-	
+
 	<!-- 툴바 -->
 	<div class="toolbar d-flex">
+		
+		<c:choose>
+			<c:when test="${empty id }">
+				<div class="toolbar-item">
+					<a href="${pageContext.request.contextPath }/account/join1">
+						<div><i class="icon-pocket"></i><span class="text-label">회원가입</span></div>
+					</a>
+				</div>
+				<div class="toolbar-item">
+					<a href="${pageContext.request.contextPath }/account/login">
+						<div><i class="icon-user"></i><span class="text-label">로그인</span></div>
+					</a>
+				</div>
+			</c:when>
+			<c:otherwise>
+				<div class="toolbar-item">
+					<a href="#">
+						<div><i class="icon-user"></i><span class="text-label">${id }님</span></div>
+					</a>
+				</div>
+				<div class="toolbar-item">
+					<a href="${pageContext.request.contextPath }/account/logout">
+						<div><i class="icon-slash"></i><span class="text-label">로그아웃</span></div>
+					</a>
+				</div>
+				<div class="toolbar-item">
+					<a href="${pageContext.request.contextPath }/account/mypage_order">
+						<div><i class="icon-box"></i><span class="text-label">마이페이지</span></div>
+					</a>
+				</div>
+			</c:otherwise>
+		</c:choose>
+		
 		<div class="toolbar-item">
-			<a href="${pageContext.request.contextPath }/account/join1">
-				<div><i class="icon-pocket"></i><span class="text-label">회원가입</span></div>
-			</a>
-		</div>
-		<div class="toolbar-item">
-			<a href="${pageContext.request.contextPath }/account/login">
-				<div><i class="icon-user"></i><span class="text-label">로그인</span></div>
-			</a>
-		</div>
-		<div class="toolbar-item">
-			<a href="#">
-				<div><i class="icon-slash"></i><span class="text-label">로그아웃</span></div>
-			</a>
-		</div>
-		<div class="toolbar-item">
-			<a href="${pageContext.request.contextPath }/account/mypage_order">
-				<div><i class="icon-box"></i><span class="text-label">마이페이지</span></div>
-			</a>
-			<c:if test="${sessionScope.id !=null }">
-				<a class="#" href="${pageContext.request.contextPath }/memlogout">
-					<div>
-						<i class="icon-user"></i>
-						<span class="text-label">로그아웃</span>
-					</div>
-				</a>
-
-			</c:if>
-
-		</div>
-		<div class="toolbar-item">
-			<a class="#" href="${pageContext.request.contextPath }/cartlist?id=${sessionScope.id}">
+			<a class="#" href="${pageContext.request.contextPath }/cart?id=${sessionScope.id}">
 
 				<div>
 					<span class="cart-icon">
@@ -123,7 +127,6 @@
 	<!-- 툴바 끝 -->
 </div>
 
-
 <!-- Navbar-->
 <div class="navbar">
 	<!-- navbar 카테고리 -->
@@ -131,16 +134,56 @@
 		<button class="btn btn-secondary dropdown-toggle" data-toggle="dropdown"><i class="icon-menu text-lg"></i>&nbsp;카테고리</button>
 		<div class="dropdown-menu mega-dropdown">
 			<div class="row">
-				<div class="col-sm-3"><a class="d-block navi-link text-center mb-30" href="#"><img class="d-block" src="${pageContext.request.contextPath}/static/frontend/assets/img/shop/header-categories/01.jpg"><span class="text-gray-dark">분류1</span></a></div>
-				<div class="col-sm-3"><a class="d-block navi-link text-center mb-30" href="#"><img class="d-block" src="${pageContext.request.contextPath}/static/frontend/assets/img/shop/header-categories/02.jpg"><span class="text-gray-dark">분류2</span></a></div>
-				<div class="col-sm-3"><a class="d-block navi-link text-center mb-30" href="#"><img class="d-block" src="${pageContext.request.contextPath}/static/frontend/assets/img/shop/header-categories/03.jpg"><span class="text-gray-dark">분류3</span></a></div>
-				<div class="col-sm-3"><a class="d-block navi-link text-center mb-30" href="#"><img class="d-block" src="${pageContext.request.contextPath}/static/frontend/assets/img/shop/header-categories/04.jpg"><span class="text-gray-dark">분류4</span></a></div>
+				<div class="col-sm-3">
+					<a class="d-block navi-link text-center mb-30" href="#">
+						<img class="d-block" src="${pageContext.request.contextPath}/static/frontend/assets/img/shop/header-categories/01.jpg">
+						<span class="text-gray-dark">분류1</span>
+					</a>
+				</div>
+				<div class="col-sm-3">
+					<a class="d-block navi-link text-center mb-30" href="#">
+						<img class="d-block" src="${pageContext.request.contextPath}/static/frontend/assets/img/shop/header-categories/02.jpg">
+						<span class="text-gray-dark">분류2</span>
+					</a>
+				</div>
+				<div class="col-sm-3">
+					<a class="d-block navi-link text-center mb-30" href="#">
+						<img class="d-block" src="${pageContext.request.contextPath}/static/frontend/assets/img/shop/header-categories/03.jpg">
+						<span class="text-gray-dark">분류3</span>
+					</a>
+				</div>
+				<div class="col-sm-3">
+					<a class="d-block navi-link text-center mb-30" href="#">
+						<img class="d-block" src="${pageContext.request.contextPath}/static/frontend/assets/img/shop/header-categories/04.jpg">
+						<span class="text-gray-dark">분류4</span>
+					</a>
+				</div>
 			</div>
 			<div class="row">
-				<div class="col-sm-3"><a class="d-block navi-link text-center mb-30" href="#"><img class="d-block" src="${pageContext.request.contextPath}/static/frontend/assets/img/shop/header-categories/05.jpg"><span class="text-gray-dark">분류5</span></a></div>
-				<div class="col-sm-3"><a class="d-block navi-link text-center mb-30" href="#"><img class="d-block" src="${pageContext.request.contextPath}/static/frontend/assets/img/shop/header-categories/06.jpg"><span class="text-gray-dark">분류6</span></a></div>
-				<div class="col-sm-3"><a class="d-block navi-link text-center mb-30" href="#"><img class="d-block" src="${pageContext.request.contextPath}/static/frontend/assets/img/shop/header-categories/07.jpg"><span class="text-gray-dark">분류7</span></a></div>
-				<div class="col-sm-3"><a class="d-block navi-link text-center mb-30" href="#"><img class="d-block" src="${pageContext.request.contextPath}/static/frontend/assets/img/shop/header-categories/08.jpg"><span class="text-gray-dark">분류8</span></a></div>
+				<div class="col-sm-3">
+					<a class="d-block navi-link text-center mb-30" href="#">
+						<img class="d-block" src="${pageContext.request.contextPath}/static/frontend/assets/img/shop/header-categories/05.jpg">
+						<span class="text-gray-dark">분류5</span>
+					</a>
+				</div>
+				<div class="col-sm-3">
+					<a class="d-block navi-link text-center mb-30" href="#">
+						<img class="d-block" src="${pageContext.request.contextPath}/static/frontend/assets/img/shop/header-categories/06.jpg">
+						<span class="text-gray-dark">분류6</span>
+					</a>
+				</div>
+				<div class="col-sm-3">
+					<a class="d-block navi-link text-center mb-30" href="#">
+						<img class="d-block" src="${pageContext.request.contextPath}/static/frontend/assets/img/shop/header-categories/07.jpg">
+						<span class="text-gray-dark">분류7</span>
+					</a>
+				</div>
+				<div class="col-sm-3">
+					<a class="d-block navi-link text-center mb-30" href="#">
+						<img class="d-block" src="${pageContext.request.contextPath}/static/frontend/assets/img/shop/header-categories/08.jpg">
+						<span class="text-gray-dark">분류8</span>
+					</a>
+				</div>
 			</div>
 		</div>
 	</div>
@@ -148,10 +191,10 @@
 	
 	<!-- navbar 메인 네비게이션 -->
 	<nav class="site-menu">
-		<ul>
-			<li class="has-submenu active"><a href="#">Home</a>
+		<ul class="nav-ul">
+			<li class="has-submenu" id="home-li"><a href="${pageContext.request.contextPath }/">Home</a>
 			</li>
-			<li class="has-megamenu"><a href="${pageContext.request.contextPath }/shop/product_list">Shop</a>
+			<li class="has-megamenu" id="shop-li"><a href="${pageContext.request.contextPath }/shop/product_list">Shop</a>
 				<ul class="mega-menu">
 					<li><span class="mega-menu-title">대분류1</span>
 						<ul class="sub-menu">
@@ -192,11 +235,11 @@
 					<li><a href="#">견적문의</a></li>
 				</ul>
 			</li>
-			<li class="has-submenu"><a href="#">Community</a>
+			<li class="has-submenu" id="community-li"><a href="${pageContext.request.contextPath }/community/noticeboard_list">Community</a>
 				<ul class="sub-menu">
-					<li><a href="${pageContext.request.contextPath }/community/notice_board">공지사항</a></li>
-					<li><a href="#">자유게시판</a></li>
-					<li><a href="#">Q&A</a></li>
+					<li><a href="${pageContext.request.contextPath }/community/noticeboard_list">공지사항</a></li>
+					<li><a href="${pageContext.request.contextPath }/community/qnaboard_list">Q&A</a></li>
+					<li><a href="${pageContext.request.contextPath }/community/freeboard_list">자유게시판</a></li>
 					<li><a href="#">갤러리</a></li>
 				</ul>
 			</li>
@@ -209,26 +252,38 @@
 	<!-- navbar 툴바 -->
 	<div class="toolbar">
 		<div class="toolbar-inner">
-			<div class="toolbar-item">
-				<a href="${pageContext.request.contextPath }/account/join1">
-					<div><i class="icon-pocket"></i><span class="text-label">회원가입</span></div>
-				</a>
-			</div>
-			<div class="toolbar-item">
-				<a href="${pageContext.request.contextPath }/account/login">
-					<div><i class="icon-user"></i><span class="text-label">로그인</span></div>
-				</a>
-			</div>
-			<div class="toolbar-item">
-			<a href="#">
-				<div><i class="icon-slash"></i><span class="text-label">로그아웃</span></div>
-			</a>
-			</div>
-			<div class="toolbar-item">
-				<a href="${pageContext.request.contextPath }/account/mypage_order">
-					<div><i class="icon-box"></i><span class="text-label">마이페이지</span></div>
-				</a>
-			</div>
+			<c:choose>
+				<c:when test="${empty id }">
+					<div class="toolbar-item">
+						<a href="${pageContext.request.contextPath }/account/join1">
+							<div><i class="icon-pocket"></i><span class="text-label">회원가입</span></div>
+						</a>
+					</div>
+					<div class="toolbar-item">
+						<a href="${pageContext.request.contextPath }/account/login">
+							<div><i class="icon-user"></i><span class="text-label">로그인</span></div>
+						</a>
+					</div>
+				</c:when>
+				<c:otherwise>
+					<div class="toolbar-item">
+						<a href="#">
+							<div><i class="icon-user"></i><span class="text-label">${id }님</span></div>
+						</a>
+					</div>
+					<div class="toolbar-item">
+						<a href="${pageContext.request.contextPath }/account/logout">
+							<div><i class="icon-slash"></i><span class="text-label">로그아웃</span></div>
+						</a>
+					</div>
+					<div class="toolbar-item">
+						<a href="${pageContext.request.contextPath }/account/mypage_order">
+							<div><i class="icon-box"></i><span class="text-label">마이페이지</span></div>
+						</a>
+					</div>
+				</c:otherwise>
+			</c:choose>
+
 			<div class="toolbar-item">
 				<a class="#">
 					<div>
@@ -258,7 +313,9 @@
 						<div class="entry-delete"><i class="icon-x"></i></div>
 					</div>
 					<div class="text-right">
-						<p class="text-gray-dark py-2 mb-0"><span class="text-muted">총합계:</span>&nbsp; 2,000,000 ￦</p>
+						<p class="text-gray-dark py-2 mb-0">
+							<span class="text-muted">총합계:</span>&nbsp; 2,000,000 ￦
+						</p>
 					</div>
 					<div class="d-flex">
 						<div class="pr-2 w-50"><a class="btn btn-secondary btn-sm btn-block mb-0" href="#">버튼1</a></div>
@@ -270,7 +327,21 @@
 		</div>
 	</div>
 	<!-- navbar 툴바 끝 -->
-	
+
 </div>
 </header>
 <!-- end of header -->
+<script type="text/javascript" src="${pageContext.request.contextPath}/static/frontend/assets/js/jquery-3.6.0.min.js"></script>
+<script>
+	let pageName = location.pathname.split("/");
+	let pageIndex = pageName[2];
+	if(pageIndex == ''){
+		$("#home-li").addClass("active");
+	}else if(pageIndex == 'shop'){
+		$("#shop-li").addClass("active");
+	}else if(pageIndex == 'community'){
+		$("#community-li").addClass("active");
+	}else{
+		$(".nav-ul li").removeClass("active");
+	}
+</script>

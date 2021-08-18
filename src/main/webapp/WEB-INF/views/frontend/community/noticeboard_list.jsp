@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -75,90 +77,43 @@
 	
 	<!-- 공지사항 테이블 -->
 	<div class="col-lg-12 col-md-10 order-md-2 text-center">
-		<hr class="margin-bottom-1x">
+		<!-- <hr class="margin-bottom-1x"> -->
+		<div>
+			<form action="" method="post">
+				<div class="row">
+					<div class="p-2"></div>
+						<select class="form-control col-sm-2 p-2" name="field" id="field">
+							<option value="">제목</option>
+							<option value="">내용</option>
+							<option value="">제목+내용</option>
+						</select>
+					<input type="text" class="form-control col-sm-3 p-1" name="keyword" id="keyword">
+					<button type="button" class="form-control col-sm-1 w-1 p-2" onclick="">검색</button>
+				</div>
+			</form>
+		</div>
+		<div class="mb-3"></div>
 		<div class="table-responsive">
 			<table class="table table-hover">
 				<thead>
 					<tr>
-						<th style="width:100px;">#</th>
-						<th>컬럼명</th>
-						<th>컬럼명</th>
-						<th>컬럼명</th>
-						<th>컬럼명</th>
+						<th style="width:100px;">글번호</th>
+						<th style="width:500px;">제목</th>
+						<th style="width:100px;">작성자</th>
+						<th style="width:140px;">등록일시</th>
+						<th style="width:100px;">조회수</th>
 					</tr>
 				</thead>
 				<tbody>
-					<!-- forEach 구문 시작 라인 -->
+				<c:forEach var="vo" items="${list }">
 					<tr>
-						<td>1</td>
-						<td>데이터1</td>
-						<td>데이터2</td>
-						<td>데이터3</td>
-						<td>데이터4</td>
+						<td>${vo.n_board_no }</td>
+						<td class="text-left"><a href="${pageContext.request.contextPath}/community/noticeboard_detail?n_board_no=${vo.n_board_no}">${vo.n_title }</a></td>
+						<td>${vo.Nickname }</td>
+						<td><fmt:parseDate value="${vo.n_regdate }" var="n_regdate" pattern="yyyy-MM-dd'T'HH:mm:ss" /><fmt:formatDate value="${n_regdate }" pattern="yyyy-MM-dd HH:mm:ss" /></td>
+						<td>${vo.n_hit }</td>
 					</tr>
-					<tr>
-						<td>2</td>
-						<td>데이터1</td>
-						<td>데이터2</td>
-						<td>데이터3</td>
-						<td>데이터4</td>
-					</tr>
-					<tr>
-						<td>3</td>
-						<td>데이터1</td>
-						<td>데이터2</td>
-						<td>데이터3</td>
-						<td>데이터4</td>
-					</tr>
-					<tr>
-						<td>4</td>
-						<td>데이터1</td>
-						<td>데이터2</td>
-						<td>데이터3</td>
-						<td>데이터4</td>
-					</tr>
-					<tr>
-						<td>5</td>
-						<td>데이터1</td>
-						<td>데이터2</td>
-						<td>데이터3</td>
-						<td>데이터4</td>
-					</tr>
-					<tr>
-						<td>6</td>
-						<td>데이터1</td>
-						<td>데이터2</td>
-						<td>데이터3</td>
-						<td>데이터4</td>
-					</tr>
-					<tr>
-						<td>7</td>
-						<td>데이터1</td>
-						<td>데이터2</td>
-						<td>데이터3</td>
-						<td>데이터4</td>
-					</tr>
-					<tr>
-						<td>8</td>
-						<td>데이터1</td>
-						<td>데이터2</td>
-						<td>데이터3</td>
-						<td>데이터4</td>
-					</tr>
-					<tr>
-						<td>9</td>
-						<td>데이터1</td>
-						<td>데이터2</td>
-						<td>데이터3</td>
-						<td>데이터4</td>
-					</tr>
-					<tr>
-						<td>10</td>
-						<td>데이터1</td>
-						<td>데이터2</td>
-						<td>데이터3</td>
-						<td>데이터4</td>
-					</tr>
+				</c:forEach>
 				</tbody>
 			</table>
 		</div>

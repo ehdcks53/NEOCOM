@@ -16,4 +16,9 @@ public class MyPageController {
         return "frontend/account/mypage_delivery";
     }
 	
+	@RequestMapping(value = "/account/mypage_question")
+    public String frontendMyPageQuestion() {
+        return "frontend/account/mypage_question";
+    }
+	
 }

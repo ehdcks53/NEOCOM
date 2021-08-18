@@ -5,6 +5,8 @@
     <!-- Alias 설정 -->
     <typeAliases>
         <typeAlias type="com.jhta.neocom.model.CartVo" alias="CartVo" />
+        <typeAlias type="com.jhta.neocom.model.NoticeBoardVo" alias="noticeboard" />
+        <typeAlias type="com.jhta.neocom.model.QnABoardVo" alias="qnaboard" />
     </typeAliases>
 
 </configuration>
