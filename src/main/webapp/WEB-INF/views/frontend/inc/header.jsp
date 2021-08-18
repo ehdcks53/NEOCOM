@@ -148,10 +148,10 @@
 	
 	<!-- navbar 메인 네비게이션 -->
 	<nav class="site-menu">
-		<ul>
-			<li class="has-submenu active"><a href="#">Home</a>
+		<ul class="nav-ul">
+			<li class="has-submenu" id="home-li"><a href="${pageContext.request.contextPath }/">Home</a>
 			</li>
-			<li class="has-megamenu"><a href="${pageContext.request.contextPath }/shop/product_list">Shop</a>
+			<li class="has-megamenu" id="shop-li"><a href="${pageContext.request.contextPath }/shop/product_list">Shop</a>
 				<ul class="mega-menu">
 					<li><span class="mega-menu-title">대분류1</span>
 						<ul class="sub-menu">
@@ -192,11 +192,11 @@
 					<li><a href="#">견적문의</a></li>
 				</ul>
 			</li>
-			<li class="has-submenu"><a href="#">Community</a>
+			<li class="has-submenu" id="community-li"><a href="${pageContext.request.contextPath }/community/noticeboard_list">Community</a>
 				<ul class="sub-menu">
-					<li><a href="${pageContext.request.contextPath }/community/notice_board">공지사항</a></li>
-					<li><a href="#">자유게시판</a></li>
-					<li><a href="#">Q&A</a></li>
+					<li><a href="${pageContext.request.contextPath }/community/noticeboard_list">공지사항</a></li>
+					<li><a href="${pageContext.request.contextPath }/community/qnaboard_list">Q&A</a></li>
+					<li><a href="${pageContext.request.contextPath }/community/freeboard_list">자유게시판</a></li>
 					<li><a href="#">갤러리</a></li>
 				</ul>
 			</li>
@@ -274,3 +274,17 @@
 </div>
 </header>
 <!-- end of header -->
+<script type="text/javascript" src="${pageContext.request.contextPath}/static/frontend/assets/js/jquery-3.6.0.min.js"></script>
+<script>
+	let pageName = location.pathname.split("/");
+	let pageIndex = pageName[2];
+	if(pageIndex == ''){
+		$("#home-li").addClass("active");
+	}else if(pageIndex == 'shop'){
+		$("#shop-li").addClass("active");
+	}else if(pageIndex == 'community'){
+		$("#community-li").addClass("active");
+	}else{
+		$(".nav-ul li").removeClass("active");
+	}
+</script>

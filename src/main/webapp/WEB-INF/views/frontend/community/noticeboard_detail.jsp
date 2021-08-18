@@ -23,8 +23,11 @@
 	<!-- Modernizr-->
 	<script src="${pageContext.request.contextPath}/static/frontend/assets/js/modernizr.min.js"></script>
 <style>
-.table tbody tr td {
-	height: 100px;
+.table tbody tr td p {
+	margin-top: 50px;
+	margin-bottom: 50px;
+	margin-left: 100px;
+	margin-right: 100px;
 	vertical-align: middle;
 }
 </style>
@@ -39,13 +42,17 @@
 <div class="page-title">
 	<div class="container">
 		<div class="column">
-			<h1>마이페이지</h1>
+			<h1>공지사항</h1>
 		</div>
 		<div class="column">
 			<ul class="breadcrumbs">
 				<li><a href="#">Home</a></li>
 				<li class="separator">&nbsp;</li>
-				<li>My Page</li>
+				<li><a href="#">Community</a></li>
+				<li class="separator">&nbsp;</li>
+				<li><a href="#">Notice Board</a></li>
+				<li class="separator">&nbsp;</li>
+				<li>No.${vo.n_board_no }</li>
 			</ul>
 		</div>
 	</div>
@@ -55,70 +62,56 @@
 
 <!-- 페이지 컨텐트 -->
 <div class="container padding-bottom-3x mb-2">
-<div class="row">
-	<!-- mypage_sidebar -->
-	<jsp:include page="/WEB-INF/views/frontend/account/inc/mypage_sidebar.jsp"/>
-	
-	<!-- 주문내역 -->
-	<div class="col-lg-9 col-md-8 order-md-2">
-		<h6 class="text-muted text-lg text-uppercase">주문내역</h6>
-		<hr class="margin-bottom-1x">
-		<div class="table-responsive wishlist-table mb-0">
-			<table class="table">
-				<thead>
+	<div class="row justify-content-center">
+		<div class="col-lg-12">
+			<table class="table text-center">
+				<colgroup>
+					<col width="8%"/>
+					<col width="8%"/>
+					<col width="8%"/>
+					<col width="56%"/>
+					<col width="8%"/>
+					<col width="12%"/>
+				</colgroup>
+				<thead class="thead-default">
 					<tr>
-						<th>주문번호</th>
-						<th class="text-center"><a class="btn btn-sm btn-outline-info" href="#">상세보기</a></th>
+						<th scope="row">글번호</th>
+						<td>${vo.n_board_no }</td>
+						<th scope="row">제목</th>
+						<td>${vo.n_title }</td>
+						<th scope="row">조회수</th>
+						<td>${vo.n_hit }</td>
 					</tr>
 				</thead>
 				<tbody>
 					<tr>
-						<td>
-						<div class="product-item"><a class="product-thumb" href="#"><img src="${pageContext.request.contextPath}/static/frontend/assets/img/shop/cart/01.jpg" alt=""></a>
-							<div class="product-info">
-							<h4 class="product-title"><a href="#">상품명</a></h4>
-								<div class="text-lg mb-1">가격</div>
-									<div class="text-sm">개수 :
-										<div class="d-inline">1</div>
-									</div>
-								</div>
-							</div>
+						<td colspan="10">
+							<p>${vo.n_content }</p>
 						</td>
-						<td class="text-center"><button class="btn btn-link-secondary">후기작성</button></td>
-					</tr>
-					<tr>
-						<td>
-						<div class="product-item"><a class="product-thumb" href="#"><img src="${pageContext.request.contextPath}/static/frontend/assets/img/shop/cart/02.jpg" alt=""></a>
-							<div class="product-info">
-							<h4 class="product-title"><a href="#">상품명</a></h4>
-								<div class="text-lg mb-1">가격</div>
-									<div class="text-sm">개수 :
-										<div class="d-inline">1</div>
-									</div>
-								</div>
-							</div>
-						</td>
-						<td class="text-center"><button class="btn btn-link-secondary">후기작성</button></td>
-					</tr>
-					<tr>
-						<td>
-						<div class="product-item"><a class="product-thumb" href="#"><img src="${pageContext.request.contextPath}/static/frontend/assets/img/shop/cart/03.jpg" alt=""></a>
-							<div class="product-info">
-							<h4 class="product-title"><a href="#">상품명</a></h4>
-								<div class="text-lg mb-1">가격</div>
-									<div class="text-sm">개수 :
-										<div class="d-inline">1</div>
-									</div>
-								</div>
-							</div>
-						</td>
-						<td class="text-center"><button class="btn btn-link-secondary">후기작성</button></td>
 					</tr>
 				</tbody>
 			</table>
+			<div class="single-post-footer" style="margin-bottom:50px;">
+				<div class="entry-navigation">
+					<div class="column text-left">
+						<a class="btn btn-outline-secondary btn-sm" id="prevAtag" href="${pageContext.request.contextPath}/community/noticeboard_detail?n_board_no=${prev.n_board_no}">
+							<i class="icon-arrow-left"></i>이전글
+						</a>
+					</div>
+					<div class="column">
+						<a class="btn btn-outline-secondary view-all" href="${pageContext.request.contextPath }/community/noticeboard_list">
+							<i class="icon-menu"></i>
+						</a>
+					</div>
+					<div class="column text-right">
+						<a class="btn btn-outline-secondary btn-sm" id="nextAtag" href="${pageContext.request.contextPath}/community/noticeboard_detail?n_board_no=${next.n_board_no}">
+							다음글<i class="icon-arrow-right"></i>
+						</a>
+					</div>
+				</div>
+			</div>
 		</div>
 	</div>
-</div>
 </div>
 <!-- 페이지 컨텐트 끝 -->
 
@@ -132,5 +125,16 @@
 	<!-- JavaScript (jQuery) libraries, plugins and custom scripts-->
 	<script src="${pageContext.request.contextPath}/static/frontend/assets/js/vendor.min.js"></script>
 	<script src="${pageContext.request.contextPath}/static/frontend/assets/js/scripts.min.js"></script>
+<script>
+	window.onload=function(){
+		var prev = "${prev.n_board_no}";
+		var next = "${next.n_board_no}";
+		if(prev == 0 || prev == null){
+			$("#prevAtag").addClass("disabled");
+		}else if(next == 0 || next == null){
+			$("#nextAtag").addClass("disabled");
+		}
+	}
+</script>
 </body>
 </html>

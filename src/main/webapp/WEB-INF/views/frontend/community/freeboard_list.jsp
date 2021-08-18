@@ -22,12 +22,6 @@
 	<link id="mainStyles" rel="stylesheet" media="screen" href="${pageContext.request.contextPath}/static/frontend/assets/css/styles.min.css">
 	<!-- Modernizr-->
 	<script src="${pageContext.request.contextPath}/static/frontend/assets/js/modernizr.min.js"></script>
-<style>
-.table tbody tr td {
-	height: 100px;
-	vertical-align: middle;
-}
-</style>
 </head>
 <body>
 
@@ -39,13 +33,15 @@
 <div class="page-title">
 	<div class="container">
 		<div class="column">
-			<h1>마이페이지</h1>
+			<h1>자유게시판</h1>
 		</div>
 		<div class="column">
 			<ul class="breadcrumbs">
 				<li><a href="#">Home</a></li>
 				<li class="separator">&nbsp;</li>
-				<li>My Page</li>
+				<li><a href="#">Community</a></li>
+				<li class="separator">&nbsp;</li>
+				<li>Community Board</li>
 			</ul>
 		</div>
 	</div>
@@ -54,72 +50,8 @@
 
 
 <!-- 페이지 컨텐트 -->
-<div class="container padding-bottom-3x mb-2">
-<div class="row">
-	<!-- mypage_sidebar -->
-	<jsp:include page="/WEB-INF/views/frontend/account/inc/mypage_sidebar.jsp"/>
-	
-	<!-- 주문내역 -->
-	<div class="col-lg-9 col-md-8 order-md-2">
-		<h6 class="text-muted text-lg text-uppercase">주문내역</h6>
-		<hr class="margin-bottom-1x">
-		<div class="table-responsive wishlist-table mb-0">
-			<table class="table">
-				<thead>
-					<tr>
-						<th>주문번호</th>
-						<th class="text-center"><a class="btn btn-sm btn-outline-info" href="#">상세보기</a></th>
-					</tr>
-				</thead>
-				<tbody>
-					<tr>
-						<td>
-						<div class="product-item"><a class="product-thumb" href="#"><img src="${pageContext.request.contextPath}/static/frontend/assets/img/shop/cart/01.jpg" alt=""></a>
-							<div class="product-info">
-							<h4 class="product-title"><a href="#">상품명</a></h4>
-								<div class="text-lg mb-1">가격</div>
-									<div class="text-sm">개수 :
-										<div class="d-inline">1</div>
-									</div>
-								</div>
-							</div>
-						</td>
-						<td class="text-center"><button class="btn btn-link-secondary">후기작성</button></td>
-					</tr>
-					<tr>
-						<td>
-						<div class="product-item"><a class="product-thumb" href="#"><img src="${pageContext.request.contextPath}/static/frontend/assets/img/shop/cart/02.jpg" alt=""></a>
-							<div class="product-info">
-							<h4 class="product-title"><a href="#">상품명</a></h4>
-								<div class="text-lg mb-1">가격</div>
-									<div class="text-sm">개수 :
-										<div class="d-inline">1</div>
-									</div>
-								</div>
-							</div>
-						</td>
-						<td class="text-center"><button class="btn btn-link-secondary">후기작성</button></td>
-					</tr>
-					<tr>
-						<td>
-						<div class="product-item"><a class="product-thumb" href="#"><img src="${pageContext.request.contextPath}/static/frontend/assets/img/shop/cart/03.jpg" alt=""></a>
-							<div class="product-info">
-							<h4 class="product-title"><a href="#">상품명</a></h4>
-								<div class="text-lg mb-1">가격</div>
-									<div class="text-sm">개수 :
-										<div class="d-inline">1</div>
-									</div>
-								</div>
-							</div>
-						</td>
-						<td class="text-center"><button class="btn btn-link-secondary">후기작성</button></td>
-					</tr>
-				</tbody>
-			</table>
-		</div>
-	</div>
-</div>
-</div>
+<!-- 여기서부터 작성 -->
+
 <!-- 페이지 컨텐트 끝 -->
 
 
