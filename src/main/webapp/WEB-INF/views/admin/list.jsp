@@ -34,9 +34,9 @@
 	<!-- END #loader -->
 	<!-- BEGIN #app -->
 	<div id="app" class="app app-header-fixed app-sidebar-fixed">
-	<jsp:include page="../../inc/header.jsp" />
+	<jsp:include page="inc/header.jsp" />
 
-		<jsp:include page="../../inc/sidebar.jsp" />
+		<jsp:include page="inc/sidebar.jsp" />
 		
 		<!-- BEGIN #content -->
 		<div id="content" class="app-content">
@@ -63,29 +63,12 @@
 							<table id="data-table-responsive" class="table table-striped table-bordered align-middle">
 								<thead>
 									<tr>
-										<th width="15%">상품코드</th>
-										<th width="10%">카테고리></th>
-										<th width="30%" data-orderable="true">상품명</th>
+										<th width="5%"></th>
+										<th width="30%" data-orderable="true"></th>
 										<th class="text-nowrap"></th>
 										<th class="text-nowrap"></th>
-										<th class="text-nowrap">상품번호</th>
-										<th class="text-nowrap">가격</th>
 										<th width="5%"></th>
 										<th width="5%"></th>
-										<%-- private int product_id; //상품번호 (pk)
-										private String product_code; //상품코드
-										private int category_id; //카테고리 코드(fk)
-										private String product_name; //상품명
-										private String brand; //브랜드명
-										private String manufacturer; //제조사명
-										private int supply_price; //공급가격
-										private int consumer_price; //소비자가격
-										private int tax; //과세비율
-										private int selling_price; //판매자가격
-										private int stock; //재고수량
-										private Date regdate; //등록날짜
-										private Byte availability; //판매여부 --%>
-										
 									</tr>
 								</thead>
 								<tbody>
@@ -95,8 +78,8 @@
 											<td></td>
 											<td></td>
 											<td></td>
-											<td><a href="${pageContext.request.contextPath }/admin/?=" class="btn btn-sm btn-primary w-60px me-1">삭제</a></td>
-											<td><a href="${pageContext.request.contextPath }/admin/?=" class="btn btn-sm btn-white w-60px">수정</a></td>
+											<td><a href="${pageContext.request.contextPath }/admin/?" class="btn btn-sm btn-primary w-60px me-1">삭제</a></td>
+											<td><a href="${pageContext.request.contextPath }/admin/?" class="btn btn-sm btn-white w-60px">수정</a></td>
 										</tr>
 									</c:forEach>
 								</tbody>

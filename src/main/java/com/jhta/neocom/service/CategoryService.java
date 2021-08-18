@@ -1,5 +1,6 @@
 package com.jhta.neocom.service;
 
+import java.util.HashMap;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,6 +33,20 @@ public class CategoryService {
 
 	public List<CategoryVo> list() {
 		return mapper.list();
+	}
+
+	public String selectone(HashMap<String, Integer> map) {
+
+		map.get("category_id");
+		map.get("product_id");
+		System.out.println(map.get("category_id") + "=========" + map.get("product_id"));
+
+		return mapper.selectone(map);
+
+	}
+
+	public List<HashMap<String, Integer>> selectjoin(int product_id) {
+		return mapper.selectjoin(product_id);
 	}
 
 }

@@ -3,7 +3,6 @@ package com.jhta.neocom.controller;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -12,12 +11,18 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.jhta.neocom.model.MemberVo;
 import com.jhta.neocom.service.MemberService;
-//주석
-@Controller
+
 public class Join2Controller {
 	@Autowired
 	MemberService service;
 
+	/*
+	 * @RequestMapping(value="/join", method = RequestMethod.GET) public String
+	 * joinForm(Model model) { model.addAttribute("memberVo", new MemberVo());
+	 * return "/frontend/join";
+	 * 
+	 * }
+	 */
 	@RequestMapping(value = "/account/join2", method = RequestMethod.POST)
 	public String join(@Valid @ModelAttribute MemberVo memberVo, BindingResult result, Model model) {
 		if (result.hasErrors()) {

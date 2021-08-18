@@ -3,6 +3,7 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!DOCTYPE html>
+
 <html lang="ko">
 <head>
 <meta charset="UTF-8">
@@ -136,17 +137,21 @@
 	</section>
 	<!-- 메인 슬라이더 끝 -->
 
-	<!-- deals 
-	<section class="container padding-top-3x">
 
-	</section>
-	deals 끝 -->
+	<!-- deals 
+<section class="container padding-top-3x">
+
+</section>
+ deals 끝 -->
+
+
 	<!-- New Arrivals -->
 
 	<section class="container padding-top-3x padding-bottom-2x mb-2">
 		<h2 class="h3 pb-3 text-center">New Arrivals</h2>
 		<div class="row">
-		<c:forEach var="vo" items="${list }">
+			<c:forEach var="vo" items="${list }">
+				
 		<div class="col-lg-3 col-md-4 col-sm-6">
 			<div class="product-card mb-30">
 				<a class="product-thumb" href="#">
@@ -160,7 +165,7 @@
 						<a href="${pageContext.request.contextPath }/productDetail?mem_no=${sessionScope.mem_no}&product_id=${vo.product_id}">상품보기:${vo.product_name }</a>
 						
 					</h3>
-					<h4 class="product-price">${vo.selling_price }원</h4>
+					<h4 class="product-price"><fmt:formatNumber pattern="###,###,###" value="${vo.selling_price }"/>원</h4>
 				</div>
 				<div class="product-button-group">
 					<a class="product-button btn-wishlist" href="#"><i
@@ -214,13 +219,17 @@
 
 	<!-- footer -->
 	<jsp:include page="/WEB-INF/views/frontend/inc/footer.jsp" />
-	
-    <!-- Back To Top Button--><a class="scroll-to-top-btn" href="#"><i class="icon-chevron-up"></i></a>
-    <!-- Backdrop-->
-    <div class="site-backdrop"></div>
-    <!-- JavaScript (jQuery) libraries, plugins and custom scripts-->
-    <script src="${pageContext.request.contextPath}/static/frontend/assets/js/vendor.min.js"></script>
-    <script src="${pageContext.request.contextPath}/static/frontend/assets/js/scripts.min.js"></script>
-  </body>
+
+
+	<!-- Back To Top Button-->
+	<a class="scroll-to-top-btn" href="#"><i class="icon-chevron-up"></i></a>
+	<!-- Backdrop-->
+	<div class="site-backdrop"></div>
+	<!-- JavaScript (jQuery) libraries, plugins and custom scripts-->
+	<script
+		src="${pageContext.request.contextPath}/static/frontend/assets/js/vendor.min.js"></script>
+	<script
+		src="${pageContext.request.contextPath}/static/frontend/assets/js/scripts.min.js"></script>
+</body>
 
 </html>

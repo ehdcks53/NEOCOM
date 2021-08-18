@@ -21,6 +21,9 @@ public class CategoryController {
     @Autowired
     private CategoryService service;
 
+    @Value("spring.servlet.multipart.location")
+    private String path;
+
     // INSERT
     @GetMapping("/admin/cate/cateinsert")
     public String insertForm() {
@@ -67,6 +70,7 @@ public class CategoryController {
     // LIST
     @RequestMapping("/admin/cate/catelist")
     public ModelAndView list_admin() {
+        System.out.println("패스:" + path);
         ModelAndView mv = new ModelAndView("/admin/menu/cate/catelist");
         mv.addObject("list", service.list());
 
