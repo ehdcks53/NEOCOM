@@ -81,7 +81,7 @@
 
 		</div>
 		<div class="toolbar-item">
-			<a class="#" href="${pageContext.request.contextPath }/cartlist?id=${sessionScope.id}">
+			<a class="#" href="${pageContext.request.contextPath }/cart?id=${sessionScope.id}">
 
 				<div>
 					<span class="cart-icon">

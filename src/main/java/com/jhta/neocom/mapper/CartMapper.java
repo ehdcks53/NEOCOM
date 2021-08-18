@@ -10,4 +10,5 @@ public interface CartMapper {
 	int insert(HashMap<String, Object> map);
 	List<CartVo> cartList(int mem_no);
 	int delete(int cart_no);
+	int update(HashMap<String, Object> map);
 }
