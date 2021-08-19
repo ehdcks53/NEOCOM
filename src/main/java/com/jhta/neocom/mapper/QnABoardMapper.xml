@@ -6,7 +6,7 @@
 
 	<insert id="insert" parameterType="qnaboard">
 		insert into qna_board 
-		values(get_seq('qnaboardSeq'),'11',#{qna_password},#{qna_secret_chk},#{qna_title},#{qna_content},sysdate(),0,qna_board_no,0,0)
+		values(get_seq('qnaboardSeq'),#{mem_no},#{qna_password},#{qna_secret_chk},#{qna_title},#{qna_content},sysdate(),0,qna_board_no,0,0)
 	</insert>
 	
 	<delete id="delete" parameterType="int">
@@ -23,8 +23,25 @@
 		where qna_board_no=#{qna_board_no}
 	</update>
 	
+	<!-- 게시글 검색 -->
+	<sql id="search">
+		<if test="field!=null and field!=''">
+			where ${field} like CONCAT('%','#{keyword}','%')
+		</if>
+	</sql>
+	
+	<!-- 전체 게시글 수 -->
+	<select id="getCount" resultType="int" parameterType="int">
+		select IFnull(count(*),0) from qna_board
+		<include refid="search" />
+	</select>
+	
 	<select id="list" resultType="hashmap" parameterType="hashmap">
-		select n.* ,m.* from qna_board n join member_Info m on n.mem_no=m.mem_no order by qna_board_no desc
+		select qq.*,mm.mem_no,mm.Nickname 
+		from qna_board qq inner join member_Info mm on qq.mem_no=mm.mem_no 
+		<include refid="search" />
+		order by qq.qna_board_no desc
+		limit #{startRow},10
 	</select>
 	
 	<select id="detail" resultType="qnaboard" parameterType="int">
