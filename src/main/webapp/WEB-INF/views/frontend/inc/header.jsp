@@ -194,9 +194,9 @@
 			</li>
 			<li class="has-submenu"><a href="#">Community</a>
 				<ul class="sub-menu">
-					<li><a href="${pageContext.request.contextPath }/community/notice_board">공지사항</a></li>
-					<li><a href="#">자유게시판</a></li>
-					<li><a href="#">Q&A</a></li>
+					<li><a href="${pageContext.request.contextPath }/community/noticeboard_list">공지사항</a></li>
+					<li><a href="${pageContext.request.contextPath }/community/qnaboard_list">Q&A</a></li>
+					<li><a href="${pageContext.request.contextPath }/community/freeboard_list">자유게시판</a></li>
 					<li><a href="#">갤러리</a></li>
 				</ul>
 			</li>
