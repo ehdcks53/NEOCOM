@@ -251,7 +251,7 @@ $(function(){
 	
 	
 
-//list(1); 지우니까 오류가없네여
+
 });
 	var currentPage=1; 
 	function list(pageNum,order){ 

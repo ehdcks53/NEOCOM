@@ -12,7 +12,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import com.jhta.neocom.model.MemberInfoVo;
 import com.jhta.neocom.model.QnABoardVo;
 import com.jhta.neocom.service.MemberInfoService;
 import com.jhta.neocom.service.QnABoardService;
@@ -25,28 +24,28 @@ public class QnABoardController {
 	
 	//문의게시판 리스트 페이지 이동
 	@RequestMapping(value = "/community/qnaboard_list")
-	public String qnaboard_list(@RequestParam(value = "pageNum",defaultValue = "1")
-											int pageNum,String field,String keyword,Model model,HashMap<String,Object> map,HttpSession session) {
+	public String qnaboard_list(@RequestParam(value = "pageNum",defaultValue = "1")int pageNum,String field,String keyword,Model model,HttpSession session) {
 		String id = (String)session.getAttribute("id");
-		
+		HashMap<String,Object> map =new HashMap<String,Object>();
 		map.put("field", field);
 		map.put("keyword", keyword);
 		
 		int totalRowCount = service.getCount(map);  //전체 글 개수
 		PageUtil pu = new PageUtil(pageNum, 10, 10, totalRowCount);
 		int startRow = pu.getStartRow();
-		int endRow = pu.getEndRow();
-		map.put("startRow",startRow);
-		map.put("endRow",endRow);
+//		int endRow = pu.getEndRow();
+		map.put("startRow",startRow-1);
+//		map.put("endRow",endRow);
 		
 		model.addAttribute("list",service.list(map));
 		model.addAttribute("pu",pu);
 		model.addAttribute("field",field);
 		model.addAttribute("keyword",keyword);
 		model.addAttribute("id",id);
+		System.out.println("startRow======"+startRow);
 		
-		System.out.println("리스트" + service.list(map));
-		System.out.println("전체글개수" + totalRowCount);
+		System.out.println("리스트=" + service.list(map));
+		System.out.println("전체글개수=" + totalRowCount);
 		System.out.println(field + "/" + keyword);
 		
 		return "frontend/community/qnaboard_list";

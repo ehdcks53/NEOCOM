@@ -26,21 +26,21 @@
 	<!-- 게시글 검색 -->
 	<sql id="search">
 		<if test="field!=null and field!=''">
-			where ${field} like CONCAT('%','#{keyword}','%')
-		</if>
+			where ${field} like CONCAT('%',#{keyword},'%')
+			
+		</if> 
 	</sql>
 	
 	<!-- 전체 게시글 수 -->
 	<select id="getCount" resultType="int" parameterType="int">
-		select IFnull(count(*),0) from qna_board
+		select IFnull(count(*),0) from qna_board q inner join member_Info m on q.mem_no=m.mem_no
 		<include refid="search" />
 	</select>
 	
 	<select id="list" resultType="hashmap" parameterType="hashmap">
-		select qq.*,mm.mem_no,mm.Nickname 
-		from qna_board qq inner join member_Info mm on qq.mem_no=mm.mem_no 
+		select q.*,m.Nickname  from qna_board q inner join member_Info m on q.mem_no=m.mem_no
 		<include refid="search" />
-		order by qq.qna_board_no desc
+		order by q.qna_board_no desc
 		limit #{startRow},10
 	</select>
 	
