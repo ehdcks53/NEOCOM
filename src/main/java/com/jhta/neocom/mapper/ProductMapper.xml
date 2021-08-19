@@ -17,7 +17,13 @@
 
 		<if test="field!=null and field!=''">
 			where ${field} like CONCAT('%',#{keyword},'%')
+			<if test="order!=null and order!=''">order by ${order} desc</if>
 		</if>
+		<if test="field=category_id">
+			where ${field} = #{category_id}
+			<if test="order!=null and order!=''">order by ${order} desc</if>
+		</if>
+
 
 	</sql>
 
@@ -28,10 +34,12 @@
 	</select>
 
 
-	<select id="find" parameterType="int" resultType="com.jhta.neocom.model.ProductVo">
-		select * from product where product_id=#{product_id}
+	<!-- 
+	
+	<select id="selectone" parameterType="hashmap" resultType="hashmap">
+		select p.*,i.product_img_no,i.img_name_save,i.img_name_origin,i.img_path,i.img_size,i.img_category from product p inner join product_img i on p.product_id=i.product_id where p.product_id=#{product_id}
 	</select>
-
+	 -->
 
 	<!-- 페이징처리 -->
 	<select id="list" parameterType="hashmap" resultType="hashmap">
@@ -43,9 +51,7 @@
   				(SELECT @ROWNUM := 0) R
 		<include refid="search" />
 		order by aa.product_id desc
-                 )a 
-  		
-            order by rnum desc
+         )a  where img_category='main' order by rnum desc
 	</select>
 
 	<update id="update" parameterType="com.jhta.neocom.model.ProductVo">

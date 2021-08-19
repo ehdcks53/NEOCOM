@@ -10,13 +10,15 @@
 	<groupId>com.jhta</groupId>
 	<artifactId>neocom</artifactId>
 	<version>0.0.1</version>
-	<packaging>war</packaging>
+	<packaging>jar</packaging>
 	<name>neocom</name>
 	<description>Final Project for jhta</description>
 	<properties>
 		<java.version>11</java.version>
 	</properties>
 	<dependencies>
+
+
 		<!-- hibernate  추가했습니당  -->
 		<dependency>
 			<groupId>org.hibernate</groupId>
@@ -101,4 +103,5 @@
 			</plugin>
 		</plugins>
 	</build>
+
 </project>

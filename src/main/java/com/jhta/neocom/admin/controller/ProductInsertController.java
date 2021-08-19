@@ -4,6 +4,8 @@ import java.io.FileOutputStream;
 import java.io.InputStream;
 import java.util.UUID;
 
+import javax.servlet.ServletContext;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
@@ -27,6 +29,8 @@ public class ProductInsertController {
 	private ProductService service;
 	@Autowired
 	private ImgFileService service1;
+	@Autowired
+	ServletContext sc;
 
 	@GetMapping("/admin/product/productinsert")
 	public String insertForm() {
@@ -38,13 +42,12 @@ public class ProductInsertController {
 	public String insert(ProductVo vo, Model model, MultipartFile img, Product_ImgVo vo1, String img_category) {
 		// 업로드할 폴더의 절대 경로 구하기
 
-		String img_path = uploadFilePath;
+		String img_path = uploadFilePath + "\\product_img";
 
 		System.out.println(img_path);
 		String img_name_origin = img.getOriginalFilename(); // 전송된 파일명
 		String img_name_save = UUID.randomUUID() + "_" + img_name_origin;
 		long img_size = img.getSize();
-		String img_thumnail = img_path + "\\" + img_name_save;
 
 		try {
 			service.insert(vo);
@@ -56,8 +59,47 @@ public class ProductInsertController {
 			// 2.업로드된 파일정보 DB에 저장하기
 
 			System.out.println(vo.getProduct_id());
-			vo1 = new Product_ImgVo(0, vo.getProduct_id(), img_name_save, img_name_origin, img_path, img_size,
-					img_category, img_thumnail);
+
+			vo1 = new Product_ImgVo(0, vo.getProduct_id(), img_name_save, img_name_origin, img_size, img_category);
+
+			service1.insert(vo1);
+
+			model.addAttribute("code", "successs");
+		} catch (Exception e) {
+			e.printStackTrace();
+			model.addAttribute("code", "fail");
+		}
+		return "/admin/menu/product/result";
+	}
+
+	@GetMapping("/admin/product/addimg")
+	public String addImg(Model model, int product_id, Product_ImgVo vo1) {
+		vo1 = service1.selectone(product_id);
+		model.addAttribute("vo1", vo1);
+		return "/admin/menu/product/addimg";
+
+	}
+
+	@PostMapping("/admin/product/addimg")
+	public String insertImg(Model model, MultipartFile img, Product_ImgVo vo1, String img_category, int product_id) {
+		// 업로드할 폴더의 절대 경로 구하기
+
+		String img_path = uploadFilePath;
+
+		System.out.println(img_path);
+		String img_name_origin = img.getOriginalFilename(); // 전송된 파일명
+		String img_name_save = UUID.randomUUID() + "_" + img_name_origin;
+		long img_size = img.getSize();
+
+		try {
+			InputStream is = img.getInputStream();
+			FileOutputStream fos = new FileOutputStream(img_path + "\\" + img_name_save);
+			FileCopyUtils.copy(is, fos);
+			is.close();
+			fos.close();
+			// 2.업로드된 파일정보 DB에 저장하기
+
+			vo1 = new Product_ImgVo(0, product_id, img_name_save, img_name_origin, img_size, img_category);
 
 			service1.insert(vo1);
 
