@@ -1,7 +1,5 @@
 package com.jhta.neocom.service;
 
-import java.util.HashMap;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -21,17 +19,6 @@ public class OrderMainService {
 	public int delete(int order_no) {
 		return mapper.delete(order_no);
 	}
-	
-	public int searchno(HashMap<String, Object> map) {
-		return mapper.searchno(map);
-	}
-	
-	public OrderMainVo searchRndNo(HashMap<String, Object> map) {
-		return mapper.searchRndNo(map);
-	}
 
-	public int updateno(HashMap<String, Object> map) {
-		return mapper.updateno(map);
-	}
 
 }

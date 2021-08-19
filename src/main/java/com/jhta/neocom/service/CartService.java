@@ -26,9 +26,5 @@ public class CartService {
 	public List<CartVo> cartList(int mem_no){
 		return mapper.cartList(mem_no);
 	}
-	
-	public int update(HashMap<String, Object> map) {
-		return mapper.update(map);
-	}
 
 }

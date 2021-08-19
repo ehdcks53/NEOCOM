@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.List;
 
 import com.jhta.neocom.model.CategoryVo;
+import com.jhta.neocom.model.ProductVo;
 
 public interface CategoryMapper {
 	int insert(CategoryVo vo);
