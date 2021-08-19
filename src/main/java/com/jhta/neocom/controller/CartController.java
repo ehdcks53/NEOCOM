@@ -26,7 +26,6 @@ public class CartController {
 	@RequestMapping(value="/cart", produces = {MediaType.APPLICATION_JSON_VALUE})
 	public ModelAndView list(HttpSession session,Model model) {
 		int mem_no=(Integer)session.getAttribute("mem_no");
-		System.out.println(mem_no);
 		List<CartVo> cartList=service.cartList(mem_no);
 
 		ModelAndView mv=new ModelAndView("frontend/order/cart");
