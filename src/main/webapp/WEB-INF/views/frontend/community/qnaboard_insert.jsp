@@ -164,7 +164,8 @@ opacity: 0;
 		<form class="row" name="qnaForm" method="post" action="${pageContext.request.contextPath}/community/qnaboard_insert">
 		<!-- <input type="hidden" name="qna_group_no" value="${vo.qna_group_no }">
 			<input type="hidden" name="qna_group_order" value="${vo.qna_group_order }">
-			<input type="hidden" name="qna_group_depth" value="${vo.qna_group_depth }">  -->
+			<input type="hidden" name="qna_group_depth" value="${vo.qna_group_depth }">  
+			<input type="hidden" name="Nickname" value="${mvo.Nickname }">-->
 			<div class="col-md-12">
 				<div class="form-group">
 					<label for="qna_title">제목</label>
@@ -256,12 +257,11 @@ opacity: 0;
 		$("#qna_secret_chk").on("click",function(){
 			var chk = $("input:checkbox[id='qna_secret_chk']").is(":checked");
 			if(chk==true){
-				$("#qna_password").removeAttr("disabled");
-				$("input:checkbox[name='qna_secret_chk']").value = 1;
+				$("#qna_password").prop("disabled",false);
+				$(this).val(1);
 			}else{
-				$("#qna_password").attr("disabled",true);
-				$("input:checkbox[name='qna_secret_chk']").value = 0;
-				$("input:password[name='qna_password']").value = null;
+				$("#qna_password").prop("disabled",true);
+				$(this).val(0);
 			}
 		});
 </script>

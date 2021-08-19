@@ -68,18 +68,18 @@
 	<div class="col-lg-12 col-md-10 order-md-2 text-center">
 		<!-- <hr class="margin-bottom-1x"> -->
 		<div>
-			<form action="" method="post">
+			<form action="${pageContext.request.contextPath}/community/qnaboard_list" method="post">
 				<div class="row">
 					<div class="p-2"></div>
 						<select class="form-control col-sm-2 p-2" name="field" id="field">
-							<option value="">작성자</option>
-							<option value="">제목</option>
-							<option value="">내용</option>
+							<option value="Nickname" <c:if test="${field=='Nickname'}">selected</c:if> >작성자</option>
+							<option value="qna_title" <c:if test="${field=='qna_title'}">selected</c:if> >제목</option>
+							<option value="qna_content" <c:if test="${field=='qna_content'}">selected</c:if> >내용</option>
 						</select>
-					<input type="text" class="form-control col-sm-3 p-1" name="keyword" id="keyword">
-					<button type="button" class="form-control col-sm-1 w-1 p-2" onclick="">검색</button>
+					<input type="text" class="form-control col-sm-3 p-1" value="${keyword}" name="keyword" id="keyword">
+					<button type="submit" class="form-control col-sm-1 w-1 p-2">검색</button>
 					<div class="ml-md-auto" style="margin-right:20px;">
-						<button type="button" class="form-control btn-sm btn-outline-info" onclick="location.href='${pageContext.request.contextPath}/community/qnaboard_insert'">문의하기 <i class="icon-arrow-right-circle"></i></button>
+						<button type="button" id="insertBtn" class="form-control btn-sm btn-outline-info" onclick="location.href='${pageContext.request.contextPath}/community/qnaboard_insert'">문의하기 <i class="icon-arrow-right-circle"></i></button>
 					</div>
 				</div>
 			</form>
@@ -108,7 +108,24 @@
 				</c:forEach>
 				</tbody>
 			</table>
+			
 		</div>
+		
+		<c:forEach var="i" begin="${pu.startPageNum }" end="${pu.endPageNum }">
+			<c:choose>
+				<c:when test="${pu.pageNum==i }">
+					<a href="${pageContext.request.contextPath}/community/qnaboard_list?pageNum=${i }&field=${field}&keyword=${keyword}">
+						<span style="color:blue; font-weight:bold">[${i }]</span>
+					</a>
+				</c:when>
+				<c:otherwise>
+					<a href="${pageContext.request.contextPath}/community/qnaboard_list?pageNum=${i }&field=${field}&keyword=${keyword}">
+						<span style="color:gray;">[${i }]</span>
+					</a>
+				</c:otherwise>
+			</c:choose>
+		</c:forEach>
+		
 	</div>
 </div>
 </div>
@@ -124,5 +141,13 @@
 	<!-- JavaScript (jQuery) libraries, plugins and custom scripts-->
 	<script src="${pageContext.request.contextPath}/static/frontend/assets/js/vendor.min.js"></script>
 	<script src="${pageContext.request.contextPath}/static/frontend/assets/js/scripts.min.js"></script>
+<script>
+	/*var sessionId = "${id}";
+	$("#insertBtn").on("click",function(){
+		if(sessionId!=null) {
+			function clickInsert();
+		}
+	});*/
+</script>
 </body>
 </html>
