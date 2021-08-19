@@ -50,38 +50,43 @@
 	
 	<!-- 툴바 -->
 	<div class="toolbar d-flex">
+		
+		<c:choose>
+			<c:when test="${empty id }">
+				<div class="toolbar-item">
+					<a href="${pageContext.request.contextPath }/account/join1">
+						<div><i class="icon-pocket"></i><span class="text-label">회원가입</span></div>
+					</a>
+				</div>
+				<div class="toolbar-item">
+					<a href="${pageContext.request.contextPath }/account/login">
+						<div><i class="icon-user"></i><span class="text-label">로그인</span></div>
+					</a>
+				</div>
+			</c:when>
+			<c:otherwise>
+				<div class="toolbar-item">
+					<a href="#">
+						<div><i class="icon-user"></i><span class="text-label">${id }님</span></div>
+					</a>
+				</div>
+				<div class="toolbar-item">
+					<a href="${pageContext.request.contextPath }/account/logout">
+						<div><i class="icon-slash"></i><span class="text-label">로그아웃</span></div>
+					</a>
+				</div>
+				<div class="toolbar-item">
+					<a href="${pageContext.request.contextPath }/account/mypage_order">
+						<div><i class="icon-box"></i><span class="text-label">마이페이지</span></div>
+					</a>
+				</div>
+			</c:otherwise>
+		</c:choose>
+		
 		<div class="toolbar-item">
-			<a href="${pageContext.request.contextPath }/account/join1">
-				<div><i class="icon-pocket"></i><span class="text-label">회원가입</span></div>
-			</a>
-		</div>
-		<div class="toolbar-item">
-			<a href="${pageContext.request.contextPath }/account/login">
-				<div><i class="icon-user"></i><span class="text-label">로그인</span></div>
-			</a>
-		</div>
-		<div class="toolbar-item">
-			<a href="#">
-				<div><i class="icon-slash"></i><span class="text-label">로그아웃</span></div>
-			</a>
-		</div>
-		<div class="toolbar-item">
-			<a href="${pageContext.request.contextPath }/account/mypage_order">
-				<div><i class="icon-box"></i><span class="text-label">마이페이지</span></div>
-			</a>
-			<c:if test="${sessionScope.id !=null }">
-				<a class="#" href="${pageContext.request.contextPath }/memlogout">
-					<div>
-						<i class="icon-user"></i>
-						<span class="text-label">로그아웃</span>
-					</div>
-				</a>
+	
+			<a class="#" href="${pageContext.request.contextPath }/cart">
 
-			</c:if>
-
-		</div>
-		<div class="toolbar-item">
-			<a class="#" href="${pageContext.request.contextPath }/cartlist?id=${sessionScope.id}">
 
 				<div>
 					<span class="cart-icon">
