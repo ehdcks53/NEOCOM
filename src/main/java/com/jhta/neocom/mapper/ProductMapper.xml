@@ -78,4 +78,11 @@
 	<select id="listTest" resultType="com.jhta.neocom.model.ProductVo">
   		select * from product
   	</select>
+  	
+  	 	<!-- 주문 목록(구매희망 목록) -->
+ 	<select id="purchaseList" resultType="com.jhta.neocom.model.ProductVo" parameterType="int">
+ 		select p.product_id,img_name_save,product_name,selling_price from product p left join 
+ 		product_img pi on p.product_id=pi.product_id where p.product_id=#{product_id} and img_category='main';
+ 	</select>
+  	
 </mapper>

@@ -33,6 +33,7 @@ public class ProductListDCController {
 		ModelAndView mv = new ModelAndView("frontend/order/productDetail");
 		Object mem_no = session.getAttribute("mem_no");
 		System.out.println(mem_no + "gd");
+		mv.addObject("product_id", product_id);
 		mv.addObject("mem_no", mem_no);
 		mv.addObject("vo", vo);
 		return mv;

@@ -47,7 +47,9 @@ public class ProductService {
 //		return mapper.selectone(product_id);
 //	}
 	
-	
+	public List<ProductVo> purchaseList(int product_id){
+		return mapper.purchaseList(product_id);
+	}
 
 
 }
