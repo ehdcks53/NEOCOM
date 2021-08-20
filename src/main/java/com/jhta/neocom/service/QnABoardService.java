@@ -33,7 +33,11 @@ public class QnABoardService {
 		return mapper.list(map);
 	}
 	
-	public QnABoardVo detail(int qna_board_no) {
+	public HashMap<String,Object> detail(int qna_board_no) {
 		return mapper.detail(qna_board_no);
+	}
+	
+	public int cntHit(int qna_board_no) {
+		return mapper.cntHit(qna_board_no);
 	}
 }

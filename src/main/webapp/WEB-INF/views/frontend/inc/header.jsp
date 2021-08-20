@@ -191,9 +191,9 @@
 					</li>
 				</ul>
 			</li>
-			<li class="has-submenu"><a href="#">Service</a>
+			<li class="has-submenu"><a href="${pageContext.request.contextPath }/service/advboard_list">Service</a>
 				<ul class="sub-menu">
-					<li><a href="#">견적문의</a></li>
+					<li><a href="${pageContext.request.contextPath }/service/advboard_list">견적문의</a></li>
 				</ul>
 			</li>
 			<li class="has-submenu"><a href="#">Community</a>
