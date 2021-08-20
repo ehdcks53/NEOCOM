@@ -43,7 +43,7 @@
 <div class="page-title">
 	<div class="container">
 		<div class="column">
-			<h1>공지사항</h1>
+			<h1>자유게시판</h1>
 		</div>
 		<div class="column">
 			<ul class="breadcrumbs">
@@ -51,9 +51,9 @@
 				<li class="separator">&nbsp;</li>
 				<li><a href="#">Community</a></li>
 				<li class="separator">&nbsp;</li>
-				<li><a href="#">Notice Board</a></li>
+				<li><a href="#">Community Board</a></li>
 				<li class="separator">&nbsp;</li>
-				<li>No.${vo.n_board_no }</li>
+				<li>No.글번호</li>
 			</ul>
 		</div>
 	</div>
@@ -64,7 +64,7 @@
 <!-- 페이지 컨텐트 -->
 <div class="container padding-bottom-3x mb-2">
 	<div class="row justify-content-center">
-		<div class="col-lg-12">
+		<div class="col-lg-10">
 			<table class="table text-center">
 				<colgroup>
 					<col width="10%"/>
@@ -77,23 +77,23 @@
 				<thead class="thead-default">
 					<tr>
 						<th scope="row">글번호</th>
-						<td>${map.n_board_no }</td>
+						<td>free_board_no</td>
 						<th scope="row">작성자</th>
-						<td>${map.Nickname }</td>
+						<td>Nickname</td>
 						<th scope="row">작성일</th>
-						<td><fmt:parseDate value="${map.n_regdate }" var="n_regdate" pattern="yyyy-MM-dd'T'HH:mm:ss" /><fmt:formatDate value="${n_regdate }" pattern="yyyy-MM-dd HH:mm:ss" /></td>
+						<td>free_regdate</td>
 					</tr>
 					<tr>
 						<th scope="row">제목</th>
-						<td colspan="3">${map.n_title }</td>
+						<td colspan="3">free_title</td>
 						<th scope="row">조회수</th>
-						<td>${map.n_hit }</td>
+						<td>free_hit</td>
 					</tr>
 				</thead>
 				<tbody>
 					<tr>
 						<td colspan="10">
-							<p>${map.n_content }</p>
+							<p>free_content</p>
 						</td>
 					</tr>
 				</tbody>
@@ -102,23 +102,22 @@
 			<div class="single-post-footer" style="margin-bottom:50px;">
 				<div class="entry-navigation">
 					<div class="column text-left">
-						<a class="btn btn-outline-secondary btn-sm" id="prevAtag" href="${pageContext.request.contextPath}/community/noticeboard_detail?n_board_no=${prev.n_board_no}">
+						<a class="btn btn-outline-secondary btn-sm" id="prevAtag" href="#">
 							<i class="icon-arrow-left"></i>이전글
 						</a>
 					</div>
 					<div class="column">
-						<a class="btn btn-outline-secondary view-all" href="${pageContext.request.contextPath }/community/noticeboard_list">
+						<a class="btn btn-outline-secondary view-all" href="${pageContext.request.contextPath }/community/freeboard_list">
 							<i class="icon-menu"></i>
 						</a>
 					</div>
 					<div class="column text-right">
-						<a class="btn btn-outline-secondary btn-sm" id="nextAtag" href="${pageContext.request.contextPath}/community/noticeboard_detail?n_board_no=${next.n_board_no}">
+						<a class="btn btn-outline-secondary btn-sm" id="nextAtag" href="#">
 							다음글<i class="icon-arrow-right"></i>
 						</a>
 					</div>
 				</div>
 			</div>
-			
 		</div>
 	</div>
 </div>
@@ -135,15 +134,16 @@
 	<script src="${pageContext.request.contextPath}/static/frontend/assets/js/vendor.min.js"></script>
 	<script src="${pageContext.request.contextPath}/static/frontend/assets/js/scripts.min.js"></script>
 <script>
-	window.onload=function(){
-		var prev = "${prev.n_board_no}";
-		var next = "${next.n_board_no}";
+/*	window.onload=function(){
+		var prev = "${prev.free_board_no}";
+		var next = "${next.free_board_no}";
 		if(prev == 0 || prev == null){
 			$("#prevAtag").addClass("disabled");
 		}else if(next == 0 || next == null){
 			$("#nextAtag").addClass("disabled");
 		}
 	}
+*/
 </script>
 </body>
 </html>
