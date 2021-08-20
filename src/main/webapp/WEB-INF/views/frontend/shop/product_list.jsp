@@ -83,7 +83,7 @@
 			</div>
 		</div>
 		<!-- 상품리스트 -->
-		
+		<input type="hidden" id="category_id" value="${category_id}" >
 		<div class="row" id="commList">
 		
 		 	
@@ -235,8 +235,16 @@
 	<script type="text/javascript">
 $(function(){
 	
-	list(1,"new");
 	
+	var category_id=$("#category_id").val();
+	var a='${param.category_id}';
+	var keyword='${param.keyword}';
+	if(a=='10000')
+		{ 
+		list(1,"new",10000,keyword);
+		}
+	else 
+		list(1,"new",category_id,keyword); 
 	
 	
 
@@ -245,16 +253,16 @@ $(function(){
 		
 		var order=$(this).val(); 
 		console.log(order);
-		list(1,order); 
+		list(1,order,category_id); 
 		   
 	}); //option값 가져오기 
 	
 	
 
-
+//list(1); 지우니까 오류가없네여
 });
 	var currentPage=1; 
-	function list(pageNum,order){ 
+	function list(pageNum,order,category_id,keyword){ 
 		
 		Number.prototype.format = function(){
 		    if(this==0) return 0;
@@ -277,10 +285,11 @@ $(function(){
 		$("#commList").empty();
 		$.ajax({
 			url:"${pageContext.request.contextPath}/shop/ajaxlist",
-			data:{"pageNum":pageNum,"order":order,"field":"category_id","category_id":3},  
+			data:{"pageNum":pageNum,"order":order,"category_id":category_id,"keyword":keyword},  
 			dataType:"json", 
-			Type:"POST", 
+			Type:"GET", 
 			success:function(data){ 
+				console.log(category_id);	
 			
 				$(data.list).each(function(i,d){
 					
@@ -288,7 +297,7 @@ $(function(){
 						let	html=	"<div class='col-md-3 col-sm-6'>";			
 						html+=	"<div class='product-card mb-30'>";
 						html+=		"<a class='product-thumb' href='${pageContext.request.contextPath}/shop/product_detail"+"?n="+d.product_id+"&"+"m="+d.category_id+"'>";
-						html+=		"	<img src='<c:url value='/upload/"+d.img_name_save+"' />' alt='<c:url value='/upload/"+d.img_name_save+"' />' />";
+						html+=		"	<img src='<c:url value='/upload/product_img/"+d.img_name_save+"' />' alt='<c:url value='/upload/product_img/"+d.img_name_save+"' />' />";
 										html+=	"	</a> ";
 										html+=	"	<div class='product-card-body'>";
 										html+=		"	<div class='product-category'><a href='#'>"+d.brand+"</a></div>";

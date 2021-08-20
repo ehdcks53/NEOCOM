@@ -65,7 +65,10 @@
 
 
 	<!-- 페이지 컨텐트 -->
-
+	<form method="post" name="form">
+	<input type="hidden" name="product_id" value="${goods.product_id }">
+	<input type="hidden" name="product_name" value="${goods.product_name }">
+	<input type="hidden" name="selling_price" value="${goods.selling_price }">
 	<div class="container padding-bottom-3x">
 		<div class="row">
 			<!-- 상품이미지 -->
@@ -86,23 +89,25 @@
 							<a
 								href="${pageContext.request.contextPath}/static/frontend/assets/img/shop/single/01.jpg"
 								data-size="1000x667"><img
-								src="<c:url value='/upload/${list[0].img_name_save}' />"
-								alt="<c:url value='/upload/${img.img_name_save}' />" /></a>
+								src="<c:url value='/upload/product_img/${list[0].img_name_save}' />"
+								alt="<c:url value='/upload/product_img/${img.img_name_save}' />" /></a>
 						</div>
 
 
-
+			
 					</div>
 
 
 				</div>
 			</div>
 			<!-- 상품정보 -->
+				
 			<div class="col-md-6">
 				<div class="padding-top-2x mt-2 hidden-md-up"></div>
 				<div class="sp-categories pb-3">
 					<i class="icon-tag"></i>상품분류
 				</div>
+				
 				<h2 class="mb-3">${goods.product_name }</h2>
 				<span class="h3 d-block"><del class="text-muted">
 						<fmt:formatNumber pattern="###,###,###"
@@ -114,59 +119,45 @@
 				</c:forEach>
 
 				<!-- /////// -->
-				<div class="row align-items-end pb-4">
-					<div class="col-sm-6">
-						<div class="form-group mb-0">
-							<label for="quantity" style="font-size: 15px;">수량</label> <input
-								type="number" class="form-control" id="quantity" value="1"
-								min="1" max="100">
-						</div>
-					</div>
+		<div class="row align-items-end pb-4">
+			<div class="col-sm-6">
+				<div class="form-group mb-0">
+					<label for="quantity" style="font-size:15px;">수량</label>
+					<input type="number" class="form-control" name="product_count" id="quantity" value="1" min="1" max="100">
 				</div>
-				<div class="mb-4"></div>
-				<div class="row">
-					<div class="col-sm-6">
-					<form method="get" action="${pageContext.request.contextPath}/purchase">
-						<button class="btn btn-primary btn-block m-1">구매하기</button>
-						
-							<h4>
-								상품개수:<input type="number" name="product_count" value="1">
-							</h4>
-							<input type="hidden" name="product_id" value="${goods.product_id }">
-							<input type="hidden" name="product_name"
-								value="${goods.product_name }"> <input type="hidden"
-								name="selling_price" value="${goods.selling_price }"> <input
-								type="submit" value="구매">
-						</form>
-
-					</div>
-					<div class="col-sm-6">
-						<button class="btn btn-secondary btn-block m-1">장바구니</button>
-					</div>
-				</div>
-				<div class="pt-1 mb-4"></div>
-				<hr class="mb-2">
-				<div class="d-flex flex-wrap justify-content-between"></div>
 			</div>
 		</div>
-	</div>
-
-
-	<!-- 상품설명 -->
-	<div class="bg-secondary padding-top-3x padding-bottom-2x mb-3"
-		id="details">
-		<div class="container">
-			<div class="row">
-				<div class="col-md-11">
-					<h3 class="h4">상품정보</h3>
-
-					<img src="<c:url value='/upload/${list[1].img_name_save}' />"
-						alt="<c:url value='/upload/${img.img_name_save}' />" />
-				</div>
-
+		<div class="mb-4"></div>
+		<div class="row">
+			<div class="col-sm-6">
+				<input type="submit" class="btn btn-primary btn-block m-1"  value="구매하기" formaction="${pageContext.request.contextPath}/purchase?product_count=1&product_id=${goods.product_id }&product_name=${goods.product_name }&selling_price=${goods.selling_price}">
+			</div>
+			<div class="col-sm-6">
+				<input type="submit" class="btn btn-secondary btn-block m-1" value="장바구니" formaction="${pageContext.request.contextPath}/">
 			</div>
 		</div>
+		<div class="pt-1 mb-4"></div>
+		<hr class="mb-2">
+		<div class="d-flex flex-wrap justify-content-between"></div>
 	</div>
+	
+</div>
+</div>
+</form>
+<!-- 상품설명 -->
+<div class="bg-secondary padding-top-3x padding-bottom-2x mb-3" id="details">
+<div class="container">
+<div class="row">
+	<div class="col-md-11">
+		<h3 class="h4">상품정보</h3>
+		
+		<img src="<c:url value='/upload/product_img/${list[1].img_name_save}' />" alt="<c:url value='/upload/product_img/${img.img_name_save}' />"/>
+	</div>
+	
+</div>
+</div>
+</div>
+
 
 	<!-- 상품리뷰 -->
 	<div class="container padding-top-2x">
