@@ -1,12 +1,12 @@
 package com.jhta.neocom.controller;
 
 
+import java.util.HashMap;
+
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -19,6 +19,9 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.jhta.neocom.model.AdvBoardVo;
 import com.jhta.neocom.service.AdvBoardService;
+import com.jhta.neocom.service.MemberInfoService;
+import com.jhta.neocom.util.PageUtil;
+
 
 
 
@@ -29,31 +32,57 @@ public class AdvBoardController {
 
 @Autowired
 AdvBoardService service;
+@Autowired
+MemberInfoService m_service;
 
 // 글 작성 get
-@RequestMapping(value ="advboard/create", method = RequestMethod.GET)
+@RequestMapping(value ="/service/advboard_insert", method = RequestMethod.GET)
 public String getWrite() throws Exception {
-    return "frontend/board/BoardCreate";
+    return "frontend/service/advboard_insert";
 }
 // 글 작성 post
-@RequestMapping(value="advboard/create", method = RequestMethod.POST)
-public String postWrite(AdvBoardVo vo) throws Exception {
-	service.create(vo);
-	return "redirect:/";
-}
+@RequestMapping(value="/service/advboard_insert", method = RequestMethod.POST) 
+public String postWrite(AdvBoardVo vo,HttpSession session) throws Exception {
+	String id=(String)session.getAttribute("id");  
+	int mem_no=m_service.searchNo(id);  
+	vo.setMem_no(mem_no);  
+	service.create(vo); 
+	return "redirect:/service/advboard_list"; 
+} 
 // 글 목록   
-@RequestMapping("advboard/list")
-public ModelAndView list(HttpSession session,Model model) {
-	List<AdvBoardVo> list=service.list();
-	ModelAndView mv=new ModelAndView("frontend/board/BoardList");
+@RequestMapping("/service/advboard_list")
+public ModelAndView list(HttpSession HttpSession,Model model,@RequestParam(value="pageNum",defaultValue = "1")int pageNum,String field,String keyword) {	
+HashMap<String,Object> map=new HashMap<String,Object>();
+int totalRowCount=service.count(map);//전체 글의 갯수
+
+
+
+PageUtil pu=new PageUtil(pageNum, 10, 10, totalRowCount); 
+int startRow=pu.getStartRow();//첫행번호
+int endRow=pu.getEndRow(); //끝행번호
+
+System.out.println(startRow);
+System.out.println(endRow);
+System.out.println(pu);
+map.put("startRow", startRow);
+map.put("endRow", endRow);
+
+    List<HashMap<String, Object>> list = service.selectBoardList(map);
+	System.out.println(list);
+	ModelAndView mv=new ModelAndView("frontend/service/advboard_list");
 	mv.addObject("advboardlist",list);
+	mv.addObject("pu",pu);
+	mv.addObject("field",field);
+	mv.addObject("keyword",keyword);
+	
 	return mv;
 }
+
 //글 삭제
 @GetMapping("advboard/delete")
 public String getDelete(int adv_board_no) throws Exception {
 	service.delete(adv_board_no);
-	return "redirect:/advboard/list";
+	return "redirect:/service/advboard_list";
 }
 
 //글 수정 post
@@ -61,7 +90,7 @@ public String getDelete(int adv_board_no) throws Exception {
 public String postupdate(AdvBoardVo vo,Model model) {
 	System.out.println(vo);
 	service.update(vo);
-	return "redirect:/advboard/list";
+	return "redirect:/service/advboard_list";
 	
 }
 //글 수정 get
@@ -73,4 +102,6 @@ public ModelAndView update(int adv_board_no,Model model) {
 			return mv;
 	
 }
+	
+
 }

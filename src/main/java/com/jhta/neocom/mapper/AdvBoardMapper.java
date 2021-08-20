@@ -13,9 +13,9 @@ import com.jhta.neocom.model.AdvBoardVo;
 
 public interface AdvBoardMapper {
 int create (AdvBoardVo vo);
-List<AdvBoardVo> list();
 int delete (int adv_board_no);
 int update (AdvBoardVo vo);
 AdvBoardVo find (int adv_board_no);
-
+List<HashMap<String, Object>> selectBoardList(HashMap<String,Object> map);
+int count (HashMap<String,Object> map);
 }

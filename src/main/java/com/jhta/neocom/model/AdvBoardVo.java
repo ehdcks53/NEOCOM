@@ -1,5 +1,8 @@
 package com.jhta.neocom.model;
 
+
+
+
 import java.sql.Date;
 
 import lombok.AllArgsConstructor;

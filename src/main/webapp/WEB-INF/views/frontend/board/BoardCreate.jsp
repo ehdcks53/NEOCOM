@@ -16,12 +16,10 @@
 		<section id="container">
 
 			<form role="form" method="post" action="${pageContext.request.contextPath }/advboard/create">
-				<p>
-					<label for="">회원번호</label><input type="text" name="mem_no" />
-				</p>
+ 
 				<p>
 					<label for="">비밀번호</label><input type="password" name="adv_password" />
-				</p>
+				</p> 
 				<p>
 					<label for="">비밀글여부</label><input type="text" name="adv_secret_chk" />
 				</p>
@@ -32,7 +30,7 @@
 					<label for="">글 내용</label>
 					<textarea name="adv_content"></textarea>
 				</p>  
-
+ 
 				<p>
 				
 					<button type="submit">작성</button>

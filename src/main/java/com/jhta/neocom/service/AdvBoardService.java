@@ -1,5 +1,6 @@
 package com.jhta.neocom.service;
 
+import java.util.HashMap;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,9 +18,6 @@ private AdvBoardMapper mapper;
 public int create(AdvBoardVo vo) {
 	return mapper.create(vo);
 }
-public List<AdvBoardVo> list() {
-	return mapper.list();
-}
 public int delete(int adv_board_no) {
      return mapper.delete(adv_board_no);
 }
@@ -28,6 +26,12 @@ public int update(AdvBoardVo vo) {
 }
 public AdvBoardVo find(int adv_board_no) {
 	return mapper.find(adv_board_no);
+}
+public List<HashMap<String, Object>> selectBoardList(HashMap<String,Object> map){
+	return mapper.selectBoardList(map);
+}
+public int count(HashMap<String,Object> map) {
+	return mapper.count(map);
 }
 }
 
