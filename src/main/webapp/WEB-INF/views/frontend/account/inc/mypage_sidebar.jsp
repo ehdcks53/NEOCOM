@@ -14,7 +14,7 @@
 				</div>
 				프로필이미지 부분 -->
 				<div class="user-data">
-					<h4 class="h5">OOO 회원님</h4><span>가나다라마바사</span>
+					<h4 class="h5">OOO 회원님</h4><span>환영합니다</span>
 				</div>
 			</div>
 		</aside>
@@ -22,9 +22,9 @@
 			<a class="list-group-item" id="order" href="${pageContext.request.contextPath }/account/mypage_order">주문내역</a>
 			<a class="list-group-item" id="delivery" href="${pageContext.request.contextPath }/account/mypage_delivery">배송지 관리</a>
 			<a class="list-group-item" id="question" href="${pageContext.request.contextPath }/account/mypage_question">문의내역</a>
-			<a class="list-group-item" id="" href="#">관심상품</a>
-			<a class="list-group-item" id="" href="#">나의 리뷰</a>
-			<a class="list-group-item" id="" href="#">개인 정보 관리</a>
+			<a class="list-group-item" id="wishlist" href="${pageContext.request.contextPath }/account/mypage_wishlist">관심상품</a>
+			<a class="list-group-item" id="myreview" href="${pageContext.request.contextPath }/account/mypage_myreview">나의 리뷰</a>
+			<a class="list-group-item" id="modify" href="${pageContext.request.contextPath }/account/mypage_modify">개인 정보 관리</a>
 		</nav>
 	</div>
 	
@@ -38,6 +38,12 @@
 		$("#delivery").addClass("with-badge active");
 	}else if(mypageIndex == 'mypage_question'){
 		$("#question").addClass("with-badge active");
+	}else if(mypageIndex == 'mypage_wishlist'){
+		$("#wishlist").addClass("with-badge active");
+	}else if(mypageIndex == 'mypage_myreview'){
+		$("#myreview").addClass("with-badge active");
+	}else if(mypageIndex == 'mypage_question'){
+		$("#modify").addClass("with-badge active");
 	}else{
 		$(".list-group a").removeClass("with-badge active");
 	}

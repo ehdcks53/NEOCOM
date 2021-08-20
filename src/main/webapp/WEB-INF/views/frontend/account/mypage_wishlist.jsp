@@ -1,12 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@taglib prefix="form" uri="http://www.springframework.org/tags/form" %>    
 <!DOCTYPE html>
 <html lang="ko">
 <head>
 <meta charset="UTF-8">
 <title>neocom</title>
-	<!-- SEO Meta  Tags-->
+	<!-- SEO Meta Tags-->
 	<meta name="description" content="Unishop - Universal E-Commerce Template">
 	<meta name="keywords" content="shop, e-commerce, modern, flat style, responsive, online store, business, mobile, blog, bootstrap 4, html5, css3, jquery, js, gallery, slider, touch, creative, clean">
 	<meta name="author" content="Rokaux">
@@ -23,11 +22,12 @@
 	<link id="mainStyles" rel="stylesheet" media="screen" href="${pageContext.request.contextPath}/static/frontend/assets/css/styles.min.css">
 	<!-- Modernizr-->
 	<script src="${pageContext.request.contextPath}/static/frontend/assets/js/modernizr.min.js"></script>
-	<style type="text/css">
-            .errormsg {
-                color: red; padding-left: 10px; padding-top: 5px;
-            }
-        </style>
+<style>
+.table tbody tr td {
+	height: 100px;
+	vertical-align: middle;
+}
+</style>
 </head>
 <body>
 
@@ -39,13 +39,13 @@
 <div class="page-title">
 	<div class="container">
 		<div class="column">
-			<h1>로그인</h1>
+			<h1>마이페이지</h1>
 		</div>
 		<div class="column">
 			<ul class="breadcrumbs">
 				<li><a href="#">Home</a></li>
 				<li class="separator">&nbsp;</li>
-				<li>Login</li>
+				<li>My Page</li>
 			</ul>
 		</div>
 	</div>
@@ -55,62 +55,14 @@
 
 <!-- 페이지 컨텐트 -->
 <div class="container padding-bottom-3x mb-2">
-	<div class="row">
-		<div class="col-md-3"></div>
-		<div class="col-md-6">
-			<form method="post" action="${pageContext.request.contextPath }/account/login">
-				<div class="card-body">
-					<div class="row margin-bottom-1x">
-						<div class="col-xl-4 col-md-6 col-sm-4">
-							<a class="btn btn-sm btn-block facebook-btn" href="#">
-								<i class="socicon-facebook"></i>&nbsp; Facebook login
-							</a>
-						</div>
-						<div class="col-xl-4 col-md-6 col-sm-4">
-							<a class="btn btn-sm btn-block google-btn" href="#">
-								<i class="socicon-google"></i>&nbsp; Google login
-							</a>
-						</div>
-						<div class="col-xl-4 col-md-6 col-sm-4">
-							<div id="naver_id_login" style="text-align:center"><a href="${url}">
-<img width="223" src="https://developers.naver.com/doc/review_201802/CK_bEFnWMeEBjXpQ5o8N_20180202_7aot50.png"/></a></div>
-						</div>			
-					</div>
-					
-					<h4 class="margin-bottom-1x text-center">로그인 하기</h4>
-					<div class="form-group input-group">
-
-						<input class="form-control" type="text" name="id" placeholder="ID">
-						
-
-						
-					</div>
-					<div class="form-group input-group">
-
-						<input class="form-control" type="password" name="password" placeholder="PWD">
-						<div class="errormsg">${errMsg }</div>
+<div class="row">
+	<!-- mypage_sidebar -->
+	<jsp:include page="/WEB-INF/views/frontend/account/inc/mypage_sidebar.jsp"/>
 	
-						
-					</div>
-					
-					 <div class="d-flex flex-wrap justify-content-between padding-bottom-1x">
-						<!-- 로그인 이력 저장 기능 구현하면 넣고 아니면 빼기 -->
-						<div class="custom-control custom-checkbox">
-							
-							<label class="custom-control-label" for="remember_login">로그인 저장</label>
-						</div>
-						<!-- 아이디/비밀번호 찾기 -->
-						<a class="navi-link" href="#">아이디/비밀번호 찾기</a>
-					</div>
-					<div class="text-center text-sm-right">
-						<button class="btn btn-primary margin-bottom-none" type="submit">로그인</button>
-							
-					</div>
-				</div>
-			</form>
-		</div>
-		<div class="col-md-3"></div>
-	</div>
+	<!-- 관심상품 여기서부터 -->
+	
+	
+</div>
 </div>
 <!-- 페이지 컨텐트 끝 -->
 
