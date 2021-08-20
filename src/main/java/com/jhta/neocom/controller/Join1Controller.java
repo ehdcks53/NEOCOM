@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 
 import com.jhta.neocom.model.MemberVo;
-//0818
+
 @Controller
 public class Join1Controller {
 	@RequestMapping(value="/account/join1", method = RequestMethod.GET)

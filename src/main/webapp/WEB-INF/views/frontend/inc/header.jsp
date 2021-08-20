@@ -1,10 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<!-- header   -->
+<!-- header -->
 <header class="site-header navbar-sticky">
-	<div class="topbar d-flex justify-content-between">
+<div class="topbar d-flex justify-content-between">
 
 	<!-- 로고 -->
 	<div class="site-branding d-flex">
@@ -12,7 +11,7 @@
 		<img src="${pageContext.request.contextPath}/static/frontend/assets/img/logo/neocomlogo.png" alt="neocom">
 		</a>
 	</div>
-
+	
 	<!-- 검색 및 카테고리 -->
 	<div class="search-box-wrap d-flex">
 		<div class="search-box-inner align-self-center">
@@ -22,23 +21,25 @@
 					<button class="btn btn-secondary dropdown-toggle" data-toggle="dropdown"><i class="icon-menu text-lg"></i>&nbsp;카테고리</button>
 					<div class="dropdown-menu mega-dropdown">
 						<div class="row">
-							<div class="col-sm-3"><a class="d-block navi-link text-center mb-30" href="${pageContext.request.contextPath }/shop/product_list?field=category_id&keyword=3"><img class="d-block" src="${pageContext.request.contextPath}/static/frontend/assets/img/shop/header-categories/cpu.png"><span class="text-gray-dark">CPU</span></a></div>
-							<div class="col-sm-3"><a class="d-block navi-link text-center mb-30" href="#"><img class="d-block" src="${pageContext.request.contextPath}/static/frontend/assets/img/shop/header-categories/mainboard.png"><span class="text-gray-dark">메인보드</span></a></div>
-							<div class="col-sm-3"><a class="d-block navi-link text-center mb-30" href="#"><img class="d-block" src="${pageContext.request.contextPath}/static/frontend/assets/img/shop/header-categories/ram.png"><span class="text-gray-dark">RAM</span></a></div>
-							<div class="col-sm-3"><a class="d-block navi-link text-center mb-30" href="#"><img class="d-block" src="${pageContext.request.contextPath}/static/frontend/assets/img/shop/header-categories/vga.png"><span class="text-gray-dark">그래픽카드</span></a></div>
+							<div class="col-sm-3"><a class="d-block navi-link text-center mb-30" href="${pageContext.request.contextPath }/shop/product_list?category_id=3"><img class="d-block" src="${pageContext.request.contextPath}/static/frontend/assets/img/shop/header-categories/cpu.png"><span class="text-gray-dark">CPU</span></a></div>
+							<div class="col-sm-3"><a class="d-block navi-link text-center mb-30" href="${pageContext.request.contextPath }/shop/product_list?category_id=4"><img class="d-block" src="${pageContext.request.contextPath}/static/frontend/assets/img/shop/header-categories/mainboard.png"><span class="text-gray-dark">메인보드</span></a></div>
+							<div class="col-sm-3"><a class="d-block navi-link text-center mb-30" href="${pageContext.request.contextPath }/shop/product_list?category_id=5"><img class="d-block" src="${pageContext.request.contextPath}/static/frontend/assets/img/shop/header-categories/ram.png"><span class="text-gray-dark">RAM</span></a></div>
+							<div class="col-sm-3"><a class="d-block navi-link text-center mb-30" href="${pageContext.request.contextPath }/shop/product_list?category_id=6"><img class="d-block" src="${pageContext.request.contextPath}/static/frontend/assets/img/shop/header-categories/vga.png"><span class="text-gray-dark">그래픽카드</span></a></div>
 						</div>
 						<div class="row">
-							<div class="col-sm-3"><a class="d-block navi-link text-center mb-30" href="#"><img class="d-block" src="${pageContext.request.contextPath}/static/frontend/assets/img/shop/header-categories/ssd.png"><span class="text-gray-dark">SSD</span></a></div>
-							<div class="col-sm-3"><a class="d-block navi-link text-center mb-30" href="#"><img class="d-block" src="${pageContext.request.contextPath}/static/frontend/assets/img/shop/header-categories/hdd.png"><span class="text-gray-dark">HDD</span></a></div>
-							<div class="col-sm-3"><a class="d-block navi-link text-center mb-30" href="#"><img class="d-block" src="${pageContext.request.contextPath}/static/frontend/assets/img/shop/header-categories/power.png"><span class="text-gray-dark">파워</span></a></div>
-							<div class="col-sm-3"><a class="d-block navi-link text-center mb-30" href="#"><img class="d-block" src="${pageContext.request.contextPath}/static/frontend/assets/img/shop/header-categories/peripherals.jpg"><span class="text-gray-dark">주변기기</span></a></div>
+							<div class="col-sm-3"><a class="d-block navi-link text-center mb-30" href="${pageContext.request.contextPath }/shop/product_list?category_id=7"><img class="d-block" src="${pageContext.request.contextPath}/static/frontend/assets/img/shop/header-categories/ssd.png"><span class="text-gray-dark">SSD</span></a></div>
+							<div class="col-sm-3"><a class="d-block navi-link text-center mb-30" href="${pageContext.request.contextPath }/shop/product_list?category_id=8"><img class="d-block" src="${pageContext.request.contextPath}/static/frontend/assets/img/shop/header-categories/hdd.png"><span class="text-gray-dark">HDD</span></a></div>
+							<div class="col-sm-3"><a class="d-block navi-link text-center mb-30" href="${pageContext.request.contextPath }/shop/product_list?category_id=9"><img class="d-block" src="${pageContext.request.contextPath}/static/frontend/assets/img/shop/header-categories/power.png"><span class="text-gray-dark">파워</span></a></div>
+							<div class="col-sm-3"><a class="d-block navi-link text-center mb-30" href="${pageContext.request.contextPath }/shop/product_list?category_id=3"><img class="d-block" src="${pageContext.request.contextPath}/static/frontend/assets/img/shop/header-categories/peripherals.jpg"><span class="text-gray-dark">주변기기</span></a></div>
 						</div>
 					</div>
 				</div>
 				<!-- 카테고리 끝 -->
 				<!-- 헤더 검색창 -->
-				<form class="input-group" method="get">
-					<input class="form-control" type="search" placeholder="검색어를 입력하세요.">
+
+				<form class="input-group" method="get" action="${pageContext.request.contextPath }/shop/product_list">
+					<input class="form-control" type="search" placeholder="검색어를 입력하세요." name="keyword" value=${keyword }>
+					<input type="hidden" name="category_id" value="10000">
 					<span class="input-group-btn">
 						<button type="submit"><i class="icon-search"></i></button>
 					</span>
@@ -48,9 +49,10 @@
 		</div>
 	</div>
 	<!-- 검색 및 카테고리 끝 -->
-
-	<!-- 툴바 -->
+	
+<!-- 툴바 -->
 	<div class="toolbar d-flex">
+
 		
 		<c:choose>
 			<c:when test="${id == null }">
@@ -84,8 +86,11 @@
 			</c:otherwise>
 		</c:choose>
 		
+
 		<div class="toolbar-item">
+	
 			<a class="#" href="${pageContext.request.contextPath }/cart?id=${sessionScope.id}">
+
 
 				<div>
 					<span class="cart-icon">
@@ -127,100 +132,62 @@
 	<!-- 툴바 끝 -->
 </div>
 
+
 <!-- Navbar-->
 <div class="navbar">
 	<!-- navbar 카테고리 -->
 	<div class="btn-group categories-btn">
 		<button class="btn btn-secondary dropdown-toggle" data-toggle="dropdown"><i class="icon-menu text-lg"></i>&nbsp;카테고리</button>
 		<div class="dropdown-menu mega-dropdown">
-			<div class="row">
-				<div class="col-sm-3">
-					<a class="d-block navi-link text-center mb-30" href="#">
-						<img class="d-block" src="${pageContext.request.contextPath}/static/frontend/assets/img/shop/header-categories/01.jpg">
-						<span class="text-gray-dark">분류1</span>
-					</a>
-				</div>
-				<div class="col-sm-3">
-					<a class="d-block navi-link text-center mb-30" href="#">
-						<img class="d-block" src="${pageContext.request.contextPath}/static/frontend/assets/img/shop/header-categories/02.jpg">
-						<span class="text-gray-dark">분류2</span>
-					</a>
-				</div>
-				<div class="col-sm-3">
-					<a class="d-block navi-link text-center mb-30" href="#">
-						<img class="d-block" src="${pageContext.request.contextPath}/static/frontend/assets/img/shop/header-categories/03.jpg">
-						<span class="text-gray-dark">분류3</span>
-					</a>
-				</div>
-				<div class="col-sm-3">
-					<a class="d-block navi-link text-center mb-30" href="#">
-						<img class="d-block" src="${pageContext.request.contextPath}/static/frontend/assets/img/shop/header-categories/04.jpg">
-						<span class="text-gray-dark">분류4</span>
-					</a>
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-sm-3">
-					<a class="d-block navi-link text-center mb-30" href="#">
-						<img class="d-block" src="${pageContext.request.contextPath}/static/frontend/assets/img/shop/header-categories/05.jpg">
-						<span class="text-gray-dark">분류5</span>
-					</a>
-				</div>
-				<div class="col-sm-3">
-					<a class="d-block navi-link text-center mb-30" href="#">
-						<img class="d-block" src="${pageContext.request.contextPath}/static/frontend/assets/img/shop/header-categories/06.jpg">
-						<span class="text-gray-dark">분류6</span>
-					</a>
-				</div>
-				<div class="col-sm-3">
-					<a class="d-block navi-link text-center mb-30" href="#">
-						<img class="d-block" src="${pageContext.request.contextPath}/static/frontend/assets/img/shop/header-categories/07.jpg">
-						<span class="text-gray-dark">분류7</span>
-					</a>
-				</div>
-				<div class="col-sm-3">
-					<a class="d-block navi-link text-center mb-30" href="#">
-						<img class="d-block" src="${pageContext.request.contextPath}/static/frontend/assets/img/shop/header-categories/08.jpg">
-						<span class="text-gray-dark">분류8</span>
-					</a>
-				</div>
-			</div>
+		<div class="row">
+				<div class="col-sm-3"><a class="d-block navi-link text-center mb-30" href="${pageContext.request.contextPath }/shop/product_list?category_id=3"><img class="d-block" src="${pageContext.request.contextPath}/static/frontend/assets/img/shop/header-categories/cpu.png"><span class="text-gray-dark">CPU</span></a></div>
+				<div class="col-sm-3"><a class="d-block navi-link text-center mb-30" href="${pageContext.request.contextPath }/shop/product_list?category_id=4"><img class="d-block" src="${pageContext.request.contextPath}/static/frontend/assets/img/shop/header-categories/mainboard.png"><span class="text-gray-dark">메인보드</span></a></div>
+				<div class="col-sm-3"><a class="d-block navi-link text-center mb-30" href="${pageContext.request.contextPath }/shop/product_list?category_id=5"><img class="d-block" src="${pageContext.request.contextPath}/static/frontend/assets/img/shop/header-categories/ram.png"><span class="text-gray-dark">RAM</span></a></div>
+				<div class="col-sm-3"><a class="d-block navi-link text-center mb-30" href="${pageContext.request.contextPath }/shop/product_list?category_id=6"><img class="d-block" src="${pageContext.request.contextPath}/static/frontend/assets/img/shop/header-categories/vga.png"><span class="text-gray-dark">그래픽카드</span></a></div>
+		</div>
+		<div class="row">
+				<div class="col-sm-3"><a class="d-block navi-link text-center mb-30" href="${pageContext.request.contextPath }/shop/product_list?category_id=7"><img class="d-block" src="${pageContext.request.contextPath}/static/frontend/assets/img/shop/header-categories/ssd.png"><span class="text-gray-dark">SSD</span></a></div>
+				<div class="col-sm-3"><a class="d-block navi-link text-center mb-30" href="${pageContext.request.contextPath }/shop/product_list?category_id=8"><img class="d-block" src="${pageContext.request.contextPath}/static/frontend/assets/img/shop/header-categories/hdd.png"><span class="text-gray-dark">HDD</span></a></div>
+				<div class="col-sm-3"><a class="d-block navi-link text-center mb-30" href="${pageContext.request.contextPath }/shop/product_list?category_id=9"><img class="d-block" src="${pageContext.request.contextPath}/static/frontend/assets/img/shop/header-categories/power.png"><span class="text-gray-dark">파워</span></a></div>
+				<div class="col-sm-3"><a class="d-block navi-link text-center mb-30" href="${pageContext.request.contextPath }/shop/product_list?category_id=3"><img class="d-block" src="${pageContext.request.contextPath}/static/frontend/assets/img/shop/header-categories/peripherals.jpg"><span class="text-gray-dark">주변기기</span></a></div>
+		</div>
 		</div>
 	</div>
 	<!-- navbar 카테고리 끝 -->
 	
 	<!-- navbar 메인 네비게이션 -->
 	<nav class="site-menu">
-		<ul class="nav-ul">
-			<li class="has-submenu" id="home-li"><a href="${pageContext.request.contextPath }/">Home</a>
+		<ul>
+			<li class="has-submenu active"><a href="#">Home</a>
 			</li>
-			<li class="has-megamenu" id="shop-li"><a href="${pageContext.request.contextPath }/shop/product_list">Shop</a>
+			<li class="has-megamenu"><a href="${pageContext.request.contextPath }/shop/product_list">Shop</a>
 				<ul class="mega-menu">
-					<li><span class="mega-menu-title">대분류1</span>
+					<li><span class="mega-menu-title">컴퓨터부품</span>
 						<ul class="sub-menu">
-							<li><a href="#">소분류1</a></li>
-							<li><a href="#">소분류2</a></li>
-							<li><a href="#">소분류3</a></li>
-							<li><a href="#">소분류4</a></li>
+							<li><a href="${pageContext.request.contextPath }/shop/product_list?category_id=3">CPU</a></li>
+							<li><a href="${pageContext.request.contextPath }/shop/product_list?category_id=4">메인보드</a></li>
+							<li><a href="${pageContext.request.contextPath }/shop/product_list?category_id=5">RAM</a></li>
+							<li><a href="${pageContext.request.contextPath }/shop/product_list?category_id=6">그래픽카드</a></li>
 						</ul>
 					</li>
-					<li><span class="mega-menu-title">대분류2</span>
+					<li><span class="mega-menu-title">컴퓨터부품</span>
 						<ul class="sub-menu">
-							<li><a href="#">소분류1</a></li>
-							<li><a href="#">소분류2</a></li>
-							<li><a href="#">소분류3</a></li>
-							<li><a href="#">소분류4</a></li>
+							<li><a href="${pageContext.request.contextPath }/shop/product_list?category_id=7">SSD</a></li>
+							<li><a href="${pageContext.request.contextPath }/shop/product_list?category_id=8">HDD</a></li>
+							<li><a href="${pageContext.request.contextPath }/shop/product_list?category_id=9">POWER</a></li>
+							
 						</ul>
 					</li>
-					<li><span class="mega-menu-title">대분류3</span>
+					<li><span class="mega-menu-title">주변기기</span>
 						<ul class="sub-menu">
-							<li><a href="#">소분류1</a></li>
-							<li><a href="#">소분류2</a></li>
-							<li><a href="#">소분류3</a></li>
-							<li><a href="#">소분류4</a></li>
+							<li><a href="${pageContext.request.contextPath }/shop/product_list?category_id=10">쿨러</a></li>
+							<li><a href="${pageContext.request.contextPath }/shop/product_list?category_id=11">컨트롤러</a></li>
+							<li><a href="${pageContext.request.contextPath }/shop/product_list?category_id=12">외장하드</a></li>
+							<li><a href="${pageContext.request.contextPath }/shop/product_list?category_id=13">케이블</a></li>
+							<li><a href="${pageContext.request.contextPath }/shop/product_list?category_id=14">USB</a></li>
 						</ul>
 					</li>
-					<li><span class="mega-menu-title">대분류3</span>
+					<li><span class="mega-menu-title">월간견적 PC</span>
 						<ul class="sub-menu">
 							<li><a href="#">소분류1</a></li>
 							<li><a href="#">소분류2</a></li>
@@ -230,12 +197,12 @@
 					</li>
 				</ul>
 			</li>
-			<li class="has-submenu"><a href="#">Service</a>
+			<li class="has-submenu"><a href="${pageContext.request.contextPath }/service/advboard_list">Service</a>
 				<ul class="sub-menu">
-					<li><a href="#">견적문의</a></li>
+					<li><a href="${pageContext.request.contextPath }/service/advboard_list">견적문의</a></li>
 				</ul>
 			</li>
-			<li class="has-submenu" id="community-li"><a href="${pageContext.request.contextPath }/community/noticeboard_list">Community</a>
+			<li class="has-submenu"><a href="#">Community</a>
 				<ul class="sub-menu">
 					<li><a href="${pageContext.request.contextPath }/community/noticeboard_list">공지사항</a></li>
 					<li><a href="${pageContext.request.contextPath }/community/qnaboard_list">Q&A</a></li>
@@ -252,6 +219,7 @@
 	<!-- navbar 툴바 -->
 	<div class="toolbar">
 		<div class="toolbar-inner">
+
 			<c:choose>
 				<c:when test="${id == null }">
 					<div class="toolbar-item">
@@ -313,9 +281,7 @@
 						<div class="entry-delete"><i class="icon-x"></i></div>
 					</div>
 					<div class="text-right">
-						<p class="text-gray-dark py-2 mb-0">
-							<span class="text-muted">총합계:</span>&nbsp; 2,000,000 ￦
-						</p>
+						<p class="text-gray-dark py-2 mb-0"><span class="text-muted">총합계:</span>&nbsp; 2,000,000 ￦</p>
 					</div>
 					<div class="d-flex">
 						<div class="pr-2 w-50"><a class="btn btn-secondary btn-sm btn-block mb-0" href="#">버튼1</a></div>
@@ -327,21 +293,7 @@
 		</div>
 	</div>
 	<!-- navbar 툴바 끝 -->
-
+	
 </div>
 </header>
 <!-- end of header -->
-<script type="text/javascript" src="${pageContext.request.contextPath}/static/frontend/assets/js/jquery-3.6.0.min.js"></script>
-<script>
-	let pageName = location.pathname.split("/");
-	let pageIndex = pageName[2];
-	if(pageIndex == ''){
-		$("#home-li").addClass("active");
-	}else if(pageIndex == 'shop'){
-		$("#shop-li").addClass("active");
-	}else if(pageIndex == 'community'){
-		$("#community-li").addClass("active");
-	}else{
-		$(".nav-ul li").removeClass("active");
-	}
-</script>

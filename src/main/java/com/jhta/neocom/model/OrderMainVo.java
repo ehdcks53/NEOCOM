@@ -28,6 +28,4 @@ public class OrderMainVo {
 	private String od_cc_status;
 	private String delivery_status;
 	private String request_item;
-
-
 }

@@ -25,11 +25,19 @@ public class QnABoardService {
 		return mapper.update(vo);
 	}
 	
+	public int getCount(HashMap<String,Object> map) {
+		return mapper.getCount(map);
+	}
+	
 	public List<HashMap<String,Object>> list(HashMap<String,Object> map) {
 		return mapper.list(map);
 	}
 	
-	public QnABoardVo detail(int qna_board_no) {
+	public HashMap<String,Object> detail(int qna_board_no) {
 		return mapper.detail(qna_board_no);
+	}
+	
+	public int cntHit(int qna_board_no) {
+		return mapper.cntHit(qna_board_no);
 	}
 }

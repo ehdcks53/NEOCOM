@@ -13,5 +13,8 @@
 	<select id="isMember" parameterType="hashmap" resultType="com.jhta.neocom.model.MemberVo">
 		select id,password from member_Info where id=#{id} and password=#{password}
 	</select>
+	<select id="searchNo" resultType="int" parameterType="string">
+  		select mem_no from member_Info where id=#{id}
+  	</select>
 </mapper>
 <!-- 주석 -->

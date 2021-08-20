@@ -23,6 +23,10 @@ public class CategoryService {
 		return mapper.find(category_id);
 	}
 
+	public List<CategoryVo> findChild(int category_parent) {
+		return mapper.findChild(category_parent);
+	}
+
 	public int delete(int category_id) {
 		return mapper.delete(category_id);
 	}
@@ -36,11 +40,9 @@ public class CategoryService {
 	}
 
 	public String selectone(HashMap<String, Integer> map) {
-
 		map.get("category_id");
 		map.get("product_id");
 		System.out.println(map.get("category_id") + "=========" + map.get("product_id"));
-
 		return mapper.selectone(map);
 
 	}

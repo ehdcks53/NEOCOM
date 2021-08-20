@@ -5,7 +5,7 @@
 <html>
 <head>
     <meta charset="utf-8">
-    <title>장바구니gd
+    <title>장바구니
     </title>
     <!-- SEO Meta Tags-->
     <meta name="description" content="Unishop - Universal E-Commerce Template">
@@ -76,7 +76,7 @@
     <div class="page-title">
       <div class="container">
         <div class="column">
-          <h1>장바구니gd</h1>
+          <h1>장바구니</h1>
         </div>
         <div class="column">
           <ul class="breadcrumbs">
@@ -114,7 +114,7 @@
 				   	
 						<tr>
 							<td class="text-center"><input type="checkbox" class="normal" checked="checked"></td>
-								<td class="text-center text-lg"><img src="static/frontend/assets/img/${vo.img_name_save }" width="100" height="100"></td>
+								<td class="text-center text-lg"><img width=100; height=100; src="<c:url value='/upload/product_img/${vo.img_name_save}' />" alt="<c:url value='/upload/product_img/${vo.img_name_save}' />" /></td>
 								<td class="text-center text-lg">${vo.product_name }</td>
 								<td class="text-center text-lg">${vo.selling_price }</td>
 								

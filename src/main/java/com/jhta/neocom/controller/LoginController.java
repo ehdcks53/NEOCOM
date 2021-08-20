@@ -15,8 +15,6 @@ import com.jhta.neocom.model.MemberVo;
 import com.jhta.neocom.model.NaverLoginVo;
 import com.jhta.neocom.service.MemberService;
 
-//주석
-
 @Controller
 public class LoginController {
 	private NaverLoginVo naverLoginVo;
@@ -45,9 +43,9 @@ public class LoginController {
 	}
 
 	@RequestMapping(value = "/account/login", method = RequestMethod.POST)
-	public String login(String id, String password, HttpSession session, Model model) {
-
-		HashMap<String, String> map = new HashMap<String, String>();
+    public String login(String id,String password,HttpSession session,Model model) {		
+		HashMap<String, String> map=new HashMap<String, String>();
+		int mem_no=memberService.searchNo(id);
 
 		map.put("id", id);
 		map.put("password", password);
@@ -56,6 +54,7 @@ public class LoginController {
 		System.out.println(vo);
 		if (vo != null) {
 			session.setAttribute("id", id);
+			session.setAttribute("mem_no", mem_no);
 			return "redirect:/";
 		} else {
 			model.addAttribute("errMsg", "아이디 또는 비밀번호를 확인해주세요");
