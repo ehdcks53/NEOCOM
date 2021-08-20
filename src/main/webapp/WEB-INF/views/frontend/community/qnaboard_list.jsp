@@ -71,13 +71,13 @@
 			<form action="${pageContext.request.contextPath}/community/qnaboard_list" method="post">
 				<div class="row">
 					<div class="p-2"></div>
-						<select class="form-control col-sm-2 p-2" name="field" id="field">
-							<option value="Nickname" <c:if test="${field=='Nickname'}">selected</c:if> >작성자</option>
+						<select class="form-control col-sm-2 p-2" name="field" >
+							<option value="nickname" <c:if test="${field=='nickname'}">selected</c:if> >작성자</option>
 							<option value="qna_title" <c:if test="${field=='qna_title'}">selected</c:if> >제목</option>
 							<option value="qna_content" <c:if test="${field=='qna_content'}">selected</c:if> >내용</option>
 							<option value="combined" <c:if test="${field=='combined'}">selected</c:if> >제목+내용</option>
 						</select>
-					<input type="text" class="form-control col-sm-3 p-1" value="${keyword}" name="keyword" id="keyword">
+					<input type="text" class="form-control col-sm-3 p-1" value="${keyword}" name="keyword" >
 					<button type="submit" class="form-control col-sm-1 w-1 p-2">검색</button>
 					<div class="ml-md-auto" style="margin-right:20px;">
 						<button type="button" id="insertBtn" class="form-control btn-sm btn-outline-info" onclick="clickInsert()">문의하기 <i class="icon-arrow-right-circle"></i></button>

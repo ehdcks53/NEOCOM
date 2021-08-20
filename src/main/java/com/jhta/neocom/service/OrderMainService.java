@@ -34,6 +34,10 @@ public class OrderMainService {
 		return mapper.updateno(map);
 	}
 
+	public List<OrderMainVo> myOrderList(int mem_no) {
+		return mapper.myOrderList(mem_no);
+	}
+
 	public List<OrderMainVo> list() {
 		return mapper.list();
 	}

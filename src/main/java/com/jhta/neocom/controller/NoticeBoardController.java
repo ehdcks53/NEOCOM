@@ -13,6 +13,7 @@ import com.jhta.neocom.model.NoticeBoardVo;
 import com.jhta.neocom.service.NoticeBoardService;
 import com.jhta.neocom.util.PageUtil;
 
+
 @Controller
 public class NoticeBoardController {
 	@Autowired private NoticeBoardService service;

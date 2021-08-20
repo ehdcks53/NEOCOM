@@ -63,7 +63,7 @@
 							<table id="data-table-responsive" class="table table-striped table-bordered align-middle">
 								<thead>
 									<tr>
-										<th width="10%">고유번호</th>
+										<th width="10%">상품번호</th>
 										<th width="8%" data-orderable="true">이미지</th>
 										<th class="text-nowrap">상품명</th>
 										<th width="5%"></th>

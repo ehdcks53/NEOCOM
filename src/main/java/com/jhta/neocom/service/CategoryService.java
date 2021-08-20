@@ -40,11 +40,9 @@ public class CategoryService {
 	}
 
 	public String selectone(HashMap<String, Integer> map) {
-
 		map.get("category_id");
 		map.get("product_id");
 		System.out.println(map.get("category_id") + "=========" + map.get("product_id"));
-
 		return mapper.selectone(map);
 
 	}
