@@ -134,7 +134,7 @@ opacity: 0;
 <div class="page-title">
 	<div class="container">
 		<div class="column">
-			<h1>문의게시판</h1>
+			<h1>자유게시판</h1>
 		</div>
 		<div class="column">
 			<ul class="breadcrumbs">
@@ -142,7 +142,7 @@ opacity: 0;
 				<li class="separator">&nbsp;</li>
 				<li><a href="#">Community</a></li>
 				<li class="separator">&nbsp;</li>
-				<li><a href="#">QnA Board</a></li>
+				<li><a href="#">Community Board</a></li>
 				<li class="separator">&nbsp;</li>
 				<li>Write</li>
 			</ul>
@@ -155,35 +155,31 @@ opacity: 0;
 <!-- 페이지 컨텐트 -->
 <div class="container padding-bottom-3x mb-2">
 <div class="row">
-	<!-- 문의게시판 글작성 -->
+	<!-- 자유게시판 글작성 -->
 	<div class="col-lg-8" style="margin-left:auto; margin-right:auto;">
 		<div class="padding-top-2x mt-2 hidden-lg-up"></div>
-		<h4>문의하기</h4>
+		<h4>글쓰기</h4>
 		<hr class="padding-bottom-1x">
 		
-		<form class="row" name="qnaForm" method="post" action="${pageContext.request.contextPath}/community/qnaboard_insert">
-		<!-- <input type="hidden" name="qna_group_no" value="${vo.qna_group_no }">
-			<input type="hidden" name="qna_group_order" value="${vo.qna_group_order }">
-			<input type="hidden" name="qna_group_depth" value="${vo.qna_group_depth }">  
-			<input type="hidden" name="Nickname" value="${mvo.Nickname }">-->
+		<form class="row" name="freeForm" method="post" action="">
 			<div class="col-md-12">
 				<div class="form-group">
-					<label for="qna_title">제목</label>
-					<input type="text" class="form-control" name="qna_title" id="qna_title">
+					<label for="free_title">제목</label>
+					<input type="text" class="form-control" name="free_title" id="free_title">
 				</div>
 			</div>
 			<div class="col-md-12">
 				<div class="form-group">
-					<label for="qna_content">내용</label>
-					<textarea rows="15" cols="4000" class="form-control" name="qna_content" id="qna_content"></textarea>
+					<label for="free_content">내용</label>
+					<textarea rows="15" cols="4000" class="form-control" name="free_content" id="free_content"></textarea>
 				</div>
 			</div>
 			<div class="col-12 padding-top-1x">
 				
 				<div class="custom-control custom-checkbox d-block">
-					<input class="custom-control-input" type="checkbox" name="qna_secret_chk" id="qna_secret_chk">
-					<label class="custom-control-label" for="qna_secret_chk">비밀글 &nbsp;</label>
-					<input type="password" name="qna_password" id="qna_password">
+					<input class="custom-control-input" type="checkbox" name="free_secret_chk" id="free_secret_chk">
+					<label class="custom-control-label" for="free_secret_chk">비밀글 &nbsp;</label>
+					<input type="password" name="free_password" id="free_password">
 				</div>
 				<div class="padding-bottom-1x"></div>
 				<hr class="margin-top-1x margin-bottom-1x">
@@ -212,7 +208,7 @@ opacity: 0;
 				</div>
 				<div class="modal-footer">
 					<button type="button" class="btn btn-secondary btn-sm" data-dismiss="modal" onclick="return false;">No</button>
-					<button type="submit" class="btn btn-info btn-sm" onclick="clickAdd(qnaForm)">Yes</button>
+					<button type="submit" class="btn btn-info btn-sm" onclick="clickAdd(freeForm)">Yes</button>
 				</div>
 			</div>
 		</div>
@@ -230,7 +226,7 @@ opacity: 0;
 				</div>
 				<div class="modal-footer">
 					<button type="button" class="btn btn-secondary btn-sm" data-dismiss="modal" onclick="return false;">No</button>
-					<button type="button" class="btn btn-info btn-sm" onclick="location.href='${pageContext.request.contextPath}/community/qnaboard_list'">Yes</button>
+					<button type="button" class="btn btn-info btn-sm" onclick="location.href='${pageContext.request.contextPath}/community/freeboard_list'">Yes</button>
 				</div>
 			</div>
 		</div>
@@ -248,19 +244,19 @@ opacity: 0;
 	<script src="${pageContext.request.contextPath}/static/frontend/assets/js/scripts.min.js"></script>
 <script>
 	function clickAdd(formName){
-		formName.action = "${pageContext.request.contextPath}/community/qnaboard_insert";
+		formName.action = "${pageContext.request.contextPath}/community/freeboard_insert";
 		formName.method = "post";
 		formName.submit();
 	}
 
-	$("#qna_password").attr("disabled",true);
-		$("#qna_secret_chk").on("click",function(){
-			var chk = $("input:checkbox[id='qna_secret_chk']").is(":checked");
+	$("#free_password").attr("disabled",true);
+		$("#free_secret_chk").on("click",function(){
+			var chk = $("input:checkbox[id='free_secret_chk']").is(":checked");
 			if(chk==true){
-				$("#qna_password").prop("disabled",false);
+				$("#free_password").prop("disabled",false);
 				$(this).val(1);
 			}else{
-				$("#qna_password").prop("disabled",true);
+				$("#free_password").prop("disabled",true);
 				$(this).val(0);
 			}
 		});

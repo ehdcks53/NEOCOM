@@ -9,6 +9,8 @@ public interface QnABoardMapper {
 	int insert(QnABoardVo bo);
 	int delete(int qna_board_no);
 	int update(QnABoardVo vo);
+	int getCount(HashMap<String,Object> map);
 	List<HashMap<String,Object>> list(HashMap<String,Object> map);
-	QnABoardVo detail(int qna_board_no);
+	HashMap<String,Object> detail(int qna_board_no);
+	int cntHit(int qna_board_no);
 }
