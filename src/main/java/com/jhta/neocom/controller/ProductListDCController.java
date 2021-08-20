@@ -19,7 +19,7 @@ public class ProductListDCController {
 
 	@RequestMapping("/productlistDC")
 	public ModelAndView list(HttpSession session) {
-		List<ProductVo> productlist = service.listTest();
+		List<ProductVo> productlist = service.selectAll();
 		System.out.println(productlist);
 		Object mem_no = session.getAttribute("mem_no");
 		System.out.println(mem_no + "gd");

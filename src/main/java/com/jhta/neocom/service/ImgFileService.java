@@ -1,6 +1,5 @@
 package com.jhta.neocom.service;
 
-import java.util.HashMap;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,8 +22,8 @@ public class ImgFileService {
 		return mapper.insert(vo);
 	}
 
-	public List<Product_ImgVo> list(HashMap<String, Object> map) {
-		return mapper.list(map);
+	public List<Product_ImgVo> list() {
+		return mapper.list();
 	}
 
 	public List<Product_ImgVo> find(int product_id) {

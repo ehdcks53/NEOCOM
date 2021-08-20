@@ -49,7 +49,7 @@
 					<div class="panel panel-inverse">
 						<!-- BEGIN panel-heading -->
 						<div class="panel-heading">
-							<h4 class="panel-title">카테고리 목록</h4>
+							<h4 class="panel-title">회원 목록</h4>
 							<div class="panel-heading-btn">
 								<a href="javascript:;" class="btn btn-xs btn-icon btn-default" data-toggle="panel-expand"><i class="fa fa-expand"></i></a>
 								<a href="javascript:;" class="btn btn-xs btn-icon btn-success" data-toggle="panel-reload"><i class="fa fa-redo"></i></a>
@@ -63,10 +63,13 @@
 							<table id="data-table-responsive" class="table table-striped table-bordered align-middle">
 								<thead>
 									<tr>
-										<th width="10%">고유번호</th>
-										<th width="30%" data-orderable="true">카테고리명</th>
-										<th class="text-nowrap">상위번호</th>
-										<th class="text-nowrap">순서</th>
+										<th width="10%">회원번호</th>
+										<th width="20%" data-orderable="true">아이디</th>
+										<th class="text-nowrap">닉네임</th>
+										<th class="text-nowrap">이름</th>
+										<th class="text-nowrap">생년월일</th>
+										<th class="text-nowrap">전화번호</th>
+										<th class="text-nowrap">가입일</th>
 										<th width="5%"></th>
 										<th width="5%"></th>
 									</tr>
@@ -74,15 +77,17 @@
 								<tbody>
 									<c:forEach var="vo" items="${list }" varStatus="status">
 										<tr>
-											<td>${vo.category_id }</td>
-											<td>${vo.category_name }</td>
-											<td>${vo.category_parent }</td>
-											<td>${vo.category_order }</td>
-											<td><a href="${pageContext.request.contextPath }/admin/cate/delete?category_id=${vo.category_id }" class="btn btn-sm btn-primary w-60px me-1">삭제</a></td>
-											<%-- <td><a href="${pageContext.request.contextPath }/admin/cate/update?category_id=${vo.category_id }" class="btn btn-sm btn-white w-60px">수정</a></td> --%>
+											<td>${vo.mem_no }</td>
+											<td>${vo.id }</td>
+											<td>${vo.nickname }</td>
+											<td>${vo.name }</td>
+											<td>${vo.birth_date }</td>
+											<td>${vo.phone }</td>
+											<td>${vo.reg_date }</td>
+											<td><a href="${pageContext.request.contextPath }/admin/cate/delete?mem_no=${vo.mem_no }" class="btn btn-sm btn-primary w-60px me-1">삭제</a></td>
 											<td><a href="#modal-dialog" class="open_modal btn btn-sm btn-white w-60px" data-bs-toggle="modal" 
-											data-id="${vo.category_id}" data-name="${vo.category_name}" data-parent="${vo.category_parent}"
-											data-order="${vo.category_parent}">수정</a></td>
+											data-mem_no="${vo.mem_no}" data-id="${vo.id}" data-nickname="${vo.nickname}" data-name="${vo.name}" 
+											data-birth_date="${vo.birth_date}" data-phone="${vo.phone}" data-reg_date="${vo.reg_date}">수정</a></td>
 										</tr>
 									</c:forEach>
 								</tbody>
@@ -107,33 +112,51 @@
 		<div class="modal-dialog">
 			<div class="modal-content">
 			<div class="modal-header">
-				<h4 class="modal-title">카테고리 수정</h4>
+				<h4 class="modal-title">회원정보 수정</h4>
 				<button type="button" class="btn-close" data-bs-dismiss="modal" aria-hidden="true"></button>
 			</div>
 			<div class="modal-body">
-				<form method="post" id="category" action="${pageContext.request.contextPath}/admin/cate/update">
+				<form method="post" id="member" action="${pageContext.request.contextPath}/admin/cate/update">
 					<div class="row mb-15px">
-						<label class="form-label col-form-label col-md-3">카테고리 코드</label>
+						<label class="form-label col-form-label col-md-3">회원 번호</label>
 							<div class="col-md-9">
-								<input type="text" id="category_id" class="form-control mb-5px" readonly/>
+								<input type="text" id="mem_no" class="form-control mb-5px" readonly/>
 							</div>
 					</div>
 					<div class="row mb-15px">
-						<label class="form-label col-form-label col-md-3">카테고리명</label>
+						<label class="form-label col-form-label col-md-3">회원 아이디</label>
 							<div class="col-md-9">
-								<input type="text" id="category_name" class="form-control mb-5px"/>
+								<input type="text" id="id" class="form-control mb-5px" readonly/>
 							</div>
 					</div>
 					<div class="row mb-15px">
-						<label class="form-label col-form-label col-md-3">카테고리 상위코드</label>
+						<label class="form-label col-form-label col-md-3">닉네임</label>
 							<div class="col-md-9">
-								<input type="text" id="category_parent" class="form-control mb-5px"/>
+								<input type="text" id="nickname" class="form-control mb-5px"/>
 							</div>
 					</div>
 					<div class="row mb-15px">
-						<label class="form-label col-form-label col-md-3">카테고리 순서</label>
+						<label class="form-label col-form-label col-md-3">이름</label>
 							<div class="col-md-9">
-								<input type="text" id="category_order" class="form-control mb-5px"/>
+								<input type="text" id="name" class="form-control mb-5px"/>
+							</div>
+					</div>
+					<div class="row mb-15px">
+						<label class="form-label col-form-label col-md-3">생년월일</label>
+							<div class="col-md-9">
+								<input type="text" id="birth_date" class="form-control mb-5px"/>
+							</div>
+					</div>
+					<div class="row mb-15px">
+						<label class="form-label col-form-label col-md-3">전화번호</label>
+							<div class="col-md-9">
+								<input type="text" id="phone" class="form-control mb-5px"/>
+							</div>
+					</div>
+					<div class="row mb-15px">
+						<label class="form-label col-form-label col-md-3">가입일</label>
+							<div class="col-md-9">
+								<input type="text" id="reg_date" class="form-control mb-5px" readonly/>
 							</div>
 					</div>
 				</form>
@@ -168,15 +191,20 @@
     <!-- script -->
     <script>
 		$(document).on("click", ".open_modal", function () {
+			var mem_no= $(this).data('mem_no');
 			var id = $(this).data('id');
+			var nickname = $(this).data('nickname');
 			var name = $(this).data('name');
-			var parent = $(this).data('parent');
-			var order = $(this).data('order');
-			console.log(id, name, parent, order);
-			$("#category_id").val(id);
-			$("#category_name").val(name);
-			$("#category_parent").val(parent);
-			$("#category_order").val(order);
+			var birth_date= $(this).data('birth_date');
+			var phone= $(this).data('phone');
+			var reg_date= $(this).data('reg_date');
+			$("#mem_no").val(mem_no);
+			$("#id").val(id);
+			$("#nickname").val(nickname);
+			$("#name").val(name);
+			$("#birth_date").val(birth_date);
+			$("#phone").val(phone);
+			$("#reg_date").val(reg_date);
 		});
 
 		$(document).on("click", "" , function (){

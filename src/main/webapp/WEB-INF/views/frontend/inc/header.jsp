@@ -37,7 +37,7 @@
 				</div>
 				<!-- 카테고리 끝 -->
 				<!-- 헤더 검색창 -->
-				<form class="input-group" method="get">
+				<form class="input-group" method="get" action="/neocom/shop/product_list">
 					<input class="form-control" type="search" placeholder="검색어를 입력하세요.">
 					<span class="input-group-btn">
 						<button type="submit"><i class="icon-search"></i></button>

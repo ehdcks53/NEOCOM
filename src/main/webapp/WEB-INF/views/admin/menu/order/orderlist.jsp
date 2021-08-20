@@ -49,7 +49,7 @@
 					<div class="panel panel-inverse">
 						<!-- BEGIN panel-heading -->
 						<div class="panel-heading">
-							<h4 class="panel-title">DataTable - Responsive</h4>
+							<h4 class="panel-title">주문 목록</h4>
 							<div class="panel-heading-btn">
 								<a href="javascript:;" class="btn btn-xs btn-icon btn-default" data-toggle="panel-expand"><i class="fa fa-expand"></i></a>
 								<a href="javascript:;" class="btn btn-xs btn-icon btn-success" data-toggle="panel-reload"><i class="fa fa-redo"></i></a>
@@ -63,40 +63,29 @@
 							<table id="data-table-responsive" class="table table-striped table-bordered align-middle">
 								<thead>
 									<tr>
-										<th width="15%">상품코드</th>
-										<th width="10%">카테고리></th>
-										<th width="30%" data-orderable="true">상품명</th>
-										<th class="text-nowrap"></th>
-										<th class="text-nowrap"></th>
-										<th class="text-nowrap">상품번호</th>
-										<th class="text-nowrap">가격</th>
+										<th width="10%">고유번호</th>
+										<th width="10%" data-orderable="true">회원번호</th>
+										<th class="text-nowrap">주문코드</th>
+										<th class="text-nowrap">금액</th>
+										<th class="text-nowrap">주문날짜</th>
+										<th class="text-nowrap">상태</th>
 										<th width="5%"></th>
 										<th width="5%"></th>
-										<%-- private int product_id; //상품번호 (pk)
-										private String product_code; //상품코드
-										private int category_id; //카테고리 코드(fk)
-										private String product_name; //상품명
-										private String brand; //브랜드명
-										private String manufacturer; //제조사명
-										private int supply_price; //공급가격
-										private int consumer_price; //소비자가격
-										private int tax; //과세비율
-										private int selling_price; //판매자가격
-										private int stock; //재고수량
-										private Date regdate; //등록날짜
-										private Byte availability; //판매여부 --%>
-										
 									</tr>
 								</thead>
 								<tbody>
 									<c:forEach var="vo" items="${list }" varStatus="status">
-										<tr class="even">
-											<td></td>
-											<td></td>
-											<td></td>
-											<td></td>
-											<td><a href="${pageContext.request.contextPath }/admin/?=" class="btn btn-sm btn-primary w-60px me-1">삭제</a></td>
-											<td><a href="${pageContext.request.contextPath }/admin/?=" class="btn btn-sm btn-white w-60px">수정</a></td>
+										<tr>
+											<td>${vo.order_no }</td>
+											<td>${vo.mem_no }</td>
+											<td>${vo.order_num }</td>
+											<td>${vo.tot_price }</td>
+											<td>${vo.order_date }</td>
+											<td>${vo.order_status }</td>
+											<td><a href="${pageContext.request.contextPath }/admin/cate/delete?order_no=${vo.order_no }" class="btn btn-sm btn-primary w-60px me-1">삭제</a></td>
+											<td><a href="#modal-dialog" class="open_modal btn btn-sm btn-white w-60px" data-bs-toggle="modal" 
+											data-order_no="${vo.order_no}" data-mem_no="${vo.mem_no}" data-order_num="${vo.order_num}" data-tot_price="${vo.tot_price}"
+											data-order_date="${vo.order_date}" data-order_status="${vo.order_status}">수정...?</a></td>
 										</tr>
 									</c:forEach>
 								</tbody>
@@ -115,6 +104,51 @@
 		<!-- BEGIN scroll to top btn -->
 		<a href="javascript:;" class="btn btn-icon btn-circle btn-success btn-scroll-to-top" data-toggle="scroll-to-top"><i class="fa fa-angle-up"></i></a>
 		<!-- END scroll to top btn -->
+
+		<!-- #modal-dialog -->
+		<div class="modal fade" id="modal-dialog">
+		<div class="modal-dialog">
+			<div class="modal-content">
+			<div class="modal-header">
+				<h4 class="modal-title">주문 수정</h4>
+				<button type="button" class="btn-close" data-bs-dismiss="modal" aria-hidden="true"></button>
+			</div>
+			<div class="modal-body">
+				<form method="post" id="" action="${pageContext.request.contextPath}/admin/cate/update">
+					<div class="row mb-15px">
+						<label class="form-label col-form-label col-md-3"></label>
+							<div class="col-md-9">
+								<input type="text" id="" class="form-control mb-5px" readonly/>
+							</div>
+					</div>
+					<div class="row mb-15px">
+						<label class="form-label col-form-label col-md-3"></label>
+							<div class="col-md-9">
+								<input type="text" id="" class="form-control mb-5px"/>
+							</div>
+					</div>
+					<div class="row mb-15px">
+						<label class="form-label col-form-label col-md-3"></label>
+							<div class="col-md-9">
+								<input type="text" id="" class="form-control mb-5px"/>
+							</div>
+					</div>
+					<div class="row mb-15px">
+						<label class="form-label col-form-label col-md-3"></label>
+							<div class="col-md-9">
+								<input type="text" id="" class="form-control mb-5px"/>
+							</div>
+					</div>
+				</form>
+			</div>
+			<div class="modal-footer">
+				<a href="javascript:;" class="btn btn-white" data-bs-dismiss="modal">닫기</a>
+				<a href="javascript:;" class="btn btn-success">수정</a>
+			</div>
+			</div>
+		</div>
+		</div>
+		
 	</div>
 	<!-- END #app -->
 	
@@ -136,9 +170,29 @@
 	<!-- ================== END page-js ================== -->
     <!-- script -->
     <script>
+		$(document).on("click", ".open_modal", function () {
+			data-order_no="${vo.order_no}" data-mem_no="${vo.mem_no}" data-order_num="${vo.order_num}" data-tot_price="${vo.tot_price}"
+											data-order_date="${vo.order_date}" data-order_status="${vo.order_status}
+			var order_no = $(this).data('order_no');
+			var mem_no = $(this).data('mem_no');
+			var order_num = $(this).data('order_num');
+			var tot_price = $(this).data('tot_price');
+			var order_date = $(this).data('order_date');
+			var tot_price = $(this).data('tot_price');
+			
+			$("#category_id").val(id);
+			$("#category_name").val(name);
+			$("#category_parent").val(parent);
+			$("#category_order").val(order);
+		});
+
+		$(document).on("click", "" , function (){
+
+		});
+		
     	$('#data-table-responsive').DataTable({
         	responsive: true,
-			lengthMenu: [5,10,30,50],
+			lengthMenu: [10,20,30,50],
 			language: {
             emptyTable: "데이터가 없습니다.",
             lengthMenu: "페이지당 _MENU_ 개씩 보기",
@@ -155,6 +209,7 @@
             },
           	},
     	});
+
     </script>
 </body>
 </html>

@@ -1,29 +1,31 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE mapper
-  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
-  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-  <mapper namespace="com.jhta.neocom.mapper.OrderMainMapper">
-  	
-  	<insert id="insert" parameterType="com.jhta.neocom.model.OrderMainVo">
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.jhta.neocom.mapper.OrderMainMapper">
+
+	<insert id="insert" parameterType="com.jhta.neocom.model.OrderMainVo">
   		insert into order_main values(get_seq('order_main_Seq'),#{mem_no},#{product_id},
   		#{discount_ref_no},#{order_num},#{orderer_name},#{recipient_name},#{zip_code},#{order_address},
   		#{order_address_detail},#{tot_price},#{delivery_cost},now(),#{order_status},#{payment_status},
   		#{od_cc_status},#{delivery_status},#{request_item})
   	</insert>
-  	
- 	<delete id="delete" parameterType="int">
+
+	<delete id="delete" parameterType="int">
  		delete from order_main where order_no=#{order_no}
- 	</delete> 
- 	
- 	<select id="searchno" resultType="int" parameterType="Hashmap">
+ 	</delete>
+
+	<select id="searchno" resultType="int" parameterType="Hashmap">
  		select order_no from order_main where order_num=#{order_num} and mem_no=#{mem_no}
  	</select>
- 	
- 	<select id="searchRndNo" resultType="com.jhta.neocom.model.OrderMainVo" parameterType="Hashmap">
+
+	<select id="searchRndNo" resultType="com.jhta.neocom.model.OrderMainVo" parameterType="Hashmap">
  		select * from order_main where order_num=#{order_num} and mem_no=#{mem_no}
  	</select>
- 	
- 	<update id="updateno" parameterType="Hashmap">
+
+	<update id="updateno" parameterType="Hashmap">
  		update order_main set order_no=#{order_no} where order_no=#{order_no2} 
  	</update>
-  </mapper>
+
+	<select id="list" resultType="com.jhta.neocom.model.OrderMainVo">
+		select * from order_main;
+	</select>
+</mapper>

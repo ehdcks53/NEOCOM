@@ -23,6 +23,10 @@ public class CategoryService {
 		return mapper.find(category_id);
 	}
 
+	public List<CategoryVo> findChild(int category_parent) {
+		return mapper.findChild(category_parent);
+	}
+
 	public int delete(int category_id) {
 		return mapper.delete(category_id);
 	}

@@ -9,7 +9,7 @@
 	</parent>
 	<groupId>com.jhta</groupId>
 	<artifactId>neocom</artifactId>
-	<version>0.0.1</version>
+	<version>1.1.0</version>
 	<packaging>jar</packaging>
 	<name>neocom</name>
 	<description>Final Project for jhta</description>
@@ -17,6 +17,30 @@
 		<java.version>11</java.version>
 	</properties>
 	<dependencies>
+		<!-- File Upload (대용량 파일 처리) -->
+		<dependency>
+			<groupId>commons-io</groupId>
+			<artifactId>commons-io</artifactId>
+			<version>2.11.0</version>
+		</dependency>
+		<!-- File Upload (file upload 기능 사용) -->
+		<dependency>
+			<groupId>commons-fileupload</groupId>
+			<artifactId>commons-fileupload</artifactId>
+			<version>1.4</version>
+		</dependency>
+		<dependency>
+			<groupId>com.fasterxml.jackson.core</groupId>
+			<artifactId>jackson-databind</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>com.fasterxml.jackson.core</groupId>
+			<artifactId>jackson-core</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>com.fasterxml.jackson.core</groupId>
+			<artifactId>jackson-annotations</artifactId>
+		</dependency>
 		<dependency>
 			<groupId>org.hibernate</groupId>
 			<artifactId>hibernate-annotations</artifactId>

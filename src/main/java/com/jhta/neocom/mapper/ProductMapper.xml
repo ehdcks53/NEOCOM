@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.jhta.neocom.mapper.ProductMapper">
 
-	<insert id="insert" parameterType="com.jhta.neocom.model.ProductVo">
+	<insert id="insert" parameterType="ProductVo">
 		<selectKey keyProperty="product_id" order="BEFORE" resultType="int"> 
 				select get_seq('productSeq') as product_id from dual
 			</selectKey>
@@ -54,7 +54,7 @@
          )a  where img_category='main' order by rnum desc
 	</select>
 
-	<update id="update" parameterType="com.jhta.neocom.model.ProductVo">
+	<update id="update" parameterType="ProductVo">
 		update product set
 		product_code = #{product_code},
 		category_id = #{category_id},
@@ -71,11 +71,11 @@
 		where product_id=#{product_id}
 	</update>
 
-	<select id="select" parameterType="int" resultType="com.jhta.neocom.model.ProductVo">
+	<select id="select" parameterType="int" resultType="ProductVo">
   		select * from product where product_id=#{product_id}
   	</select>
 
-	<select id="listTest" resultType="com.jhta.neocom.model.ProductVo">
+	<select id="selectAll" resultType="ProductVo">
   		select * from product
   	</select>
 </mapper>
