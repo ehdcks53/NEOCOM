@@ -1,6 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -23,15 +22,6 @@
 	<link id="mainStyles" rel="stylesheet" media="screen" href="${pageContext.request.contextPath}/static/frontend/assets/css/styles.min.css">
 	<!-- Modernizr-->
 	<script src="${pageContext.request.contextPath}/static/frontend/assets/js/modernizr.min.js"></script>
-<style>
-.table tbody tr td p {
-	margin-top: 50px;
-	margin-bottom: 50px;
-	margin-left: 100px;
-	margin-right: 100px;
-	vertical-align: middle;
-}
-</style>
 </head>
 <body>
 
@@ -43,17 +33,17 @@
 <div class="page-title">
 	<div class="container">
 		<div class="column">
-			<h1>문의게시판</h1>
+			<h1>견적문의</h1>
 		</div>
 		<div class="column">
 			<ul class="breadcrumbs">
 				<li><a href="#">Home</a></li>
 				<li class="separator">&nbsp;</li>
-				<li><a href="#">Community</a></li>
+				<li><a href="#">Service</a></li>
 				<li class="separator">&nbsp;</li>
-				<li><a href="#">QnA Board</a></li>
+				<li><a href="#">Advice Board</a></li>
 				<li class="separator">&nbsp;</li>
-				<li>No.${vo.qna_board_no }</li>
+				<li>Write</li>
 			</ul>
 		</div>
 	</div>
@@ -62,57 +52,32 @@
 
 
 <!-- 페이지 컨텐트 -->
-<div class="container padding-bottom-3x mb-2">
-	<div class="row justify-content-center">
-		<div class="col-lg-10">
-			<table class="table text-center">
-				<colgroup>
-					<col width="10%"/>
-					<col width="15%"/>
-					<col width="15%"/>
-					<col width="30%"/>
-					<col width="10%"/>
-					<col width="20%"/>
-				</colgroup>
-				<thead class="thead-default">
-					<tr>
-						<th scope="row">글번호</th>
-						<td>${map.qna_board_no }</td>
-						<th scope="row">작성자</th>
-						<td>${map.Nickname }</td>
-						<th scope="row">작성일</th>
-						<td><fmt:parseDate value="${map.qna_regdate }" var="qna_regdate" pattern="yyyy-MM-dd'T'HH:mm:ss" /><fmt:formatDate value="${qna_regdate }" pattern="yyyy-MM-dd HH:mm:ss" /></td>
-					</tr>
-					<tr>
-						<th scope="row">제목</th>
-						<td colspan="3">${map.qna_title }</td>
-						<th scope="row">조회수</th>
-						<td>${map.qna_hit }</td>
-					</tr>
-				</thead>
-				<tbody> 
-					<tr> 
-						<td colspan="10">
-							<p>${map.qna_content }</p>
-						</td>
-					</tr>
-				</tbody>
-			</table>
-			
-			<div class="single-post-footer" style="margin-bottom:50px;">
-				<div class="entry-navigation">
-					<div class="column text-left"></div>
-					<div class="column">
-						<a class="btn btn-outline-secondary view-all" href="${pageContext.request.contextPath }/community/qnaboard_list">
-							<i class="icon-menu"></i>
-						</a>
-					</div>
-					<div class="column text-right"></div>
-				</div>
-			</div>
-		</div>
-	</div>
-</div>
+<section id="container">
+
+			<form role="form" method="post" action="${pageContext.request.contextPath }/service/advboard_insert">
+ 
+				<p>
+					<label for="">비밀번호</label><input type="password" name="adv_password" />
+				</p> 
+				<p>
+					<label for="">비밀글여부</label><input type="text" name="adv_secret_chk" />
+				</p>
+				<p>
+					<label for="">글 제목</label><input type="text" name="adv_title" />
+				</p>
+				<p>
+					<label for="">글 내용</label>
+					<textarea name="adv_content"></textarea>
+				</p>  
+ 
+				<p>
+				
+					<button type="submit">작성</button>
+				</p>
+			</form>
+
+</section> 
+
 <!-- 페이지 컨텐트 끝 -->
 
 
