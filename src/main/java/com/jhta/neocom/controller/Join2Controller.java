@@ -16,13 +16,14 @@ public class Join2Controller {
 	@Autowired
 	MemberService service;
 
-	/*
-	 * @RequestMapping(value="/join", method = RequestMethod.GET) public String
-	 * joinForm(Model model) { model.addAttribute("memberVo", new MemberVo());
-	 * return "/frontend/join";
-	 * 
-	 * }
-	 */
+	
+	  @RequestMapping(value="/account/join2", method = RequestMethod.GET) 
+	  public String
+	  joinForm(Model model) { model.addAttribute("memberVo", new MemberVo());
+	  return "/frontend/account/join2";
+	  
+	  }
+	 
 	@RequestMapping(value = "/account/join2", method = RequestMethod.POST)
 	public String join(@Valid @ModelAttribute MemberVo memberVo, BindingResult result, Model model) {
 		if (result.hasErrors()) {
