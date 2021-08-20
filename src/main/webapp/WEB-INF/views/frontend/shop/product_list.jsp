@@ -253,7 +253,7 @@ $(function(){
 		
 		var order=$(this).val(); 
 		console.log(order);
-		list(1,order,category_id); 
+		list(1,order,category_id,keyword); 
 		   
 	}); //option값 가져오기 
 	
@@ -289,8 +289,19 @@ $(function(){
 			dataType:"json", 
 			Type:"GET", 
 			success:function(data){ 
-				console.log(category_id);	
-			
+				//console.log(data.list);	
+				if(data.list.length==0) {
+					let	html=	"<div class='col-md-4 col-sm-6'>";			
+					html+=	"<div class='product-card mb-30'>";
+					html+=		"<h1>찾으시는 물품이 없습니다. </h1>"
+					
+					html+=	"</div>";
+				
+					html+=	"</div>	";	
+					$("#commList").append(html);
+					
+				}
+				else{
 				$(data.list).each(function(i,d){
 					
 						<!-- forEach 시작 부분 -->
@@ -326,6 +337,7 @@ $(function(){
 						html+=	"</div>	";	
 					$("#commList").append(html);					
 				});
+				}
 				//페이징 처리
 				let startPage=data.startPageNum;
 				let endPage=data.endPageNum;
