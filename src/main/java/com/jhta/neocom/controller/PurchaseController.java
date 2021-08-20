@@ -30,6 +30,7 @@ import com.jhta.neocom.service.OrderMainService;
 import com.jhta.neocom.service.PaymentService;
 import com.jhta.neocom.service.ProductService;
 
+
 @Controller
 public class PurchaseController {
 	@Autowired private OrderMainService omservice;
@@ -38,7 +39,7 @@ public class PurchaseController {
 	@Autowired private OrderDetailService odservice;
 	
 	//직접 상품페이지에서 주문
-	@GetMapping("/purchase0")
+	@PostMapping("/purchase0")
 	public ModelAndView purchase0(int product_count,int product_id,String product_name,int selling_price,
 			String img_name_save,HttpSession session,Model model) {
 	/*	if(session!=null) { //회원인 경우 세션에 아이디 담기

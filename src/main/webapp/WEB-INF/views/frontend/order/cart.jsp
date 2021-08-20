@@ -101,7 +101,7 @@
 	        <div class="table-responsive shopping-cart" id="checkbox_group">
 				 
 				<!-- /////////////////////////////////////// -->
-				<form method="get" id="cartForm" name="form" action="${pageContext.request.contextPath}/purchase1">
+				<form method="post" id="cartForm" name="form" action="${pageContext.request.contextPath}/purchase1">
 					<table class="table">
 						<thead>	
 							<tr>

@@ -19,10 +19,12 @@ public class ProductListDCController {
 
 	@RequestMapping("/productlistDC")
 	public ModelAndView list(HttpSession session) {
-		List<ProductVo> productlist = service.listTest();
+		List<ProductVo> productlist = service.selectAll();
+
 		System.out.println(productlist);
-		ModelAndView mv=new ModelAndView("frontend/order/productlist");
-		mv.addObject("productlist",productlist);
+
+		ModelAndView mv = new ModelAndView("frontend/order/productlist");
+		mv.addObject("productlist", productlist);
 
 		return mv;
 	}

@@ -134,7 +134,7 @@
 				</div>
 				<h4>주문 정보</h4>
 
-					<input type="text" name="product_id" value="${product_id }">
+					<input type="hidden" name="product_id" value="${product_id }">
 					<input type="hidden" name="tot_price" value="${selling_price*product_count }">
 					<!--  <input type="hidden" name="product_id" value="${product_id }">-->
 					<input type="hidden" name="product_count" value="${product_count }">
