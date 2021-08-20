@@ -19,15 +19,26 @@
 		#{qna_content},
 		sysdate(),
 		0,
-		qna_board_no,
+		#{qna_group_no},
 		0,
 		0
 		)
 	</insert>
 	
-<!-- <insert id="insertReply" parameterType="">
-	
-	</insert> -->
+	<insert id="insertReply" parameterType="qnaboard">
+		insert into qna_board values
+		(get_seq('qnaboardSeq'),
+		#{mem_no},
+		#{qna_password},
+		#{qna_secret_chk},
+		#{qna_title},
+		#{qna_content},
+		sysdate(),
+		#{qna_group_no},
+		#{qna_group_order}+1,
+		#{qna_group_depth}+1
+		)
+	</insert>
 	
 	<delete id="delete" parameterType="int">
 		delete from qna_board where qna_board_no=#{qna_board_no}
