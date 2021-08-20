@@ -53,7 +53,7 @@
 	<div class="toolbar d-flex">
 		
 		<c:choose>
-			<c:when test="${empty id }">
+			<c:when test="${id == null }">
 				<div class="toolbar-item">
 					<a href="${pageContext.request.contextPath }/account/join1">
 						<div><i class="icon-pocket"></i><span class="text-label">회원가입</span></div>
@@ -253,7 +253,7 @@
 	<div class="toolbar">
 		<div class="toolbar-inner">
 			<c:choose>
-				<c:when test="${empty id }">
+				<c:when test="${id == null }">
 					<div class="toolbar-item">
 						<a href="${pageContext.request.contextPath }/account/join1">
 							<div><i class="icon-pocket"></i><span class="text-label">회원가입</span></div>
