@@ -28,9 +28,17 @@
     <script src="${pageContext.request.contextPath}/static/frontend/assets/js/modernizr.min.js"></script>
   </head>
   <!-- Body-->
+ <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Nanum+Pen+Script&family=Noto+Serif+KR:wght@500&display=swap" rel="stylesheet">
   <style>
   	.fl {
   		float:left;
+  	}
+  	
+  	#cartform {
+  		font-family: 'Nanum Pen Script', cursive;
+font-family: 'Noto Serif KR', serif;
   	}
   </style>
 <body>
@@ -122,7 +130,7 @@
 								<td class="text-center"><input type="checkbox" name="chkbox" class="normal" 
 								value="${vo.product_id }" ></td>
 									<td class="text-center text-lg"><img width=100; height=100; src="<c:url value='/upload/product_img/${vo.img_name_save}' />" alt="<c:url value='/upload/product_img/${vo.img_name_save}' />" /></td>
-									<td class="text-center text-lg">${vo.product_name }</td>
+									<td class="text-center text-lg" style="font-size: 21px;">${vo.product_name }</td>
 									<td class="text-center text-lg">${vo.selling_price }</td>									
 									<td class="text-center">
 										<div class="count-input">
