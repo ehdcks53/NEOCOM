@@ -42,7 +42,7 @@
 		$("#wishlist").addClass("with-badge active");
 	}else if(mypageIndex == 'mypage_myreview'){
 		$("#myreview").addClass("with-badge active");
-	}else if(mypageIndex == 'mypage_question'){
+	}else if(mypageIndex == 'mypage_modify'){
 		$("#modify").addClass("with-badge active");
 	}else{
 		$(".list-group a").removeClass("with-badge active");

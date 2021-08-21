@@ -19,7 +19,7 @@ import com.jhta.neocom.service.MemberService;
 public class LoginController {
 	private NaverLoginVo naverLoginVo;
 	private String apiResult = null;
-	
+
 	@Autowired
 	private void setNaverLoginBO(NaverLoginVo naverLoginVo) {
 		this.naverLoginVo = naverLoginVo;
@@ -30,22 +30,22 @@ public class LoginController {
 
 	@RequestMapping(value = "/account/login", method = RequestMethod.GET)
 	public String loginForm(Model model, HttpSession session) {
-		
+
 		/* 네이버아이디로 인증 URL을 생성하기 위하여 naverLoginBO클래스의 getAuthorizationUrl메소드 호출 */
 		String naverAuthUrl = naverLoginVo.getAuthorizationUrl(session);
-		
+
 		System.out.println("네이버:" + naverAuthUrl);
-		
-		//네이버
+
+		// 네이버
 		model.addAttribute("url", naverAuthUrl);
-		
+
 		return "frontend/account/login";
 	}
 
 	@RequestMapping(value = "/account/login", method = RequestMethod.POST)
-    public String login(String id,String password,HttpSession session,Model model) {		
-		HashMap<String, String> map=new HashMap<String, String>();
-		int mem_no=memberService.searchNo(id);
+	public String login(String id, String password, HttpSession session, Model model) {
+		HashMap<String, String> map = new HashMap<String, String>();
+		int mem_no = memberService.searchNo(id);
 
 		map.put("id", id);
 		map.put("password", password);

@@ -144,7 +144,7 @@ opacity: 0;
 				<li class="separator">&nbsp;</li>
 				<li><a href="#">QnA Board</a></li>
 				<li class="separator">&nbsp;</li>
-				<li>Write</li>
+				<li>Modify</li>
 			</ul>
 		</div>
 	</div>
@@ -155,29 +155,29 @@ opacity: 0;
 <!-- 페이지 컨텐트 -->
 <div class="container padding-bottom-3x mb-2">
 <div class="row">
-	<!-- 문의게시판 글작성 -->
+	<!-- 문의게시판 글수정 -->
 	<div class="col-lg-8" style="margin-left:auto; margin-right:auto;">
 		<div class="padding-top-2x mt-2 hidden-lg-up"></div>
-		<h4>문의하기</h4>
+		<h4>작성글 수정</h4>
 		<hr class="padding-bottom-1x">
 		
-		<form class="row" name="qnaForm" method="post" action="${pageContext.request.contextPath}/community/qnaboard_insert">
+		<form class="row" name="qnaForm" method="post" action="${pageContext.request.contextPath}/community/qnaboard_update">
 			<div class="col-md-12">
 				<div class="form-group">
 					<label for="qna_title">제목</label>
-					<input type="text" class="form-control" name="qna_title" id="qna_title">
+					<input type="text" class="form-control" name="qna_title" id="qna_title" value="${map.qna_title }">
 				</div>
 			</div>
 			<div class="col-md-12">
 				<div class="form-group">
 					<label for="qna_content">내용</label>
-					<textarea rows="15" cols="4000" class="form-control" name="qna_content" id="qna_content"></textarea>
+					<textarea rows="15" cols="4000" class="form-control" name="qna_content" id="qna_content">${map.qna_content }</textarea>
 				</div>
 			</div>
 			<div class="col-12 padding-top-1x">
 				
 				<div class="custom-control custom-checkbox d-block">
-					<input class="custom-control-input" type="checkbox" name="qna_secret_chk" id="qna_secret_chk">
+					<input class="custom-control-input" type="checkbox" name="qna_secret_chk" id="qna_secret_chk" value="${map.qna_password }">
 					<label class="custom-control-label" for="qna_secret_chk">비밀글 &nbsp;</label>
 					<input type="password" name="qna_password" id="qna_password">
 				</div>
@@ -204,7 +204,7 @@ opacity: 0;
 					<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">X</span></button>
 				</div>
 				<div class="modal-body">
-					<p>작성한 내용을 등록 하시겠습니까?</p>
+					<p>수정한 내용을 등록 하시겠습니까?</p>
 				</div>
 				<div class="modal-footer">
 					<button type="button" class="btn btn-secondary btn-sm" data-dismiss="modal" onclick="return false;">No</button>
@@ -222,7 +222,7 @@ opacity: 0;
 					<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">X</span></button>
 				</div>
 				<div class="modal-body">
-					<p>작성을 취소 하시겠습니까?</p>
+					<p>수정을 취소 하시겠습니까?</p>
 				</div>
 				<div class="modal-footer">
 					<button type="button" class="btn btn-secondary btn-sm" data-dismiss="modal" onclick="return false;">No</button>
@@ -244,7 +244,7 @@ opacity: 0;
 	<script src="${pageContext.request.contextPath}/static/frontend/assets/js/scripts.min.js"></script>
 <script>
 	function clickAdd(formName){
-		formName.action = "${pageContext.request.contextPath}/community/qnaboard_insert";
+		formName.action = "${pageContext.request.contextPath}/community/qnaboard_update";
 		formName.method = "post";
 		formName.submit();
 	}

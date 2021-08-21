@@ -25,12 +25,16 @@
 	<!-- Modernizr-->
 	<script src="${pageContext.request.contextPath}/static/frontend/assets/js/modernizr.min.js"></script>
 <style>
+a {
+	text-decoration: none;
+	color: black;
+}
 .table {
-	margin-left:auto;
-	margin-right:auto;
+	margin-left: auto;
+	margin-right: auto;
 }
 .table tbody tr td{
-	height:60px;
+	height: 60px;
 	vertical-align: middle;
 }
 </style>
@@ -85,6 +89,7 @@
 						<select class="form-control col-sm-2 p-2" name="field" id="field">
 							<option value="n_title" <c:if test="${field=='n_title'}">selected</c:if> >제목</option>
 							<option value="n_content" <c:if test="${field=='n_content'}">selected</c:if> >내용</option>
+							<option value="combined" <c:if test="${field=='combined'}">selected</c:if> >제목+내용</option>
 						</select>
 					<input type="text" class="form-control col-sm-3 p-1" value="${keyword }" name="keyword" id="keyword">
 					<button type="submit" class="form-control col-sm-1 w-1 p-2">검색</button>
