@@ -138,7 +138,7 @@
 					<div class="row">
 						<div class="col-sm-6">
 						<button type="submit" class="btn btn-primary btn-block m-1" formaction="${pageContext.request.contextPath}/purchase0"
-                          formmethod="get" formtarget="_self">구매하기</button>
+                          formmethod="post" formtarget="_self">구매하기</button>
 							
 						</div>
 						<div>
