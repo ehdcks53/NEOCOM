@@ -296,7 +296,6 @@
 <script type="text/javascript" src="${pageContext.request.contextPath}/static/frontend/assets/js/jquery-3.6.0.min.js"></script>
 <script>
 	let pageName = location.pathname.split("/");
-	console.log(pageName);
 	let pageIndex = pageName[2];
 	if(pageIndex == ''){
 		$("#home-li").addClass("active");
