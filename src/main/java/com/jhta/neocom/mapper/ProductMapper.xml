@@ -19,16 +19,41 @@
 		<sql id="search">
 
 		<if test="field!=null and field!=''">
-			where ${field} like CONCAT('%',#{keyword},'%')
-			<if test="order!=null and order!=''">order by ${order} desc</if>
-		</if>
-		<if test="field=category_id">
-			where ${field} = #{category_id}
-			<if test="order!=null and order!=''">order by ${order} desc</if>
-		</if>
-		
-
-	</sql>
+			where product_name like CONCAT('%',#{keyword},'%')
+			
+		</if> 
+		</sql>
+		<sql id="cate">
+				<choose>
+				<when  test="category_id==10000">
+					where product_name like CONCAT('%',#{keyword},'%')
+						<if test="order=='new'">order by product_id desc</if>
+						<if test="order=='low'">order by selling_price asc </if>
+						<if test="order=='high'">order by selling_price desc </if>
+						<if test="order=='name_high'">order by product_name asc </if>
+						<if test="order=='name_low'">order by product_name desc </if> 
+				</when>
+				<when test="category_id==20000">
+						<if test="order=='new'">order by product_id desc</if>
+						<if test="order=='low'">order by selling_price asc </if>
+						<if test="order=='high'">order by selling_price desc </if>
+						<if test="order=='name_high'">order by product_name asc </if>
+						<if test="order=='name_low'">order by product_name desc </if> 
+				</when>
+				
+				<otherwise>
+				<if test="category_id!=null and category_id!=''">
+					where category_id=#{category_id}
+					<if test="order=='new'">order by product_id desc</if>
+					<if test="order=='low'">order by selling_price asc </if>
+					<if test="order=='high'">order by selling_price desc </if>
+					<if test="order=='name_high'">order by product_name asc </if>
+					<if test="order=='name_low'">order by product_name desc </if> 
+				
+				</if>
+				</otherwise>
+				</choose>
+		</sql>
 	
 		<!--해당 전체 상품의 갯수 -->
 	<select id="count" parameterType="int" resultType="int">
@@ -44,27 +69,20 @@
 	</select>
 	 -->
  
-	<!-- 페이징처리 --> 
+	<!--카테고리별 및 페이징처리 -->
 	<select id="list" parameterType="hashmap" resultType="hashmap">
 		select a.* from 
 		 (
-
 		SELECT @rownum:=@rownum+1  rnum, aa.*,bb.product_img_no,bb.img_name_save,bb.img_name_origin,bb.img_size,bb.img_category FROM 
-
-
 				product aa inner join product_img bb 
                   on aa.product_id= bb.product_id, 
   				(SELECT @ROWNUM := 0) R
-                <include refid="search"/> 
-                
-                 )a 
+		<include refid="cate" />
+		)a 
                  where img_category='main'
+	</select>
 
-            order by rnum desc
-            
-  </select>
-  
-	<update id="update" parameterType="com.jhta.neocom.model.ProductVo" >
+	<update id="update" parameterType="ProductVo">
 		update product set
 		product_code = #{product_code},
 		category_id = #{category_id},
@@ -80,12 +98,26 @@
 		availability =#{availability}
 		where product_id=#{product_id}
 	</update>
-	
-	<select id="select" parameterType="int" resultType="com.jhta.neocom.model.ProductVo">
+
+	<select id="select" parameterType="int" resultType="ProductVo">
   		select * from product where product_id=#{product_id}
   	</select>
-  	
-  	<select id="listTest" resultType="com.jhta.neocom.model.ProductVo">
+
+	<select id="selectAll" resultType="ProductVo">
+
   		select * from product
   	</select>
+  	
+  	 	<!-- 주문 목록(구매희망 목록) -->
+ 	<select id="purchaseList" resultType="com.jhta.neocom.model.ProductVo" parameterType="int">
+ 		select p.product_id,img_name_save,product_name,selling_price from product p left join 
+ 		product_img pi on p.product_id=pi.product_id where p.product_id=#{product_id} and img_category='main';
+ 	</select>
+  	
+
+	<select id="optionlist" parameterType="hashmap" resultType="hashmap">
+  		select * from product p inner join buy_option b on p.product_id=b.product_id where optionName=#{optionName}
+  	</select>
+
+
 </mapper>

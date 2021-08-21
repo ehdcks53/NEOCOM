@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html lang="ko">
 <head>
 <meta charset="UTF-8">
@@ -23,10 +24,11 @@
 	<!-- Modernizr-->
 	<script src="${pageContext.request.contextPath}/static/frontend/assets/js/modernizr.min.js"></script>
 <style>
-.table tbody tr td {
-	height: 100px;
-	vertical-align: middle;
-}
+	.table tbody tr td {
+		height: 100px;
+		vertical-align: middle;
+	}
+	.table-responsive a {width:120px;}
 </style>
 </head>
 <body>
@@ -56,32 +58,8 @@
 <!-- 페이지 컨텐트 -->
 <div class="container padding-bottom-3x mb-2">
 <div class="row">
-	<!-- 마이페이지 사이드바 -->
-	<div class="col-lg-3">
-		<aside class="user-info-wrapper">
-			<div class="user-cover" style="background-image: url(${pageContext.request.contextPath}/static/frontend/assets/img/account/user-cover-img.jpg);">
-				<!-- 뱃지 -->
-			</div>
-			<div class="user-info">
-				<!-- 프로필이미지 부분 
-				<div class="user-avatar">
-					<a class="edit-avatar" href="#"></a><img src="" alt="">
-				</div>
-				프로필이미지 부분 -->
-				<div class="user-data">
-					<h4 class="h5">OOO 회원님</h4><span>가나다라마바사</span>
-				</div>
-			</div>
-		</aside>
-		<nav class="list-group">
-			<a class="list-group-item with-badge active" href="${pageContext.request.contextPath }/account/mypage_order">주문내역</a>
-			<a class="list-group-item" href="${pageContext.request.contextPath }/account/mypage_delivery">배송지 관리</a>
-			<a class="list-group-item" href="#">문의내역</a>
-			<a class="list-group-item" href="#">관심상품</a>
-			<a class="list-group-item" href="#">나의 리뷰</a>
-			<a class="list-group-item" href="#">개인 정보 관리</a>
-		</nav>
-	</div>
+	<!-- mypage_sidebar -->
+	<jsp:include page="/WEB-INF/views/frontend/account/inc/mypage_sidebar.jsp"/>
 	
 	<!-- 주문내역 -->
 	<div class="col-lg-9 col-md-8 order-md-2">
@@ -91,42 +69,44 @@
 			<table class="table">
 				<thead>
 					<tr>
-						<th>주문번호</th>
-						<th class="text-center"><a class="btn btn-sm btn-outline-info" href="#">상세보기</a></th>
+						<th class="text-center">주문번호</th>
+						<th class="text-center">이미지</th>
+						<th class="text-center">주문상품</th>
+						<th class="text-center">주문일시</th>
+						<th class="text-center">주문금액</th>
+						<th class="text-center">상태</th>
+						<th class="text-center"></th>
 					</tr>
 				</thead>
 				<tbody>
-					<tr>
+						<c:forEach var="vo" items="${myOrderList }">
+				   	
+						<tr>
+											<td class="text-center text-lg">${vo.order_no }</td>
+								<td class="text-center text-lg"><img width=100; height=100; src="<c:url value='/upload/product_img/${vo.img_name_save}' />" alt="<c:url value='/upload/product_img/${vo.img_name_save}' />" /></td>
+								<td class="text-center text-lg">${vo.product_name }</td>
+								<td class="text-center text-lg">${vo.order_date }</td>
+								<td class="text-center text-lg">${vo.tot_price }</td>
+								<td class="text-center text-lg">${vo.order_status }</td>
+								<c:if test="${vo.order_status !='배송 완료'}">
+									<td class="text-center text-lg"><a class="btn btn-sm btn-outline-warning" href="#" style=margin-bottom:5px;>배송조회</a>
+										<a class="btn btn-sm btn-outline-info" href="#">주문취소</a></td>
+									<td class="text-center text-lg"></td>
+									
+								</c:if>
+								<c:if test="${vo.order_status =='배송 완료'}">
+									<td class="text-center text-lg"><a class="btn btn-sm btn-outline-warning" href="#" style=margin-bottom:5px;>배송조회</a>
+										<a class="btn btn-sm btn-outline-info" href="#" style=margin-bottom:5px;>교환,반품 신청</a>
+										<a class="btn btn-sm btn-outline-success" href="#">후기 작성하기</a></td>
+									<td class="text-center text-lg"></td>
+								</c:if>
+
+						</tr>
+					
+					</c:forEach>
+					<tr>	
 						<td>
 						<div class="product-item"><a class="product-thumb" href="#"><img src="${pageContext.request.contextPath}/static/frontend/assets/img/shop/cart/01.jpg" alt=""></a>
-							<div class="product-info">
-							<h4 class="product-title"><a href="#">상품명</a></h4>
-								<div class="text-lg mb-1">가격</div>
-									<div class="text-sm">개수 :
-										<div class="d-inline">1</div>
-									</div>
-								</div>
-							</div>
-						</td>
-						<td class="text-center"><button class="btn btn-link-secondary">후기작성</button></td>
-					</tr>
-					<tr>
-						<td>
-						<div class="product-item"><a class="product-thumb" href="#"><img src="${pageContext.request.contextPath}/static/frontend/assets/img/shop/cart/02.jpg" alt=""></a>
-							<div class="product-info">
-							<h4 class="product-title"><a href="#">상품명</a></h4>
-								<div class="text-lg mb-1">가격</div>
-									<div class="text-sm">개수 :
-										<div class="d-inline">1</div>
-									</div>
-								</div>
-							</div>
-						</td>
-						<td class="text-center"><button class="btn btn-link-secondary">후기작성</button></td>
-					</tr>
-					<tr>
-						<td>
-						<div class="product-item"><a class="product-thumb" href="#"><img src="${pageContext.request.contextPath}/static/frontend/assets/img/shop/cart/03.jpg" alt=""></a>
 							<div class="product-info">
 							<h4 class="product-title"><a href="#">상품명</a></h4>
 								<div class="text-lg mb-1">가격</div>

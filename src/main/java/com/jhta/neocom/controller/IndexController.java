@@ -69,8 +69,4 @@ public class IndexController {
         return "frontend/index_original";
     }
 
-
 } 
-
-
-
