@@ -121,7 +121,7 @@
 						<input type="hidden" name="product_id" value="${goods.product_id }">
 						<input type="hidden" name="product_name" value="${goods.product_name }"> 
 						<input type="hidden" name="selling_price" value="${goods.selling_price }">
-	
+						<input type="hidden" name="img_name_save" value="${list[0].img_name_save }">
 
 					<!-- ///////옵션을 넣어야함 -->
 					<!-- 세션없으면 alert메세지 주기  -->
@@ -138,7 +138,7 @@
 					<div class="row">
 						<div class="col-sm-6">
 						<button type="submit" class="btn btn-primary btn-block m-1" formaction="${pageContext.request.contextPath}/purchase0"
-                          formmethod="get" formtarget="_self">구매하기</button>
+                          formmethod="post" formtarget="_self">구매하기</button>
 							
 						</div>
 						<div>

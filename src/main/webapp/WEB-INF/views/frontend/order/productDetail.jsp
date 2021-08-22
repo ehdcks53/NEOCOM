@@ -20,7 +20,6 @@
 			<input type="hidden" name="product_id" value="${vo.product_id }">
 			<input type="hidden" name="product_name" value="${vo.product_name }">
 			<input type="hidden" name="selling_price" value="${vo.selling_price }">
-			
 			<input type="submit" value="구매">
 		</form>
 		

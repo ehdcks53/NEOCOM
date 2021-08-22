@@ -135,7 +135,7 @@ font-family: 'Noto Serif KR', serif;
 									<td class="text-center">
 										<div class="count-input">
 						                	<p style="display:table;margin:0 auto;"><input style="width:22px; height:20px; border:1px solid #c8c8c8;"
-							                	class="fl" type="text" id="${vo.cart_no }" value="${vo.product_count }"
+							                	class="cart_no_cnt fl" type="text" id="${vo.cart_no }" value="${vo.product_count }"
 							                	onfocus="chk_only('0');" size="2" maxlength="2">
 						                		<img class="fl" src="https://ftp.coitcom.co.kr/img/btn_cnt2.gif">
 						                	</p>
@@ -383,6 +383,8 @@ font-family: 'Noto Serif KR', serif;
 				}
 			});
 		};
+		
+		//전체 체크
 		function allchkFC(frm){
 			var sum=0;
 			 var count = frm.chkbox.length;
@@ -396,8 +398,10 @@ font-family: 'Noto Serif KR', serif;
 			}
 		}
 		
-		$("input[name='chkbox']").click(function(){
+		
 
+		$("input[name='chkbox']").change(function(){
+			console.log($(".cart_no_cnt").val());
 			var frm=document.getElementById("cartForm");
 		   var sum = 0;
 		   var count = frm.chkbox.length;
@@ -411,7 +415,6 @@ font-family: 'Noto Serif KR', serif;
 			   
 		   }
 		   var cnt=$(this).parent().parent().find(".fl");
-		   	console.log(cnt);
 			$(cnt).prop("name","cnt");
 
 
