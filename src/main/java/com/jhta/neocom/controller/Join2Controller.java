@@ -37,7 +37,7 @@ public class Join2Controller {
 		System.out.println("오예성공");
 		memberVo.setPassword(bCryptPasswordEncoder.encode(memberVo.getPassword()));
 		service.insert(memberVo);
-		service.insert_role(memberVo.getId());
+		service.insert_role(memberVo.getMem_no());
 		return "/frontend/account/join3";
 
 	}

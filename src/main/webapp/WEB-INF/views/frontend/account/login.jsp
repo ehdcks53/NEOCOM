@@ -90,7 +90,7 @@
 						<div class="errormsg">${errMsg }</div>
 						
 					</div>
-					<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
+					<%-- <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" /> --%>
 					 <div class="d-flex flex-wrap justify-content-between padding-bottom-1x">
 						<!-- 로그인 이력 저장 기능 구현하면 넣고 아니면 빼기 -->
 						<div class="custom-control custom-checkbox">

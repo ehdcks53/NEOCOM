@@ -8,7 +8,7 @@ import com.jhta.neocom.model.MemberVo;
 public interface MemberMapper {
 	int insert(MemberVo vo);
 
-	int insert_role(String id);
+	int insert_role(int mem_no);
 
 	MemberVo select(String id);
 

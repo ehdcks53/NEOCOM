@@ -24,7 +24,7 @@ public class LoginController {
 	}
 
 	@RequestMapping(value = "/account/login", method = RequestMethod.GET)
-	public String loginForm(Model model, HttpSession session, String username, boolean error) {
+	public String loginForm(Model model, HttpSession session, boolean error) {
 
 		/* 네이버아이디로 인증 URL을 생성하기 위하여 naverLoginBO클래스의 getAuthorizationUrl메소드 호출 */
 		String naverAuthUrl = naverLoginVo.getAuthorizationUrl(session);
@@ -34,7 +34,6 @@ public class LoginController {
 		if (error == true) {
 			String errMsg = "아이디 또는 비밀번호가 틀렸습니다.";
 			model.addAttribute("errMsg", errMsg);
-			model.addAttribute("username", username);
 		}
 
 		return "frontend/account/login";
@@ -46,7 +45,7 @@ public class LoginController {
 		System.out.println("로그인 컨트롤러 : " + authentication.getPrincipal() + ", " + authentication.getCredentials() + ", "
 				+ authentication.getAuthorities());
 
-		return "redirect:/admin";
+		return "redirect:/";
 	}
 
 	@RequestMapping(value = "/account/denied", method = RequestMethod.POST)

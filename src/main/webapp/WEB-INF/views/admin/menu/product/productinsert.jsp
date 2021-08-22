@@ -207,9 +207,9 @@
 				type:"post",
 				dataType:"json",
 				beforeSend: function (jqXHR, settings) {
-           		var header = $("meta[name='_csrf_header']").attr("content");
-           		var token = $("meta[name='_csrf']").attr("content");
-           		jqXHR.setRequestHeader(header, token);
+           		// var header = $("meta[name='_csrf_header']").attr("content");
+           		// var token = $("meta[name='_csrf']").attr("content");
+           		// jqXHR.setRequestHeader(header, token);
 				},
 				success:function(data){
 					$.each(data.upperCategoryList,function(index,item){

@@ -2,6 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%@taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -139,14 +140,15 @@
 						<div class="col-sm-6">
 						<button type="submit" class="btn btn-primary btn-block m-1" formaction="${pageContext.request.contextPath}/purchase0"
                           formmethod="post" formtarget="_self">구매하기</button>
+						   
+						  
 							
 						</div>
 						<div>
 						</div>
 						<div class="col-sm-6">
-							
-							<button type="submit" class="btn btn-secondary btn-block m-1" formaction="${pageContext.request.contextPath }/cart?id=${sessionScope.id}"
-                          formmethod="get" formtarget="_self">장바구니</button>	
+							<sec:authentication property="principal.memberVo" var="memberVo"/>
+							<button type="submit" class="btn btn-secondary btn-block m-1" formaction="${pageContext.request.contextPath }/cart?id=${memberVo.id}" formmethod="get" formtarget="_self">장바구니</button>	
 						</div> <!-- 장바구니 url -->
 						
 					</div>

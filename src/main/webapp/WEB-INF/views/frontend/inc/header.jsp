@@ -215,7 +215,7 @@
 	<!-- navbar 툴바 -->
 	<div class="toolbar">
 		<div class="toolbar-inner">
-					<sec:authorize access="isAnonymous()">
+				<sec:authorize access="isAnonymous()">
 					<div class="toolbar-item">
 						<a href="${pageContext.request.contextPath }/account/join1">
 							<div><i class="icon-pocket"></i><span class="text-label">회원가입</span></div>
