@@ -17,6 +17,10 @@ public class QnABoardService {
 		return mapper.insert(vo);
 	}
 	
+	public int insertReply(QnABoardVo vo) {
+		return mapper.insertReply(vo);
+	}
+	
 	public int delete(int qna_board_no) {
 		return mapper.delete(qna_board_no);
 	}

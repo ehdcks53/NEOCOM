@@ -1,6 +1,7 @@
 package com.jhta.neocom.service;
 
 import java.util.HashMap;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -13,15 +14,15 @@ public class MemberService {
 	@Autowired
 	private MemberMapper mapper;
 
-	public void setMapper(MemberMapper mapper) {
-		this.mapper = mapper;
-	}
-
 	public int insert(MemberVo vo) {
 		return mapper.insert(vo);
 	}
 
-	public int select(String id) {
+	public int insert_role(int mem_no) {
+		return mapper.insert_role(mem_no);
+	}
+
+	public MemberVo select(String id) {
 		return mapper.select(id);
 	}
 
@@ -31,5 +32,9 @@ public class MemberService {
 
 	public int searchNo(String id) {
 		return mapper.searchNo(id);
+	}
+
+	public List<MemberVo> list() {
+		return mapper.list();
 	}
 }

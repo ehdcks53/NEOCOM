@@ -20,7 +20,11 @@ public interface ProductMapper {
 
 	ProductVo select(int product_id);
 
-	// List<ProductVo> selectone(int product_id);
+//	List<ProductVo> selectone(int product_id);
+	
+	List<ProductVo> purchaseList(int product_id);
+
+
 	List<HashMap<String, Object>> optionlist(HashMap<String, Object> map);
 
 }

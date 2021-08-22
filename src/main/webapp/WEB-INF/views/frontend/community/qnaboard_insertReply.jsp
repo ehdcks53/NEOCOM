@@ -122,6 +122,14 @@ position: absolute;
 z-index: -1;
 opacity: 0;
 }
+
+.table tbody tr td p {
+	margin-top: 30px;
+	margin-bottom: 30px;
+	margin-left: 100px;
+	margin-right: 100px;
+	vertical-align: middle;
+}
 </style>
 </head>
 <body>
@@ -154,11 +162,56 @@ opacity: 0;
 
 <!-- 페이지 컨텐트 -->
 <div class="container padding-bottom-3x mb-2">
-<div class="row">
-	<!-- 문의게시판 글작성 -->
-	<div class="col-lg-8" style="margin-left:auto; margin-right:auto;">
+<div class="row justify-content-center">
+	<div class="col-lg-10">
 		<div class="padding-top-2x mt-2 hidden-lg-up"></div>
-		<h4>문의하기</h4>
+		<h4>문의한 내용</h4>
+		<hr class="padding-bottom-1x" style="margin-bottom:20px;">
+	</div>
+	<div class="col-lg-10">
+		<table class="table text-center">
+			<colgroup>
+				<col width="10%"/>
+				<col width="15%"/>
+				<col width="15%"/>
+				<col width="30%"/>
+				<col width="10%"/>
+				<col width="20%"/>
+			</colgroup>
+			<thead class="thead-default">
+				<tr>
+					<th scope="row">글번호</th>
+					<td>${map.qna_board_no }</td>
+					<th scope="row">작성자</th>
+					<td>${map.Nickname }</td>
+					<th scope="row">작성일</th>
+					<td><fmt:parseDate value="${map.qna_regdate }" var="qna_regdate" pattern="yyyy-MM-dd'T'HH:mm:ss" /><fmt:formatDate value="${qna_regdate }" pattern="yyyy-MM-dd HH:mm:ss" /></td>
+				</tr>
+				<tr>
+					<th scope="row">제목</th>
+					<td colspan="3">${map.qna_title }</td>
+					<th scope="row">조회수</th>
+					<td>${map.qna_hit }</td>
+				</tr>
+			</thead>
+			<tbody> 
+				<tr> 
+					<td colspan="10">
+						<p>${map.qna_content }</p>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+</div>
+
+
+<div class="row">
+	<!-- 문의게시판 답변작성 -->
+	<div class="col-lg-8" style="margin-left:auto; margin-right:auto;">
+		<hr class="padding-bottom-1x" style="margin-top:30px; margin-bottom:30px;">
+		<div class="padding-top-2x mt-2 hidden-lg-up"></div>
+		<h4>답변하기</h4>
 		<hr class="padding-bottom-1x">
 		
 		<form class="row" name="qnaForm" method="post" action="${pageContext.request.contextPath}/community/qnaboard_insert">
@@ -244,7 +297,7 @@ opacity: 0;
 	<script src="${pageContext.request.contextPath}/static/frontend/assets/js/scripts.min.js"></script>
 <script>
 	function clickAdd(formName){
-		formName.action = "${pageContext.request.contextPath}/community/qnaboard_insert";
+		formName.action = "${pageContext.request.contextPath}/community/qnaboard_insertReply?qna_board_no=${map.qna_board_no }";
 		formName.method = "post";
 		formName.submit();
 	}

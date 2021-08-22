@@ -24,6 +24,20 @@
 	<link id="mainStyles" rel="stylesheet" media="screen" href="${pageContext.request.contextPath}/static/frontend/assets/css/styles.min.css">
 	<!-- Modernizr-->
 	<script src="${pageContext.request.contextPath}/static/frontend/assets/js/modernizr.min.js"></script>
+<style>
+a {
+	text-decoration: none;
+	color: black;
+} 
+.table {
+	margin-left: auto;
+	margin-right: auto;
+}
+.table tbody tr td{
+	height: 50px;
+	vertical-align: middle;
+}
+</style>
 </head>
 <body>
 
