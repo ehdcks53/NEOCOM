@@ -18,7 +18,11 @@ public class MemberService {
 		return mapper.insert(vo);
 	}
 
-	public int select(String id) {
+	public int insert_role(String id) {
+		return mapper.insert_role(id);
+	}
+
+	public MemberVo select(String id) {
 		return mapper.select(id);
 	}
 

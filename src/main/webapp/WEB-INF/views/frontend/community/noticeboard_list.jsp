@@ -2,6 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -93,6 +94,11 @@ a {
 						</select>
 					<input type="text" class="form-control col-sm-3 p-1" value="${keyword }" name="keyword" id="keyword">
 					<button type="submit" class="form-control col-sm-1 w-1 p-2">검색</button>
+					<sec:authorize access="hasAnyRole('ADMIN', 'MANAGER')">
+					<div class="ml-md-auto" style="margin-right:20px;">
+						<button type="button" id="insertBtn" class="form-control btn-sm btn-outline-info" onclick="clickInsert()">글쓰기 <i class="icon-arrow-right-circle"></i></button>
+					</div>
+					</sec:authorize>
 				</div>
 			</form>
 		</div>
