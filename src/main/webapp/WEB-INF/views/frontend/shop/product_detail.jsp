@@ -2,6 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%@taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -115,15 +116,15 @@
 				<c:forEach var="clist" items="${clist }">
 					<p class="text-muted">${clist.category_name }</p>
 				</c:forEach>
-
-				<form name="form1" >
+					
+				<form name="form1">
 					<fieldset>
 						<input type="hidden" name="product_id"
 							value="${goods.product_id }"> <input type="hidden"
 							name="product_name" value="${goods.product_name }"> <input
 							type="hidden" name="selling_price"
-							value="${goods.selling_price }">
-						<input type="hidden" name="img_name_save" value="${list[0].img_name_save }">
+							value="${goods.selling_price }"> <input type="hidden"
+							name="img_name_save" value="${list[0].img_name_save }">
 
 
 						<!-- ///////옵션을 넣어야함 -->
@@ -140,17 +141,15 @@
 						<div class="mb-4"></div>
 						<div class="row">
 							<div class="col-sm-6">
-								<button type="submit" class="btn btn-primary btn-block m-1" onclick="clickPurchase()"
-									formaction="${pageContext.request.contextPath}/purchase0"
-									formmethod="POST" formtarget="_self">구매하기</button>
+								<input type="button" class="btn btn-primary btn-block m-1"
+									name=btn1 value="구매하기" onClick="getPost('01')">
 
 							</div>
 							<div></div>
 							<div class="col-sm-6">
-
-								<button type="submit" class="btn btn-secondary btn-block m-1"  onclick="clickCart()"
-									formaction="${pageContext.request.contextPath }/cart"
-									formmethod="get" formtarget="_self">장바구니</button>
+								<sec:authentication property="principal.memberVo" var="memberVo"/>
+								<input type="button" class="btn btn-secondary btn-block m-1"
+									name=btn2 value="장바구니" onclick="getPost('02')">
 							</div>
 							<!-- 장바구니 url -->
 
