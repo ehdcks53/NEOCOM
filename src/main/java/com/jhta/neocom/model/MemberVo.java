@@ -17,16 +17,21 @@ import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 //주석
 
+@AllArgsConstructor
+@NoArgsConstructor
 @Data
 @Entity
 @Table(name = "member_Info")
 public class MemberVo {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	//private int mem_id;
 	private int mem_no;
 	@NotBlank(message = "필수입력 값입니다.")
 	private String nickname;
