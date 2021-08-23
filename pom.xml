@@ -17,7 +17,7 @@
 		<java.version>11</java.version>
 	</properties>
 	<dependencies>
-		<!-- 제이슨 파싱 -->
+<!-- 제이슨 파싱 -->
 		<dependency>
 			<groupId>com.googlecode.json-simple</groupId>
 			<artifactId>json-simple</artifactId>
