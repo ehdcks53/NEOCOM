@@ -148,7 +148,7 @@
 						</div>
 						<div class="col-sm-6">
 							<sec:authentication property="principal.memberVo" var="memberVo"/>
-							<button type="submit" class="btn btn-secondary btn-block m-1" formaction="${pageContext.request.contextPath }/cart?id=${memberVo.id}" formmethod="get" formtarget="_self">장바구니</button>	
+							<button type="submit" class="btn btn-secondary btn-block m-1" formaction="${pageContext.request.contextPath }/cart?id=" formmethod="get" formtarget="_self">장바구니</button>	
 						</div> <!-- 장바구니 url -->
 						
 					</div>
