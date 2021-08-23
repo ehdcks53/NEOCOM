@@ -2,6 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags"%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -10,6 +11,7 @@
 	<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport" />
 	<meta content="" name="description" />
 	<meta content="" name="author" />
+	<sec:csrfMetaTags />
 	
 	<!-- ================== BEGIN core-css ================== -->
 	<link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet" />
@@ -204,6 +206,11 @@
 				data:{"category_parent":category_id},
 				type:"post",
 				dataType:"json",
+				beforeSend: function (jqXHR, settings) {
+           		// var header = $("meta[name='_csrf_header']").attr("content");
+           		// var token = $("meta[name='_csrf']").attr("content");
+           		// jqXHR.setRequestHeader(header, token);
+				},
 				success:function(data){
 					$.each(data.upperCategoryList,function(index,item){
 						$("#lower_category").append(`<label class="form-label col-form-label col-md-3"> \${item.category_name} </label>

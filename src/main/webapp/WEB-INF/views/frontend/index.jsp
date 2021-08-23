@@ -179,7 +179,7 @@
 							<a class="product-button btn-wishlist" href="#"><i
 								class="icon-heart"></i><span>관심상품</span></a> <a
 								class="product-button"
-								href="${pageContext.request.contextPath }/insertCart?mem_no=${sessionScope.mem_no}&product_id=${vo.product_id}"
+								href="${pageContext.request.contextPath }/insertCart?product_id=${vo.product_id}"
 								data-toast data-toast-type="success"
 								data-toast-position="topRight"
 								data-toast-icon="icon-check-circle" data-toast-title=" "
