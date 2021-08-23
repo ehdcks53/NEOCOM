@@ -194,7 +194,9 @@ font-family: 'Noto Serif KR', serif;
 	      <div class="shopping-cart-footer">
 	        <div class="column"><a class="btn btn-outline-secondary" href="shop-grid-ls.html"><i class="icon-arrow-left"></i>&nbsp;쇼핑 계속하기</a></div>
 	        <div class="column"><a class="btn btn-secondary" href="#" data-toast data-toast-type="success" data-toast-position="topRight" data-toast-icon="icon-check-circle" data-toast-title="Your cart" data-toast-message="is updated successfully!">Update Cart</a>
-	         <button class="btn btn-primary" id="purchace_btn" value="구매하기" ></div>
+	        	<button class="btn btn-primary" id="purchase_btn" >구매하기</button>
+	         
+	        </div>
 	        
 	      </div>
 	      
@@ -326,22 +328,25 @@ font-family: 'Noto Serif KR', serif;
 
 				// 구매하기 버튼 클릭했을때
 				$("#purchase_btn").on("click",function(){
+					console.log("버튼클릭!");
 					if(cart_vo_list==null)
 						alert("구입할 목록을 선택해 주세요.");
 					
 					$.ajax({
-						url:"", // 어디로 보낼지 모르겠어서...
-						data: {"cart_vo_list" : cart_vo_list},
+						url:"${pageContext.request.contextPath}/purchase1", // 어디로 보낼지 모르겠어서...
+						data:{"id": "abc"},
 						dataType: "json", // 서버(컨트롤러)에서 파라미터를 아마 List<CartVo> cart_vo_list 이렇게 받음될거에여
 						type: "post",
 						success:function(data){ // 통신에 성공했을 때 실행하는 callback함수, data는 controller에서 설정해준 @ResponseBody 타입으로 와여...
 							console.log(data);
-							// location.href("url");     // 3개 다 페이지 이동할 때 쓰는건데 자세한건 구글링해보셈 ㅋ
+							//location.href("url");     // 3개 다 페이지 이동할 때 쓰는건데 자세한건 구글링해보셈 ㅋ
 							// location.replace("url");
 							// history.pushState(""); 
 						},
-						error:function(){ // 서버랑 통신하는거 실패했을때 실행하는 callback함수
-							alert("에러 발생");
+						error:function(request, status, error){ // 서버랑 통신하는거 실패했을때 실행하는 callback함수
+							alert("에러 발생"+error);
+							alert("code:"+request.status+"\n"+"error:"+error);
+
 						},
 						complete:function(){ // success나 error callback함수가 실행되고 난 후, 실행되는 callback 함수. 비워도 상관없음
 

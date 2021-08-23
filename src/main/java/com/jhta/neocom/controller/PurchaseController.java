@@ -4,6 +4,7 @@ import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.HashMap;
+import java.util.List;
 
 import javax.servlet.http.HttpSession;
 
@@ -18,6 +19,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.jhta.neocom.model.CartVo;
 import com.jhta.neocom.model.OrderDetailVo;
 import com.jhta.neocom.model.OrderMainVo;
 import com.jhta.neocom.model.PaymentVo;
@@ -63,28 +65,28 @@ public class PurchaseController {
 	// 장바구니에서 주문
 	@RequestMapping(value = "/purchase1", produces = { MediaType.APPLICATION_JSON_VALUE })
 	@ResponseBody
-	public ModelAndView purchase1(HttpSession session, Model model, @RequestParam("chkbox") ArrayList<Integer> chkbox,
+	public HashMap<String, Object> purchase1(HttpSession session, Model model,@RequestParam("id") HashMap<String, Object> cart_vo_list) {
+	/*public ModelAndView purchase1(HttpSession session, Model model, @RequestParam("chkbox") ArrayList<Integer> chkbox,
 			@RequestParam("cnt") ArrayList<Integer> cnt) {
-		/*
+		
 		 * if(session!=null) { //회원인 경우 세션에 아이디 담기 session.setAttribute("id", id);
 		 * return "order_dc/purchase"; }else {
 		 */
-
-		System.out.println(chkbox.size());
-		System.out.println(cnt);
-		System.out.println(chkbox);
-
+		System.out.println(cart_vo_list);
+		/*
 		//int a = Integer.parseInt(chkbox.get(0));
 		ArrayList<ProductVo> purchaseList = new ArrayList<ProductVo>();
-		for (int i = 0; i < chkbox.size(); i++) {
+		/*for (int i = 0; i < chkbox.size(); i++) {
 			purchaseList.addAll(productservice.purchaseList(chkbox.get(i)));
 		}
 		System.out.println(purchaseList);
 		ModelAndView mv = new ModelAndView("frontend/order/purchase");
-
+		
 		mv.addObject("purchaseList", purchaseList);
-		mv.addObject("cnt", cnt);
-		return mv;
+		//mv.addObject("cnt", cnt);
+		*/
+		HashMap<String, Object> map=new HashMap<String, Object>();
+		return map;
 
 		/* } */
 
