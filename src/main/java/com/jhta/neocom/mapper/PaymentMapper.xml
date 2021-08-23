@@ -12,5 +12,9 @@
  	<delete id="delete" parameterType="int">
  		delete from payment where payment_num=#{payment_num}
  	</delete> 
- 
-  </mapper>
+ 	
+ 	<!--  결제상태 업데이트-->
+ 	<update id="update" parameterType="hashmap">
+		update payment set payment_status=#{payment_status} where order_no=#{order_no}
+	</update> 
+</mapper>

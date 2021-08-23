@@ -49,7 +49,7 @@
 					<div class="panel panel-inverse">
 						<!-- BEGIN panel-heading -->
 						<div class="panel-heading">
-							<h4 class="panel-title">주문 목록</h4>
+							<h4 class="panel-title">결제 목록</h4>
 							<div class="panel-heading-btn">
 								<a href="javascript:;" class="btn btn-xs btn-icon btn-default" data-toggle="panel-expand"><i class="fa fa-expand"></i></a>
 								<a href="javascript:;" class="btn btn-xs btn-icon btn-success" data-toggle="panel-reload"><i class="fa fa-redo"></i></a>
@@ -63,10 +63,10 @@
 							<table id="data-table-responsive" class="table table-striped table-bordered align-middle">
 								<thead>
 									<tr>
-										<th width="10%">고유번호</th>
-										<th width="10%" data-orderable="true">회원번호</th>
-										<th class="text-nowrap">주문코드</th>
-										<th class="text-nowrap">금액</th>
+										<th width="10%">결제번호</th>
+										<th width="10%" data-orderable="true">주문번호</th>
+										<th class="text-nowrap">결제금액</th>
+										<th class="text-nowrap">상품명</th>
 										<th class="text-nowrap">주문날짜</th>
 										<th class="text-nowrap">주문상태</th>
 										<th>상세보기</th>

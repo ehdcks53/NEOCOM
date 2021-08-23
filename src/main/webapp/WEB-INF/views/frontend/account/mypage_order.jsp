@@ -88,7 +88,19 @@
 								<td class="text-center text-lg">${vo.order_date }</td>
 								<td class="text-center text-lg">${vo.tot_price }</td>
 								<td class="text-center text-lg">${vo.order_status }</td>
-								<c:if test="${vo.order_status !='배송 완료'}">
+								<c:if test="${vo.order_status =='결제 대기'}">
+									<td class="text-center text-lg"><a class="btn btn-sm btn-outline-warning" href="#" style=margin-bottom:5px;>결제하기</a>
+										<a class="btn btn-sm btn-outline-info" href="#">주문취소</a></td>
+									<td class="text-center text-lg"></td>
+									
+								</c:if>
+								<c:if test="${vo.order_status =='배송 준비중'}">
+									<td class="text-center text-lg"><a class="btn btn-sm btn-outline-warning" href="#" style=margin-bottom:5px;>주문조회</a>
+										<a class="btn btn-sm btn-outline-info" href="#">주문취소</a></td>
+									<td class="text-center text-lg"></td>
+									
+								</c:if>
+								<c:if test="${vo.order_status =='배송중'}">
 									<td class="text-center text-lg"><a class="btn btn-sm btn-outline-warning" href="#" style=margin-bottom:5px;>배송조회</a>
 										<a class="btn btn-sm btn-outline-info" href="#">주문취소</a></td>
 									<td class="text-center text-lg"></td>

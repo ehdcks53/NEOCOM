@@ -14,6 +14,7 @@
  		delete from order_main where order_no=#{order_no}
  	</delete>
 
+
 	<select id="searchno" resultType="int" parameterType="Hashmap">
  		select order_no from order_main where order_num=#{order_num} and mem_no=#{mem_no}
  	</select>
@@ -22,8 +23,13 @@
  		select * from order_main where order_num=#{order_num} and mem_no=#{mem_no}
  	</select>
 
+	<!-- 결제 성공 or 실패시  -->
+	<update id="update" parameterType="Hashmap">
+		update order_main set order_status=#{order_status}, payment_status=#{payment_status} where order_no=#{order_no}
+	</update>
+	
 	<update id="updateno" parameterType="Hashmap">
- 		update order_main set order_no=#{order_no} where order_no=#{order_no2} 
+ 		update order_main set order_no=#{order_no} where order_no=#{order_no2}
  	</update> 	
  	
  	<!--  나의 주문 내역-->

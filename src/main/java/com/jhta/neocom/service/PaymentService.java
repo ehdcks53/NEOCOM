@@ -1,5 +1,7 @@
 package com.jhta.neocom.service;
 
+import java.util.HashMap;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.jhta.neocom.mapper.PaymentMapper;
@@ -19,5 +21,8 @@ public class PaymentService {
 		return mapper.delete(payment_no);
 	}
 
+	public int update(HashMap<String, Object> map) {
+		return mapper.update(map);
+	}
 
 }

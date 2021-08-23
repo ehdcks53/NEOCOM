@@ -38,6 +38,7 @@ public class PurchaseController {
 	@Autowired
 	private OrderDetailService odservice;
 
+	
 	// 직접 상품페이지에서 주문
 	@PostMapping("/purchase0")
 	public ModelAndView purchase0(int product_count, int product_id, String product_name, int selling_price,
@@ -92,13 +93,11 @@ public class PurchaseController {
 	// 주문 등록
 	// 주문 번호 만들기..
 	@PostMapping("/purchase")
-	public ModelAndView purchase(OrderMainVo vo, String[] product_count, String[] product_id, HttpSession session,
+	public ModelAndView purchase(OrderMainVo vo,String[] order_price, String[] product_count, String[] product_id, HttpSession session,
 			Model model) {
 		try {
 			int mem_no = (Integer) session.getAttribute("mem_no");
 			vo.setMem_no(mem_no);
-			System.out.println(product_count[0]);
-			System.out.println(product_id[0]);
 			// 주문 번호 만들기(ex:210817 + order_no )
 			Calendar cal = Calendar.getInstance();
 			int year = cal.get(Calendar.YEAR);
@@ -157,6 +156,10 @@ public class PurchaseController {
 			omservice.updateno(map3);
 			ModelAndView mv = new ModelAndView("frontend/order/purchase2");
 			mv.addObject("order_no", order_num_update);
+			mv.addObject("orderer_name",vo.getOrderer_name());
+			mv.addObject("zip_code",vo.getZip_code());
+			mv.addObject("order_address",vo.getOrder_address());
+			mv.addObject("order_address_detail",vo.getOrder_address_detail());
 			
 //			vo3.setOrder_no(order_num_update); vo3.setMem_no(mem_no);
 //			System.out.println(vo3); odservice.insert(vo3);
@@ -170,10 +173,11 @@ public class PurchaseController {
 				int a = Integer.parseInt(product_count[i]);
 				System.out.println(a + 2 + "count");
 				int b = Integer.parseInt(product_id[i]);
-
+				int c =Integer.parseInt(order_price[i]);
 				System.out.println(b + 2 + "id");
 				odvo1.setProduct_count(a);
 				odvo1.setProduct_id(b);
+				odvo1.setOrder_price(c);
 				odvo1.setOrder_no(order_num_update);
 				System.out.println(odvo1);
 				odservice.insert(odvo1);
@@ -188,16 +192,12 @@ public class PurchaseController {
 		}
 
 	}
-
+	
+	//결제 페이지
 	@GetMapping("/purchase2")
-	public String perchase(String id, String pwd, HttpSession session, Model model) {
-		if (session != null) { // 회원인 경우 세션에 아이디 담기
-			session.setAttribute("id", id);
-			return "frontend/order/purchase2";
-		} else {
-			return "frontend/order/purchase2";
-		}
-
+	public String purchase(String id, String pwd, HttpSession session, Model model) {
+	
+		return "frontend/order/purchase2";
 	}
 
 	@RequestMapping(value = "/paymentInsert", produces = { MediaType.APPLICATION_JSON_VALUE })
@@ -213,6 +213,28 @@ public class PurchaseController {
 			map.put("code", "fail");
 		}
 		return map;
+	}
+	
+	@GetMapping("/paymentSuccess")
+	public String paymentSuccess(HttpSession session, Model model,int order_no) {
+		HashMap<String, Object> map = new HashMap<String, Object>();
+		map.put("order_no",order_no );	
+		map.put("order_status","배송 준비중" );
+		map.put("payment_status","결제 완료" );
+		omservice.update(map);
+		
+		HashMap<String, Object> map2 = new HashMap<String, Object>();
+		map2.put("order_no",order_no );	
+		map2.put("payment_status","결제 완료" );
+		pservice.update(map);
+		model.addAttribute("order_no", order_no);
+		return "frontend/order/paymentSuccess";
+	}
+	
+	@GetMapping("/paymentFail")
+	public String paymentFail(HttpSession session, Model model,String payment_status,int order_no) {
+		model.addAttribute("order_no", order_no);
+		return "frontend/order/paymentFail";
 	}
 
 }

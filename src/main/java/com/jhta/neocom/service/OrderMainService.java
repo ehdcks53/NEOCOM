@@ -30,6 +30,10 @@ public class OrderMainService {
 		return mapper.searchRndNo(map);
 	}
 
+	public int update(HashMap<String, Object> map) {
+		return mapper.update(map);
+	}
+	
 	public int updateno(HashMap<String, Object> map) {
 		return mapper.updateno(map);
 	}
