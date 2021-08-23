@@ -98,5 +98,15 @@
 	<update id="cntHit">
 		update qna_board set qna_hit=qna_hit+1 where qna_board_no=#{qna_board_no}
 	</update>
+	
+	
+	<!-- 어드민용 -->
+	<select id="qq_list" resultType="hashmap" parameterType="hashmap">
+		select qq.*,mm.mem_no,mm.Nickname 
+		from qna_board qq inner join member_Info mm on qq.mem_no=mm.mem_no 
+		<include refid="search" />
+		order by qq.qna_group_no desc, qq.qna_group_no desc, qq.qna_group_depth asc
+		limit #{qq_startRow},10
+	</select>
 
 </mapper>

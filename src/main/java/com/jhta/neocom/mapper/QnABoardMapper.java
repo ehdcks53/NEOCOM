@@ -14,4 +14,6 @@ public interface QnABoardMapper {
 	List<HashMap<String,Object>> list(HashMap<String,Object> map);
 	HashMap<String,Object> detail(int qna_board_no);
 	int cntHit(int qna_board_no);
+	
+	List<HashMap<String,Object>> qq_list(HashMap<String,Object> qq_map);
 }

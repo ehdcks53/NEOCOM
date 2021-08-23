@@ -44,4 +44,9 @@ public class QnABoardService {
 	public int cntHit(int qna_board_no) {
 		return mapper.cntHit(qna_board_no);
 	}
+	
+	
+	public List<HashMap<String,Object>> qq_list(HashMap<String,Object> qq_map) {
+		return mapper.qq_list(qq_map);
+	}
 }

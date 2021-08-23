@@ -214,7 +214,7 @@ opacity: 0;
 		<h4>답변하기</h4>
 		<hr class="padding-bottom-1x">
 		
-		<form class="row" name="qnaForm" method="post" action="${pageContext.request.contextPath}/community/qnaboard_insert">
+		<form class="row" name="qnaForm" method="post" action="${pageContext.request.contextPath}/community/qnaboard_reply?qna_board_no=${map.qna_board_no }">
 			<div class="col-md-12">
 				<div class="form-group">
 					<label for="qna_title">제목</label>
@@ -297,7 +297,7 @@ opacity: 0;
 	<script src="${pageContext.request.contextPath}/static/frontend/assets/js/scripts.min.js"></script>
 <script>
 	function clickAdd(formName){
-		formName.action = "${pageContext.request.contextPath}/community/qnaboard_insertReply?qna_board_no=${map.qna_board_no }";
+		formName.action = "${pageContext.request.contextPath}/community/qnaboard_reply?qna_board_no=${map.qna_board_no }";
 		formName.method = "post";
 		formName.submit();
 	}

@@ -114,11 +114,14 @@
 			
 			
 			<div class="row" style="margin-bottom:40px;">
+				<c:if test="${id == 'admin' || id == 'manager' }">
 				<div style="margin-left:30px;">
-					<a class="btn btn-outline-secondary btn-sm" id="prevAtag" href="${pageContext.request.contextPath }/community/qnaboard_insertReply?qna_board_no=${map.qna_board_no}">
+					<a class="btn btn-outline-secondary btn-sm" id="prevAtag" href="${pageContext.request.contextPath }/community/qnaboard_reply?qna_board_no=${map.qna_board_no}">
 						답변하기
 					</a>
 				</div>
+				</c:if>
+				
 				<div class="ml-md-auto" style="margin-right:30px;">
 					<a class="btn btn-outline-secondary btn-sm" id="nextAtag" href="${pageContext.request.contextPath }/community/qnaboard_update?qna_board_no=${map.qna_board_no}">
 						수정
@@ -127,6 +130,7 @@
 						삭제
 					</a>
 				</div>
+				
 			</div>
 			
 		</div>
@@ -144,5 +148,9 @@
 	<!-- JavaScript (jQuery) libraries, plugins and custom scripts-->
 	<script src="${pageContext.request.contextPath}/static/frontend/assets/js/vendor.min.js"></script>
 	<script src="${pageContext.request.contextPath}/static/frontend/assets/js/scripts.min.js"></script>
+<script>
+	var sss = "${search.mem_no}";
+	console.log(sss);
+</script>
 </body>
 </html>

@@ -107,14 +107,14 @@ a {
 					<c:choose>
 						<c:when test="${vo.qna_group_order !=0 }">
 							<td></td>
-							<td class="text-left"><a href="${pageContext.request.contextPath}/community/qnaboard_detail?qna_board_no=${vo.qna_board_no}&qna_secret_chk=${vo.qna_secret_chk}">[Re]&nbsp;&nbsp; ${vo.qna_title }</a></td>
+							<td class="text-left"><a href="${pageContext.request.contextPath }/community/qnaboard_detail?qna_board_no=${vo.qna_board_no}&qna_secret_chk=${vo.qna_secret_chk }">[Re]&nbsp;&nbsp; ${vo.qna_title }</a></td>
 							<td>${vo.Nickname }</td>
 							<td><fmt:parseDate value="${vo.qna_regdate }" var="qna_regdate" pattern="yyyy-MM-dd'T'HH:mm:ss" /><fmt:formatDate value="${qna_regdate }" pattern="yyyy-MM-dd HH:mm:ss" /></td>
 							<td>${vo.qna_hit }</td>
 						</c:when>
 						<c:otherwise>
 							<td>${vo.qna_board_no }</td>
-							<td class="text-left"><a href="${pageContext.request.contextPath}/community/qnaboard_detail?qna_board_no=${vo.qna_board_no}&qna_secret_chk=${vo.qna_secret_chk}">${vo.qna_title }</a></td>
+							<td class="text-left"><a href="${pageContext.request.contextPath }/community/qnaboard_detail?qna_board_no=${vo.qna_board_no}&qna_secret_chk=${vo.qna_secret_chk }">${vo.qna_title }</a></td>
 							<td>${vo.Nickname }</td>
 							<td><fmt:parseDate value="${vo.qna_regdate }" var="qna_regdate" pattern="yyyy-MM-dd'T'HH:mm:ss" /><fmt:formatDate value="${qna_regdate }" pattern="yyyy-MM-dd HH:mm:ss" /></td>
 							<td>${vo.qna_hit }</td>
@@ -176,7 +176,7 @@ a {
 <!-- 페이지 컨텐트 끝 -->
 
 	<!-- modal -->
-	<div class="modal fade" id="insertModal">
+	<div class="modal fade" id="loginModal">
 		<div class="modal-dialog" role="document">
 			<div class="modal-content">
 				<div class="modal-header">
@@ -212,8 +212,21 @@ function clickInsert(){
 	if(sessionId!=null && sessionId!='') {
 		location.href='${pageContext.request.contextPath}/community/qnaboard_insert';
 	}else{
-		$("#insertModal").modal();
+		$("#loginModal").modal();
 	}
+}
+
+/* 로그인 상태에서만 상세보기 클릭 가능 
+function clickTitle(){
+	var sessionId = "${id}";
+	console.log(sessionId);
+	var url = "${pageContext.request.contextPath}/community/qnaboard_detail?";
+	var data = "qna_board_no=${vo.qna_board_no}&qna_secret_chk=${vo.qna_secret_chk}"
+	if(sessionId!=null && sessionId!='') {
+		location.href = url + data;
+	}else{
+		$("#loginModal").modal();
+	} */
 }
 </script>
 </body>
