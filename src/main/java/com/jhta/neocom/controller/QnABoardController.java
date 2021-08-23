@@ -6,6 +6,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -54,10 +55,11 @@ public class QnABoardController {
 
 	// 문의게시판 답변 작성
 	@RequestMapping(value = "/community/qnaboard_insertReply", method = RequestMethod.POST)
-	public String qnaboard_insertReplyOk(Model model, QnABoardVo vo, HttpSession session, int qna_board_no)
+	public String qnaboard_insertReplyOk(Model model, QnABoardVo vo, Authentication authentication, int qna_board_no)
 			throws Exception {
-		String id = (String) session.getAttribute("id");
-		int mem_no = m_service.searchNo(id);
+		CustomUserDetails cud = (CustomUserDetails) authentication.getPrincipal();
+		MemberVo vo = cud.getMemberVo();
+		int mem_no = vo.getMem_no();
 		vo.setMem_no(mem_no);
 
 		HashMap<String, Object> map = service.detail(qna_board_no);

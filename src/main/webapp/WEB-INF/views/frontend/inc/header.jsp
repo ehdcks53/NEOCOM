@@ -53,7 +53,6 @@
 	
 <!-- 툴바 -->
 	<div class="toolbar d-flex">
-
 				<sec:authorize access="isAnonymous()">
 				<div class="toolbar-item">
 					<a href="${pageContext.request.contextPath }/account/join1">
