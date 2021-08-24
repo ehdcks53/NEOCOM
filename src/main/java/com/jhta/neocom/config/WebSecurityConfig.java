@@ -58,7 +58,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         // http.cors().and();
         http.csrf().disable();
         http.authorizeRequests() // 해당 메소드 아래는 각 경로에 따른 권한을 지정할 수 있다.
-                .antMatchers("/", "/account/**", "/static/**", "/upload/**","/shop/product_detail").permitAll()
+               
                 .antMatchers("/admin/**").hasRole("ADMIN") // 괄호의 권한을 가진 유저만 접근가능, ROLE_가 붙어서 적용 됨.즉, 테이블에 ROLE_권한명 으로 저장해야 함.
                 .antMatchers("/user").hasRole("USER").anyRequest().authenticated() // 로그인된 사용자가 요청을 수행할 떄 필요하다 만약 사용자가
                                                                                    // 인증되지 않았다면, 스프링 시큐리티 필터는 요청을 잡아내고
