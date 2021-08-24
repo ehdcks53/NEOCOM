@@ -139,7 +139,7 @@
 					<div class="mb-4"></div>
 					<div class="row">
 						<div class="col-sm-6">
-						<button type="submit" class="btn btn-primary btn-block m-1" formaction="${pageContext.request.contextPath}/purchase0"
+						<button type="submit" class="btn btn-primary btn-block m-1" formaction="${pageContext.request.contextPath}/member/purchase0"
                           formmethod="post" formtarget="_self">구매하기</button>
 						   
 						  
@@ -148,8 +148,7 @@
 						<div>
 						</div>
 						<div class="col-sm-6">
-							<sec:authentication property="principal.memberVo" var="memberVo"/>
-							<button type="submit" class="btn btn-secondary btn-block m-1" formaction="${pageContext.request.contextPath }/cart?id=" formmethod="get" formtarget="_self">장바구니</button>	
+							<button type="submit" class="btn btn-secondary btn-block m-1" formaction="${pageContext.request.contextPath }/member/cart?id=" formmethod="get" formtarget="_self">장바구니</button>	
 						</div> <!-- 장바구니 url -->
 						
 					</div>
