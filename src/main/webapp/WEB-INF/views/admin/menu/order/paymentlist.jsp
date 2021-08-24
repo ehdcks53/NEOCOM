@@ -65,10 +65,10 @@
 									<tr>
 										<th width="10%">결제번호</th>
 										<th width="10%" data-orderable="true">주문번호</th>
-										<th class="text-nowrap">결제금액</th>
-										<th class="text-nowrap">상품명</th>
-										<th class="text-nowrap">주문날짜</th>
-										<th class="text-nowrap">주문상태</th>
+										<th class="text-nowrap">결제 금액</th>
+										<th class="text-nowrap">결제자</th>
+										<th class="text-nowrap">결제 날짜</th>
+										<th class="text-nowrap">결제 상태</th>
 										<th>상세보기</th>
 										<th width="5%"></th>
 										<th width="5%"></th>
@@ -77,17 +77,17 @@
 								<tbody>
 									<c:forEach var="vo" items="${list }" varStatus="status">
 										<tr>
+											<td>${vo.payment_num }</td>
 											<td>${vo.order_no }</td>
-											<td>${vo.mem_no }</td>
-											<td>${vo.order_num }</td>
-											<td>${vo.tot_price }</td>
-											<td>${vo.order_date }</td>
-											<td>${vo.order_status }</td>
+											<td>${vo.payment_amount }</td>
+											<td>${vo.payer_name }</td>
+											<td>${vo.payment_date }</td>
+											<td>${vo.payment_status }</td>
 											<td>상세보기</td>
 											<td><a href="${pageContext.request.contextPath }/admin/cate/delete?order_no=${vo.order_no }" class="btn btn-sm btn-primary w-60px me-1">삭제</a></td>
 											<td><a href="#modal-dialog" class="open_modal btn btn-sm btn-white w-60px" data-bs-toggle="modal" 
-											data-order_no="${vo.order_no}" data-mem_no="${vo.mem_no}" data-order_num="${vo.order_num}" data-tot_price="${vo.tot_price}"
-											data-order_date="${vo.order_date}" data-order_status="${vo.order_status}">수정...?</a></td>
+											data-order_no="${vo.order_no}" data-payment_status="${vo.payment_status}"
+											>수정...?</a></td>
 										</tr>
 									</c:forEach>
 								</tbody>

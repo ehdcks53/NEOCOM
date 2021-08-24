@@ -48,8 +48,9 @@ public class CartController {
 		return map;
 	}
 
-	@GetMapping("/insertCart")
-	public String insertCart(Authentication authentication, String product_id) {
+	//@GetMapping("/insertCart")
+	@RequestMapping(value = "/insertCart", produces = { MediaType.APPLICATION_JSON_VALUE })
+	public HashMap<String, Object> insertCart(Authentication authentication, String product_id) {
 		CustomUserDetails cud = (CustomUserDetails) authentication.getPrincipal();
 		MemberVo vo = cud.getMemberVo();
 		int mem_no = vo.getMem_no();
@@ -60,7 +61,7 @@ public class CartController {
 		map.put("product_id", product_id);
 		service.insert(map);
 
-		return "redirect:/";
+		return map;
 	}
 
 	@GetMapping("/deleteCart")

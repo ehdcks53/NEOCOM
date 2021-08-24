@@ -37,6 +37,10 @@ public class OrderMainService {
 	public int updateno(HashMap<String, Object> map) {
 		return mapper.updateno(map);
 	}
+	
+	public int updateCC(HashMap<String, Object> map) {
+		return mapper.updateCC(map);
+	}
 
 	public List<OrderMainVo> myOrderList(int mem_no) {
 		return mapper.myOrderList(mem_no);

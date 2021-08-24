@@ -1,6 +1,7 @@
 package com.jhta.neocom.service;
 
 import java.util.HashMap;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -23,6 +24,10 @@ public class PaymentService {
 
 	public int update(HashMap<String, Object> map) {
 		return mapper.update(map);
+	}
+	
+	public List<PaymentVo> list() {
+		return mapper.list();
 	}
 
 }

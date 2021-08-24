@@ -10,6 +10,7 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
+import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -20,6 +21,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.jhta.neocom.model.CartVo;
+import com.jhta.neocom.model.CustomUserDetails;
+import com.jhta.neocom.model.MemberVo;
 import com.jhta.neocom.model.OrderDetailVo;
 import com.jhta.neocom.model.OrderMainVo;
 import com.jhta.neocom.model.PaymentVo;
@@ -95,11 +98,14 @@ public class PurchaseController {
 	// 주문 등록
 	// 주문 번호 만들기..
 	@PostMapping("/purchase")
-	public ModelAndView purchase(OrderMainVo vo,String[] order_price, String[] product_count, String[] product_id, HttpSession session,
-			Model model) {
+	public ModelAndView purchase(OrderMainVo vo,String[] order_price, String[] product_count,
+			String[] product_id, Authentication authentication, Model model) {
 		try {
-			int mem_no = (Integer) session.getAttribute("mem_no");
+			CustomUserDetails cud = (CustomUserDetails) authentication.getPrincipal();
+			MemberVo mvo = cud.getMemberVo();
+			int mem_no = mvo.getMem_no();
 			vo.setMem_no(mem_no);
+			System.out.println(order_price[0]+"원"+product_count[0]+": 개수");
 			// 주문 번호 만들기(ex:210817 + order_no )
 			Calendar cal = Calendar.getInstance();
 			int year = cal.get(Calendar.YEAR);
@@ -163,12 +169,32 @@ public class PurchaseController {
 			mv.addObject("order_address",vo.getOrder_address());
 			mv.addObject("order_address_detail",vo.getOrder_address_detail());
 			
+//			OrderDetailVo odvo0 = new OrderDetailVo();
+//			odvo0.setMem_no(mem_no);
+//			int a0 = Integer.parseInt(product_count);
+//			odvo0.setProduct_count(a0);
+//			odvo0.setProduct_id(product_id);
+//			odvo0.setOrder_price(order_price);
+//			odvo0.setOrder_no(order_num_update);
+			
 //			vo3.setOrder_no(order_num_update); vo3.setMem_no(mem_no);
 //			System.out.println(vo3); odservice.insert(vo3);
 			
-
+			System.out.println("id랭쓰"+product_id.length);
 			OrderDetailVo odvo1 = new OrderDetailVo();
-
+			if(product_id.length==1) {
+				int a = Integer.parseInt(product_count[0]);
+				System.out.println(a + 2 + "count");
+				int b = Integer.parseInt(product_id[0]);
+				int c =Integer.parseInt(order_price[0]);
+				System.out.println(b + 2 + "id");
+				odvo1.setProduct_count(a);
+				odvo1.setProduct_id(b);
+				odvo1.setOrder_price(c);
+				odvo1.setOrder_no(order_num_update);
+				System.out.println(odvo1);
+				odservice.insert(odvo1);
+			}
 			odvo1.setMem_no(mem_no);
 			for (int i = 0; i < product_id.length - 1; i++) {
 				System.out.println(product_count[i]);
@@ -197,8 +223,14 @@ public class PurchaseController {
 	
 	//결제 페이지
 	@GetMapping("/purchase2")
-	public String purchase(String id, String pwd, HttpSession session, Model model) {
-	
+	public String purchase(String id, int order_no,Authentication authentication, Model model) {
+		CustomUserDetails cud = (CustomUserDetails) authentication.getPrincipal();
+		MemberVo mvo = cud.getMemberVo();
+		int mem_no = mvo.getMem_no();
+		HashMap<String, Object> map = new HashMap<String, Object>();
+		model.addAttribute("order_no", order_no);
+		model.addAttribute("mem_no",mem_no);
+		System.out.println(order_no);
 		return "frontend/order/purchase2";
 	}
 

@@ -12,6 +12,6 @@
  	<delete id="delete" parameterType="int">
  		delete from order_detail where order_detail_no=#{order_detail_no}
  	</delete> 
-
+	
  	
   </mapper>

@@ -18,6 +18,8 @@ public interface OrderMainMapper {
 
 	int updateno(HashMap<String, Object> map);
 	
+	int updateCC(HashMap<String, Object> map);
+	
 	List<OrderMainVo> list();
 
 	List<OrderMainVo> myOrderList(int mem_no);
