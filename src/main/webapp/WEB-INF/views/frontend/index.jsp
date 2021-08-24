@@ -246,7 +246,7 @@
 			
 		console.log(product_id)
 			$.ajax({
-				url:"${pageContext.request.contextPath}/insertCart",
+				url:"${pageContext.request.contextPath}/member/insertCart",
 				dataType:"json",
 				data:{"product_id" : product_id},
 				Type:'post',
