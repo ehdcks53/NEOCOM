@@ -113,7 +113,7 @@ font-family: 'Noto Serif KR', serif;
 						<thead>	
 							<tr>
 								<th class="text-center"><input type="checkbox" name="allchk" id="allchk"></th>
-								<th class="text-center">상품이미지</th><!-- 상품번호 -->
+								<th class="text-center">상품이미지</th>
 								<th class="text-center">상품명</th>
 								<th class="text-center">상품금액</th>
 								<th class="text-center">수량</th>
@@ -124,18 +124,14 @@ font-family: 'Noto Serif KR', serif;
 						<tbody id="cart_list">
 					   	<c:forEach var="vo" items="${cart }">
 							<tr>
-								<form action="#" method="post" id="cart_vo_${vo.cart_no}" class="cart_vo">
-									<td class="text-center"><input type="checkbox" name="cart_no" class="cart_nos" value="${vo.cart_no}" ></td>
-									<td class="text-center text-lg">
-										<input type="hidden" name='product_id' class="product_ids" value="${vo.product_id}">
-										<input type="hidden" name='img_name_save' class="img_name_save" value="${vo.img_name_save}">
-										<img width=100; height=100; src="<c:url value='/upload/product_img/${vo.img_name_save}' />" alt="<c:url value='/upload/product_img/${vo.img_name_save}' />" />
-									</td>
-									<td class="text-center text-lg" style="font-size: 21px;">
-										<input type="hidden" name="product_name" class="product_names" value="${vo.product_name}">
+								<td class="text-center"><input type="checkbox" name="cart_no" class="cart_nos" value="${vo.cart_no}" ></td>
+								<td class="text-center text-lg">
+									<img width=100; height=100; src="<c:url value='/upload/product_img/${vo.img_name_save}' />" alt="<c:url value='/upload/product_img/${vo.img_name_save}' />" />
+								</td>
+								<td class="text-center text-lg" style="font-size: 21px;">
 										${vo.product_name }
 									</td>
-									<td class="text-center text-lg"><input type="hidden" name="selling_price" class="selling_prices" value="${vo.selling_price}">${vo.selling_price }</td>									
+									<td class="text-center text-lg">${vo.selling_price }</td>									
 									<td class="text-center">
 										<div class="count-input">
 											<p style="display:table;margin:0 auto;">
@@ -194,7 +190,15 @@ font-family: 'Noto Serif KR', serif;
 	      <div class="shopping-cart-footer">
 	        <div class="column"><a class="btn btn-outline-secondary" href="shop-grid-ls.html"><i class="icon-arrow-left"></i>&nbsp;쇼핑 계속하기</a></div>
 	        <div class="column"><a class="btn btn-secondary" href="#" data-toast data-toast-type="success" data-toast-position="topRight" data-toast-icon="icon-check-circle" data-toast-title="Your cart" data-toast-message="is updated successfully!">Update Cart</a>
-	         <button class="btn btn-primary" id="purchace_btn" value="구매하기" ></div>
+
+	        	<button class="btn btn-primary" id="purchase_btn" >구매하기</button>
+
+
+				<form id="cart_nos_form" method="post" action="${pageContext.request.contextPath}/cart/purchaseList">
+					<input type="submit" class="btn btn-primary" value="구매하기">
+				</form>
+			</div>
+
 	        
 	      </div>
 	      
@@ -306,51 +310,61 @@ font-family: 'Noto Serif KR', serif;
 			$("#checkbox_group").on("change","input[name='cart_no']",function(){ 
 				var sum = 0;
 				var checkbox = $("input[name=cart_no]:checked");
-				var cart_vo_list = new Array();
+				var cart_nos = new Array();
 				// 체크된 체크박스 값을 가져온다
 				checkbox.each(function(i) {
 					// 총액 계산
-					let selling_price=parseInt(checkbox.parent().parent().eq(i).children().eq(3).text());
+					let selling_price=parseInt(checkbox.parent().parent().eq(i).children().eq(5).text());
 					sum += selling_price;
 
-					// form 데이터 가져옴
-					var cart_vo = $('#cart_vo_'+$(this).val()).serializeArray();
-
-					// 배열에 form 데이터 하나씩 추가
-					cart_vo_list.push(cart_vo);
+					// 가져온 값을 배열에 담는다.
+					console.log("장바구니 번호:"+$(this).val());
+					cart_nos.push($(this).val());
 				});
 
 				$('#tot_sum').val(sum);
-				console.log(cart_vo_list);  // 콘솔에 배열 출력
+				console.log("장바구니 번호 목록 :" + cart_nos);
+				$("#cart_nos_form").find(':hidden').remove();
+				$.each(cart_nos,function(index,item){
+					console.log("배열안의 값들 : "+item);
+					$("#cart_nos_form").append(
+						`<input type="hidden" name="cart_nos" value="\${item}">`
+					);
+
+				});
+			});
+
+		});
+
 				
 
 				// 구매하기 버튼 클릭했을때
-				$("#purchase_btn").on("click",function(){
+		/*		$("#purchase_btn").on("click",function(){
+					console.log("버튼클릭!");
 					if(cart_vo_list==null)
 						alert("구입할 목록을 선택해 주세요.");
 					
 					$.ajax({
-						url:"", // 어디로 보낼지 모르겠어서...
-						data: {"cart_vo_list" : cart_vo_list},
+						url:"${pageContext.request.contextPath}/purchase1", // 어디로 보낼지 모르겠어서...
+						data:{"id": "abc"},
 						dataType: "json", // 서버(컨트롤러)에서 파라미터를 아마 List<CartVo> cart_vo_list 이렇게 받음될거에여
 						type: "post",
 						success:function(data){ // 통신에 성공했을 때 실행하는 callback함수, data는 controller에서 설정해준 @ResponseBody 타입으로 와여...
 							console.log(data);
-							// location.href("url");     // 3개 다 페이지 이동할 때 쓰는건데 자세한건 구글링해보셈 ㅋ
+							//location.href("url");     // 3개 다 페이지 이동할 때 쓰는건데 자세한건 구글링해보셈 ㅋ
 							// location.replace("url");
 							// history.pushState(""); 
 						},
-						error:function(){ // 서버랑 통신하는거 실패했을때 실행하는 callback함수
-							alert("에러 발생");
+						error:function(request, status, error){ // 서버랑 통신하는거 실패했을때 실행하는 callback함수
+							alert("에러 발생"+error);
+							alert("code:"+request.status+"\n"+"error:"+error);
+
 						},
 						complete:function(){ // success나 error callback함수가 실행되고 난 후, 실행되는 callback 함수. 비워도 상관없음
 
 						}
-					});
-				});
-				
-			});
-		});
+					}); */
+
 	
 		function list(){
 			$("#cart_list").empty();
@@ -369,18 +383,15 @@ font-family: 'Noto Serif KR', serif;
 							$("#cart_list").append(
 							`		
 							<tr>
-								<form action="#" method="post" id="cart_vo_\${cart_no}" class="cart_vo">
 									<td class="text-center"><input type="checkbox" name="cart_no" class="cart_nos" value="\$cart_no}" ></td>
 									<td class="text-center text-lg">
-										<input type="hidden" name='product_id' class="product_ids" value="\${product_id}">
-										<input type="hidden" name='img_name_save' class="img_name_save" value="\${img_name_save}">
 										<img width=100; height=100; src="<c:url value='/upload/product_img/\${img_name_save}' />" alt="<c:url value='/upload/product_img/\${img_name_save}' />" />
 									</td>
 									<td class="text-center text-lg" style="font-size: 21px;">
 										<input type="hidden" name="product_name" class="product_names" value="\${product_name}">
 										\${product_name }
 									</td>
-									<td class="text-center text-lg"><input type="hidden" name="selling_price" class="selling_prices" value="\${selling_price}">\${selling_price }</td>									
+									<td class="text-center text-lg">\${selling_price }</td>									
 									<td class="text-center">
 										<div class="count-input">
 											<p style="display:table;margin:0 auto;">
@@ -397,7 +408,6 @@ font-family: 'Noto Serif KR', serif;
 									<td class="text-center">
 										<a class="remove-from-cart" onclick="remove(\${cart_no})" data-toggle="tooltip" title="삭제"><i class="icon-x"></i></a>
 									</td>	
-								</form>
 							</tr>					
 							`
 						);
@@ -436,46 +446,6 @@ font-family: 'Noto Serif KR', serif;
 			});
 		};
 
-/*		 $(document).ready(function(){
-	            
-	            $("#save").click(function(e) {
-	            	e.preventDefault();
-	                //배열 선언
-	                var cartArray = [];
-
-	                $('input[name="chkbox"]:checked').each(function(i){//체크된 리스트 저장
-	                	cartArray.push($(this).val());
-	                	  console.log(cartArray)
-	                });
-	                var objParams = {
-	                        "cartList" : cartArray        //장바구니 배열 저장
-	                    };
-	                
-	                //ajax 호출
-	                $.ajax({
-	                    url         :   "${pageContext.request.contextPath}/purchase1",
-	                    dataType    :   "json",
-	                    contentType :   "application/x-www-form-urlencoded; charset=UTF-8",
-	                    type        :   "post",
-	                    data        :   objParams,
-	                    success     :   function(retVal){
-	 
-	                        if(retVal.code == "OK") {
-	                            alert(retVal.message);
-	                        } else {
-	                            alert(retVal.message);
-	                        }
-	                         
-	                    },
-	                    error       :   function(request, status, error){
-	                    	alert("code = "+ request.status +  " error = " + error);
-	                    	console.log("AJAX_ERROR");
-	                    }
-	                });
-	                
-	            })
-	            
-	        });*/
 		
 	</script>  
 </body>
