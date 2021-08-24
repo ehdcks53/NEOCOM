@@ -37,6 +37,9 @@ a {
 	height: 50px;
 	vertical-align: middle;
 }
+.table tbody tr td img{
+	width: 20px;
+}
 </style>
 </head>
 <body>
@@ -84,7 +87,7 @@ a {
 					<input type="text" class="form-control col-sm-3 p-1" value="${keyword}" name="keyword" >
 					<button type="submit" class="form-control col-sm-1 w-1 p-2">검색</button>
 					<div class="ml-md-auto" style="margin-right:20px;">
-						<button type="button" id="insertBtn" class="form-control btn-sm btn-outline-info" onclick="clickInsert()">문의하기 <i class="icon-arrow-right-circle"></i></button>
+						<button type="button" id="insertBtn" class="form-control btn-sm btn-outline-info" onclick="location.href='${pageContext.request.contextPath}/community/qnaboard_insert'">문의하기 <i class="icon-arrow-right-circle"></i></button>
 					</div>
 				</div>
 			</form>
@@ -105,21 +108,28 @@ a {
 				<c:forEach var="vo" items="${list }">
 					<tr>
 					<c:choose>
-						<c:when test="${vo.qna_group_order !=0 }">
+						<c:when test="${vo.qna_group_order >0 }">
 							<td></td>
-							<td class="text-left"><a href="${pageContext.request.contextPath }/community/qnaboard_detail?qna_board_no=${vo.qna_board_no}&qna_secret_chk=${vo.qna_secret_chk }">[Re]&nbsp;&nbsp; ${vo.qna_title }</a></td>
-							<td>${vo.Nickname }</td>
-							<td><fmt:parseDate value="${vo.qna_regdate }" var="qna_regdate" pattern="yyyy-MM-dd'T'HH:mm:ss" /><fmt:formatDate value="${qna_regdate }" pattern="yyyy-MM-dd HH:mm:ss" /></td>
-							<td>${vo.qna_hit }</td>
+							<td class="text-left">
+								<a href="${pageContext.request.contextPath }/community/qnaboard_detail?qna_board_no=${vo.qna_board_no}&qna_secret_chk=${vo.qna_secret_chk }">[Re]&nbsp;&nbsp; ${vo.qna_title }</a>
+								<c:if test="${vo.qna_secret_chk==true }">
+									<img src="${pageContext.request.contextPath}/static/frontend/assets/favicon&icon/lockicon.png" class="lock_img">
+								</c:if>
+							</td>
 						</c:when>
 						<c:otherwise>
 							<td>${vo.qna_board_no }</td>
-							<td class="text-left"><a href="${pageContext.request.contextPath }/community/qnaboard_detail?qna_board_no=${vo.qna_board_no}&qna_secret_chk=${vo.qna_secret_chk }">${vo.qna_title }</a></td>
+							<td class="text-left">
+								<a href="${pageContext.request.contextPath }/community/qnaboard_detail?qna_board_no=${vo.qna_board_no}&qna_secret_chk=${vo.qna_secret_chk }">${vo.qna_title }</a>
+								<c:if test="${vo.qna_secret_chk==true }">
+									<img src="${pageContext.request.contextPath}/static/frontend/assets/favicon&icon/lockicon.png" class="lock_img">
+								</c:if>
+							</td>
+						</c:otherwise>
+					</c:choose>
 							<td>${vo.Nickname }</td>
 							<td><fmt:parseDate value="${vo.qna_regdate }" var="qna_regdate" pattern="yyyy-MM-dd'T'HH:mm:ss" /><fmt:formatDate value="${qna_regdate }" pattern="yyyy-MM-dd HH:mm:ss" /></td>
 							<td>${vo.qna_hit }</td>
-						</c:otherwise>
-					</c:choose>
 					</tr>
 				</c:forEach>
 				</tbody>
@@ -175,7 +185,7 @@ a {
 </div>
 <!-- 페이지 컨텐트 끝 -->
 
-	<!-- modal -->
+	<!-- modal 
 	<div class="modal fade" id="loginModal">
 		<div class="modal-dialog" role="document">
 			<div class="modal-content">
@@ -192,7 +202,7 @@ a {
 				</div>
 			</div>
 		</div>
-	</div>
+	</div> -->
 
 
 <!-- footer -->
@@ -205,8 +215,8 @@ a {
 	<script src="${pageContext.request.contextPath}/static/frontend/assets/js/vendor.min.js"></script>
 	<script src="${pageContext.request.contextPath}/static/frontend/assets/js/scripts.min.js"></script>
 <script>
-/* 로그인 상태에서만 문의하기 가능 */
-function clickInsert(){
+//로그인 상태에서만 문의하기 가능 
+/* function clickInsert(){
 	var sessionId = "${id}";
 	console.log(sessionId);
 	if(sessionId!=null && sessionId!='') {
@@ -214,20 +224,7 @@ function clickInsert(){
 	}else{
 		$("#loginModal").modal();
 	}
-}
-
-/* 로그인 상태에서만 상세보기 클릭 가능 
-function clickTitle(){
-	var sessionId = "${id}";
-	console.log(sessionId);
-	var url = "${pageContext.request.contextPath}/community/qnaboard_detail?";
-	var data = "qna_board_no=${vo.qna_board_no}&qna_secret_chk=${vo.qna_secret_chk}"
-	if(sessionId!=null && sessionId!='') {
-		location.href = url + data;
-	}else{
-		$("#loginModal").modal();
-	} */
-}
+} */
 </script>
 </body>
 </html>

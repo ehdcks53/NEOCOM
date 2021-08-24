@@ -6,12 +6,15 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.jhta.neocom.model.CustomUserDetails;
+import com.jhta.neocom.model.MemberVo;
 import com.jhta.neocom.model.NoticeBoardVo;
 import com.jhta.neocom.model.QnABoardVo;
 import com.jhta.neocom.service.MemberService;
@@ -122,23 +125,39 @@ public class CommunityController {
 	
 	// 문의게시판 답변 저장
 	@RequestMapping(value = "/admin/community/qnaboard_reply", method = RequestMethod.POST)
-	public String qnaboardReplyOk(Model model,QnABoardVo vo,HttpSession session,int qna_board_no) {
-	/*	String id = (String) session.getAttribute("id");
-		int mem_no = mm_service.searchNo(id);
-		vo.setMem_no(mem_no); */
-		vo.setMem_no(2);
+	public String qnaboardReplyOk(Model model, QnABoardVo vo, Authentication auth, int qna_board_no) {
+		CustomUserDetails cud = (CustomUserDetails) auth.getPrincipal();
+		MemberVo mvo = cud.getMemberVo();
+		int mem_no = mvo.getMem_no();
+		vo.setMem_no(mem_no);
+		String Nickname = mvo.getNickname();
+		vo.setNickname(Nickname);
 		
 		HashMap<String,Object> map = qq_service.detail(qna_board_no);
-		
+//		System.out.println("맵:" + map);
 		int groupNo = Integer.parseInt(map.get("qna_group_no").toString());
 		int groupOrder = Integer.parseInt(map.get("qna_group_order").toString());
 		int groupDepth = Integer.parseInt(map.get("qna_group_depth").toString());
+		String qna_secret_chk = map.get("qna_secret_chk").toString();
+		
+		if(!qna_secret_chk.equals(null)) {  // 문의글이 비밀글인지 아닌지에 따라 등록됨
+			if(qna_secret_chk.equals("true")) {
+				String qna_password = map.get("qna_password").toString();
+				vo.setQna_secret_chk(1);  
+				vo.setQna_password(qna_password);  // 비밀글일 경우 문의작성자가 등록한 비밀번호로 등록
+			}else {
+				vo.setQna_secret_chk(0);
+				vo.setQna_password(null);
+			}	
+		}
 		
 		vo.setQna_group_no(groupNo);
 		vo.setQna_group_order(groupOrder);
 		vo.setQna_group_depth(groupDepth);
 		
 		qq_service.insertReply(vo);
+		qq_service.status(groupNo);  // 답변상태 변경
+		System.out.println("브이오:" + vo);
 		
 		return "redirect:/admin/community/board_list";
 	}
@@ -147,6 +166,14 @@ public class CommunityController {
 	@RequestMapping(value = "/admin/community/qnaboard_delete", method = RequestMethod.GET)
 	public String qnaboardDelete(int qna_board_no) {
 		qq_service.delete(qna_board_no);
+		return "redirect:/admin/community/board_list";
+	}
+	
+	// 공지사항 수정
+	@RequestMapping(value = "/admin/community/qndboard_update", method = RequestMethod.POST)
+	public String qnaboardUpdate(QnABoardVo vo) {
+		qq_service.update(vo);
+		System.out.println(vo);
 		return "redirect:/admin/community/board_list";
 	}
 }

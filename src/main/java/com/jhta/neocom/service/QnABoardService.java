@@ -21,6 +21,18 @@ public class QnABoardService {
 		return mapper.insertReply(vo);
 	}
 	
+	public int secondReply(QnABoardVo vo) {
+		return mapper.secondReply(vo);
+	}
+	
+	public int ReRe(QnABoardVo vo) {
+		return mapper.ReRe(vo);
+	}
+	
+	public int status(int qna_group_no) {
+		return mapper.status(qna_group_no);
+	}
+	
 	public int delete(int qna_board_no) {
 		return mapper.delete(qna_board_no);
 	}
@@ -43,6 +55,10 @@ public class QnABoardService {
 	
 	public int cntHit(int qna_board_no) {
 		return mapper.cntHit(qna_board_no);
+	}
+	
+	public List<HashMap<String,Object>> myqna(int mem_no) {
+		return mapper.myqna(mem_no);
 	}
 	
 	

@@ -24,7 +24,11 @@
     <link href=" ${pageContext.request.contextPath}/static/admin/assets/plugins/datatables.net-bs4/css/dataTables.bootstrap4.min.css" rel="stylesheet" />
     <link href=" ${pageContext.request.contextPath}/static/admin/assets/plugins/datatables.net-responsive-bs4/css/responsive.bootstrap4.min.css" rel="stylesheet" />
 	<!-- ================== END page-css ================== -->
-	
+<style>
+.table tbody tr td img{
+	width: 20px;
+}
+</style>
 </head>
 <body>
 	<!-- BEGIN #loader -->
@@ -116,7 +120,7 @@
 				<button type="button" class="btn-close" data-bs-dismiss="modal" aria-hidden="true"></button>
 			</div>
 			<div class="modal-body">
-				<form method="post" id="category_nn" action="${pageContext.request.contextPath }/admin/community/noticeboard_update">
+				<form method="post" id="category" action="${pageContext.request.contextPath }/admin/community/noticeboard_update">
 					<div class="row mb-15px">
 						<label class="form-label col-form-label col-md-3">글번호</label>
 							<div class="col-md-9">
@@ -195,8 +199,29 @@
 								<tbody>
 									<c:forEach var="qvo" items="${qq_list }" varStatus="status">
 										<tr>
-											<td>${qvo.qna_board_no }</td>
-											<td>${qvo.qna_title }</td>
+										<c:choose>
+											<c:when test="${qvo.qna_group_order >0 }">
+												<td></td>
+												<td>
+													<c:forEach var="i" begin="1" end="${qvo.qna_group_order }">
+														[Re]&nbsp;
+													</c:forEach>
+													${qvo.qna_title }
+													<c:if test="${qvo.qna_secret_chk==true }">
+														<img src="${pageContext.request.contextPath}/static/frontend/assets/favicon&icon/lockicon.png" class="lock_img">
+													</c:if>
+												</td>
+											</c:when>
+											<c:otherwise>
+												<td>${qvo.qna_board_no }</td>
+												<td>${qvo.qna_title }
+													<c:if test="${qvo.qna_secret_chk==true }">
+														<img src="${pageContext.request.contextPath}/static/frontend/assets/favicon&icon/lockicon.png" class="lock_img">
+													</c:if>
+												</td>
+											</c:otherwise>
+										</c:choose>
+											
 											<td>${qvo.Nickname }</td>
 											<td><fmt:parseDate value="${qvo.qna_regdate }" var="qna_regdate" pattern="yyyy-MM-dd'T'HH:mm:ss" /><fmt:formatDate value="${qna_regdate }" pattern="yyyy-MM-dd HH:mm:ss" /></td>
 											<td>${qvo.qna_hit }</td>
@@ -243,7 +268,7 @@
 				<button type="button" class="btn-close" data-bs-dismiss="modal" aria-hidden="true"></button>
 			</div>
 			<div class="modal-body">
-				<form method="post" id="category_qq" action="${pageContext.request.contextPath }/admin/community/qnaboard_update">
+				<form method="post" id="category" action="${pageContext.request.contextPath }/admin/community/qnaboard_update">
 					<div class="row mb-15px">
 						<label class="form-label col-form-label col-md-3">글번호</label>
 							<div class="col-md-9">

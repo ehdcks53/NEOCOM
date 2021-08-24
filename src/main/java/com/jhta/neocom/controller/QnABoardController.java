@@ -6,12 +6,15 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.jhta.neocom.model.CustomUserDetails;
+import com.jhta.neocom.model.MemberVo;
 import com.jhta.neocom.model.QnABoardVo;
 import com.jhta.neocom.service.MemberService;
 import com.jhta.neocom.service.QnABoardService;
@@ -30,12 +33,12 @@ public class QnABoardController {
 
 	// 문의게시판 글 작성
 	@RequestMapping(value = "/community/qnaboard_insert", method = RequestMethod.POST)
-	public String qnaboard_insertOk(Model model, QnABoardVo vo, HttpSession session) throws Exception {
-		String id = (String) session.getAttribute("id");
-		int mem_no = m_service.searchNo(id);
+	public String qnaboard_insertOk(Model model, QnABoardVo vo, Authentication auth) throws Exception {
+		CustomUserDetails cud = (CustomUserDetails) auth.getPrincipal();
+		MemberVo mvo = cud.getMemberVo();
+		int mem_no = mvo.getMem_no();
 		vo.setMem_no(mem_no);
 
-		System.out.println(vo);
 		service.insert(vo);
 
 		return "redirect:/community/qnaboard_list";
@@ -52,17 +55,30 @@ public class QnABoardController {
 
 	// 문의게시판 답변 작성
 	@RequestMapping(value = "/community/qnaboard_reply", method = RequestMethod.POST)
-	public String qnaboard_replyOk(Model model, QnABoardVo vo, HttpSession session, int qna_board_no) throws Exception {
-		String id = (String) session.getAttribute("id");
-		int mem_no = m_service.searchNo(id);
+	public String qnaboard_replyOk(Model model, QnABoardVo vo, Authentication auth, int qna_board_no) throws Exception {
+		CustomUserDetails cud = (CustomUserDetails) auth.getPrincipal();
+		MemberVo mvo = cud.getMemberVo();
+		int mem_no = mvo.getMem_no();
 		vo.setMem_no(mem_no);
 
 		HashMap<String, Object> map = service.detail(qna_board_no);
-		System.out.println(map);
+//		System.out.println(map);
 		int groupNo = Integer.parseInt(map.get("qna_group_no").toString());
 		int groupOrder = Integer.parseInt(map.get("qna_group_order").toString());
 		int groupDepth = Integer.parseInt(map.get("qna_group_depth").toString());
-
+		String qna_secret_chk = map.get("qna_secret_chk").toString();
+		
+		if(!qna_secret_chk.equals(null)) {  // 문의글이 비밀글인지 아닌지에 따라 등록됨
+			if(qna_secret_chk.equals("true")) {
+				String qna_password = map.get("qna_password").toString();
+				vo.setQna_secret_chk(1);  
+				vo.setQna_password(qna_password);  // 비밀글일 경우 문의작성자가 등록한 비밀번호로 등록
+			}else {
+				vo.setQna_secret_chk(0);
+				vo.setQna_password(null);
+			}	
+		}
+		
 		vo.setQna_group_no(groupNo);
 		vo.setQna_group_order(groupOrder);
 		vo.setQna_group_depth(groupDepth);
@@ -71,9 +87,12 @@ public class QnABoardController {
 		System.out.println("콘솔ㅇㅇㅇㅇㅇㅇㅇㅇ" + vo);
 		System.out.println("콘솔ㅇㅇㅇㅇㅇㅇㅇㅇ" + groupNo + "ㅇㅇㅇ" + groupOrder + "ㅇㅇㅇ" + groupDepth);
 		System.out.println();
-
+		
 		service.insertReply(vo);
-
+		service.secondReply(vo);
+		service.ReRe(vo);
+		service.status(groupNo);  // 답변상태 변경
+		
 		return "redirect:/community/qnaboard_list";
 	}
 
@@ -81,7 +100,7 @@ public class QnABoardController {
 	@RequestMapping(value = "community/qnaboard_delete", method = RequestMethod.GET)
 	public String qnaboard_delete(Model model, int qna_board_no) {
 		service.delete(qna_board_no);
-		return "frontend/community/qnaboard_list";
+		return "redirect:/community/qnaboard_list";
 	}
 
 	// 문의게시판 수정 페이지 이동
@@ -129,25 +148,38 @@ public class QnABoardController {
 
 	// 문의게시판 상세 페이지 이동
 	@RequestMapping(value = "/community/qnaboard_detail", method = RequestMethod.GET)
-	public String qnaboard_detail(int qna_board_no, boolean qna_secret_chk, Model model, HttpSession session) {
-		if (qna_secret_chk == true) { // true, 비밀글일 경우 게시글 비밀번호 확인 페이지로 이동
-			HashMap<String, Object> map = service.detail(qna_board_no);
-			model.addAttribute("map", map);
-
-			return "frontend/community/qnaboard_detailLock";
-
-		} else { // false, 비밀글이 아닐 경우 바로 디테일페이지로 이동
-			HashMap<String, Object> map = service.detail(qna_board_no);
-			service.cntHit(qna_board_no); // 조회수 증가 쿼리
-			model.addAttribute("map", map);
-
+	public String qnaboard_detail(int qna_board_no, boolean qna_secret_chk, Model model, Authentication auth) {
+		CustomUserDetails cud = (CustomUserDetails) auth.getPrincipal();
+		MemberVo mvo = cud.getMemberVo();
+		int mem_no = mvo.getMem_no();
+		
+		HashMap<String, Object> map = service.detail(qna_board_no);
+		model.addAttribute("map", map);
+		model.addAttribute("mvo", mvo);
+		
+		if(qna_secret_chk == false) {
+			service.cntHit(qna_board_no);  // 조회수 증가 쿼리
 			return "frontend/community/qnaboard_detail";
+		}else if(mem_no == 1 || mem_no == 2) {  // 관리자일 경우 바로 읽기
+			service.cntHit(qna_board_no);  // 조회수 증가 쿼리
+			return "frontend/community/qnaboard_detail";
+		}else {  // 비밀글일 경우 비밀번호 확인 페이지로 이동
+			
+			return "frontend/community/qnaboard_detailLock";
 		}
 	}
 
 	// 문의게시판 비밀글 확인
 	@RequestMapping(value = "/community/qnaboard_detailLock")
-	public String qnaboard_detailLock() {
+	public String qnaboard_detailLock(int qna_board_no, Model model, Authentication auth) {
+		CustomUserDetails cud = (CustomUserDetails) auth.getPrincipal();
+		MemberVo mvo = cud.getMemberVo();
+		
+		HashMap<String, Object> map = service.detail(qna_board_no);
+		model.addAttribute("map", map);
+		model.addAttribute("mvo", mvo);
+		service.cntHit(qna_board_no);  // 조회수 증가 쿼리
+		
 		return "frontend/community/qnaboard_detail";
 	}
 

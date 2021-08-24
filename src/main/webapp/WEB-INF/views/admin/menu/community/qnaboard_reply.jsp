@@ -77,7 +77,7 @@
 									<label class="form-label col-form-label col-md-3">내용</label>
 									<div class="col-md-9">
 									<!--<input type="text" name="n_content" class="form-control mb-5px" placeholder="내용" />-->
-										<textarea rows="18" cols="4000" id="n_content" class="form-control mb-5px" readonly >${map.qna_content }</textarea>
+										<textarea rows="18" cols="4000" class="form-control mb-5px" readonly >${map.qna_content }</textarea>
 									</div>
 								</div>
 								<div class="row mb-15px">
@@ -120,35 +120,35 @@
 						<!-- END panel-heading -->
 						<!-- BEGIN panel-body -->
 						<div class="panel-body">
-							<form method="post" action="${pageContext.request.contextPath }/admin/community/qnaboard_reply?qna_board_no=${map.qna_board_no }">
+							<form method="post" name="qnaForm" action="${pageContext.request.contextPath }/admin/community/qnaboard_reply?qna_board_no=${map.qna_board_no }">
 								<div class="row mb-15px">
 									<label class="form-label col-form-label col-md-3">제목</label>
 									<div class="col-md-9">
-										<input type="text" name="qna_title" class="form-control mb-5px" placeholder="제목" />
+										<input type="text" class="form-control mb-5px" placeholder="제목" name="qna_title" id="qna_title" />
 									</div>
 								</div>
 								<div class="row mb-15px">
 									<label class="form-label col-form-label col-md-3">내용</label>
 									<div class="col-md-9">
 									<!--<input type="text" name="n_content" class="form-control mb-5px" placeholder="내용" />-->
-										<textarea rows="24" cols="4000" name="qna_content" id="qna_content" class="form-control mb-10px" placeholder="내용"></textarea>
+										<textarea rows="24" cols="4000" class="form-control mb-10px" placeholder="내용" name="qna_content" id="qna_content" ></textarea>
 									</div>
 								</div>
 								<div class="row mb-15px">
 									<label class="form-label col-form-label col-md-3">공개여부</label>
 									<div class="col-md-9">
 										<div class="form-check form-check-inline">
-											<input class="form-check-input" type="checkbox" id="qna_secret_chk" name="qna_secret_chk" />
+											<input class="form-check-input" type="checkbox" name="qna_secret_chk" id="qna_secret_chk" />
 											<label class="form-check-label" for="qna_secret_chk">비밀글</label>
 										</div>
 										<div class="form-check form-check-inline">
-											<input class="form-control" type="password" id="qna_password" name="qna_password" />
+											<input class="form-control" type="password" name="qna_password" id="qna_password" />
 										</div>
 									</div>
 								</div>
 								<div class="row mb-15px">
 									<div class="col-md-12 text-center"> 
-	   									<input type="button" class="btn btn-primary" onclick="clickAdd(qnaForm)" value="등록">
+	   									<button type="submit" class="btn btn-primary" onclick="clickAdd(qnaForm)">등록</button>
 									</div>
 								</div>
 							</form>
