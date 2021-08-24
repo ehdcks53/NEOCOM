@@ -17,6 +17,16 @@
 		<java.version>11</java.version>
 	</properties>
 	<dependencies>
+		<!-- entityManagerFactory에러때매 -->
+		<dependency>
+		    <groupId>org.javassist</groupId>
+		    <artifactId>javassist</artifactId>
+		    <version>3.23.1-GA</version>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-oauth2-client</artifactId>
+		</dependency>
 		<!-- 제이슨 파싱 -->
 		<dependency>
 			<groupId>com.googlecode.json-simple</groupId>
