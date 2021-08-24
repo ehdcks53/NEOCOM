@@ -83,9 +83,10 @@ public class ProductController {
     }
  //상품 디테일
 	@RequestMapping(value = "/shop/product_detail")
-    public ModelAndView frontendProductDetail(@RequestParam("n") int product_id,@RequestParam("m") int category_id) {
+    public ModelAndView frontendProductDetail(@RequestParam("n") int product_id,@RequestParam("m") int category_id, Authentication authentication) {
 		HashMap<String, Integer> map = new HashMap<String, Integer>();
-		
+		CustomUserDetails cud = (CustomUserDetails) authentication.getPrincipal();
+		MemberVo mvo = cud.getMemberVo();
 		
 		map.put("product_id", product_id);
 		map.put("category_id", category_id);
@@ -103,7 +104,7 @@ public class ProductController {
 		mv.addObject("cvo", cvo);//cvo ==> name쓰기용
 
 		mv.addObject("clist", clist); //category 리스트
-
+		mv.addObject("id", mvo.getId());
 		mv.addObject("list", list);  //상품 한개당 이미지가 2개이상일 경우 list
 		
 

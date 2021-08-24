@@ -147,7 +147,7 @@
 							</div>
 							<div></div>
 							<div class="col-sm-6">
-								<sec:authentication property="principal.memberVo" var="memberVo"/>
+								
 								<input type="button" class="btn btn-secondary btn-block m-1"
 									name=btn2 value="장바구니" onclick="getPost('02')">
 							</div>
@@ -525,6 +525,10 @@
 	
 	
 	function getPost(mode) {
+		var sessionId= "${id}";
+		console.log("sessionId=="+sessionId);
+		var theForm = document.form1;
+
 
 		if (sessionId != null && sessionId != '') {
 			if (mode == "01") {
