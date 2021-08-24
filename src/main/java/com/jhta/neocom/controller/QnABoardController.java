@@ -13,6 +13,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.jhta.neocom.model.CustomUserDetails;
+import com.jhta.neocom.model.MemberVo;
 import com.jhta.neocom.model.QnABoardVo;
 import com.jhta.neocom.service.MemberService;
 import com.jhta.neocom.service.QnABoardService;
@@ -58,8 +60,8 @@ public class QnABoardController {
 	public String qnaboard_insertReplyOk(Model model, QnABoardVo vo, Authentication authentication, int qna_board_no)
 			throws Exception {
 		CustomUserDetails cud = (CustomUserDetails) authentication.getPrincipal();
-		MemberVo vo = cud.getMemberVo();
-		int mem_no = vo.getMem_no();
+		MemberVo memberVo = cud.getMemberVo();
+		int mem_no = memberVo.getMem_no();
 		vo.setMem_no(mem_no);
 
 		HashMap<String, Object> map = service.detail(qna_board_no);

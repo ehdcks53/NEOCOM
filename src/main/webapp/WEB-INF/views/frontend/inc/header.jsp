@@ -67,6 +67,7 @@
 				</sec:authorize>
 
 				<sec:authorize access="isAuthenticated()">
+				<c:set var="permission" value="true" scope="session"/>
 				<div class="toolbar-item">
 					<a href="#">
 						<div><i class="icon-user"></i><span class="text-label"><sec:authentication property="principal.memberVo.id"/>님
