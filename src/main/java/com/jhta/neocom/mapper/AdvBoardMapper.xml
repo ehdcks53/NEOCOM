@@ -38,6 +38,13 @@
 <!-- 전체 글의 갯수 -->
 	<select id="count" resultType="int" parameterType="hashmap">
 	select ifnull(count(*),0) cnt from adv_board <!-- 나오는값이 NULL일때 특정값초기화 -->
-	
 	</select> 
+	
+<!-- 글 상세 목록 -->
+<select id="detail" resultType="hashmap" parameterType="int">
+		select qq.*,mm.mem_no,mm.Nickname 
+		from adv_board qq inner join member_Info mm on qq.mem_no=mm.mem_no 
+		where adv_board_no=#{adv_board_no}
+	</select>
  </mapper>
+

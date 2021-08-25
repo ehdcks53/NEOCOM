@@ -27,3 +27,5 @@ public class FreeBoardController {
 		return "frontend/community/freeboard_detail";
 	}
 }
+
+

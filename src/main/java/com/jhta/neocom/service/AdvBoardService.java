@@ -33,6 +33,9 @@ public List<HashMap<String, Object>> selectBoardList(HashMap<String,Object> map)
 public int count(HashMap<String,Object> map) {
 	return mapper.count(map);
 }
+public HashMap<String, Object> detail(int adv_board_no) {
+	return mapper.detail(adv_board_no);
+}
 }
 
 
