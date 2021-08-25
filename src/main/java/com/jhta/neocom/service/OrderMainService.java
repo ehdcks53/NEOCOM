@@ -45,6 +45,10 @@ public class OrderMainService {
 	public List<OrderMainVo> myOrderList(int mem_no) {
 		return mapper.myOrderList(mem_no);
 	}
+	
+	public List<OrderMainVo> searchOrder(int order_no) {
+		return mapper.searchOrder(order_no);
+	}
 
 	public List<OrderMainVo> list() {
 		return mapper.list();

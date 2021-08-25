@@ -23,4 +23,6 @@ public interface OrderMainMapper {
 	List<OrderMainVo> list();
 
 	List<OrderMainVo> myOrderList(int mem_no);
+
+	List<OrderMainVo> searchOrder(int order_no);
 }

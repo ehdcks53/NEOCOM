@@ -45,7 +45,13 @@
 		where om.mem_no=#{mem_no} and img_category='main' order by od.order_no desc
  	</select>
 
-
+	<!-- 주문내역 서치 -->
+	<select id="searchOrder" resultType="com.jhta.neocom.model.OrderMainVo" parameterType="int">
+		select om.order_no,img_name_save,p.product_name,order_date,tot_price,order_status 
+		from order_main om left join order_detail od on om.order_no=od.order_no 
+		join product_img pi on pi.product_id=od.product_id join product p on 
+		p.product_id=od.product_id  where om.order_no=#{order_no} and img_category='main';
+	</select>
 
 	<select id="list" resultType="com.jhta.neocom.model.OrderMainVo">
 		select * from order_main order by order_no desc;
