@@ -8,20 +8,26 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.security.core.Authentication;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 import com.jhta.neocom.model.CustomUserDetails;
 import com.jhta.neocom.model.MemberVo;
 import com.jhta.neocom.model.OrderMainVo;
-
+import com.jhta.neocom.model.QnABoardVo;
 import com.jhta.neocom.service.OrderMainService;
+import com.jhta.neocom.service.QnABoardService;
 
 
 @RestController
 public class MyPageController {
-    @Autowired
-    private OrderMainService service;
+    @Autowired private OrderMainService service;
+    
+    
 
     
 

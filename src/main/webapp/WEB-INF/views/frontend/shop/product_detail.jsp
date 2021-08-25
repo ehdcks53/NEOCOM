@@ -125,6 +125,7 @@
 						<input type="hidden" name="img_name_save" value="${list[0].img_name_save }">
 
 					<!-- ///////옵션을 넣어야함 -->
+					
 					<!-- 세션없으면 alert메세지 주기  -->
 					<div class="row align-items-end pb-4">
 						<div class="col-sm-6">
