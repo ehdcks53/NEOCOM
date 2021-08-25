@@ -1,5 +1,6 @@
 package com.jhta.neocom.controller;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,12 +13,16 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.jhta.neocom.model.MemberVo;
 import com.jhta.neocom.model.NaverLoginVo;
+import com.jhta.neocom.service.MemberService;
 
 @Controller
 public class LoginController {
 	private NaverLoginVo naverLoginVo;
 	private String apiResult = null;
 
+	@Autowired
+	private MemberService service;
+	
 	@Autowired
 	private void setNaverLoginBO(NaverLoginVo naverLoginVo) {
 		this.naverLoginVo = naverLoginVo;
@@ -40,11 +45,14 @@ public class LoginController {
 	}
 
 	@RequestMapping(value = "/account/login", method = RequestMethod.POST)
-	public String login(Authentication authentication, MemberVo vo, Model model) {
+	public String login(Authentication authentication, MemberVo vo, Model model, HttpServletRequest req) {
 		System.out.println("로그인 컨트롤러 vo : " + vo);
 		System.out.println("로그인 컨트롤러 : " + authentication.getPrincipal() + ", " + authentication.getCredentials() + ", "
 				+ authentication.getAuthorities());
-
+		//로그인 세션정보 수정(비밀번호추가)
+		HttpSession session=req.getSession();
+		MemberVo login=service.login(vo);
+		session.setAttribute("member", login);
 		return "redirect:/";
 	}
 
