@@ -23,14 +23,7 @@
 			<input type="submit" value="구매">
 		</form>
 		
-		
-	<!-- 2번 	
-		<form method="get" action="${pageContext.request.contextPath}/purchase?product_id=${vo.product_id }&product_name=${vo.product_name }&selling_price=${vo.selling_price}">
-			<h4>상품개수:<input type="number" name="product_count" value="1"></h4>
 
-			
-			<input type="submit" value="구매">
-		</form> -->
 </body>
 
 </html>

@@ -25,4 +25,6 @@ public interface MemberMapper {
 	MemberVo selectid(String id);
 	
 	int memberDel(MemberVo vo);
+	
+	MemberVo login(MemberVo vo);
 }

@@ -128,10 +128,6 @@
 	<!-- JavaScript (jQuery) libraries, plugins and custom scripts-->
 	<script src="${pageContext.request.contextPath}/static/frontend/assets/js/vendor.min.js"></script>
 	<script src="${pageContext.request.contextPath}/static/frontend/assets/js/scripts.min.js"></script>
-	<script type="text/javascript">
-	function move(){
-		location.href=""
-	}
-	</script>
+	
 </body>
 </html>

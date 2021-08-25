@@ -53,4 +53,8 @@ public class MemberService {
 	public int memberDel(MemberVo vo) {
 		return mapper.memberDel(vo);
 	}
+	
+	public MemberVo login(MemberVo vo) {
+		return mapper.login(vo);
+	}
 }

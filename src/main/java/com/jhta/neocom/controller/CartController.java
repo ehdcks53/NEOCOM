@@ -25,7 +25,7 @@ public class CartController {
 	@Autowired
 	private CartService service;
 
-	@RequestMapping(value = "/cart", produces = { MediaType.APPLICATION_JSON_VALUE })
+	@RequestMapping(value = "/member/cart", produces = { MediaType.APPLICATION_JSON_VALUE })
 	public ModelAndView list(Authentication authentication, Model model) {
 		CustomUserDetails cud = (CustomUserDetails) authentication.getPrincipal();
 		MemberVo vo = cud.getMemberVo();
@@ -37,7 +37,7 @@ public class CartController {
 		return mv;
 	}
 
-	@RequestMapping(value = "/cart2", produces = { MediaType.APPLICATION_JSON_VALUE })
+	@RequestMapping(value = "/member/cart2", produces = { MediaType.APPLICATION_JSON_VALUE })
 	public HashMap<String, Object> list2(Authentication authentication, Model model) {
 		CustomUserDetails cud = (CustomUserDetails) authentication.getPrincipal();
 		MemberVo vo = cud.getMemberVo();
@@ -49,8 +49,9 @@ public class CartController {
 		return map;
 	}
 
-	@GetMapping("/insertCart")
-	public String insertCart(Authentication authentication, String product_id) {
+	//@GetMapping("/insertCart")
+	@RequestMapping(value = "/member/insertCart", produces = { MediaType.APPLICATION_JSON_VALUE })
+	public HashMap<String, Object> insertCart(Authentication authentication, String product_id) {
 		CustomUserDetails cud = (CustomUserDetails) authentication.getPrincipal();
 		MemberVo vo = cud.getMemberVo();
 		int mem_no = vo.getMem_no();
@@ -61,7 +62,7 @@ public class CartController {
 		map.put("product_id", product_id);
 		service.insert(map);
 
-		return "redirect:/";
+		return map;
 	}
 
 	@GetMapping("/deleteCart")
