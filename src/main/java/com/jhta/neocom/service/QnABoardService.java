@@ -33,6 +33,14 @@ public class QnABoardService {
 		return mapper.delete(qna_board_no);
 	}
 	
+	public int countReply(int qna_board_no) {
+		return mapper.countReply(qna_board_no);
+	}
+	
+	public int showDeletePost(int qna_board_no) {
+		return mapper.showDeletePost(qna_board_no);
+	}
+	
 	public int update(QnABoardVo vo) {
 		return mapper.update(vo);
 	}
@@ -52,6 +60,7 @@ public class QnABoardService {
 	public int cntHit(int qna_board_no) {
 		return mapper.cntHit(qna_board_no);
 	}
+	
 	
 	public List<HashMap<String,Object>> myqna(int mem_no) {
 		return mapper.myqna(mem_no);
