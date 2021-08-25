@@ -203,10 +203,10 @@
 											<c:when test="${qvo.qna_group_order >0 }">
 												<td></td>
 												<td>
-													<c:forEach var="i" begin="1" end="${qvo.qna_group_order }">
-														[Re]&nbsp;
+													<c:forEach var="i" begin="2" end="${qvo.qna_group_depth }">
+														&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 													</c:forEach>
-													${qvo.qna_title }
+													[Re]&nbsp; ${qvo.qna_title }
 													<c:if test="${qvo.qna_secret_chk==true }">
 														<img src="${pageContext.request.contextPath}/static/frontend/assets/favicon&icon/lockicon.png" class="lock_img">
 													</c:if>

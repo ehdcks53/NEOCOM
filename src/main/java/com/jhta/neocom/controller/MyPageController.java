@@ -6,10 +6,14 @@ import java.util.List;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.jhta.neocom.model.CustomUserDetails;
@@ -19,22 +23,65 @@ import com.jhta.neocom.model.QnABoardVo;
 import com.jhta.neocom.service.OrderMainService;
 import com.jhta.neocom.service.QnABoardService;
 
-@Controller
+@RestController
 public class MyPageController {
     @Autowired private OrderMainService service;
     @Autowired private QnABoardService qna_service;
     
 
-    @RequestMapping(value = "/account/mypage_order")
-    public ModelAndView frontendMyPageOrder(Authentication authentication, HttpSession session) {
+
+    @RequestMapping(value = "/account/mypage_order", produces = { MediaType.APPLICATION_JSON_VALUE })
+    public ModelAndView frontendMyPageOrder(Authentication authentication) {
         CustomUserDetails cud = (CustomUserDetails) authentication.getPrincipal();
         MemberVo vo = cud.getMemberVo();
         int mem_no = vo.getMem_no();
         List<OrderMainVo> myOrderList = service.myOrderList(mem_no);
+        System.out.println("mem_no은"+mem_no+"리시트는"+myOrderList);
         ModelAndView mv = new ModelAndView("frontend/account/mypage_order");
         mv.addObject("myOrderList", myOrderList);
+        
         return mv;
 
+    }
+    
+    @RequestMapping(value = "/account/mypage_order2", produces = { MediaType.APPLICATION_JSON_VALUE })
+    public HashMap<String, Object> MyPageOrderList(Authentication authentication) {
+        CustomUserDetails cud = (CustomUserDetails) authentication.getPrincipal();
+        MemberVo vo = cud.getMemberVo();
+        int mem_no = vo.getMem_no();
+        
+        HashMap<String, Object> map = new HashMap<String, Object>();
+        
+        List<OrderMainVo> myOrderList = service.myOrderList(mem_no);
+        map.put("myOrderList", myOrderList);
+        
+        return map;
+
+    }
+    
+
+    @RequestMapping(value = "/OrderCC", produces = { MediaType.APPLICATION_JSON_VALUE })
+    public HashMap<String, Object> deleteOrder(Authentication authentication,int order_no) {
+    	CustomUserDetails cud = (CustomUserDetails) authentication.getPrincipal();
+		MemberVo vo = cud.getMemberVo();
+		int mem_no = vo.getMem_no();
+		System.out.println(order_no);
+    	HashMap<String, Object> map=new HashMap<String, Object>();
+    	map.put("order_no",order_no);
+    	map.put("order_status", "취소 완료");
+    	service.updateCC(map);
+    	
+    	return map;
+    }
+    
+    @RequestMapping(value = "/OrderPaymentCC", produces = { MediaType.APPLICATION_JSON_VALUE })
+    public HashMap<String, Object> OrderPaymentCC(Authentication authentication,int order_no) {
+    	CustomUserDetails cud = (CustomUserDetails) authentication.getPrincipal();
+		MemberVo vo = cud.getMemberVo();
+		int mem_no = vo.getMem_no();
+		System.out.println(order_no);
+		HashMap<String, Object> map=new HashMap<String, Object>();
+    	return map;
     }
 
     @RequestMapping(value = "/account/mypage_delivery")

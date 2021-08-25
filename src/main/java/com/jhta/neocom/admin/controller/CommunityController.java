@@ -123,7 +123,7 @@ public class CommunityController {
 		return "/admin/menu/community/qnaboard_reply";
 	}
 	
-	// 문의게시판 답변 저장
+	// 문의게시판 답변 작성
 	@RequestMapping(value = "/admin/community/qnaboard_reply", method = RequestMethod.POST)
 	public String qnaboardReplyOk(Model model, QnABoardVo vo, Authentication auth, int qna_board_no) {
 		CustomUserDetails cud = (CustomUserDetails) auth.getPrincipal();
@@ -154,22 +154,31 @@ public class CommunityController {
 		vo.setQna_group_no(groupNo);
 		vo.setQna_group_order(groupOrder);
 		vo.setQna_group_depth(groupDepth);
+		vo.setQna_status(1);
 		
+		qq_service.ReRe(vo);
 		qq_service.insertReply(vo);
-		qq_service.status(groupNo);  // 답변상태 변경
-		System.out.println("브이오:" + vo);
+		qq_service.status(vo);  // 답변상태 변경
 		
 		return "redirect:/admin/community/board_list";
 	}
 	
-	// 답변 삭제
+	// 문의게시판 답변 삭제
 	@RequestMapping(value = "/admin/community/qnaboard_delete", method = RequestMethod.GET)
-	public String qnaboardDelete(int qna_board_no) {
+	public String qnaboardDelete(int qna_board_no, QnABoardVo vo) {
+		HashMap<String, Object> map = qq_service.detail(qna_board_no);
+		int groupNo = Integer.parseInt(map.get("qna_group_no").toString());
+		
+		vo.setQna_group_no(groupNo);
+		vo.setQna_status(0);
+		
 		qq_service.delete(qna_board_no);
+		qq_service.status(vo);
+		
 		return "redirect:/admin/community/board_list";
 	}
 	
-	// 공지사항 수정
+	// 문의게시판 수정
 	@RequestMapping(value = "/admin/community/qndboard_update", method = RequestMethod.POST)
 	public String qnaboardUpdate(QnABoardVo vo) {
 		qq_service.update(vo);

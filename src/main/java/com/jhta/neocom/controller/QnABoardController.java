@@ -82,24 +82,32 @@ public class QnABoardController {
 		vo.setQna_group_no(groupNo);
 		vo.setQna_group_order(groupOrder);
 		vo.setQna_group_depth(groupDepth);
+		vo.setQna_status(1);
 
 		System.out.println();
 		System.out.println("콘솔ㅇㅇㅇㅇㅇㅇㅇㅇ" + vo);
 		System.out.println("콘솔ㅇㅇㅇㅇㅇㅇㅇㅇ" + groupNo + "ㅇㅇㅇ" + groupOrder + "ㅇㅇㅇ" + groupDepth);
 		System.out.println();
 		
-		service.insertReply(vo);
-		service.secondReply(vo);
 		service.ReRe(vo);
-		service.status(groupNo);  // 답변상태 변경
+		service.insertReply(vo);
+		service.status(vo);  // 답변상태 변경
 		
 		return "redirect:/community/qnaboard_list";
 	}
 
-	// 문의게시판 삭제
+	// 문의게시판 글 삭제
 	@RequestMapping(value = "community/qnaboard_delete", method = RequestMethod.GET)
-	public String qnaboard_delete(Model model, int qna_board_no) {
+	public String qnaboard_delete(Model model, int qna_board_no, QnABoardVo vo) {
+		HashMap<String, Object> map = service.detail(qna_board_no);
+		int groupNo = Integer.parseInt(map.get("qna_group_no").toString());
+		
+		vo.setQna_group_no(groupNo);
+		vo.setQna_status(0);
+		
 		service.delete(qna_board_no);
+		service.status(vo);
+		
 		return "redirect:/community/qnaboard_list";
 	}
 
@@ -120,9 +128,13 @@ public class QnABoardController {
 	// 문의게시판 리스트 페이지 이동
 	@RequestMapping(value = "/community/qnaboard_list")
 	public String qnaboard_list(@RequestParam(value = "pageNum", defaultValue = "1") int pageNum, String field,
-			String keyword, Model model, HashMap<String, Object> map, HttpSession session, HttpServletRequest req) {
+			String keyword, Model model, HashMap<String, Object> map, Authentication auth, HttpSession session, HttpServletRequest req) {
 
-		String id = (String) session.getAttribute("id"); // 로그인 되있는 상태에서만 문의하기 버튼 사용 가능
+//		String id = (String) session.getAttribute("id"); // 로그인 되있는 상태에서만 문의하기 버튼 사용 가능
+		CustomUserDetails cud = (CustomUserDetails) auth.getPrincipal();
+		MemberVo mvo = cud.getMemberVo();
+		int mem_no = mvo.getMem_no();
+		String id = mvo.getId();
 
 		map.put("field", field);
 		map.put("keyword", keyword);

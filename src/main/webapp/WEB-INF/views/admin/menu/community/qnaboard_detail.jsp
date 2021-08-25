@@ -23,6 +23,9 @@
 	<link href="${pageContext.request.contextPath}/static/admin/assets/plugins/nvd3/build/nv.d3.css" rel="stylesheet" />
 	<!-- ================== END page-css ================== -->
 <style>
+.table thead tr td img{
+	width: 20px;
+}
 .table tbody tr td p {
 	margin-top: 30px;
 	margin-bottom: 30px;
@@ -81,7 +84,11 @@
 									</tr>
 									<tr>
 										<th scope="row">제목</th>
-										<td colspan="3">${map.qna_title }</td>
+										<td colspan="3">${map.qna_title }
+											<c:if test="${map.qna_secret_chk==true }">
+												<img src="${pageContext.request.contextPath}/static/frontend/assets/favicon&icon/lockicon.png" class="lock_img">
+											</c:if>
+										</td>
 										<th scope="row">조회수</th>
 										<td>${map.qna_hit }</td>
 									</tr>

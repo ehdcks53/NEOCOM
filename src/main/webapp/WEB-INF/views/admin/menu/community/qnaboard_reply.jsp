@@ -131,11 +131,11 @@
 									<label class="form-label col-form-label col-md-3">내용</label>
 									<div class="col-md-9">
 									<!--<input type="text" name="n_content" class="form-control mb-5px" placeholder="내용" />-->
-										<textarea rows="24" cols="4000" class="form-control mb-10px" placeholder="내용" name="qna_content" id="qna_content" ></textarea>
+										<textarea rows="26" cols="4000" class="form-control mb-10px" placeholder="내용" name="qna_content" id="qna_content" ></textarea>
 									</div>
 								</div>
 								<div class="row mb-15px">
-									<label class="form-label col-form-label col-md-3">공개여부</label>
+								<!--<label class="form-label col-form-label col-md-3">공개여부</label>
 									<div class="col-md-9">
 										<div class="form-check form-check-inline">
 											<input class="form-check-input" type="checkbox" name="qna_secret_chk" id="qna_secret_chk" />
@@ -144,7 +144,7 @@
 										<div class="form-check form-check-inline">
 											<input class="form-control" type="password" name="qna_password" id="qna_password" />
 										</div>
-									</div>
+									</div> -->
 								</div>
 								<div class="row mb-15px">
 									<div class="col-md-12 text-center"> 
@@ -206,7 +206,7 @@
 	    	$("#radio_all").prop("disabled",true);
 	    }
 	    
-	    $("#qna_password").attr("disabled",true);
+/*	    $("#qna_password").attr("disabled",true);
 		$("#qna_secret_chk").on("click",function(){
 			var chk = $("input:checkbox[id='qna_secret_chk']").is(":checked");
 			if(chk==true){
@@ -216,7 +216,7 @@
 				$("#qna_password").prop("disabled",true);
 				$(this).val(0);
 			}
-		});
+		}); */
 	    
     </script>
 </body>

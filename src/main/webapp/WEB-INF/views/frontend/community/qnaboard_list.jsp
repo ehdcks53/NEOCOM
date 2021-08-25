@@ -2,6 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -87,7 +88,7 @@ a {
 					<input type="text" class="form-control col-sm-3 p-1" value="${keyword}" name="keyword" >
 					<button type="submit" class="form-control col-sm-1 w-1 p-2">검색</button>
 					<div class="ml-md-auto" style="margin-right:20px;">
-						<button type="button" id="insertBtn" class="form-control btn-sm btn-outline-info" onclick="location.href='${pageContext.request.contextPath}/community/qnaboard_insert'">문의하기 <i class="icon-arrow-right-circle"></i></button>
+						<button type="button" id="insertBtn" class="form-control btn-sm btn-outline-info" onclick="clickInsert()">문의하기 <i class="icon-arrow-right-circle"></i></button>
 					</div>
 				</div>
 			</form>
@@ -111,7 +112,11 @@ a {
 						<c:when test="${vo.qna_group_order >0 }">
 							<td></td>
 							<td class="text-left">
-								<a href="${pageContext.request.contextPath }/community/qnaboard_detail?qna_board_no=${vo.qna_board_no}&qna_secret_chk=${vo.qna_secret_chk }">[Re]&nbsp;&nbsp; ${vo.qna_title }</a>
+								<a href="${pageContext.request.contextPath }/community/qnaboard_detail?qna_board_no=${vo.qna_board_no}&qna_secret_chk=${vo.qna_secret_chk }">
+									<c:forEach var="i" begin="2" end="${vo.qna_group_depth }">
+										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+									</c:forEach>
+								[Re]&nbsp; ${vo.qna_title }</a>
 								<c:if test="${vo.qna_secret_chk==true }">
 									<img src="${pageContext.request.contextPath}/static/frontend/assets/favicon&icon/lockicon.png" class="lock_img">
 								</c:if>
@@ -185,7 +190,7 @@ a {
 </div>
 <!-- 페이지 컨텐트 끝 -->
 
-	<!-- modal 
+	<!-- modal -->
 	<div class="modal fade" id="loginModal">
 		<div class="modal-dialog" role="document">
 			<div class="modal-content">
@@ -202,7 +207,7 @@ a {
 				</div>
 			</div>
 		</div>
-	</div> -->
+	</div>
 
 
 <!-- footer -->
@@ -216,7 +221,9 @@ a {
 	<script src="${pageContext.request.contextPath}/static/frontend/assets/js/scripts.min.js"></script>
 <script>
 //로그인 상태에서만 문의하기 가능 
-/* function clickInsert(){
+function clickInsert(){
+	var ss = "${permission}";
+	console.log(ss);
 	var sessionId = "${id}";
 	console.log(sessionId);
 	if(sessionId!=null && sessionId!='') {
@@ -224,7 +231,7 @@ a {
 	}else{
 		$("#loginModal").modal();
 	}
-} */
+}
 </script>
 </body>
 </html>

@@ -130,11 +130,13 @@
 				</div>
 				</c:if>-->
 				<sec:authorize access="hasAnyRole('ADMIN','MANAGER')">
+				<c:if test="${map.mem_no != 1 && map.mem_no != 2 }">
 					<div style="margin-left:30px;">
 						<a class="btn btn-outline-secondary btn-sm" id="prevAtag" href="${pageContext.request.contextPath }/community/qnaboard_reply?qna_board_no=${map.qna_board_no}">
 							답변하기
 						</a>
 					</div>
+				</c:if>
 				</sec:authorize>
 				
 				<c:if test="${mvo.mem_no != 1 && mvo.mem_no != 2 }">

@@ -21,16 +21,12 @@ public class QnABoardService {
 		return mapper.insertReply(vo);
 	}
 	
-	public int secondReply(QnABoardVo vo) {
-		return mapper.secondReply(vo);
-	}
-	
 	public int ReRe(QnABoardVo vo) {
 		return mapper.ReRe(vo);
 	}
 	
-	public int status(int qna_group_no) {
-		return mapper.status(qna_group_no);
+	public int status(QnABoardVo vo) {
+		return mapper.status(vo);
 	}
 	
 	public int delete(int qna_board_no) {

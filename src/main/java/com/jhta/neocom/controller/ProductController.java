@@ -6,6 +6,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.MediaType;
+import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -13,6 +14,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.jhta.neocom.model.CustomUserDetails;
+import com.jhta.neocom.model.MemberVo;
 import com.jhta.neocom.model.ProductVo;
 import com.jhta.neocom.model.Product_ImgVo;
 import com.jhta.neocom.service.CategoryService;
@@ -69,9 +72,13 @@ public class ProductController {
 
 	// 상품 디테일
 	@RequestMapping(value = "/shop/product_detail")
-	public ModelAndView frontendProductDetail(@RequestParam("n") int product_id, @RequestParam("m") int category_id) {
+	public ModelAndView frontendProductDetail(Authentication authentication, 
+			@RequestParam("n") int product_id, @RequestParam("m") int category_id) {
 		HashMap<String, Integer> map = new HashMap<String, Integer>();
-
+		CustomUserDetails cud = (CustomUserDetails) authentication.getPrincipal();
+		MemberVo mvo = cud.getMemberVo();
+		int mem_no = mvo.getMem_no();
+		
 		map.put("product_id", product_id);
 		map.put("category_id", category_id);
 
