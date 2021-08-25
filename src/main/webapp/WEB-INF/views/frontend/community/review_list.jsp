@@ -72,8 +72,9 @@ a {
 	<div class="col-lg-12 col-md-10 order-md-2 text-center">
 		<!-- <hr class="margin-bottom-1x"> -->
 		<div>
-			<form action="${pageContext.request.contextPath}/community/review_list" method="post">
+			<form action="${pageContext.request.contextPath}/community/review_list?product_id=${product_id}" method="post">
 				<div class="row">
+				<input type="hidden" name="product_id" value="${product_id}">
 					<div class="p-2"></div>
 						<select class="form-control col-sm-2 p-2" name="field" >
 							<option value="nickname" <c:if test="${field=='nickname'}">selected</c:if> >작성자</option>
@@ -103,10 +104,10 @@ a {
 				<c:forEach var="vo" items="${list }">
 					<tr>
 					
-							<td>${vo.qna_board_no }</td>
-							<td class="text-left"><a href="${pageContext.request.contextPath}/community/qnaboard_detail?board_num=${vo.board_num}&product_id=${vo.product_id}">${vo.review_title }</a></td>
+							<td>${vo.board_num }</td>
+							<td class="text-left"><a href="${pageContext.request.contextPath}/community/review_detail?board_num=${vo.board_num}">${vo.review_title }</a></td>
 							<td>${vo.Nickname }</td>
-							<td><fmt:parseDate value="${vo.qna_regdate }" var="qna_regdate" pattern="yyyy-MM-dd'T'HH:mm:ss" /><fmt:formatDate value="${qna_regdate }" pattern="yyyy-MM-dd HH:mm:ss" /></td>
+							<td><fmt:parseDate value="${vo.regdate }" var="regdate" pattern="yyyy-MM-dd'T'HH:mm:ss" /><fmt:formatDate value="${regdate }" pattern="yyyy-MM-dd HH:mm:ss" /></td>
 							
 					
 					</tr>

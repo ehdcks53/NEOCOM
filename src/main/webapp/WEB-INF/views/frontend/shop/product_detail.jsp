@@ -34,6 +34,46 @@
 <link id="mainStyles" rel="stylesheet" media="screen"
 	href="${pageContext.request.contextPath}/static/frontend/assets/css/styles.min.css">
 <!-- Modernizr-->
+<style>
+.checking {
+  position: relative;
+  display: inline-block;
+  
+}
+
+.checking .please {
+  visibility: hidden;
+  width: 120px;
+  background-color: #555;
+  color: #fff;
+  text-align: center;
+  border-radius: 6px;
+  padding: 5px 0;
+  position: absolute;
+  z-index: 1;
+  bottom: 125%;
+  left: 50%;
+  margin-left: -60px;
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+.checking .please::after {
+  content: "";
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  margin-left: -5px;
+  border-width: 5px;
+  border-style: solid;
+  border-color: #555 transparent transparent transparent;
+}
+
+.checking:hover .please {
+  visibility: visible;
+  opacity: 1;
+}
+</style>
 <script
 	src="${pageContext.request.contextPath}/static/frontend/assets/js/modernizr.min.js"></script>
 <script type="text/javascript"
@@ -254,9 +294,9 @@
 				<div id="reviewList">
 				
 				
-				<a class="btn btn-secondary btn-block" href="#">더보기</a>
-				</div>
 				
+				</div>
+				<a class="btn btn-secondary btn-block" href="${pageContext.request.contextPath}/community/review_list?product_id=${goods.product_id}">더보기</a>
 				
 			
 			<div id="page"></div>
@@ -283,8 +323,15 @@
          				  <img id="" />
      				   </div>
      			</div>
+     			<sec:authorize access="isAnonymous()">
+				 <div class="checking"><input type="button" class="btn btn-warning btn-block" value="후기 남기기" disabled='disabled'>
+				 	<span class="please">후기를 남기시려면 로그인이 필요합니다.</span></div> 
+				  	</sec:authorize>
+				<sec:authorize access="isAuthenticated()">  	
 				  <input type="button" class="btn btn-warning btn-block" value="후기 남기기" id="btnAdd">
+				  	</sec:authorize>
      		 </form>
+     		 
 				
 			
 				
@@ -532,24 +579,24 @@
 		var theForm = document.form1;
 
 
-		if (sessionId != null && sessionId != '') {
+//		if (sessionId != null && sessionId != '') {
 			if (mode == "01") {
 				theForm.method = "post";
 
-				theForm.action = "${pageContext.request.contextPath}/purchase0";
+				theForm.action = "${pageContext.request.contextPath}/member/purchase0";
 			} else if (mode == "02") {
 				theForm.method = "get";
 
-				theForm.action = "${pageContext.request.contextPath}/cart";
+				theForm.action = "${pageContext.request.contextPath}/member/cart";
 
 			}
 			theForm.submit();
 
-		} else {
+	//	} else {
 
-			$("#insertModal").modal();
+//			$("#insertModal").modal();
 
-		}
+	//	}
 	}
 	
 

@@ -134,7 +134,7 @@ opacity: 0;
 <div class="page-title">
 	<div class="container">
 		<div class="column">
-			<h1>문의게시판</h1>
+			<h1>리뷰</h1>
 		</div>
 		<div class="column">
 			<ul class="breadcrumbs">
@@ -161,26 +161,26 @@ opacity: 0;
 		<h4>작성글 수정</h4>
 		<hr class="padding-bottom-1x">
 		
-		<form class="row" name="qnaForm" method="post" action="${pageContext.request.contextPath}/community/qnaboard_update">
+		<form class="row" name="reviewForm">
+			<fieldset>
+			<input type="hidden" name="board_num" value=${vo.board_num }>
+			<input type="hidden" name="product_id" value=${vo.product_id }>
 			<div class="col-md-12">
 				<div class="form-group">
-					<label for="qna_title">제목</label>
-					<input type="text" class="form-control" name="qna_title" id="qna_title" value="${map.qna_title }">
+					<label for="review_title">제목</label>
+					<input type="text" class="form-control" name="review_title" id="review_title" value="${vo.review_title }">
+					
 				</div>
 			</div>
 			<div class="col-md-12">
 				<div class="form-group">
-					<label for="qna_content">내용</label>
-					<textarea rows="15" cols="4000" class="form-control" name="qna_content" id="qna_content">${map.qna_content }</textarea>
+					<label for="review_content">내용</label>
+					<textarea rows="15" cols="4000" class="form-control" name="review_content" id="review_content">${vo.review_content }</textarea>
 				</div>
 			</div>
 			<div class="col-12 padding-top-1x">
 				
-				<div class="custom-control custom-checkbox d-block">
-					<input class="custom-control-input" type="checkbox" name="qna_secret_chk" id="qna_secret_chk" value="${map.qna_password }">
-					<label class="custom-control-label" for="qna_secret_chk">비밀글 &nbsp;</label>
-					<input type="password" name="qna_password" id="qna_password">
-				</div>
+				
 				<div class="padding-bottom-1x"></div>
 				<hr class="margin-top-1x margin-bottom-1x">
 				<div class="text-right">
@@ -188,6 +188,7 @@ opacity: 0;
 					<button class="btn btn-outline-secondary margin-bottom-none" data-toggle="modal" data-target="#cancel" type="button">취소</button>
 				</div>
 			</div>
+			</fieldset>
 		</form>
 		
 	</div>
@@ -208,7 +209,7 @@ opacity: 0;
 				</div>
 				<div class="modal-footer">
 					<button type="button" class="btn btn-secondary btn-sm" data-dismiss="modal" onclick="return false;">No</button>
-					<button type="submit" class="btn btn-info btn-sm" onclick="clickAdd(qnaForm)">Yes</button>
+					<button type="submit" class="btn btn-info btn-sm" onclick="clickAdd()">Yes</button>
 				</div>
 			</div>
 		</div>
@@ -226,7 +227,7 @@ opacity: 0;
 				</div>
 				<div class="modal-footer">
 					<button type="button" class="btn btn-secondary btn-sm" data-dismiss="modal" onclick="return false;">No</button>
-					<button type="button" class="btn btn-info btn-sm" onclick="location.href='${pageContext.request.contextPath}/community/qnaboard_list'">Yes</button>
+					<button type="button" class="btn btn-info btn-sm" onclick="location.href='${pageContext.request.contextPath}/community/review_list'">Yes</button>
 				</div>
 			</div>
 		</div>
@@ -243,23 +244,14 @@ opacity: 0;
 	<script src="${pageContext.request.contextPath}/static/frontend/assets/js/vendor.min.js"></script>
 	<script src="${pageContext.request.contextPath}/static/frontend/assets/js/scripts.min.js"></script>
 <script>
-	function clickAdd(formName){
-		formName.action = "${pageContext.request.contextPath}/community/qnaboard_update";
-		formName.method = "post";
-		formName.submit();
+	var theForm = document.reviewForm;
+	function clickAdd(){
+		theForm.method = "post";
+		theForm.action = "${pageContext.request.contextPath}/community/review_update";
+		theForm.submit();
+		
 	}
 
-	$("#qna_password").attr("disabled",true);
-	$("#qna_secret_chk").on("click",function(){
-		var chk = $("input:checkbox[id='qna_secret_chk']").is(":checked");
-		if(chk==true){
-			$("#qna_password").prop("disabled",false);
-			$(this).val(1);
-		}else{
-			$("#qna_password").prop("disabled",true);
-			$(this).val(0);
-		}
-	});
 </script>
 </body>
 </html>
