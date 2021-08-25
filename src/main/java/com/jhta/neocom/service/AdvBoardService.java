@@ -1,3 +1,4 @@
+
 package com.jhta.neocom.service;
 
 import java.util.HashMap;
@@ -37,5 +38,4 @@ public HashMap<String, Object> detail(int adv_board_no) {
 	return mapper.detail(adv_board_no);
 }
 }
-
 

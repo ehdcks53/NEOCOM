@@ -18,7 +18,11 @@ public class MemberService {
 		return mapper.insert(vo);
 	}
 
-	public int select(String id) {
+	public int insert_role(int mem_no) {
+		return mapper.insert_role(mem_no);
+	}
+
+	public MemberVo select(String id) {
 		return mapper.select(id);
 	}
 
@@ -32,5 +36,25 @@ public class MemberService {
 
 	public List<MemberVo> list() {
 		return mapper.list();
+	}
+	public int updateNickname(MemberVo vo) {
+		return mapper.updateNickname(vo);
+	}
+	public int updateName(MemberVo vo) {
+		return mapper.updateName(vo);
+	}
+	public int updatePhone(MemberVo vo) {
+		return mapper.updatePhone(vo);
+	}
+	public MemberVo selectid(String id) {
+		return mapper.selectid(id);
+	}
+	
+	public int memberDel(MemberVo vo) {
+		return mapper.memberDel(vo);
+	}
+	
+	public MemberVo login(MemberVo vo) {
+		return mapper.login(vo);
 	}
 }
