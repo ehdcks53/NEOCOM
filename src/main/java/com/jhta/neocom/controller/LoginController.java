@@ -5,6 +5,7 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -22,7 +23,8 @@ public class LoginController {
 
 	@Autowired
 	private MemberService service;
-	
+	@Autowired
+	private BCryptPasswordEncoder bCryptPasswordEncoder;
 	@Autowired
 	private void setNaverLoginBO(NaverLoginVo naverLoginVo) {
 		this.naverLoginVo = naverLoginVo;
@@ -45,14 +47,12 @@ public class LoginController {
 	}
 
 	@RequestMapping(value = "/account/login", method = RequestMethod.POST)
-	public String login(Authentication authentication, MemberVo vo, Model model, HttpServletRequest req) {
+	public String login(Authentication authentication, MemberVo vo, Model model, HttpSession session) {
 		System.out.println("로그인 컨트롤러 vo : " + vo);
 		System.out.println("로그인 컨트롤러 : " + authentication.getPrincipal() + ", " + authentication.getCredentials() + ", "
 				+ authentication.getAuthorities());
-		//로그인 세션정보 수정(비밀번호추가)
-		HttpSession session=req.getSession();
-		MemberVo login=service.login(vo);
-		session.setAttribute("member", login);
+		
+		
 		return "redirect:/";
 	}
 

@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@taglib prefix="form" uri="http://www.springframework.org/tags/form" %>    
+<%@taglib prefix="sec" uri="http://www.springframework.org/security/tags"%>
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -59,6 +60,7 @@
 	<div class="row">
 		<div class="col-md-3"></div>
 		<div class="col-md-6">
+		
 			<form method="post" action="${pageContext.request.contextPath }/account/login">
 				<div class="card-body">
 					<div class="row margin-bottom-1x">
@@ -106,6 +108,7 @@
 					</div>
 				</div>
 			</form>
+			
 		</div>
 		<div class="col-md-3"></div>
 	</div>
