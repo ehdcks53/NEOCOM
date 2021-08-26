@@ -50,6 +50,9 @@
   	</select>
   	
   	<delete id="memberDel" parameterType="com.jhta.neocom.model.MemberVo">
-  		delete from member_Info where id=#{id} and password=#{password}
+  		delete from member_Info where id=#{id}
   	</delete>
+  	<insert id="delete_role" parameterType="int">
+		update member_Info_member_role set fno=(4) where mem_no=#{mem_no}
+	</insert>
 </mapper>

@@ -67,6 +67,7 @@
 		<div class="card-body">
 		<form action="${pageContext.request.contextPath }/account/memberDel" method="post">	
 		<div class="form-group input-group">
+			<input type="hidden" name="mem_no" value="${vo.mem_no }">
 			아이디			
 			<input class="form-control" type="text" name="id" readonly="readonly" value="${vo.id }">
 		</div>	
