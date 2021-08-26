@@ -3,6 +3,7 @@ package com.jhta.neocom.service;
 import java.util.HashMap;
 import java.util.List;
 
+import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -19,8 +20,8 @@ public class ReviewService {
 	
 
 	
-	public int delete(HashMap<String,Object> map) {
-		return mapper.delete(map);
+	public int delete(int board_num) {
+		return mapper.delete(board_num);
 	}
 	
 	public int update(ReviewVo vo) {
@@ -41,5 +42,14 @@ public class ReviewService {
 		return mapper.detail(board_num);
 	}
 	
-
+	public double getAvgStar(int product_id) {
+		return mapper.getAvgStar(product_id);
+	}
+	public int getCountStar(HashMap<String,Integer> map) {
+		return mapper.getCountStar(map);
+	}
+	public List<HashMap<String,Integer>> getStar(int product_id)
+	{
+		return mapper.getStar(product_id);
+	}
 }
