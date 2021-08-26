@@ -63,7 +63,10 @@
 					<h4 class="margin-bottom-1x text-center">회원가입</h4>
 					<div class="form-group input-group">
 						아이디
-						<form:input class="form-control" type="text" path="id" placeholder="아이디를 입력하세요"/>
+						<form:input class="form-control" type="text" path="id" id="id" name="id" placeholder="아이디를 입력하세요"/>
+						
+						<form:button type="button" id="idck" value="중복확인">중복확인</form:button>
+						<span id="idchk"></span>
 						<form:errors path="id" cssClass="errormsg" />
 					</div>
 					<div class="form-group input-group">
@@ -117,5 +120,48 @@
 	<!-- JavaScript (jQuery) libraries, plugins and custom scripts-->
 	<script src="${pageContext.request.contextPath}/static/frontend/assets/js/vendor.min.js"></script>
 	<script src="${pageContext.request.contextPath}/static/frontend/assets/js/scripts.min.js"></script>
+	<script type="text/javascript">
+	var idck = 0;
+	$(function() {
+	    //idck 버튼을 클릭했을 때 
+	    $("#idck").click(function() {
+	        
+	        //userid 를 param.
+	        var id =  $("#id").val(); 
+	        		
+	        
+	        $.ajax({
+	            async: true,
+	            type : 'POST',
+	            data : id,
+	            url : "/account/idcheck",
+	            dataType : "json",
+	            contentType: "application/json; charset=UTF-8",
+	            success : function(data) {
+	                if (data.cnt > 0) {
+	                    
+	                    alert("아이디가 존재합니다. 다른 아이디를 입력해주세요.");	               
+	                    $("#id").focus();
+	                    
+	                
+	                } else {
+	                    alert("사용가능한 아이디입니다.");
+	                    $("#password").focus();
+	                    //아이디가 중복하지 않으면  idck = 1 
+	                    idck = 1;
+	                    
+	                }
+	            },
+	            error : function(error) {
+	                
+	                alert("error : " + error);
+	            }
+	        });
+	    });
+	});
+ 
+ 
+</script>
+
 </body>
 </html>

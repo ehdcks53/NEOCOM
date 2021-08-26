@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.jhta.neocom.mapper.MemberMapper;
@@ -24,6 +25,9 @@ public class MemberService {
 
 	public MemberVo select(String id) {
 		return mapper.select(id);
+	}
+	public int idcheck(String id) {
+		return mapper.idcheck(id);
 	}
 
 	public MemberVo isMember(HashMap<String, String> map) {
@@ -53,8 +57,17 @@ public class MemberService {
 	public int memberDel(MemberVo vo) {
 		return mapper.memberDel(vo);
 	}
+	public int delete_role(int mem_no) {
+		return mapper.delete_role(mem_no);
+	}
 	
 	public MemberVo login(MemberVo vo) {
 		return mapper.login(vo);
+	}
+	public void register(MemberVo user) {
+		BCryptPasswordEncoder encoder=new BCryptPasswordEncoder();
+		String securePw=encoder.encode(user.getPassword());
+		user.setPassword(securePw);
+		mapper.pwdModify(user);
 	}
 }
