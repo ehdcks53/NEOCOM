@@ -25,6 +25,9 @@
 	<!-- Modernizr-->
 	<script src="${pageContext.request.contextPath}/static/frontend/assets/js/modernizr.min.js"></script>
 <style>
+.table thead tr td img{
+	width: 20px;
+}
 .form-control{
 padding:0 18px 3px;
 border:1px solid #dbe2e8;
@@ -122,6 +125,14 @@ position: absolute;
 z-index: -1;
 opacity: 0;
 }
+
+.table tbody tr td p {
+	margin-top: 30px;
+	margin-bottom: 30px;
+	margin-left: 100px;
+	margin-right: 100px;
+	vertical-align: middle;
+}
 </style>
 </head>
 <body>
@@ -134,17 +145,17 @@ opacity: 0;
 <div class="page-title">
 	<div class="container">
 		<div class="column">
-			<h1>견적문의게시판</h1>
+			<h1>문의게시판</h1>
 		</div>
 		<div class="column">
 			<ul class="breadcrumbs">
 				<li><a href="#">Home</a></li>
 				<li class="separator">&nbsp;</li>
-				<li><a href="#">Service</a></li>
+				<li><a href="#">Community</a></li>
 				<li class="separator">&nbsp;</li>
-				<li><a href="#">Advice Board</a></li>
+				<li><a href="#">QnA Board</a></li>
 				<li class="separator">&nbsp;</li>
-				<li>Modify</li>
+				<li>Write</li>
 			</ul>
 		</div>
 	</div>
@@ -154,32 +165,80 @@ opacity: 0;
 
 <!-- 페이지 컨텐트 -->
 <div class="container padding-bottom-3x mb-2">
-<div class="row">
-	<!-- 문의게시판 글수정 -->
-	<div class="col-lg-8" style="margin-left:auto; margin-right:auto;">
+<div class="row justify-content-center">
+	<div class="col-lg-10">
 		<div class="padding-top-2x mt-2 hidden-lg-up"></div>
-		<h4>작성글 수정</h4>
+		<h4>문의한 내용</h4>
+		<hr class="padding-bottom-1x" style="margin-bottom:20px;">
+	</div>
+	<div class="col-lg-10">
+		<table class="table text-center">
+			<colgroup>
+				<col width="10%"/>
+				<col width="15%"/>
+				<col width="15%"/>
+				<col width="30%"/>
+				<col width="10%"/>
+				<col width="20%"/>
+			</colgroup>
+			<thead class="thead-default">
+				<tr>
+					<th scope="row">글번호</th>
+					<td>${map.adv_board_no }</td>
+					<th scope="row">작성자</th>
+					<td>${map.Nickname }</td>
+					<th scope="row">작성일</th>
+					<td><fmt:parseDate value="${map.adv_regdate }" var="adv_regdate" pattern="yyyy-MM-dd'T'HH:mm:ss" /><fmt:formatDate value="${adv_regdate }" pattern="yyyy-MM-dd HH:mm:ss" /></td>
+				</tr>
+				<tr>
+					<th scope="row">제목</th>
+					<td colspan="3">${map.adv_title }
+						<c:if test="${map.adv_secret_chk==true }">
+							<img src="${pageContext.request.contextPath}/static/frontend/assets/favicon&icon/lockicon.png" class="lock_img">
+						</c:if>
+					</td>
+					<th scope="row">조회수</th>
+					<td>${map.adv_hit }</td>
+				</tr>
+			</thead>
+			<tbody> 
+				<tr> 
+					<td colspan="10">
+						<p>${map.adv_content }</p>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+</div>
+
+
+<div class="row">
+	<!-- 문의게시판 답변작성 -->
+	<div class="col-lg-8" style="margin-left:auto; margin-right:auto;">
+		<hr class="padding-bottom-1x" style="margin-top:30px; margin-bottom:30px;">
+		<div class="padding-top-2x mt-2 hidden-lg-up"></div>
+		<h4>답변하기</h4>
 		<hr class="padding-bottom-1x">
 		
-		<form class="row" name="advForm" method="post" action="${pageContext.request.contextPath}/service/advboard_update">
+		<form class="row" name="advForm" method="post" action="${pageContext.request.contextPath}/service/advboard_reply?adv_board_no=${map.adv_board_no }">
 			<div class="col-md-12">
 				<div class="form-group">
 					<label for="adv_title">제목</label>
-					<input type="text" class="form-control" name="adv_title" id="adv_title" value="${map.adv_title }">
+					<input type="text" class="form-control" name="adv_title" id="adv_title">
 				</div>
 			</div>
 			<div class="col-md-12">
 				<div class="form-group">
 					<label for="adv_content">내용</label>
-					<textarea rows="15" cols="4000" class="form-control" name="adv_content" id="adv_content">${map.adv_content }</textarea>
+					<textarea rows="15" cols="4000" class="form-control" name="adv_content" id="adv_content"></textarea>
 				</div>
 			</div>
 			<div class="col-12 padding-top-1x">
-				
 				<div class="custom-control custom-checkbox d-block">
-					<input class="custom-control-input" type="checkbox" name="adv_secret_chk" id="adv_secret_chk" value="${map.adv_password }">
-					<label class="custom-control-label" for="adv_secret_chk">비밀글 &nbsp;</label>
-					<input type="password" name="adv_password" id="adv_password">
+				<!--<input class="custom-control-input" type="checkbox" name="qna_secret_chk" id="qna_secret_chk">
+					<label class="custom-control-label" for="qna_secret_chk">비밀글 &nbsp;</label>
+					<input type="password" name="qna_password" id="qna_password"> -->
 				</div>
 				<div class="padding-bottom-1x"></div>
 				<hr class="margin-top-1x margin-bottom-1x">
@@ -204,7 +263,7 @@ opacity: 0;
 					<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">X</span></button>
 				</div>
 				<div class="modal-body">
-					<p>수정한 내용을 등록 하시겠습니까?</p>
+					<p>작성한 내용을 등록 하시겠습니까?</p>
 				</div>
 				<div class="modal-footer">
 					<button type="button" class="btn btn-secondary btn-sm" data-dismiss="modal" onclick="return false;">No</button>
@@ -222,7 +281,7 @@ opacity: 0;
 					<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">X</span></button>
 				</div>
 				<div class="modal-body">
-					<p>수정을 취소 하시겠습니까?</p>
+					<p>작성을 취소 하시겠습니까?</p>
 				</div>
 				<div class="modal-footer">
 					<button type="button" class="btn btn-secondary btn-sm" data-dismiss="modal" onclick="return false;">No</button>
@@ -244,22 +303,32 @@ opacity: 0;
 	<script src="${pageContext.request.contextPath}/static/frontend/assets/js/scripts.min.js"></script>
 <script>
 	function clickAdd(formName){
-		formName.action = "${pageContext.request.contextPath}/service/advboard_update";
+		formName.action = "${pageContext.request.contextPath}/service/advboard_reply?adv_board_no=${map.adv_board_no }";
 		formName.method = "post";
 		formName.submit();
 	}
 
-	$("#adv_password").attr("disabled",true);
-	$("#adv_secret_chk").on("click",function(){
-		var chk = $("input:checkbox[id='adv_secret_chk']").is(":checked");
+/*	$("#qna_password").attr("disabled",true);
+	$("#qna_secret_chk").on("click",function(){
+		var chk = $("input:checkbox[id='qna_secret_chk']").is(":checked");
 		if(chk==true){
-			$("#adv_password").prop("disabled",false);
+			$("#qna_password").prop("disabled",false);
 			$(this).val(1);
 		}else{
-			$("#adv_password").prop("disabled",true);
+			$("#qna_password").prop("disabled",true);
 			$(this).val(0);
 		}
-	});
+	}); */
+	
+/*	var secret_chk = "${map.qna_secret_chk}";
+	var password = "${map.qna_password}";
+	if(secret_chk == true) {
+		qna_secret_chk.val() == 1;
+		qna_password.val() == password;
+	}else if(secret_chk == false) {
+		qna_secret_chk.val() == 0;
+		qna_password.val() == null;
+	} */
 </script>
 </body>
 </html>

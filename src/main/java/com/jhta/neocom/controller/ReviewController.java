@@ -24,11 +24,16 @@ public class ReviewController {
 
 	
 	// 리뷰게시판 삭제
-	@RequestMapping(value = "community/review_delete")
-	public String review_delete(Model model, int board_num,int product_id) {
-		
+	@GetMapping(value = "community/review_delete")
+	public String review_delete(Model model ,int board_num,int product_id) {
+		model.addAttribute("board_num", board_num);
+		model.addAttribute("product_id", product_id);
+		return "frontend/community/review_delete";
+	}
+	@PostMapping(value="community/review_delete")
+	public String review_delete(int board_num,int product_id) {
 		r_service.delete(board_num);
-		return "frontend/community/review_list?product_id="+product_id;
+		return "redirect:/community/review_list?product_id="+product_id;
 	}
 
 	// 리뷰게시판 수정 페이지 이동

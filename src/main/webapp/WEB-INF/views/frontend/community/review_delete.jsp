@@ -126,30 +126,6 @@ opacity: 0;
 </head>
 <body>
 
-<!-- header -->
-<jsp:include page="/WEB-INF/views/frontend/inc/header.jsp"/>
-
-
-<!-- 페이지 타이틀 -->
-<div class="page-title">
-	<div class="container">
-		<div class="column">
-			<h1>견적문의게시판</h1>
-		</div>
-		<div class="column">
-			<ul class="breadcrumbs">
-				<li><a href="#">Home</a></li>
-				<li class="separator">&nbsp;</li>
-				<li><a href="#">Service</a></li>
-				<li class="separator">&nbsp;</li>
-				<li><a href="#">Advice Board</a></li>
-				<li class="separator">&nbsp;</li>
-				<li>Modify</li>
-			</ul>
-		</div>
-	</div>
-</div>
-<!-- 페이지 타이틀 끝 -->
 
 
 <!-- 페이지 컨텐트 -->
@@ -158,36 +134,22 @@ opacity: 0;
 	<!-- 문의게시판 글수정 -->
 	<div class="col-lg-8" style="margin-left:auto; margin-right:auto;">
 		<div class="padding-top-2x mt-2 hidden-lg-up"></div>
-		<h4>작성글 수정</h4>
+		<h4>작성글 삭제</h4>
 		<hr class="padding-bottom-1x">
 		
-		<form class="row" name="advForm" method="post" action="${pageContext.request.contextPath}/service/advboard_update">
+		<form class="row" name="deleteForm" >
+			<fieldset>
+			<input type="hidden" name="board_num" value=${board_num }>
+			<input type="hidden" name="product_id" value=${product_id }>
 			<div class="col-md-12">
 				<div class="form-group">
-					<label for="adv_title">제목</label>
-					<input type="text" class="form-control" name="adv_title" id="adv_title" value="${map.adv_title }">
+					<label for="review_title">정말 삭제하시겠습니까?</label>
+					<button class="btn btn-primary margin-bottom-none" onclick="deletecheck()" >삭제</button>
+					<button class="btn btn-outline-secondary margin-bottom-none" onclick="window.close()" >취소</button>
 				</div>
 			</div>
-			<div class="col-md-12">
-				<div class="form-group">
-					<label for="adv_content">내용</label>
-					<textarea rows="15" cols="4000" class="form-control" name="adv_content" id="adv_content">${map.adv_content }</textarea>
-				</div>
-			</div>
-			<div class="col-12 padding-top-1x">
-				
-				<div class="custom-control custom-checkbox d-block">
-					<input class="custom-control-input" type="checkbox" name="adv_secret_chk" id="adv_secret_chk" value="${map.adv_password }">
-					<label class="custom-control-label" for="adv_secret_chk">비밀글 &nbsp;</label>
-					<input type="password" name="adv_password" id="adv_password">
-				</div>
-				<div class="padding-bottom-1x"></div>
-				<hr class="margin-top-1x margin-bottom-1x">
-				<div class="text-right">
-					<button class="btn btn-primary margin-bottom-none" data-toggle="modal" data-target="#add" type="button">등록</button>
-					<button class="btn btn-outline-secondary margin-bottom-none" data-toggle="modal" data-target="#cancel" type="button">취소</button>
-				</div>
-			</div>
+		
+			</fieldset>
 		</form>
 		
 	</div>
@@ -195,71 +157,24 @@ opacity: 0;
 </div>
 <!-- 페이지 컨텐트 끝 -->
 
-	<!-- modal add -->
-	<div class="modal fade" id="add">
-		<div class="modal-dialog" role="document">
-			<div class="modal-content">
-				<div class="modal-header">
-					<h4 class="modal-title">confirm</h4>
-					<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">X</span></button>
-				</div>
-				<div class="modal-body">
-					<p>수정한 내용을 등록 하시겠습니까?</p>
-				</div>
-				<div class="modal-footer">
-					<button type="button" class="btn btn-secondary btn-sm" data-dismiss="modal" onclick="return false;">No</button>
-					<button type="submit" class="btn btn-info btn-sm" onclick="clickAdd(advForm)">Yes</button>
-				</div>
-			</div>
-		</div>
-	</div>
-	<!-- modal cancel -->
-	<div class="modal fade" id="cancel">
-		<div class="modal-dialog" role="document">
-			<div class="modal-content">
-				<div class="modal-header">
-					<h4 class="modal-title">confirm</h4>
-					<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">X</span></button>
-				</div>
-				<div class="modal-body">
-					<p>수정을 취소 하시겠습니까?</p>
-				</div>
-				<div class="modal-footer">
-					<button type="button" class="btn btn-secondary btn-sm" data-dismiss="modal" onclick="return false;">No</button>
-					<button type="button" class="btn btn-info btn-sm" onclick="location.href='${pageContext.request.contextPath}/service/advboard_list'">Yes</button>
-				</div>
-			</div>
-		</div>
-	</div>
 
 
-<!-- footer -->
-<jsp:include page="/WEB-INF/views/frontend/inc/footer.jsp"/>
 
-	<!-- Back To Top Button--><a class="scroll-to-top-btn" href="#"><i class="icon-chevron-up"></i></a>
-	<!-- Backdrop-->
-	<div class="site-backdrop"></div>
-	<!-- JavaScript (jQuery) libraries, plugins and custom scripts-->
+
 	<script src="${pageContext.request.contextPath}/static/frontend/assets/js/vendor.min.js"></script>
 	<script src="${pageContext.request.contextPath}/static/frontend/assets/js/scripts.min.js"></script>
 <script>
-	function clickAdd(formName){
-		formName.action = "${pageContext.request.contextPath}/service/advboard_update";
-		formName.method = "post";
-		formName.submit();
-	}
+var theForm = document.deleteForm;
+var product_id=${product_id};
+function deletecheck() {
+theForm.method = "post";
 
-	$("#adv_password").attr("disabled",true);
-	$("#adv_secret_chk").on("click",function(){
-		var chk = $("input:checkbox[id='adv_secret_chk']").is(":checked");
-		if(chk==true){
-			$("#adv_password").prop("disabled",false);
-			$(this).val(1);
-		}else{
-			$("#adv_password").prop("disabled",true);
-			$(this).val(0);
-		}
-	});
+theForm.action = "${pageContext.request.contextPath}/community/review_delete";
+self.window.alert("해당 글을 삭제하였습니다.");
+window.close();
+
+}
+
 </script>
 </body>
 </html>
