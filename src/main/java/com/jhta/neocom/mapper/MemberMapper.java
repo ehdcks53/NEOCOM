@@ -25,6 +25,7 @@ public interface MemberMapper {
 	MemberVo selectid(String id);
 	
 	int memberDel(MemberVo vo);
+	int delete_role(int mem_no);
 	
 	MemberVo login(MemberVo vo);
 }

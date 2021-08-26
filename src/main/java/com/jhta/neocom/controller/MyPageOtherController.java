@@ -7,6 +7,7 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -27,7 +28,8 @@ public class MyPageOtherController {
     private MemberService memberService;
 	
 	@Autowired private QnABoardService qna_service;
-	
+	@Autowired
+	private BCryptPasswordEncoder bCryptPasswordEncoder;	
 	@RequestMapping(value = "/account/mypage_delivery")
     public String frontendMyPageDelivery() {
         return "frontend/account/mypage_delivery";
@@ -93,20 +95,33 @@ public class MyPageOtherController {
         return mv;
     }
     @RequestMapping(value = "/account/memberDel", method = RequestMethod.POST)
-    public String memberDel(HttpSession session,MemberVo vo, Model model) {
-    	MemberVo member=(MemberVo) session.getAttribute("member");
-    	String oldPwd=vo.getPassword();
-    	System.out.println("oldPwd:"+oldPwd);
-    	String newPwd=member.getPassword();
-    	System.out.println("newPwd:"+newPwd);
-    	if(!(oldPwd.equals(newPwd))) {
-    		model.addAttribute("msg",false);
-    		return "redirect:/frontend/account/mypage_memberDelete";
-    	}else {
-    		memberService.memberDel(vo);
-    		return "redirect:/frontend/index";
+    public String memberDel( HttpSession session,MemberVo memberVo, Model model,String password) {
+    	
+
+    	
+    	//memberVo.setPassword(bCryptPasswordEncoder.encode(memberVo.getPassword()));
+    	//password=req.getParameter("password");	
+    	String encode = bCryptPasswordEncoder.encode(password);
+    	//System.out.println("encode: "+encode);
+    	String voPwd=bCryptPasswordEncoder.encode(memberVo.getPassword());
+    	System.out.println("voPwd: "+voPwd);
+    	boolean isMatches=bCryptPasswordEncoder.matches(password, voPwd);
+    	System.out.println("password: "+password);
+    	System.out.println("isMatches: "+isMatches);
+    	memberVo.getMem_no();
+    	System.out.println("기존vo넘버:"+memberVo.getMem_no());
+    	MemberVo vo=new MemberVo(memberVo.getMem_no(),memberVo.getNickname(), memberVo.getPhone(), memberVo.getBirth_date(), null, 
+				 memberVo.getName(), memberVo.getId(), memberVo.getPassword(), memberVo.getRoles());
+    	System.out.println("새로운mem_no:"+memberVo.getMem_no());
+    	if(isMatches==false) {
+    		return "frontend/account/mypage_memberDelete";
+    	}else { 
+    		System.out.println(memberVo.getMem_no()+"+"+memberVo.getId());
+    		memberService.delete_role(memberVo.getMem_no());
+    		//memberService.memberDel(memberVo);
+    		session.invalidate();
+    		return "redirect:/";
     	}
-      
     }
 	
 	
