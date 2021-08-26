@@ -25,9 +25,10 @@ public class ReviewController {
 	
 	// 리뷰게시판 삭제
 	@RequestMapping(value = "community/review_delete")
-	public String review_delete(Model model, int board_num,int product_id) {
-		
-		r_service.delete(board_num);
+	public String review_delete(HashMap<String,Object> map, int board_num,int product_id) {
+		map.put("board_num", board_num);
+		map.put("product_id", product_id);
+		r_service.delete(map);
 		return "frontend/community/review_list?product_id="+product_id;
 	}
 

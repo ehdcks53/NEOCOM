@@ -40,8 +40,8 @@
 	
 	
 	
-	<delete id="delete" parameterType="int">
-		delete from review where board_num=#{board_num}
+	<delete id="delete" parameterType="hashmap">
+		delete from review where board_num=#{board_num} and product_id=#{product_id}
 	</delete>
 	
 	<update id="update" parameterType="com.jhta.neocom.model.ReviewVo">

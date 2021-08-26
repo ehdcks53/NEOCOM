@@ -19,8 +19,8 @@ public class ReviewService {
 	
 
 	
-	public int delete(int board_num) {
-		return mapper.delete(board_num);
+	public int delete(HashMap<String,Object> map) {
+		return mapper.delete(map);
 	}
 	
 	public int update(ReviewVo vo) {

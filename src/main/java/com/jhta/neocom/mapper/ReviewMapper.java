@@ -9,7 +9,7 @@ import com.jhta.neocom.model.ReviewVo;
 public interface ReviewMapper {
 	int insert(ReviewVo vo);
 
-	int delete(int board_num);
+	int delete(HashMap<String,Object> map);
 	int update(ReviewVo vo);
 	int getCount(HashMap<String,Object> map);
 	List<HashMap<String,Object>> list(HashMap<String,Object> map); //전체 리스트
