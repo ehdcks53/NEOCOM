@@ -34,6 +34,10 @@ public class OrderMainService {
 		return mapper.update(map);
 	}
 	
+	public int updateMidNum(HashMap<String, Object> map) {
+		return mapper.updateMidNum(map);
+	}
+	
 	public int updateno(HashMap<String, Object> map) {
 		return mapper.updateno(map);
 	}

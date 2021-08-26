@@ -223,7 +223,7 @@
 								</div>
 							</div>
 							<input type="hidden" name="order_no" value="\${order_no}">
-							<input type="hidden" name="od_cc_aplication_date" value="\${today}">
+							<input type="hidden" name="od_cc_application_date" value="\${today}">
 						</form>
 						`
 					);
@@ -353,7 +353,7 @@
 			dataType:"json",
 			success:function(data){
 				console.log("success");
-				data.myOrderList[0].num
+				//data.myOrderList[0].num
 				$(data.myOrderList).each(function(i,d){
 						let order_no=d.order_no;
 						let product_name=d.product_name;

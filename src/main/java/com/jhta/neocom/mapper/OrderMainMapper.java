@@ -15,7 +15,9 @@ public interface OrderMainMapper {
 	OrderMainVo searchRndNo(HashMap<String, Object> map);
 
 	int update(HashMap<String, Object> map);
-
+	
+	int updateMidNum(HashMap<String, Object> map);
+	
 	int updateno(HashMap<String, Object> map);
 	
 	int updateCC(HashMap<String, Object> map);

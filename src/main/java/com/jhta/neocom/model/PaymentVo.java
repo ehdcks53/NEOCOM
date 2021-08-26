@@ -18,5 +18,5 @@ public class PaymentVo {
 	private String payment_bank;
 	private String payment_means;
 	private String payment_status;
-	
+	private String mid_num;
 }

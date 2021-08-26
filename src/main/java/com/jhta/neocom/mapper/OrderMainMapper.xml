@@ -7,7 +7,7 @@
   		#{order_num},#{orderer_name},#{recipient_name},#{zip_code},#{order_address},
 
   		#{order_address_detail},#{tot_price},#{delivery_cost},now(),#{order_status},#{payment_status},
-  		#{od_cc_status},#{delivery_status},#{request_item})
+  		#{od_cc_status},#{delivery_status},#{request_item},#{mid_num})
   	</insert>
 
 	<delete id="delete" parameterType="int">
@@ -22,10 +22,14 @@
 	<select id="searchRndNo" resultType="com.jhta.neocom.model.OrderMainVo" parameterType="Hashmap">
  		select * from order_main where order_num=#{order_num} and mem_no=#{mem_no}
  	</select>
-
+	
 	<!-- 결제 성공 or 실패시  -->
 	<update id="update" parameterType="Hashmap">
 		update order_main set order_status=#{order_status}, payment_status=#{payment_status} where order_no=#{order_no}
+	</update>
+	
+	<update id="updateMidNum" parameterType="Hashmap">
+		update order_main set mid_num=#{mid_num} where order_no=#{order_no}
 	</update>
 	
 	<update id="updateno" parameterType="Hashmap">

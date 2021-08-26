@@ -5,6 +5,14 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.HashMap;
 import java.util.List;
+import java.io.IOException; 
+import java.util.ArrayList; 
+import java.util.HashMap; 
+import java.util.List; 
+import java.util.Map; 
+import java.util.Map.Entry;
+import java.util.Set;
+
 
 import javax.servlet.http.HttpSession;
 
@@ -238,6 +246,42 @@ public class PurchaseController {
 	@ResponseBody
 	public HashMap<String, Object> insert(PaymentVo vo) {
 		HashMap<String, Object> map = new HashMap<String, Object>();
+		HashMap<String, Object> map2 = new HashMap<String, Object>();
+		
+		try {
+			map2.put("order_no", vo.getOrder_no());
+			map2.put("mid_num",vo.getMid_num());
+			System.out.println(vo);
+			pservice.insert(vo);
+			omservice.updateMidNum(map2);
+			map.put("code", "success");
+		} catch (Exception e) {
+			e.printStackTrace();
+			map.put("code", "fail");
+		}
+		return map;
+	}
+	
+	@GetMapping("/paymentSuccess")
+	public String paymentSuccess(HttpSession session, Model model,int order_no,String mid_num) {
+		HashMap<String, Object> map = new HashMap<String, Object>();
+		map.put("order_no",order_no );	
+		map.put("order_status","배송 준비중" );
+		map.put("payment_status","결제 완료" );
+		omservice.update(map);
+		System.out.println(mid_num);
+		HashMap<String, Object> map2 = new HashMap<String, Object>();
+		map2.put("order_no",order_no );	
+		map2.put("payment_status","결제 완료" );
+		pservice.update(map);
+		model.addAttribute("order_no", order_no);
+		return "frontend/order/paymentSuccess";
+	}
+	
+	@RequestMapping(value = "/paymentCCtest", produces = { MediaType.APPLICATION_JSON_VALUE })
+	@ResponseBody
+	public HashMap<String, Object> paymentCC(PaymentVo vo) {
+		HashMap<String, Object> map = new HashMap<String, Object>();
 		try {
 			System.out.println(vo);
 			pservice.insert(vo);
@@ -249,26 +293,10 @@ public class PurchaseController {
 		return map;
 	}
 	
-	@GetMapping("/paymentSuccess")
-	public String paymentSuccess(HttpSession session, Model model,int order_no) {
-		HashMap<String, Object> map = new HashMap<String, Object>();
-		map.put("order_no",order_no );	
-		map.put("order_status","배송 준비중" );
-		map.put("payment_status","결제 완료" );
-		omservice.update(map);
-		
-		HashMap<String, Object> map2 = new HashMap<String, Object>();
-		map2.put("order_no",order_no );	
-		map2.put("payment_status","결제 완료" );
-		pservice.update(map);
-		model.addAttribute("order_no", order_no);
-		return "frontend/order/paymentSuccess";
-	}
-	
 	@GetMapping("/paymentFail")
 	public String paymentFail(HttpSession session, Model model,String payment_status,int order_no) {
 		model.addAttribute("order_no", order_no);
 		return "frontend/order/paymentFail";
 	}
-
+	
 }

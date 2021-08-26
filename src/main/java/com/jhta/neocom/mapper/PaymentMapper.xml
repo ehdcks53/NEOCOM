@@ -6,7 +6,7 @@
   	
   	<insert id="insert" parameterType="com.jhta.neocom.model.PaymentVo">
   		insert into payment values(get_seq('payment_Seq'),#{order_no},#{payment_amount},now(),
-  		#{payer_name},#{payment_bank},#{payment_means},#{payment_status})
+  		#{payer_name},#{payment_bank},#{payment_means},#{payment_status},#{mid_num})
   	</insert>
   	
  	<delete id="delete" parameterType="int">
