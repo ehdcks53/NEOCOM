@@ -17,14 +17,20 @@ public interface MemberMapper {
 	int searchNo(String id);
 
 	List<MemberVo> list();
-	
+
 	int updateNickname(MemberVo vo);
+
 	int updateName(MemberVo vo);
+
 	int updatePhone(MemberVo vo);
-	
+
 	MemberVo selectid(String id);
-	
+
 	int memberDel(MemberVo vo);
-	
+
 	MemberVo login(MemberVo vo);
+
+	int update(MemberVo vo);
+
+	int delete(int mem_no);
 }

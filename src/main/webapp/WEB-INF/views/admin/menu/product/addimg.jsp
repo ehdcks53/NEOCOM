@@ -15,6 +15,7 @@
 	<link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet" />
 	<link href="${pageContext.request.contextPath}/static/admin/assets/css/vendor.min.css" rel="stylesheet" />
 	<link href="${pageContext.request.contextPath}/static/admin/assets/css/default/app.min.css" rel="stylesheet" />
+	<link href="${pageContext.request.contextPath}/static/admin/assets/css/imgShow.css" rel="stylesheet" />
 	<!-- ================== END core-css ================== -->
 	
 	<!-- ================== BEGIN page-css ================== -->
@@ -84,8 +85,8 @@
 												</c:choose>
 											</c:forEach>
 											<td>${product_vo.product_name }</td>
-											<td><a href="${pageContext.request.contextPath }/admin/cate/delete?category_id=${vo.category_id }" class="btn btn-sm btn-primary w-60px me-1">삭제</a></td>
-											<td><a href="#modal-dialog" class="open_modal btn btn-sm btn-white w-60px" data-bs-toggle="modal" 
+											<td class="text-center"><a href="${pageContext.request.contextPath }/admin/cate/delete?category_id=${vo.category_id }" class="btn btn-sm btn-primary w-60px me-1">삭제</a></td>
+											<td class="text-center"><a href="#modal-dialog" class="open_modal btn btn-sm btn-white w-60px" data-bs-toggle="modal" 
 											data-id="${product_vo.product_id}" data-name="${product_vo.product_name}">수정</a></td>
 										</tr>
 									</c:forEach>
@@ -115,35 +116,44 @@
 				<button type="button" class="btn-close" data-bs-dismiss="modal" aria-hidden="true"></button>
 			</div>
 			<div class="modal-body">
-				<form action="${pageContext.request.contextPath}/admin/product/addimg" enctype="multipart/form-data" action="${pageContext.request.contextPath}/admin/product/addimg">
+				<form action="#" id="fileUploadForm" enctype="multipart/form-data">
 					<div class="row mb-15px">
 						<label class="form-label col-form-label col-md-3">상품 고유번호</label>
 							<div class="col-md-9">
-								<input type="text" id="product_id" class="form-control mb-5px" readonly/>
+								<input type="text" id="product_id" name="product_id" class="form-control mb-5px" readonly/>
 							</div>
 					</div>
 					<div class="row mb-15px">
 						<label class="form-label col-form-label col-md-3">상품명</label>
 							<div class="col-md-9">
-								<input type="text" id="product_name" class="form-control mb-5px" readonly/>
+								<input type="text" id="product_name" name="product_name" class="form-control mb-5px" readonly/>
 							</div>
 					</div>
 					<div class ="row mb-15px">
 						<label for="main_img" class="form-label">메인이미지선택</label>
-  						<input class="prd_imgs form-control" type="file" id="main_img">
+  						<input class="prd_imgs form-control" type="file" name="main_img" id="main_img">
 						<label for="description_img" class="form-label">설명이미지선택</label>
-  						<input class="prd_imgs form-control" type="file" id="description_img">
+  						<input class="prd_imgs form-control" type="file" name="description_img" id="description_img">
 					</div>
-					<div id="preview_img" class="row mb-15px"></div>
-					<div class ="row mb-15px">
-						<input type="submit" id="sbmtbtn" class="btn btn-lg btn-primary" value="업로드" />
-					</div>
-					
+					<div class="row">
+        				<div class="col-lg-12">
+            				<div class="card shadow mb-4">
+                				<div class="card-header py-3">
+                    				<h4 class="m-0 font-weight-bold text-primary">이미지</h4>
+                				</div>
+                				<div class="card-body">
+                    				<div class="uploadResult">
+                        				<ul></ul>
+                   					 </div>
+                				</div>
+            				</div>
+        				</div>
+    				</div>
 				</form>
 			</div>
 			<div class="modal-footer">
 				<a href="javascript:;" class="btn btn-white" data-bs-dismiss="modal">닫기</a>
-				<a href="javascript:;" class="btn btn-success">수정</a>
+				<a href="javascript:;" id="submitBtn" class="btn btn-success">수정</a>
 			</div>
 			</div>
 		</div>
@@ -174,13 +184,45 @@
 			$('#preview_img').empty();
 			var id = $(this).data('id');
 			var name = $(this).data('name');
-			console.log(id, name);
 			$("#product_id").val(id);
 			$("#product_name").val(name);
 		});
 
 		$(".prd_imgs").on('change', function(){
     		readInputFile(this);
+		});
+
+		$("#submitBtn").click(function () {                 
+			// Get form         
+			var form = $('#fileUploadForm')[0];
+			console.log("form:" + form.product_id); 	    
+			// Create an FormData object          
+			var formData = new FormData(form);  	 
+			
+			// FormData의 값 확인
+			for (var pair of formData.entries()) { console.log(pair[0]+ ', ' + pair[1]); }
+
+
+			$.ajax({             
+				type: "POST",          
+				enctype: 'multipart/form-data',  
+				url: "${pageContext.request.contextPath}/admin/product/addimg",        
+				data: formData,
+				enctype: "multipart/form-data",
+				processData: false,    
+				contentType: false,      
+				cache: false,           
+				timeout: 600000,       
+				success: function (data) { 
+					alert("파일 업로드/수정 완료");           
+					$("#btnSubmit").prop("disabled", false);      
+				},          
+				error: function (e) {  
+					console.log("ERROR : ", e);     
+					$("#btnSubmit").prop("disabled", false);    
+					alert("fail");      
+				}     
+			});  
 		});
 
     	$('#data-table-responsive').DataTable({
