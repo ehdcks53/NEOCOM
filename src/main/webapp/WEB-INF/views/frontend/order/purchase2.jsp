@@ -194,10 +194,7 @@
 	<button type="button" onclick="cancelPay()">aaaa</button>
 </body>
 
-<script
-  src="https://code.jquery.com/jquery-3.3.1.min.js"
-  integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
-  crossorigin="anonymous"></script>
+
 <script>
 	$("#check_module").click(function() {
 		var IMP = window.IMP; // 생략가능
