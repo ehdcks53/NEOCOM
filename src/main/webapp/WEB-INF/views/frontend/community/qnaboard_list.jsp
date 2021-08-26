@@ -109,9 +109,21 @@ a {
 				<c:forEach var="vo" items="${list }">
 					<tr>
 					<c:choose>
+						<c:when test="${vo.qna_show == 1 && vo.qna_group_depth == 0}">
+							<td>${vo.qna_board_no }</td>
+							<td colspan="4" class="text-left">
+								<span style="color:gray;">
+								 작성자에 의해 삭제된 글 입니다. </span>
+							</td>
+						</c:when>
 						<c:when test="${vo.qna_show == 1 }">
-							<td colspan="5" class="text-left">
-								<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; [ ${vo.qna_title } ]</span>
+							<td></td>
+							<td colspan="4" class="text-left">
+								<span style="color:gray;">
+									<c:forEach var="i" begin="2" end="${vo.qna_group_depth }">
+										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+									</c:forEach>
+								[Re] 작성자에 의해 삭제된 글 입니다. </span>
 							</td>
 						</c:when>
 						<c:when test="${vo.qna_group_order >0 }">

@@ -53,7 +53,7 @@
 		select count(*) from free_board where free_group_no=#{free_board_no}
 	</select>
 	<update id="showDeletePost" parameterType="int">
-		update free_board set free_show=1, free_title='작성자에 의해 삭제된 글 입니다.', free_content='' where free_board_no=#{free_board_no}
+		update free_board set free_show=1, free_title='', free_content='' where free_board_no=#{free_board_no}
 	</update>
 	
 	<update id="update" parameterType="freeboard">
