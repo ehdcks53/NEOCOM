@@ -1,7 +1,6 @@
 package com.jhta.neocom.model;
 
 import java.sql.Date;
-
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -20,3 +19,5 @@ public class PaymentVo {
 	private String payment_status;
 	private String mid_num;
 }
+
+

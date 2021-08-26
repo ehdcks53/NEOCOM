@@ -1,17 +1,8 @@
 package com.jhta.neocom.controller;
 
 import java.text.DecimalFormat;
-import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.HashMap;
-import java.util.List;
-import java.io.IOException; 
-import java.util.ArrayList; 
-import java.util.HashMap; 
-import java.util.List; 
-import java.util.Map; 
-import java.util.Map.Entry;
-import java.util.Set;
 
 
 import javax.servlet.http.HttpSession;
@@ -27,18 +18,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
-
-import com.jhta.neocom.model.CartVo;
 import com.jhta.neocom.model.CustomUserDetails;
 import com.jhta.neocom.model.MemberVo;
 import com.jhta.neocom.model.OrderDetailVo;
 import com.jhta.neocom.model.OrderMainVo;
 import com.jhta.neocom.model.PaymentVo;
-import com.jhta.neocom.model.ProductVo;
 import com.jhta.neocom.service.OrderDetailService;
 import com.jhta.neocom.service.OrderMainService;
 import com.jhta.neocom.service.PaymentService;
-import com.jhta.neocom.service.ProductService;
 
 @Controller
 public class PurchaseController {
@@ -46,8 +33,6 @@ public class PurchaseController {
 	private OrderMainService omservice;
 	@Autowired
 	private PaymentService pservice;
-	@Autowired
-	private ProductService productservice;
 	@Autowired
 	private OrderDetailService odservice;
 
@@ -71,7 +56,7 @@ public class PurchaseController {
 		return mv;
 		/* } */
 
-	}
+	   }
 
 	// 장바구니에서 주문
 	@RequestMapping(value = "/purchase1", produces = { MediaType.APPLICATION_JSON_VALUE })
@@ -235,7 +220,6 @@ public class PurchaseController {
 		CustomUserDetails cud = (CustomUserDetails) authentication.getPrincipal();
 		MemberVo mvo = cud.getMemberVo();
 		int mem_no = mvo.getMem_no();
-		HashMap<String, Object> map = new HashMap<String, Object>();
 		model.addAttribute("order_no", order_no);
 		model.addAttribute("mem_no",mem_no);
 		System.out.println(order_no);

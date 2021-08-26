@@ -25,6 +25,9 @@
 	<!-- Modernizr-->
 	<script src="${pageContext.request.contextPath}/static/frontend/assets/js/modernizr.min.js"></script>
 <style>
+.table thead tr td img{
+	width: 20px;
+}
 .form-control{
 padding:0 18px 3px;
 border:1px solid #dbe2e8;
@@ -152,7 +155,7 @@ opacity: 0;
 				<li class="separator">&nbsp;</li>
 				<li><a href="#">QnA Board</a></li>
 				<li class="separator">&nbsp;</li>
-				<li>Write</li>
+				<li>Reply</li>
 			</ul>
 		</div>
 	</div>
@@ -189,7 +192,11 @@ opacity: 0;
 				</tr>
 				<tr>
 					<th scope="row">제목</th>
-					<td colspan="3">${map.qna_title }</td>
+					<td colspan="3">${map.qna_title }
+						<c:if test="${map.qna_secret_chk==true }">
+							<img src="${pageContext.request.contextPath}/static/frontend/assets/favicon&icon/lockicon.png" class="lock_img">
+						</c:if>
+					</td>
 					<th scope="row">조회수</th>
 					<td>${map.qna_hit }</td>
 				</tr>
@@ -207,14 +214,14 @@ opacity: 0;
 
 
 <div class="row">
-	<!-- 문의게시판 답변작성 -->
+	<!-- 문의게시판 답변 작성 -->
 	<div class="col-lg-8" style="margin-left:auto; margin-right:auto;">
 		<hr class="padding-bottom-1x" style="margin-top:30px; margin-bottom:30px;">
 		<div class="padding-top-2x mt-2 hidden-lg-up"></div>
 		<h4>답변하기</h4>
 		<hr class="padding-bottom-1x">
 		
-		<form class="row" name="qnaForm" method="post" action="${pageContext.request.contextPath}/community/qnaboard_insert">
+		<form class="row" name="qnaForm" method="post" action="${pageContext.request.contextPath}/community/qnaboard_reply?qna_board_no=${map.qna_board_no }">
 			<div class="col-md-12">
 				<div class="form-group">
 					<label for="qna_title">제목</label>
@@ -228,11 +235,10 @@ opacity: 0;
 				</div>
 			</div>
 			<div class="col-12 padding-top-1x">
-				
 				<div class="custom-control custom-checkbox d-block">
-					<input class="custom-control-input" type="checkbox" name="qna_secret_chk" id="qna_secret_chk">
+				<!--<input class="custom-control-input" type="checkbox" name="qna_secret_chk" id="qna_secret_chk">
 					<label class="custom-control-label" for="qna_secret_chk">비밀글 &nbsp;</label>
-					<input type="password" name="qna_password" id="qna_password">
+					<input type="password" name="qna_password" id="qna_password"> -->
 				</div>
 				<div class="padding-bottom-1x"></div>
 				<hr class="margin-top-1x margin-bottom-1x">
@@ -297,12 +303,12 @@ opacity: 0;
 	<script src="${pageContext.request.contextPath}/static/frontend/assets/js/scripts.min.js"></script>
 <script>
 	function clickAdd(formName){
-		formName.action = "${pageContext.request.contextPath}/community/qnaboard_insertReply?qna_board_no=${map.qna_board_no }";
+		formName.action = "${pageContext.request.contextPath}/community/qnaboard_reply?qna_board_no=${map.qna_board_no }";
 		formName.method = "post";
 		formName.submit();
 	}
 
-	$("#qna_password").attr("disabled",true);
+/*	$("#qna_password").attr("disabled",true);
 	$("#qna_secret_chk").on("click",function(){
 		var chk = $("input:checkbox[id='qna_secret_chk']").is(":checked");
 		if(chk==true){
@@ -312,7 +318,17 @@ opacity: 0;
 			$("#qna_password").prop("disabled",true);
 			$(this).val(0);
 		}
-	});
+	}); */
+	
+/*	var secret_chk = "${map.qna_secret_chk}";
+	var password = "${map.qna_password}";
+	if(secret_chk == true) {
+		qna_secret_chk.val() == 1;
+		qna_password.val() == password;
+	}else if(secret_chk == false) {
+		qna_secret_chk.val() == 0;
+		qna_password.val() == null;
+	} */
 </script>
 </body>
 </html>
