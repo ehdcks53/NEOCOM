@@ -112,7 +112,7 @@ public class QnABoardController {
 			
 			service.delete(qna_board_no);
 			service.status(vo);
-		}else {  // 답글이 있을 경우 제목과 내용 수정해서 삭제글 표시
+		}else {  // 답글이 있을 경우 제목과 내용 수정해서 삭제글로 표시
 			service.showDeletePost(qna_board_no);			
 		}
 		

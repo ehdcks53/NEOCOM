@@ -80,7 +80,22 @@ public class FreeBoardController {
 	
 	// 자유게시판 글 삭제
 	@RequestMapping(value = "/community/freeboard_delete",method = RequestMethod.GET)
-	public String freeboard_delete() {
+	public String freeboard_delete(Model model, int free_board_no, FreeBoardVo vo) {
+		HashMap<String,Object> map = service.detail(free_board_no);
+		int groupNo = Integer.parseInt(map.get("free_group_no").toString());
+		int mem_no = Integer.parseInt(map.get("mem_no").toString());
+		
+		int countReply = service.countReply(free_board_no);
+		if(countReply == 1) {  //답글 없을 경우 바로 삭제
+			service.delete(free_board_no);
+		}else if(mem_no == 1 || mem_no == 2) {  // 답글이 있어도 관리자는 바로 삭제 가능
+			vo.setFree_group_no(groupNo);
+			
+			service.delete(free_board_no);
+		}else {  // 답글 있을 경우 삭제글로 표시
+			service.showDeletePost(free_board_no);
+		}
+		
 		return "redirect:/community/freeboard_list";
 	}
 	
@@ -89,6 +104,7 @@ public class FreeBoardController {
 	public String freeboard_update(Model model, int free_board_no) {
 		HashMap<String, Object> map = service.detail(free_board_no);
 		model.addAttribute("map", map);
+		
 		return "frontend/community/freeboard_update";
 	}
 	
@@ -96,6 +112,7 @@ public class FreeBoardController {
 	@RequestMapping(value = "/community/freeboard_update", method = RequestMethod.POST)
 	public String freeboard_updateOk(FreeBoardVo vo) {
 		service.update(vo);
+		
 		return "redirect:/community/freeboard_list";
 	}
 	

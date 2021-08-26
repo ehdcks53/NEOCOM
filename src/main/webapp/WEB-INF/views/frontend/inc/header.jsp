@@ -69,7 +69,7 @@
 				<sec:authorize access="isAuthenticated()">
 				<c:set var="permission" value="true" scope="session"/>
 				<div class="toolbar-item">
-					<a href="#">
+					<a>
 						<div><i class="icon-user"></i><span class="text-label"><sec:authentication property="principal.memberVo.id"/>님
 						</span></div>
 					</a>
@@ -203,10 +203,9 @@
 					<li><a href="${pageContext.request.contextPath }/community/noticeboard_list">공지사항</a></li>
 					<li><a href="${pageContext.request.contextPath }/community/qnaboard_list">Q&A</a></li>
 					<li><a href="${pageContext.request.contextPath }/community/freeboard_list">자유게시판</a></li>
-					<li><a href="#">갤러리</a></li>
 				</ul>
 			</li>
-			<li class="has-submenu" id="aboutus-li"><a href="${pageContext.request.contextPath }/aboutus/introduce">About Us</a>
+			<li class="has-submenu" id="aboutus-li"><a href="${pageContext.request.contextPath }/aboutus/introduction">About Us</a>
 			</li>
 		</ul>
 	</nav>
@@ -230,7 +229,7 @@
 
 				<sec:authorize access="isAuthenticated()">
 					<div class="toolbar-item">
-						<a href="#">
+						<a>
 							<div><i class="icon-user"></i><span class="text-label"><sec:authentication property="principal.memberVo.id"/>님</span></div>
 						</a>
 					</div>

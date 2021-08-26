@@ -117,7 +117,7 @@ a {
 						<c:when test="${vo.qna_group_order >0 }">
 							<td></td>
 							<td class="text-left">
-								<a href="${pageContext.request.contextPath }/community/qnaboard_detail?qna_board_no=${vo.qna_board_no}&qna_secret_chk=${vo.qna_secret_chk }">
+								<a href="javascript:clickTitle('${vo.qna_board_no }','${vo.qna_secret_chk }');">
 									<c:forEach var="i" begin="2" end="${vo.qna_group_depth }">
 										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 									</c:forEach>
@@ -125,22 +125,22 @@ a {
 								<c:if test="${vo.qna_secret_chk==true }">
 									<img src="${pageContext.request.contextPath}/static/frontend/assets/favicon&icon/lockicon.png" class="lock_img">
 								</c:if>
-								<td>${vo.Nickname }</td>
-								<td><fmt:parseDate value="${vo.qna_regdate }" var="qna_regdate" pattern="yyyy-MM-dd'T'HH:mm:ss" /><fmt:formatDate value="${qna_regdate }" pattern="yyyy-MM-dd HH:mm:ss" /></td>
-								<td>${vo.qna_hit }</td>
 							</td>
+							<td>${vo.Nickname }</td>
+							<td><fmt:parseDate value="${vo.qna_regdate }" var="qna_regdate" pattern="yyyy-MM-dd'T'HH:mm:ss" /><fmt:formatDate value="${qna_regdate }" pattern="yyyy-MM-dd HH:mm:ss" /></td>
+							<td>${vo.qna_hit }</td>
 						</c:when>
 						<c:otherwise>
 							<td>${vo.qna_board_no }</td>
 							<td class="text-left">
-								<a href="${pageContext.request.contextPath }/community/qnaboard_detail?qna_board_no=${vo.qna_board_no}&qna_secret_chk=${vo.qna_secret_chk }">${vo.qna_title }</a>
+								<a href="javascript:clickTitle('${vo.qna_board_no }','${vo.qna_secret_chk }');">${vo.qna_title }</a>
 								<c:if test="${vo.qna_secret_chk==true }">
 									<img src="${pageContext.request.contextPath}/static/frontend/assets/favicon&icon/lockicon.png" class="lock_img">
 								</c:if>
-								<td>${vo.Nickname }</td>
-								<td><fmt:parseDate value="${vo.qna_regdate }" var="qna_regdate" pattern="yyyy-MM-dd'T'HH:mm:ss" /><fmt:formatDate value="${qna_regdate }" pattern="yyyy-MM-dd HH:mm:ss" /></td>
-								<td>${vo.qna_hit }</td>
 							</td>
+							<td>${vo.Nickname }</td>
+							<td><fmt:parseDate value="${vo.qna_regdate }" var="qna_regdate" pattern="yyyy-MM-dd'T'HH:mm:ss" /><fmt:formatDate value="${qna_regdate }" pattern="yyyy-MM-dd HH:mm:ss" /></td>
+							<td>${vo.qna_hit }</td>
 						</c:otherwise>
 					</c:choose>
 					</tr>
@@ -238,6 +238,20 @@ function clickInsert(){
 	console.log("아이디:" + id);
 	if(id!=null && id!='') {
 		location.href='${pageContext.request.contextPath}/community/qnaboard_insert';
+	}else{
+		$("#loginModal").modal();
+	}
+}
+
+function clickTitle(qna_board_no,qna_secret_chk){
+	var id = null;
+		<sec:authorize access="isAuthenticated()">
+			id = '<sec:authentication property="principal.memberVo.id"/>';
+		</sec:authorize>
+	console.log("아이디:" + id);
+	
+	if(id!=null && id!='') {
+		location.href="${pageContext.request.contextPath }/community/qnaboard_detail?qna_board_no="+qna_board_no+"&qna_secret_chk="+qna_secret_chk;
 	}else{
 		$("#loginModal").modal();
 	}
