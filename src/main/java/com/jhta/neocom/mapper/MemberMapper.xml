@@ -62,4 +62,7 @@
 	<update id="pwdModify" parameterType="com.jhta.neocom.model.MemberVo">
 		update password member_Info where id=#{id}
 	</update>
+
+  	
+
 </mapper>

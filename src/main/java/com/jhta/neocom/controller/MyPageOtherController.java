@@ -102,6 +102,9 @@ public class MyPageOtherController {
     }
     @RequestMapping(value = "/account/memberDel", method = RequestMethod.POST)
     public String memberDel( HttpSession session,MemberVo memberVo, Model model,String password,HttpServletRequest req) {
+    	
+
+    	
     	//memberVo.setPassword(bCryptPasswordEncoder.encode(memberVo.getPassword()));
     	//password=req.getParameter("password");	
     	String encode = bCryptPasswordEncoder.encode(password);
@@ -121,22 +124,49 @@ public class MyPageOtherController {
     	}else { 
     		System.out.println(memberVo.getMem_no()+"+"+memberVo.getId());
     		memberService.delete_role(memberVo.getMem_no());
-    		memberService.memberDel(memberVo);
+    		//memberService.memberDel(memberVo);
     		session.invalidate();
     		return "redirect:/";
     	}
     }
-    //작업중..
-//    @RequestMapping(value = "/account/pwdmodify",method = RequestMethod.GET)
-//    public ModelAndView pwdModifyForm(String id) {
-//    	ModelAndView mv=new ModelAndView("frontend/account/mypage_pwdmodify");
-//    	mv.addObject("vo",memberService.selectid(id));
-//        return mv;
-//    }
-//    @RequestMapping(value = "/account/pwdmodify",method = RequestMethod.POST)
-//    public String pwdModify(String id,MemberVo memberVo) {
-//    	return null;
-//    }
+//	String result=null;
+//	BCryptPasswordEncoder encoder=new BCryptPasswordEncoder();
+//	
+//	MemberVo dbUser=(MemberVo) session.getAttribute("login");
+//	if(encoder.matches(password, dbUser.getPassword())) {
+//		result="pwConfirmOk";
+//		System.out.println("pwConfirmOk");
+//	}else {
+//		result="pwdConfirmNo";
+//		System.out.println("pwdConfirmNo");
+//	}
+//	return result;
+//}
+    	
+    	
+//    	MemberVo member=(MemberVo) session.getAttribute("member");
+//    	String oldPwd=member.getPassword();
+//    	System.out.println("oldPwd:"+oldPwd);
+//    	
+//    	
+//    	boolean passwordMatch = bCryptPasswordEncoder.matches(password, oldPwd);  // 첫번째 인자는 평문, 두번 째 인자는 암호화로 설정해야 오류가 안난다.
+//    	System.out.println("password:"+password);
+//    	System.out.println("비밀번호 비교 : " + passwordMatch);
+//    	
+//    	MemberVo vo=new MemberVo(memberVo.getMem_no(),memberVo.getNickname(), memberVo.getPhone(), memberVo.getBirth_date(), null, 
+//				 memberVo.getName(), memberVo.getId(), memberVo.getPassword(), memberVo.getRoles());
+//    	if(passwordMatch == true) {
+//    		memberService.memberDel(vo);
+//    		System.out.println("삭제");
+//    		session.invalidate();
+//    		return "redirect:/";
+//    	} else {
+//    		System.out.println("삭제실패");
+//    		return "redirect:/user/remove";
+//    	}
+//    	
+//    }  
+    
 	
 	
     }

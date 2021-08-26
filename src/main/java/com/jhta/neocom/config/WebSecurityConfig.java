@@ -2,7 +2,10 @@ package com.jhta.neocom.config;
 
 import javax.sql.DataSource;
 
+
 import com.jhta.neocom.service.CustomSecurityUsersService;
+
+import lombok.RequiredArgsConstructor;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -17,9 +20,11 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.authentication.rememberme.JdbcTokenRepositoryImpl;
 import org.springframework.security.web.authentication.rememberme.PersistentTokenRepository;
 
+@RequiredArgsConstructor
 @Configuration
 @EnableWebSecurity
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
+	
     @Autowired
     private CustomSecurityUsersService customSecurityUsersService;
 
@@ -73,10 +78,10 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .defaultSuccessUrl("/") // 로그인 성공 시 이동할 경로.
                 .failureUrl("/account/login?error=true").permitAll() // 인증에 실패했을 때 보여주는 화면 url, 로그인 form으로 파라미터값
                                                                      // error=true로 보낸
+
                 .and().logout().permitAll().logoutUrl("/account/logout").logoutSuccessUrl("/").and().exceptionHandling()               
                 .accessDeniedPage("/account/denied"); // 권한이 없는 대상이 접속을시도했을 때
-        		
-
+    
         http.rememberMe().key("jpa").userDetailsService(customSecurityUsersService).tokenRepository(tokenRepository());
     }
 

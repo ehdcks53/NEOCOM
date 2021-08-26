@@ -32,4 +32,5 @@ public interface MemberMapper {
 	MemberVo login(MemberVo vo);
 	
 	int pwdModify(MemberVo vo);
+
 }

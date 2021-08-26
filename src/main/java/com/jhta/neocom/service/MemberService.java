@@ -70,4 +70,5 @@ public class MemberService {
 		user.setPassword(securePw);
 		mapper.pwdModify(user);
 	}
+
 }
