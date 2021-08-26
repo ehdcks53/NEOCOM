@@ -23,9 +23,9 @@
 	<!-- Modernizr-->
 	<script src="${pageContext.request.contextPath}/static/frontend/assets/js/modernizr.min.js"></script>
 <style>
-.table tbody tr td {
-	height: 100px;
-	vertical-align: middle;
+.form-control {
+	margin-left: auto;
+	margin-right: auto;
 }
 </style>
 </head>
@@ -39,13 +39,17 @@
 <div class="page-title">
 	<div class="container">
 		<div class="column">
-			<h1>마이페이지</h1>
+			<h1>견적문의게시판</h1>
 		</div>
 		<div class="column">
 			<ul class="breadcrumbs">
 				<li><a href="#">Home</a></li>
 				<li class="separator">&nbsp;</li>
-				<li>My Page</li>
+				<li><a href="#">Community</a></li>
+				<li class="separator">&nbsp;</li>
+				<li><a href="#">Advice Board</a></li>
+				<li class="separator">&nbsp;</li>
+				<li>No.${map.adv_board_no }</li>
 			</ul>
 		</div>
 	</div>
@@ -56,33 +60,36 @@
 <!-- 페이지 컨텐트 -->
 <div class="container padding-bottom-3x mb-2">
 <div class="row">
-	<!-- mypage_sidebar -->
-	<jsp:include page="/WEB-INF/views/frontend/account/inc/mypage_sidebar.jsp"/>
-	
-	<!-- 나의정보수정 여기서부터 -->
-	<div class="col-lg-9 col-md-8 order-md-2">
-		<h6 class="text-muted text-lg text-uppercase">회원 탈퇴</h6>
-		<hr class="margin-bottom-1x">
+	<div class="col-xl-10 offset-xl-1">
+		<blockquote class="margin-top-1x margin-bottom-1x">
+			<div style="margin-bottom:20px;"></div>
+			<form id="pwdForm">
+				<span>
+				비밀글은 작성자와 관리자만 열람이 가능합니다.<br>
+				비밀번호를 입력해주세요.
+				</span>
+				<div class="p-2"></div>
+					<input type="password" class="form-control col-sm-2 p-1" name="adv_password" id="adv_password" style="text-align:center;">
+					<div class="p-1"></div>
+					<button type="button" class="form-control col-sm-1 p-1" onclick="clickBtn(pwdForm)">확인</button>
+				
+				<div style="margin-bottom:20px;"></div>
+			</form>
+		</blockquote>
 		
-		<div class="card-body">
-		<form action="${pageContext.request.contextPath }/account/memberDel" method="post">	
-		<div class="form-group input-group">
-			<input type="hidden" name="mem_no" value="${vo.mem_no }">
-			아이디			
-			<input class="form-control" type="text" name="id" readonly="readonly" value="${vo.id }">
-		</div>	
-		<div class="form-group input-group">	
-			비밀번호			
-			<input class="form-control" type="password" name="password" placeholder="비밀번호를 입력하세요">
-		</div>	
-		<div class="text-center text-sm-right">
-			<button class="btn btn-primary margin-bottom-none" type="submit">회원탈퇴</button>
+		<div class="single-post-footer" style="margin-bottom:30px;">
+			<div class="entry-navigation">
+				<div class="column text-left"></div>
+				<div class="column">
+					<a class="btn btn-outline-secondary view-all" href="${pageContext.request.contextPath }/service/advboard_list">
+						<i class="icon-menu"></i>
+					</a>
+				</div>
+				<div class="column text-right"></div>
+			</div>
 		</div>
-		</form>			
-	</div>	
-	<hr class="mt-2 mb-3">
+		
 	</div>
-	
 </div>
 </div>
 <!-- 페이지 컨텐트 끝 -->
@@ -97,5 +104,19 @@
 	<!-- JavaScript (jQuery) libraries, plugins and custom scripts-->
 	<script src="${pageContext.request.contextPath}/static/frontend/assets/js/vendor.min.js"></script>
 	<script src="${pageContext.request.contextPath}/static/frontend/assets/js/scripts.min.js"></script>
+<script>
+	function clickBtn(formName){
+		var password = "${map.adv_password}";
+		if($("#adv_password").val() != password) {
+			alert("비밀번호가 일치하지 않습니다.");
+			$(this).focus();
+		}else {
+			formName.action = "${pageContext.request.contextPath}/service/advboard_detailLock?adv_board_no=${map.adv_board_no}";
+			formName.method = "post";
+			formName.submit();
+		}
+	}
+	
+</script>
 </body>
 </html>
