@@ -1,8 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
-<%@taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -26,12 +23,9 @@
 	<!-- Modernizr-->
 	<script src="${pageContext.request.contextPath}/static/frontend/assets/js/modernizr.min.js"></script>
 <style>
-.table tbody tr td p {
-	margin-top: 30px;
-	margin-bottom: 30px;
-	margin-left: 100px;
-	margin-right: 100px;
-	vertical-align: middle;
+.form-control {
+	margin-left: auto;
+	margin-right: auto;
 }
 </style>
 </head>
@@ -45,7 +39,7 @@
 <div class="page-title">
 	<div class="container">
 		<div class="column">
-			<h1>리뷰</h1>
+			<h1>견적문의게시판</h1>
 		</div>
 		<div class="column">
 			<ul class="breadcrumbs">
@@ -53,9 +47,9 @@
 				<li class="separator">&nbsp;</li>
 				<li><a href="#">Community</a></li>
 				<li class="separator">&nbsp;</li>
-				<li><a href="#">QnA Board</a></li>
+				<li><a href="#">Advice Board</a></li>
 				<li class="separator">&nbsp;</li>
-				<li>No.${rvo.board_num }</li>
+				<li>No.${map.adv_board_no }</li>
 			</ul>
 		</div>
 	</div>
@@ -65,81 +59,38 @@
 
 <!-- 페이지 컨텐트 -->
 <div class="container padding-bottom-3x mb-2">
-	<div class="row justify-content-center">
-		<div class="col-lg-10">
-			<table class="table text-center">
-				<colgroup>
-					<col width="10%"/>
-					<col width="15%"/>
-					<col width="15%"/>
-					<col width="30%"/>
-					<col width="10%"/>
-					<col width="20%"/>
-				</colgroup>
-				<thead class="thead-default">
-					
-					<tr>
-						<th scope="row">글번호</th>
-						<td>${rvo.board_num }</td>
-						<th scope="row">작성자</th>
-						<td>${rvo.nickname }</td>
-						<th scope="row">작성일</th>
-						<td><fmt:formatDate value="${rvo.regdate }" pattern = "yyyy.MM.dd HH:mm:ss"/></td>
-					</tr>
-					<tr>
-						<th scope="row">제목</th>
-						<td colspan="3">${rvo.review_title }</td>
-						<th scope="row">평점</th>
-						<td colspan="2">${rvo.star }
-						</td>
-						
-					</tr>
-				</thead>
-				<tbody> 
-						
-					
-						
-						<tr>
-						<td  colspan="3"><img  src="<c:url value='/upload/product_img/${rvo.review_img}' />"
-							alt="<c:url value='/upload/product_img/${rvo.review_img}' />" /></td>
-						<td colspan="10">
-							<p>${rvo.review_content }</p>
-						</td>
-					</tr>
-				</tbody>
-			</table>
-			
-			<div class="single-post-footer" style="margin-bottom:30px;">
-				<div class="entry-navigation">
-					<div class="column text-left"></div>
-					<div class="column">
-						<a class="btn btn-outline-secondary view-all" href="${pageContext.request.contextPath }/community/review_list">
-							<i class="icon-menu"></i>
-						</a>
-					</div>
-					<div class="column text-right"></div>
-				</div>
-			</div>
-			
-			
-			<div class="row" style="margin-bottom:40px;">
+<div class="row">
+	<div class="col-xl-10 offset-xl-1">
+		<blockquote class="margin-top-1x margin-bottom-1x">
+			<div style="margin-bottom:20px;"></div>
+			<form id="pwdForm">
+				<span>
+				비밀글은 작성자와 관리자만 열람이 가능합니다.<br>
+				비밀번호를 입력해주세요.
+				</span>
+				<div class="p-2"></div>
+					<input type="password" class="form-control col-sm-2 p-1" name="adv_password" id="adv_password" style="text-align:center;">
+					<div class="p-1"></div>
+					<button type="button" class="form-control col-sm-1 p-1" onclick="clickBtn(pwdForm)">확인</button>
 				
-				<div class="ml-md-auto" style="margin-right:30px;">
-					<sec:authorize access="isAuthenticated()">
-					<sec:authentication property="principal.memberVo.id"/>
-					
-					<a class="btn btn-outline-secondary btn-sm" id="nextAtag" href="${pageContext.request.contextPath }/community/review_update?board_num=${rvo.board_num}">
-						수정
+				<div style="margin-bottom:20px;"></div>
+			</form>
+		</blockquote>
+		
+		<div class="single-post-footer" style="margin-bottom:30px;">
+			<div class="entry-navigation">
+				<div class="column text-left"></div>
+				<div class="column">
+					<a class="btn btn-outline-secondary view-all" href="${pageContext.request.contextPath }/service/advboard_list">
+						<i class="icon-menu"></i>
 					</a>
-					<a class="btn btn-outline-secondary btn-sm" id="nextAtag" href="#" onclick="openDelForm(${rvo.board_num})">
-						삭제
-					</a>
-					</sec:authorize>
 				</div>
+				<div class="column text-right"></div>
 			</div>
-			
 		</div>
+		
 	</div>
+</div>
 </div>
 <!-- 페이지 컨텐트 끝 -->
 
@@ -153,15 +104,19 @@
 	<!-- JavaScript (jQuery) libraries, plugins and custom scripts-->
 	<script src="${pageContext.request.contextPath}/static/frontend/assets/js/vendor.min.js"></script>
 	<script src="${pageContext.request.contextPath}/static/frontend/assets/js/scripts.min.js"></script>
-	<script>
-	var id="<sec:authentication property='principal.memberVo.id'/>";
-	var board_num=${rvo.board_num};
-	var product_id=${rvo.product_id};
-		function openDelForm(board_num){
-			window.name="parentForm";
-			window.open("${pageContext.request.contextPath}/community/review_delete?board_num="+board_num+"&product_id="+product_id,
-					"delForm","width=570,height=350,resizable=no,scrollbars=no");
+<script>
+	function clickBtn(formName){
+		var password = "${map.adv_password}";
+		if($("#adv_password").val() != password) {
+			alert("비밀번호가 일치하지 않습니다.");
+			$(this).focus();
+		}else {
+			formName.action = "${pageContext.request.contextPath}/service/advboard_detailLock?adv_board_no=${map.adv_board_no}";
+			formName.method = "post";
+			formName.submit();
 		}
-	</script>
+	}
+	
+</script>
 </body>
 </html>

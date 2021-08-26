@@ -121,7 +121,7 @@ a {
 			<div class="column">
 				<c:choose>
 					<c:when test="${pu.prevPage }">
-						<a class="btn btn-outline-secondary btn-sm" href="${pageContext.request.contextPath}/community/review_list?pageNum=${pu.pageNum-1 }&field=${field}&keyword=${keyword}"><i class="icon-chevron-left"></i> 이전</a>
+						<a class="btn btn-outline-secondary btn-sm" href="${pageContext.request.contextPath}/community/review_list?product_id=${product_id }&pageNum=${pu.pageNum-1 }&field=${field}&keyword=${keyword}"><i class="icon-chevron-left"></i> 이전</a>
 					</c:when>
 					<c:otherwise>
 						<a class="btn btn-outline-secondary btn-sm disabled"><i class="icon-chevron-left"></i> 이전</a>
@@ -135,12 +135,12 @@ a {
 				<c:choose>
 					<c:when test="${pu.pageNum==i }">
 						<li class="active">
-							<a href="${pageContext.request.contextPath}/community/review_list?pageNum=${i }&field=${field}&keyword=${keyword}">${i }</a>
+							<a href="${pageContext.request.contextPath}/community/review_list?product_id=${product_id }&pageNum=${i }&field=${field}&keyword=${keyword}">${i }</a>
 						</li>
 					</c:when>
 					<c:otherwise>
 						<li>
-							<a href="${pageContext.request.contextPath}/community/review_list?pageNum=${i }&field=${field}&keyword=${keyword}">${i }</a>
+							<a href="${pageContext.request.contextPath}/community/review_list?product_id=${product_id }&pageNum=${i }&field=${field}&keyword=${keyword}">${i }</a>
 						</li>
 					</c:otherwise>
 				</c:choose>
@@ -150,7 +150,7 @@ a {
 			<div class="column">
 				<c:choose>
 					<c:when test="${pu.nextPage }">
-						<a class="btn btn-outline-secondary btn-sm" href="${pageContext.request.contextPath}/community/review_list?pageNum=${pu.pageNum+1 }&field=${field}&keyword=${keyword}">다음 <i class="icon-chevron-right"></i></a>
+						<a class="btn btn-outline-secondary btn-sm" href="${pageContext.request.contextPath}/community/review_list?product_id=${product_id }&pageNum=${pu.pageNum+1 }&field=${field}&keyword=${keyword}">다음 <i class="icon-chevron-right"></i></a>
 					</c:when>
 					<c:otherwise>
 						<a class="btn btn-outline-secondary btn-sm disabled">다음 <i class="icon-chevron-right"></i></a>
