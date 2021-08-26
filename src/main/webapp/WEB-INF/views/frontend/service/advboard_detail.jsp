@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -23,8 +25,11 @@
 	<!-- Modernizr-->
 	<script src="${pageContext.request.contextPath}/static/frontend/assets/js/modernizr.min.js"></script>
 <style>
-.table tbody tr td {
-	height: 100px;
+.table tbody tr td p {
+	margin-top: 30px;
+	margin-bottom: 30px;
+	margin-left: 100px;
+	margin-right: 100px;
 	vertical-align: middle;
 }
 </style>
@@ -39,13 +44,17 @@
 <div class="page-title">
 	<div class="container">
 		<div class="column">
-			<h1>마이페이지</h1>
+			<h1>문의게시판</h1>
 		</div>
 		<div class="column">
 			<ul class="breadcrumbs">
 				<li><a href="#">Home</a></li>
 				<li class="separator">&nbsp;</li>
-				<li>My Page</li>
+				<li><a href="#">Service</a></li>
+				<li class="separator">&nbsp;</li>
+				<li><a href="#">Advice Board</a></li>
+				<li class="separator">&nbsp;</li>
+				<li>No.${vo.adv_board_no }</li>
 			</ul>
 		</div>
 	</div>
@@ -55,35 +64,72 @@
 
 <!-- 페이지 컨텐트 -->
 <div class="container padding-bottom-3x mb-2">
-<div class="row">
-	<!-- mypage_sidebar -->
-	<jsp:include page="/WEB-INF/views/frontend/account/inc/mypage_sidebar.jsp"/>
-	
-	<!-- 나의정보수정 여기서부터 -->
-	<div class="col-lg-9 col-md-8 order-md-2">
-		<h6 class="text-muted text-lg text-uppercase">회원 탈퇴</h6>
-		<hr class="margin-bottom-1x">
-		
-		<div class="card-body">
-		<form action="${pageContext.request.contextPath }/account/memberDel" method="post">	
-		<div class="form-group input-group">
-			<input type="hidden" name="mem_no" value="${vo.mem_no }">
-			아이디			
-			<input class="form-control" type="text" name="id" readonly="readonly" value="${vo.id }">
-		</div>	
-		<div class="form-group input-group">	
-			비밀번호			
-			<input class="form-control" type="password" name="password" placeholder="비밀번호를 입력하세요">
-		</div>	
-		<div class="text-center text-sm-right">
-			<button class="btn btn-primary margin-bottom-none" type="submit">회원탈퇴</button>
+	<div class="row justify-content-center">
+		<div class="col-lg-10">
+			<table class="table text-center">
+				<colgroup>
+					<col width="10%"/>
+					<col width="15%"/>
+					<col width="15%"/>
+					<col width="30%"/>
+					<col width="10%"/>
+					<col width="20%"/>
+				</colgroup>
+				<thead class="thead-default">
+					<tr>
+						<th scope="row">글번호</th>
+						<td>${map.adv_board_no }</td>
+						<th scope="row">작성자</th>
+						<td>${map.Nickname }</td>
+						<th scope="row">작성일</th>
+						<td><fmt:parseDate value="${map.adv_regdate }" var="adv_regdate" pattern="yyyy-MM-dd'T'HH:mm:ss" /><fmt:formatDate value="${adv_regdate }" pattern="yyyy-MM-dd HH:mm:ss" /></td>
+					</tr> <!-- 이 변환 하는 과정이 궁금함. -->
+					<tr>
+						<th scope="row">제목</th>
+						<td colspan="3">${map.adv_title }</td>
+						<!-- 조회수가 있어야함. -->
+					</tr>
+				</thead>
+				<tbody> 
+					<tr> 
+						<td colspan="10">
+							<p>${map.adv_content }</p>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+			
+			<div class="single-post-footer" style="margin-bottom:30px;">
+				<div class="entry-navigation">
+					<div class="column text-left"></div>
+					<div class="column">
+						<a class="btn btn-outline-secondary view-all" href="${pageContext.request.contextPath }/service/advboard_list">
+							<i class="icon-menu"></i>
+						</a>
+					</div>
+					<div class="column text-right"></div>
+				</div>
+			</div>
+			
+			
+			<div class="row" style="margin-bottom:40px;">
+				<div style="margin-left:30px;">
+					<a class="btn btn-outline-secondary btn-sm" id="prevAtag" href="${pageContext.request.contextPath }/community/qnaboard_insertReply?qna_board_no=${map.qna_board_no}">
+						답변하기
+					</a>
+				</div>
+				<div class="ml-md-auto" style="margin-right:30px;">
+					<a class="btn btn-outline-secondary btn-sm" id="nextAtag" href="${pageContext.request.contextPath }/community/qnaboard_update?qna_board_no=${map.qna_board_no}">
+						수정
+					</a>
+					<a class="btn btn-outline-secondary btn-sm" id="nextAtag" href="#">
+						삭제
+					</a>
+				</div>
+			</div>
+			
 		</div>
-		</form>			
-	</div>	
-	<hr class="mt-2 mb-3">
 	</div>
-	
-</div>
 </div>
 <!-- 페이지 컨텐트 끝 -->
 

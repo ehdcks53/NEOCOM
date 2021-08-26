@@ -96,7 +96,15 @@ public class AdvBoardController {
 		ModelAndView mv = new ModelAndView("frontend/board/BoardUpdate");
 		mv.addObject("vo", vo);
 		return mv;
-
+	
 	}
-
+    //글 상세목록 
+    @RequestMapping(value = "/service/advboard_detail", method = RequestMethod.GET)
+    public String advboard_detail(Model model, int adv_board_no) {
+    	HashMap<String, Object> map = service.detail(adv_board_no);
+    	model.addAttribute("map",map);
+    	return "frontend/service/advboard_detail";
+    
+   
+}
 }

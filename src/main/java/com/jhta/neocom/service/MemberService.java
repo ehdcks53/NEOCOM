@@ -57,7 +57,14 @@ public class MemberService {
 	public int memberDel(MemberVo vo) {
 		return mapper.memberDel(vo);
 	}
+<<<<<<< HEAD
 
+=======
+	public int delete_role(int mem_no) {
+		return mapper.delete_role(mem_no);
+	}
+	
+>>>>>>> 94f55521f288c11a9a602e66ca9a8f9075c3c50d
 	public MemberVo login(MemberVo vo) {
 		return mapper.login(vo);
 	}

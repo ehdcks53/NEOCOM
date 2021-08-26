@@ -92,11 +92,12 @@
     			<tbody> 
     			<c:forEach items="${advboardlist}" var="item">
     			<tr>
+
     			    <td>${item.adv_board_no}</td>
 					<td>${item.mem_no}</td>
 					<td>${item.adv_password}</td>
 					<td>${item.adv_secret_chk}</td>
-					<td>${item.adv_title}</td>
+					<td class="text-left"><a href="${pageContext.request.contextPath}/service/advboard_detail?adv_board_no=${item.adv_board_no}">${item.adv_title }</a></td>
 					<td>${item.adv_content}</td>
 					<td><a href="/neocom/advboard/delete?adv_board_no=${item.adv_board_no}">삭제</a><td>
 					<td><a href="/neocom/advboard/update?adv_board_no=${item.adv_board_no}">수정</a><td>
