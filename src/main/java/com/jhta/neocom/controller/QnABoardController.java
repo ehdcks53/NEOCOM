@@ -97,22 +97,30 @@ public class QnABoardController {
 	}
 
 	// 문의게시판 글 삭제
-	@RequestMapping(value = "community/qnaboard_delete", method = RequestMethod.GET)
+	@RequestMapping(value = "/community/qnaboard_delete", method = RequestMethod.GET)
 	public String qnaboard_delete(Model model, int qna_board_no, QnABoardVo vo) {
 		HashMap<String, Object> map = service.detail(qna_board_no);
 		int groupNo = Integer.parseInt(map.get("qna_group_no").toString());
+		int mem_no = Integer.parseInt(map.get("mem_no").toString());
 		
-		vo.setQna_group_no(groupNo);
-		vo.setQna_status(0);
-		
-		service.delete(qna_board_no);
-		service.status(vo);
+		int countReply = service.countReply(qna_board_no);
+		if(countReply == 1) {  // 동일 group_no 조회시 개수가 1개일 때 = 답글이 없는 경우
+			service.delete(qna_board_no);
+		}else if(mem_no == 1 || mem_no == 2) {  // 답글이 있어도 관리자일 경우 바로 삭제 + 원글은 답변대기 상태로 변경됨
+			vo.setQna_group_no(groupNo);
+			vo.setQna_status(0);
+			
+			service.delete(qna_board_no);
+			service.status(vo);
+		}else {  // 답글이 있을 경우 제목과 내용 수정해서 삭제글 표시
+			service.showDeletePost(qna_board_no);			
+		}
 		
 		return "redirect:/community/qnaboard_list";
 	}
 
 	// 문의게시판 수정 페이지 이동
-	@RequestMapping(value = "community/qnaboard_update", method = RequestMethod.GET)
+	@RequestMapping(value = "/community/qnaboard_update", method = RequestMethod.GET)
 	public String qnaboard_update(Model model, int qna_board_no) {
 		HashMap<String, Object> map = service.detail(qna_board_no);
 		model.addAttribute("map", map);
@@ -120,21 +128,25 @@ public class QnABoardController {
 	}
 
 	// 문의게시판 수정 등록
-	@RequestMapping(value = "community/qnaboard_update", method = RequestMethod.POST)
-	public String qnaboard_updateOk() {
+	@RequestMapping(value = "/community/qnaboard_update", method = RequestMethod.POST)
+	public String qnaboard_updateOk(QnABoardVo vo) {
+		System.out.println(vo);
+		service.update(vo);
+		
 		return "redirect:/community/qnaboard_list";
 	}
 
 	// 문의게시판 리스트 페이지 이동
 	@RequestMapping(value = "/community/qnaboard_list")
-	public String qnaboard_list(@RequestParam(value = "pageNum", defaultValue = "1") int pageNum, String field,
-			String keyword, Model model, HashMap<String, Object> map, Authentication auth, HttpSession session, HttpServletRequest req) {
+	public String qnaboard_list(@RequestParam(value = "pageNum", defaultValue = "1") 
+								int pageNum, String field, String keyword, Model model, HashMap<String, Object> map, 
+								Authentication auth, HttpSession session) {
 
 //		String id = (String) session.getAttribute("id"); // 로그인 되있는 상태에서만 문의하기 버튼 사용 가능
-		CustomUserDetails cud = (CustomUserDetails) auth.getPrincipal();
-		MemberVo mvo = cud.getMemberVo();
-		int mem_no = mvo.getMem_no();
-		String id = mvo.getId();
+//		CustomUserDetails cud = (CustomUserDetails) auth.getPrincipal();
+//		MemberVo mvo = cud.getMemberVo();
+//		int mem_no = mvo.getMem_no();
+//		String id = mvo.getId();
 
 		map.put("field", field);
 		map.put("keyword", keyword);
@@ -151,9 +163,8 @@ public class QnABoardController {
 		model.addAttribute("pu", pu);
 		model.addAttribute("field", field);
 		model.addAttribute("keyword", keyword);
-		model.addAttribute("id", id); // 세션에 있는 로그인 정보 가져오기
-
-		System.out.println(map);
+//		model.addAttribute("id", id); // 세션에 있는 로그인 정보 가져오기
+//		System.out.println(map);
 
 		return "frontend/community/qnaboard_list";
 	}

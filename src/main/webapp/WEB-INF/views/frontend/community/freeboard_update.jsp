@@ -25,9 +25,6 @@
 	<!-- Modernizr-->
 	<script src="${pageContext.request.contextPath}/static/frontend/assets/js/modernizr.min.js"></script>
 <style>
-.table thead tr td img{
-	width: 20px;
-}
 .form-control{
 padding:0 18px 3px;
 border:1px solid #dbe2e8;
@@ -125,14 +122,6 @@ position: absolute;
 z-index: -1;
 opacity: 0;
 }
-
-.table tbody tr td p {
-	margin-top: 30px;
-	margin-bottom: 30px;
-	margin-left: 100px;
-	margin-right: 100px;
-	vertical-align: middle;
-}
 </style>
 </head>
 <body>
@@ -145,7 +134,7 @@ opacity: 0;
 <div class="page-title">
 	<div class="container">
 		<div class="column">
-			<h1>문의게시판</h1>
+			<h1>자유게시판</h1>
 		</div>
 		<div class="column">
 			<ul class="breadcrumbs">
@@ -153,9 +142,9 @@ opacity: 0;
 				<li class="separator">&nbsp;</li>
 				<li><a href="#">Community</a></li>
 				<li class="separator">&nbsp;</li>
-				<li><a href="#">QnA Board</a></li>
+				<li><a href="#">Community Board</a></li>
 				<li class="separator">&nbsp;</li>
-				<li>Reply</li>
+				<li>Modify</li>
 			</ul>
 		</div>
 	</div>
@@ -165,81 +154,44 @@ opacity: 0;
 
 <!-- 페이지 컨텐트 -->
 <div class="container padding-bottom-3x mb-2">
-<div class="row justify-content-center">
-	<div class="col-lg-10">
-		<div class="padding-top-2x mt-2 hidden-lg-up"></div>
-		<h4>문의한 내용</h4>
-		<hr class="padding-bottom-1x" style="margin-bottom:20px;">
-	</div>
-	<div class="col-lg-10">
-		<table class="table text-center">
-			<colgroup>
-				<col width="10%"/>
-				<col width="15%"/>
-				<col width="15%"/>
-				<col width="30%"/>
-				<col width="10%"/>
-				<col width="20%"/>
-			</colgroup>
-			<thead class="thead-default">
-				<tr>
-					<th scope="row">글번호</th>
-					<td>${map.qna_board_no }</td>
-					<th scope="row">작성자</th>
-					<td>${map.Nickname }</td>
-					<th scope="row">작성일</th>
-					<td><fmt:parseDate value="${map.qna_regdate }" var="qna_regdate" pattern="yyyy-MM-dd'T'HH:mm:ss" /><fmt:formatDate value="${qna_regdate }" pattern="yyyy-MM-dd HH:mm:ss" /></td>
-				</tr>
-				<tr>
-					<th scope="row">제목</th>
-					<td colspan="3">${map.qna_title }
-						<c:if test="${map.qna_secret_chk==true }">
-							<img src="${pageContext.request.contextPath}/static/frontend/assets/favicon&icon/lockicon.png" class="lock_img">
-						</c:if>
-					</td>
-					<th scope="row">조회수</th>
-					<td>${map.qna_hit }</td>
-				</tr>
-			</thead>
-			<tbody> 
-				<tr> 
-					<td colspan="10">
-						<p>${map.qna_content }</p>
-					</td>
-				</tr>
-			</tbody>
-		</table>
-	</div>
-</div>
-
-
 <div class="row">
-	<!-- 문의게시판 답변 작성 -->
+	<!-- 자유게시판 글수정 -->
 	<div class="col-lg-8" style="margin-left:auto; margin-right:auto;">
-		<hr class="padding-bottom-1x" style="margin-top:30px; margin-bottom:30px;">
 		<div class="padding-top-2x mt-2 hidden-lg-up"></div>
-		<h4>답변하기</h4>
+		<h4>작성글 수정</h4>
 		<hr class="padding-bottom-1x">
 		
-		<form class="row" name="qnaForm" method="post" action="${pageContext.request.contextPath}/community/qnaboard_reply?qna_board_no=${map.qna_board_no }">
+		<form class="row" name="freeForm" method="post" action="${pageContext.request.contextPath}/community/freeboard_update">
+			<div class="col-md-12">
+				<div class="form-group">
+					<label for="qna_title">글번호</label>
+					<input type="text" class="form-control" name="free_board_no" id="free_board_no" value="${map.free_board_no }" readonly>
+				</div>
+			</div>
+			<div class="col-md-12">
+				<div class="form-group">
+					<label for="qna_title">작성자 닉네임</label>
+					<input type="text" class="form-control" name="nickname" id="nickname" value="${map.Nickname }" readonly>
+				</div>
+			</div>
 			<div class="col-md-12">
 				<div class="form-group">
 					<label for="qna_title">제목</label>
-					<input type="text" class="form-control" name="qna_title" id="qna_title">
+					<input type="text" class="form-control" name="free_title" id="free_title" value="${map.free_title }">
 				</div>
 			</div>
 			<div class="col-md-12">
 				<div class="form-group">
 					<label for="qna_content">내용</label>
-					<textarea rows="15" cols="4000" class="form-control" name="qna_content" id="qna_content"></textarea>
+					<textarea rows="15" cols="4000" class="form-control" name="free_content" id="free_content">${map.free_content }</textarea>
 				</div>
 			</div>
 			<div class="col-12 padding-top-1x">
-				<div class="custom-control custom-checkbox d-block">
-				<!--<input class="custom-control-input" type="checkbox" name="qna_secret_chk" id="qna_secret_chk">
-					<label class="custom-control-label" for="qna_secret_chk">비밀글 &nbsp;</label>
-					<input type="password" name="qna_password" id="qna_password"> -->
-				</div>
+			<!--<div class="custom-control custom-checkbox d-block">
+					<input class="custom-control-input" type="checkbox" name="free_secret_chk" id="free_secret_chk" value="${map.free_password }">
+					<label class="custom-control-label" for="free_secret_chk">비밀글 &nbsp;</label>
+					<input type="password" name="free_password" id="free_password">
+				</div> -->
 				<div class="padding-bottom-1x"></div>
 				<hr class="margin-top-1x margin-bottom-1x">
 				<div class="text-right">
@@ -263,11 +215,11 @@ opacity: 0;
 					<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">X</span></button>
 				</div>
 				<div class="modal-body">
-					<p>작성한 내용을 등록 하시겠습니까?</p>
+					<p>수정한 내용을 등록 하시겠습니까?</p>
 				</div>
 				<div class="modal-footer">
 					<button type="button" class="btn btn-secondary btn-sm" data-dismiss="modal" onclick="return false;">No</button>
-					<button type="submit" class="btn btn-info btn-sm" onclick="clickAdd(qnaForm)">Yes</button>
+					<button type="submit" class="btn btn-info btn-sm" onclick="clickAdd(freeForm)">Yes</button>
 				</div>
 			</div>
 		</div>
@@ -281,11 +233,11 @@ opacity: 0;
 					<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">X</span></button>
 				</div>
 				<div class="modal-body">
-					<p>작성을 취소 하시겠습니까?</p>
+					<p>수정을 취소 하시겠습니까?</p>
 				</div>
 				<div class="modal-footer">
 					<button type="button" class="btn btn-secondary btn-sm" data-dismiss="modal" onclick="return false;">No</button>
-					<button type="button" class="btn btn-info btn-sm" onclick="location.href='${pageContext.request.contextPath}/community/qnaboard_list'">Yes</button>
+					<button type="button" class="btn btn-info btn-sm" onclick="location.href='${pageContext.request.contextPath}/community/freeboard_list'">Yes</button>
 				</div>
 			</div>
 		</div>
@@ -303,32 +255,22 @@ opacity: 0;
 	<script src="${pageContext.request.contextPath}/static/frontend/assets/js/scripts.min.js"></script>
 <script>
 	function clickAdd(formName){
-		formName.action = "${pageContext.request.contextPath}/community/qnaboard_reply?qna_board_no=${map.qna_board_no }";
+		formName.action = "${pageContext.request.contextPath}/community/freeboard_update?free_board_no=${map.free_board_no}";
 		formName.method = "post";
 		formName.submit();
 	}
 
-/*	$("#qna_password").attr("disabled",true);
-	$("#qna_secret_chk").on("click",function(){
-		var chk = $("input:checkbox[id='qna_secret_chk']").is(":checked");
+/*	$("#free_password").attr("disabled",true);
+	$("#free_secret_chk").on("click",function(){
+		var chk = $("input:checkbox[id='free_secret_chk']").is(":checked");
 		if(chk==true){
-			$("#qna_password").prop("disabled",false);
+			$("#free_password").prop("disabled",false);
 			$(this).val(1);
 		}else{
-			$("#qna_password").prop("disabled",true);
+			$("#free_password").prop("disabled",true);
 			$(this).val(0);
 		}
 	}); */
-	
-/*	var secret_chk = "${map.qna_secret_chk}";
-	var password = "${map.qna_password}";
-	if(secret_chk == true) {
-		qna_secret_chk.val() == 1;
-		qna_password.val() == password;
-	}else if(secret_chk == false) {
-		qna_secret_chk.val() == 0;
-		qna_password.val() == null;
-	} */
 </script>
 </body>
 </html>

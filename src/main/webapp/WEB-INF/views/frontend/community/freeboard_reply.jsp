@@ -145,7 +145,7 @@ opacity: 0;
 <div class="page-title">
 	<div class="container">
 		<div class="column">
-			<h1>문의게시판</h1>
+			<h1>자유게시판</h1>
 		</div>
 		<div class="column">
 			<ul class="breadcrumbs">
@@ -153,7 +153,7 @@ opacity: 0;
 				<li class="separator">&nbsp;</li>
 				<li><a href="#">Community</a></li>
 				<li class="separator">&nbsp;</li>
-				<li><a href="#">QnA Board</a></li>
+				<li><a href="#">Community Board</a></li>
 				<li class="separator">&nbsp;</li>
 				<li>Reply</li>
 			</ul>
@@ -168,7 +168,7 @@ opacity: 0;
 <div class="row justify-content-center">
 	<div class="col-lg-10">
 		<div class="padding-top-2x mt-2 hidden-lg-up"></div>
-		<h4>문의한 내용</h4>
+		<h4>원글</h4>
 		<hr class="padding-bottom-1x" style="margin-bottom:20px;">
 	</div>
 	<div class="col-lg-10">
@@ -184,27 +184,23 @@ opacity: 0;
 			<thead class="thead-default">
 				<tr>
 					<th scope="row">글번호</th>
-					<td>${map.qna_board_no }</td>
+					<td>${map.free_board_no }</td>
 					<th scope="row">작성자</th>
 					<td>${map.Nickname }</td>
 					<th scope="row">작성일</th>
-					<td><fmt:parseDate value="${map.qna_regdate }" var="qna_regdate" pattern="yyyy-MM-dd'T'HH:mm:ss" /><fmt:formatDate value="${qna_regdate }" pattern="yyyy-MM-dd HH:mm:ss" /></td>
+					<td><fmt:parseDate value="${map.free_regdate }" var="free_regdate" pattern="yyyy-MM-dd'T'HH:mm:ss" /><fmt:formatDate value="${free_regdate }" pattern="yyyy-MM-dd HH:mm:ss" /></td>
 				</tr>
 				<tr>
 					<th scope="row">제목</th>
-					<td colspan="3">${map.qna_title }
-						<c:if test="${map.qna_secret_chk==true }">
-							<img src="${pageContext.request.contextPath}/static/frontend/assets/favicon&icon/lockicon.png" class="lock_img">
-						</c:if>
-					</td>
+					<td colspan="3">${map.free_title }</td>
 					<th scope="row">조회수</th>
-					<td>${map.qna_hit }</td>
+					<td>${map.free_hit }</td>
 				</tr>
 			</thead>
 			<tbody> 
 				<tr> 
 					<td colspan="10">
-						<p>${map.qna_content }</p>
+						<p>${map.free_content }</p>
 					</td>
 				</tr>
 			</tbody>
@@ -214,24 +210,24 @@ opacity: 0;
 
 
 <div class="row">
-	<!-- 문의게시판 답변 작성 -->
+	<!-- 자유게시판 답글 작성 -->
 	<div class="col-lg-8" style="margin-left:auto; margin-right:auto;">
 		<hr class="padding-bottom-1x" style="margin-top:30px; margin-bottom:30px;">
 		<div class="padding-top-2x mt-2 hidden-lg-up"></div>
-		<h4>답변하기</h4>
+		<h4>답글 작성</h4>
 		<hr class="padding-bottom-1x">
 		
-		<form class="row" name="qnaForm" method="post" action="${pageContext.request.contextPath}/community/qnaboard_reply?qna_board_no=${map.qna_board_no }">
+		<form class="row" name="freeForm" method="post" action="${pageContext.request.contextPath}/community/freeboard_reply?free_board_no=${map.free_board_no }">
 			<div class="col-md-12">
 				<div class="form-group">
-					<label for="qna_title">제목</label>
-					<input type="text" class="form-control" name="qna_title" id="qna_title">
+					<label for="free_title">제목</label>
+					<input type="text" class="form-control" name="free_title" id="free_title">
 				</div>
 			</div>
 			<div class="col-md-12">
 				<div class="form-group">
-					<label for="qna_content">내용</label>
-					<textarea rows="15" cols="4000" class="form-control" name="qna_content" id="qna_content"></textarea>
+					<label for="free_content">내용</label>
+					<textarea rows="15" cols="4000" class="form-control" name="free_content" id="free_content"></textarea>
 				</div>
 			</div>
 			<div class="col-12 padding-top-1x">
@@ -267,7 +263,7 @@ opacity: 0;
 				</div>
 				<div class="modal-footer">
 					<button type="button" class="btn btn-secondary btn-sm" data-dismiss="modal" onclick="return false;">No</button>
-					<button type="submit" class="btn btn-info btn-sm" onclick="clickAdd(qnaForm)">Yes</button>
+					<button type="submit" class="btn btn-info btn-sm" onclick="clickAdd(freeForm)">Yes</button>
 				</div>
 			</div>
 		</div>
@@ -285,7 +281,7 @@ opacity: 0;
 				</div>
 				<div class="modal-footer">
 					<button type="button" class="btn btn-secondary btn-sm" data-dismiss="modal" onclick="return false;">No</button>
-					<button type="button" class="btn btn-info btn-sm" onclick="location.href='${pageContext.request.contextPath}/community/qnaboard_list'">Yes</button>
+					<button type="button" class="btn btn-info btn-sm" onclick="location.href='${pageContext.request.contextPath}/community/freeboard_list'">Yes</button>
 				</div>
 			</div>
 		</div>
@@ -303,7 +299,7 @@ opacity: 0;
 	<script src="${pageContext.request.contextPath}/static/frontend/assets/js/scripts.min.js"></script>
 <script>
 	function clickAdd(formName){
-		formName.action = "${pageContext.request.contextPath}/community/qnaboard_reply?qna_board_no=${map.qna_board_no }";
+		formName.action = "${pageContext.request.contextPath}/community/freeboard_reply?free_board_no=${map.free_board_no }";
 		formName.method = "post";
 		formName.submit();
 	}

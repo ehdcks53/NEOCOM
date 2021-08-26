@@ -22,6 +22,7 @@
 		qna_board_no,
 		0,
 		0,
+		0,
 		0
 		)
 	</insert>
@@ -40,6 +41,7 @@
 		#{qna_group_no},
 		#{qna_group_order}+1,
 		#{qna_group_depth}+1,
+		0,
 		0
 		)
 	</insert>
@@ -49,6 +51,7 @@
 		update qna_board set qna_group_order=qna_group_order+1 where qna_group_no=#{qna_group_no} and qna_group_order>#{qna_group_order}
 	</update>
 	
+	<!-- 답변상태 -->
 	<update id="status" parameterType="qnaboard">
 		update qna_board set qna_status=#{qna_status} where qna_group_no=#{qna_group_no} and qna_group_depth=#{qna_group_depth}
 	</update>
@@ -57,10 +60,22 @@
 		delete from qna_board where qna_board_no=#{qna_board_no}
 	</delete>
 	
+	<!-- 원글 삭제 시 답글 있는 경우 -->
+	<select id="countReply" resultType="int" parameterType="int">
+		select count(*) from qna_board where qna_group_no=#{qna_board_no}
+	</select>
+	<update id="showDeletePost" parameterType="int">
+		update qna_board set qna_show=1, qna_title='작성자에 의해 삭제된 글 입니다.', qna_content='' where qna_board_no=#{qna_board_no}
+	</update>
+	
+<!--<select id="deletePost" statementType="CALLABLE">
+		call deletePost(#{qna_board_no})
+	</select> -->
+	
 	<update id="update" parameterType="qnaboard">
 		update qna_board set 
 		qna_title=#{qna_title},
-		qna_content=#{qna_content},
+		qna_content=#{qna_content} 
 		where qna_board_no=#{qna_board_no}
 	</update>
 	
@@ -108,11 +123,12 @@
 		update qna_board set qna_hit=qna_hit+1 where qna_board_no=#{qna_board_no}
 	</update>
 	
+	
 	<!-- 나의 문의내역 -->
 	<select id="myqna" resultType="hashmap" parameterType="int">
 		select qq.*,mm.mem_no,mm.Nickname 
 		from qna_board qq inner join member_Info mm on qq.mem_no=mm.mem_no 
-		where mm.mem_no=#{mem_no} 
+		where mm.mem_no=#{mem_no} and qq.qna_show=0
 		order by qq.qna_regdate desc
 	</select>
 	

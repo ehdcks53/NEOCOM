@@ -109,6 +109,11 @@ a {
 				<c:forEach var="vo" items="${list }">
 					<tr>
 					<c:choose>
+						<c:when test="${vo.qna_show == 1 }">
+							<td colspan="5" class="text-left">
+								<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; [ ${vo.qna_title } ]</span>
+							</td>
+						</c:when>
 						<c:when test="${vo.qna_group_order >0 }">
 							<td></td>
 							<td class="text-left">
@@ -120,6 +125,9 @@ a {
 								<c:if test="${vo.qna_secret_chk==true }">
 									<img src="${pageContext.request.contextPath}/static/frontend/assets/favicon&icon/lockicon.png" class="lock_img">
 								</c:if>
+								<td>${vo.Nickname }</td>
+								<td><fmt:parseDate value="${vo.qna_regdate }" var="qna_regdate" pattern="yyyy-MM-dd'T'HH:mm:ss" /><fmt:formatDate value="${qna_regdate }" pattern="yyyy-MM-dd HH:mm:ss" /></td>
+								<td>${vo.qna_hit }</td>
 							</td>
 						</c:when>
 						<c:otherwise>
@@ -129,12 +137,12 @@ a {
 								<c:if test="${vo.qna_secret_chk==true }">
 									<img src="${pageContext.request.contextPath}/static/frontend/assets/favicon&icon/lockicon.png" class="lock_img">
 								</c:if>
+								<td>${vo.Nickname }</td>
+								<td><fmt:parseDate value="${vo.qna_regdate }" var="qna_regdate" pattern="yyyy-MM-dd'T'HH:mm:ss" /><fmt:formatDate value="${qna_regdate }" pattern="yyyy-MM-dd HH:mm:ss" /></td>
+								<td>${vo.qna_hit }</td>
 							</td>
 						</c:otherwise>
 					</c:choose>
-							<td>${vo.Nickname }</td>
-							<td><fmt:parseDate value="${vo.qna_regdate }" var="qna_regdate" pattern="yyyy-MM-dd'T'HH:mm:ss" /><fmt:formatDate value="${qna_regdate }" pattern="yyyy-MM-dd HH:mm:ss" /></td>
-							<td>${vo.qna_hit }</td>
 					</tr>
 				</c:forEach>
 				</tbody>
@@ -220,13 +228,15 @@ a {
 	<script src="${pageContext.request.contextPath}/static/frontend/assets/js/vendor.min.js"></script>
 	<script src="${pageContext.request.contextPath}/static/frontend/assets/js/scripts.min.js"></script>
 <script>
+
 //로그인 상태에서만 문의하기 가능 
 function clickInsert(){
-	var ss = "${permission}";
-	console.log(ss);
-	var sessionId = "${id}";
-	console.log(sessionId);
-	if(sessionId!=null && sessionId!='') {
+	var id = null;
+		<sec:authorize access="isAuthenticated()">
+			id = '<sec:authentication property="principal.memberVo.id"/>';
+		</sec:authorize>
+	console.log("아이디:" + id);
+	if(id!=null && id!='') {
 		location.href='${pageContext.request.contextPath}/community/qnaboard_insert';
 	}else{
 		$("#loginModal").modal();

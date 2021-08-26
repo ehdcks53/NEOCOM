@@ -161,7 +161,19 @@ opacity: 0;
 		<h4>작성글 수정</h4>
 		<hr class="padding-bottom-1x">
 		
-		<form class="row" name="qnaForm" method="post" action="${pageContext.request.contextPath}/community/qnaboard_update">
+		<form class="row" name="qnaForm" method="post" action="${pageContext.request.contextPath}/community/qnaboard_update?qna_board_no=${map.qna_board_no }">
+			<div class="col-md-12">
+				<div class="form-group">
+					<label for="qna_title">글번호</label>
+					<input type="text" class="form-control" name="qna_board_no" id="qna_board_no" value="${map.qna_board_no }" readonly>
+				</div>
+			</div>
+			<div class="col-md-12">
+				<div class="form-group">
+					<label for="qna_title">작성자 닉네임</label>
+					<input type="text" class="form-control" name="nickname" id="nickname" value="${map.Nickname }" readonly>
+				</div>
+			</div>
 			<div class="col-md-12">
 				<div class="form-group">
 					<label for="qna_title">제목</label>
@@ -175,11 +187,10 @@ opacity: 0;
 				</div>
 			</div>
 			<div class="col-12 padding-top-1x">
-				
 				<div class="custom-control custom-checkbox d-block">
-					<input class="custom-control-input" type="checkbox" name="qna_secret_chk" id="qna_secret_chk" value="${map.qna_password }">
+				<!--<input class="custom-control-input" type="checkbox" name="qna_secret_chk" id="qna_secret_chk">
 					<label class="custom-control-label" for="qna_secret_chk">비밀글 &nbsp;</label>
-					<input type="password" name="qna_password" id="qna_password">
+					<input type="password" name="qna_password" id="qna_password" value="${map.qna_password }"> -->
 				</div>
 				<div class="padding-bottom-1x"></div>
 				<hr class="margin-top-1x margin-bottom-1x">
@@ -244,13 +255,12 @@ opacity: 0;
 	<script src="${pageContext.request.contextPath}/static/frontend/assets/js/scripts.min.js"></script>
 <script>
 	function clickAdd(formName){
-		formName.action = "${pageContext.request.contextPath}/community/qnaboard_update";
+		formName.action = "${pageContext.request.contextPath}/community/qnaboard_update?qna_board_no=${map.qna_board_no }";
 		formName.method = "post";
 		formName.submit();
 	}
-
-	$("#qna_password").attr("disabled",true);
-	$("#qna_secret_chk").on("click",function(){
+	
+/*	$("#qna_secret_chk").on("click",function(){
 		var chk = $("input:checkbox[id='qna_secret_chk']").is(":checked");
 		if(chk==true){
 			$("#qna_password").prop("disabled",false);
@@ -259,7 +269,7 @@ opacity: 0;
 			$("#qna_password").prop("disabled",true);
 			$(this).val(0);
 		}
-	});
+	}); */
 </script>
 </body>
 </html>
