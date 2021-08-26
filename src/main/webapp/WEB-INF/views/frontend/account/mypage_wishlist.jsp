@@ -60,7 +60,11 @@
 	<jsp:include page="/WEB-INF/views/frontend/account/inc/mypage_sidebar.jsp"/>
 	
 	<!-- 관심상품 여기서부터 -->
-	
+	<div class="col-lg-9 col-md-8 order-md-2">
+		<h6 class="text-muted text-lg text-uppercase">관심 상품</h6>
+		<hr class="margin-bottom-1x">
+		
+	</div>	
 	
 </div>
 </div>
