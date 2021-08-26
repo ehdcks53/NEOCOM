@@ -2,7 +2,6 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
-<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -50,7 +49,7 @@ a {
 <div class="page-title">
 	<div class="container">
 		<div class="column">
-			<h1>자유게시판 </h1>
+			<h1>리뷰</h1>
 		</div>
 		<div class="column">
 			<ul class="breadcrumbs">
@@ -58,7 +57,7 @@ a {
 				<li class="separator">&nbsp;</li>
 				<li><a href="#">Community</a></li>
 				<li class="separator">&nbsp;</li>
-				<li>Community Board</li>
+				<li>Review Board</li>
 			</ul>
 		</div>
 	</div>
@@ -69,24 +68,23 @@ a {
 <!-- 페이지 컨텐트 -->
 <div class="container padding-bottom-3x mb-2">
 <div class="row">
-	<!-- 자유게시판 테이블 -->
+	<!-- 문의게시판 테이블 -->
 	<div class="col-lg-12 col-md-10 order-md-2 text-center">
 		<!-- <hr class="margin-bottom-1x"> -->
 		<div>
-			<form action="${pageContext.request.contextPath}/community/freeboard_list" method="post">
+			<form action="${pageContext.request.contextPath}/community/review_list?product_id=${product_id}" method="post">
 				<div class="row">
+				<input type="hidden" name="product_id" value="${product_id}">
 					<div class="p-2"></div>
-						<select class="form-control col-sm-2 p-2" name="field" id="field">
+						<select class="form-control col-sm-2 p-2" name="field" >
 							<option value="nickname" <c:if test="${field=='nickname'}">selected</c:if> >작성자</option>
-							<option value="free_title" <c:if test="${field=='free_title'}">selected</c:if> >제목</option>
-							<option value="free_content" <c:if test="${field=='free_content'}">selected</c:if> >내용</option>
+							<option value="review_title" <c:if test="${field=='review_title'}">selected</c:if> >제목</option>
+							<option value="review_content" <c:if test="${field=='review_content'}">selected</c:if> >내용</option>
 							<option value="combined" <c:if test="${field=='combined'}">selected</c:if> >제목+내용</option>
 						</select>
-					<input type="text" class="form-control col-sm-3 p-1" value="${keyword }" name="keyword" id="keyword">
+					<input type="text" class="form-control col-sm-3 p-1" value="${keyword}" name="keyword" >
 					<button type="submit" class="form-control col-sm-1 w-1 p-2">검색</button>
-					<div class="ml-md-auto" style="margin-right:20px;">
-						<button type="button" id="insertBtn" class="form-control btn-sm btn-outline-info" onclick="clickInsert()">글쓰기 <i class="icon-arrow-right-circle"></i></button>
-					</div>
+				
 				</div>
 			</form>
 		</div>
@@ -99,46 +97,19 @@ a {
 						<th style="width:500px;">제목</th>
 						<th style="width:100px;">작성자</th>
 						<th style="width:140px;">등록일시</th>
-						<th style="width:100px;">조회수</th>
+						
 					</tr>
 				</thead>
 				<tbody>
 				<c:forEach var="vo" items="${list }">
 					<tr>
-					<c:choose>
-						<c:when test="${vo.free_show == 1 }">
-							<td colspan="5" class="text-left">
-								<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; [ ${vo.free_title } ]</span>
-							</td>
-						</c:when>
-						<c:when test="${vo.free_group_order >0 }">
-							<td></td>
-							<td class="text-left">
-								<a href="${pageContext.request.contextPath}/community/freeboard_detail?free_board_no=${vo.free_board_no}">
-									<c:forEach var="i" begin="2" end="${vo.free_group_depth }">
-										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-									</c:forEach>
-								[Re]&nbsp; ${vo.free_title }</a>
-							</td>
+					
+							<td>${vo.board_num }</td>
+							<td class="text-left"><a href="${pageContext.request.contextPath}/community/review_detail?board_num=${vo.board_num}">${vo.review_title }</a></td>
 							<td>${vo.Nickname }</td>
-							<td><fmt:parseDate value="${vo.free_regdate }" var="free_regdate" pattern="yyyy-MM-dd'T'HH:mm:ss" /><fmt:formatDate value="${free_regdate }" pattern="yyyy-MM-dd HH:mm:ss" /></td>
-							<td>${vo.free_hit }</td>
-						</c:when>
-						<c:otherwise>
-							<td>${vo.free_board_no }</td>
-							<td class="text-left">
-								<a href="${pageContext.request.contextPath}/community/freeboard_detail?free_board_no=${vo.free_board_no}">${vo.free_title }</a>
-							</td>
-							<td>${vo.Nickname }</td>
-							<td><fmt:parseDate value="${vo.free_regdate }" var="free_regdate" pattern="yyyy-MM-dd'T'HH:mm:ss" /><fmt:formatDate value="${free_regdate }" pattern="yyyy-MM-dd HH:mm:ss" /></td>
-							<td>${vo.free_hit }</td>
-						</c:otherwise>
-					</c:choose>
-					<!--<td>${vo.free_board_no }</td>
-						<td class="text-left"><a href="${pageContext.request.contextPath}/community/freeboard_detail?free_board_no=${vo.free_board_no}">${vo.free_title }</a></td>
-						<td>${vo.Nickname }</td>
-						<td><fmt:parseDate value="${vo.free_regdate }" var="free_regdate" pattern="yyyy-MM-dd'T'HH:mm:ss" /><fmt:formatDate value="${free_regdate }" pattern="yyyy-MM-dd HH:mm:ss" /></td>
-						<td>${vo.free_hit }</td> -->
+							<td><fmt:parseDate value="${vo.regdate }" var="regdate" pattern="yyyy-MM-dd'T'HH:mm:ss" /><fmt:formatDate value="${regdate }" pattern="yyyy-MM-dd HH:mm:ss" /></td>
+							
+					
 					</tr>
 				</c:forEach>
 				</tbody>
@@ -150,7 +121,7 @@ a {
 			<div class="column">
 				<c:choose>
 					<c:when test="${pu.prevPage }">
-						<a class="btn btn-outline-secondary btn-sm" href="${pageContext.request.contextPath}/community/freeboard_list?pageNum=${pu.pageNum-1 }&field=${field}&keyword=${keyword}"><i class="icon-chevron-left"></i> 이전</a>
+						<a class="btn btn-outline-secondary btn-sm" href="${pageContext.request.contextPath}/community/review_list?pageNum=${pu.pageNum-1 }&field=${field}&keyword=${keyword}"><i class="icon-chevron-left"></i> 이전</a>
 					</c:when>
 					<c:otherwise>
 						<a class="btn btn-outline-secondary btn-sm disabled"><i class="icon-chevron-left"></i> 이전</a>
@@ -164,12 +135,12 @@ a {
 				<c:choose>
 					<c:when test="${pu.pageNum==i }">
 						<li class="active">
-							<a href="${pageContext.request.contextPath}/community/freeboard_list?pageNum=${i }&field=${field}&keyword=${keyword}">${i }</a>
+							<a href="${pageContext.request.contextPath}/community/review_list?pageNum=${i }&field=${field}&keyword=${keyword}">${i }</a>
 						</li>
 					</c:when>
 					<c:otherwise>
 						<li>
-							<a href="${pageContext.request.contextPath}/community/freeboard_list?pageNum=${i }&field=${field}&keyword=${keyword}">${i }</a>
+							<a href="${pageContext.request.contextPath}/community/review_list?pageNum=${i }&field=${field}&keyword=${keyword}">${i }</a>
 						</li>
 					</c:otherwise>
 				</c:choose>
@@ -179,7 +150,7 @@ a {
 			<div class="column">
 				<c:choose>
 					<c:when test="${pu.nextPage }">
-						<a class="btn btn-outline-secondary btn-sm" href="${pageContext.request.contextPath}/community/freeboard_list?pageNum=${pu.pageNum+1 }&field=${field}&keyword=${keyword}">다음 <i class="icon-chevron-right"></i></a>
+						<a class="btn btn-outline-secondary btn-sm" href="${pageContext.request.contextPath}/community/review_list?pageNum=${pu.pageNum+1 }&field=${field}&keyword=${keyword}">다음 <i class="icon-chevron-right"></i></a>
 					</c:when>
 					<c:otherwise>
 						<a class="btn btn-outline-secondary btn-sm disabled">다음 <i class="icon-chevron-right"></i></a>
@@ -212,7 +183,6 @@ a {
 			</div>
 		</div>
 	</div>
-<!-- 페이지 컨텐트 끝 -->
 
 
 <!-- footer -->
@@ -225,15 +195,12 @@ a {
 	<script src="${pageContext.request.contextPath}/static/frontend/assets/js/vendor.min.js"></script>
 	<script src="${pageContext.request.contextPath}/static/frontend/assets/js/scripts.min.js"></script>
 <script>
-//로그인 상태에서만 글쓰기 가능 
+/* 로그인 상태에서만 문의하기 가능 */
 function clickInsert(){
-	var id = null;
-		<sec:authorize access="isAuthenticated()">
-			id = '<sec:authentication property="principal.memberVo.id"/>';
-		</sec:authorize>
-	console.log("아이디:" + id);
-	if(id!=null && id!='') {
-		location.href='${pageContext.request.contextPath}/community/freeboard_insert';
+	var sessionId = "${id}";
+	console.log(sessionId);
+	if(sessionId!=null && sessionId!='') {
+		location.href='${pageContext.request.contextPath}/community/qnaboard_insert';
 	}else{
 		$("#insertModal").modal();
 	}

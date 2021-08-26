@@ -45,25 +45,25 @@ public class PurchaseController {
 
 	
 	// 직접 상품페이지에서 주문
-	@PostMapping("/purchase0")
-	public ModelAndView purchase0(int product_count, int product_id, String product_name, int selling_price,
-			String img_name_save, HttpSession session, Model model) {
-		/*
-		 * if(session!=null) { //회원인 경우 세션에 아이디 담기 session.setAttribute("id", id);
-		 * return "order_dc/purchase"; }else {
-		 */
-		System.out.println(product_count);
-		ModelAndView mv = new ModelAndView("frontend/order/purchase");
-		mv.addObject("product_count", product_count);
-		mv.addObject("product_id", product_id);
-		mv.addObject("product_name", product_name);
-		mv.addObject("selling_price", selling_price);
-		mv.addObject("img_name_save", img_name_save);
-		System.out.println(product_id+"aa"+img_name_save);
-		return mv;
-		/* } */
+	   @PostMapping("/member/purchase0")
+	   public ModelAndView purchase0(int product_count, int product_id, String product_name, int selling_price,
+	         String img_name_save, Model model) {
+	      /*
+	       * if(session!=null) { //회원인 경우 세션에 아이디 담기 session.setAttribute("id", id);
+	       * return "order_dc/purchase"; }else {
+	       */
+	      System.out.println(product_count);
+	      ModelAndView mv = new ModelAndView("frontend/order/purchase");
+	      mv.addObject("product_count", product_count);
+	      mv.addObject("product_id", product_id);
+	      mv.addObject("product_name", product_name);
+	      mv.addObject("selling_price", selling_price);
+	      mv.addObject("img_name_save", img_name_save);
+	      System.out.println(product_id+"aa"+img_name_save);
+	      return mv;
+	      /* } */
 
-	}
+	   }
 
 	// 장바구니에서 주문
 	@RequestMapping(value = "/purchase1", produces = { MediaType.APPLICATION_JSON_VALUE })

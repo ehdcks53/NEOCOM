@@ -83,6 +83,7 @@
 			</div>
 		</div>
 		<!-- 상품리스트 -->
+		<input type="hidden" id="category_id" value="${category_id}" >
 		<div class="row" id="commList">
 		
 		 	
@@ -235,8 +236,7 @@
 $(function(){
 	
 	
-	var category_id='${category_id}';
-	
+	var category_id=$("#category_id").val();
 	var a='${param.category_id}';
 	var keyword='${param.keyword}';
 	if(a=='10000')
@@ -263,7 +263,7 @@ $(function(){
 });
 	var currentPage=1; 
 	function list(pageNum,order,category_id,keyword){ 
-
+		
 		Number.prototype.format = function(){
 		    if(this==0) return 0;
 		    var reg = /(^[+-]?\d+)(\d{3})/;
