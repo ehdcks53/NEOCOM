@@ -58,7 +58,7 @@
 				<li class="separator">&nbsp;</li>
 				<li><a href="#">QnA Board</a></li>
 				<li class="separator">&nbsp;</li>
-				<li>No.${vo.qna_board_no }</li>
+				<li>No.${map.qna_board_no }</li>
 			</ul>
 		</div>
 	</div>
@@ -160,7 +160,6 @@
 					</div>
 				</c:if>
 				
-				
 			</div>
 			
 		</div>
@@ -199,9 +198,6 @@
 	<script src="${pageContext.request.contextPath}/static/frontend/assets/js/vendor.min.js"></script>
 	<script src="${pageContext.request.contextPath}/static/frontend/assets/js/scripts.min.js"></script>
 <script>
-/*	var qqq = "${map.mem_no}";
-	var mmm	= "${mvo.mem_no}";
-	console.log(qqq + "," + mmm); */
 	
 </script>
 </body>
