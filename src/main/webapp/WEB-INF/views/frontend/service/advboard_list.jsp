@@ -131,11 +131,11 @@ a {
 							<c:forEach var="item" items="${advboardlist}">
 								<tr>
 									<c:choose>
-										<c:when test="${item.adv_show  } ==1">
+										<c:when test="${item.adv_show }==1 ">
 											<td colspan="5" class="text-left"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 													[ ${item.adv_title } ]</span></td>
 										</c:when>
-										<c:when test="${item.adv_group_order >0 }">
+										<c:when test="${item.adv_group_order >1 }">
 											<td></td>
 											<td class="text-left"><a
 												href="${pageContext.request.contextPath }/service/advboard_detail?adv_board_no=${item.adv_board_no}&adv_secret_chk=${item.adv_secret_chk }">

@@ -93,6 +93,7 @@ a {
 				</div>
 			</form>
 		</div>
+		</div>
 		<div class="mb-3"></div>
 		<div class="table-responsive">
 			<table class="table table-hover">
