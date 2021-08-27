@@ -106,15 +106,27 @@ a {
 				<c:forEach var="vo" items="${list }">
 					<tr>
 					<c:choose>
+						<c:when test="${vo.free_show == 1 && vo.free_group_depth == 0}">
+							<td>${vo.free_board_no }</td>
+							<td colspan="4" class="text-left">
+								<span style="color:gray;">
+								 작성자에 의해 삭제된 글 입니다. </span>
+							</td>
+						</c:when>
 						<c:when test="${vo.free_show == 1 }">
-							<td colspan="5" class="text-left">
-								<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; [ ${vo.free_title } ]</span>
+							<td></td>
+							<td colspan="4" class="text-left">
+								<span style="color:gray;">
+									<c:forEach var="i" begin="2" end="${vo.free_group_depth }">
+										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+									</c:forEach>
+								[Re] 작성자에 의해 삭제된 글 입니다. </span>
 							</td>
 						</c:when>
 						<c:when test="${vo.free_group_order >0 }">
 							<td></td>
 							<td class="text-left">
-								<a href="${pageContext.request.contextPath}/community/freeboard_detail?free_board_no=${vo.free_board_no}">
+								<a href="javascript:clickTitle('${vo.free_board_no }');">
 									<c:forEach var="i" begin="2" end="${vo.free_group_depth }">
 										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 									</c:forEach>
@@ -127,7 +139,7 @@ a {
 						<c:otherwise>
 							<td>${vo.free_board_no }</td>
 							<td class="text-left">
-								<a href="${pageContext.request.contextPath}/community/freeboard_detail?free_board_no=${vo.free_board_no}">${vo.free_title }</a>
+								<a href="javascript:clickTitle('${vo.free_board_no }');">${vo.free_title }</a>
 							</td>
 							<td>${vo.Nickname }</td>
 							<td><fmt:parseDate value="${vo.free_regdate }" var="free_regdate" pattern="yyyy-MM-dd'T'HH:mm:ss" /><fmt:formatDate value="${free_regdate }" pattern="yyyy-MM-dd HH:mm:ss" /></td>
@@ -195,7 +207,7 @@ a {
 <!-- 페이지 컨텐트 끝 -->
 
 	<!-- modal -->
-	<div class="modal fade" id="insertModal">
+	<div class="modal fade" id="loginModal">
 		<div class="modal-dialog" role="document">
 			<div class="modal-content">
 				<div class="modal-header">
@@ -235,7 +247,21 @@ function clickInsert(){
 	if(id!=null && id!='') {
 		location.href='${pageContext.request.contextPath}/community/freeboard_insert';
 	}else{
-		$("#insertModal").modal();
+		$("#loginModal").modal();
+	}
+}
+
+function clickTitle(free_board_no){
+	var id = null;
+		<sec:authorize access="isAuthenticated()">
+			id = '<sec:authentication property="principal.memberVo.id"/>';
+		</sec:authorize>
+	console.log("아이디:" + id);
+	
+	if(id!=null && id!='') {
+		location.href="${pageContext.request.contextPath }/community/freeboard_detail?free_board_no="+free_board_no;
+	}else{
+		$("#loginModal").modal();
 	}
 }
 </script>

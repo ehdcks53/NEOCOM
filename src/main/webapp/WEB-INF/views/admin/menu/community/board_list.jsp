@@ -199,10 +199,21 @@
 					<c:forEach var="qvo" items="${qq_list }" varStatus="status">
 					<tr>
 					<c:choose>
-						<c:when test="${qvo.qna_show == 1 }">
-							<td>--</td>
+						<c:when test="${qvo.qna_show == 1 && qvo.qna_group_depth == 0}">
+							<td>${qvo.qna_board_no }</td>
 							<td style="height:30px;">
-								[ ${qvo.qna_title } ]
+								작성자에 의해 삭제된 글 입니다.
+							</td>
+							<td></td>
+							<td></td>
+						</c:when>
+						<c:when test="${qvo.qna_show == 1 }">
+							<td>[삭제]</td>
+							<td style="height:30px;">
+								<c:forEach var="i" begin="2" end="${qvo.qna_group_depth }">
+									&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+								</c:forEach>
+								[Re]작성자에 의해 삭제된 글 입니다.
 							</td>
 							<td></td>
 							<td></td>

@@ -65,7 +65,7 @@
 		select count(*) from qna_board where qna_group_no=#{qna_board_no}
 	</select>
 	<update id="showDeletePost" parameterType="int">
-		update qna_board set qna_show=1, qna_title='작성자에 의해 삭제된 글 입니다.', qna_content='' where qna_board_no=#{qna_board_no}
+		update qna_board set qna_show=1, qna_title='', qna_content='' where qna_board_no=#{qna_board_no}
 	</update>
 	
 <!--<select id="deletePost" statementType="CALLABLE">
