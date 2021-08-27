@@ -123,7 +123,7 @@
 
 					<div class="product-carousel owl-carousel gallery-wrapper">
 
-						<div class="gallery-item" data-hash="one">
+						<div  data-hash="one">
 							<a
 								href="${pageContext.request.contextPath}/static/frontend/assets/img/shop/single/01.jpg"
 								data-size="1000x667"><img
@@ -167,7 +167,7 @@
 							name="img_name_save" value="${list[0].img_name_save }">
 
 
-						<!-- ///////옵션을 넣어야함 -->
+						
 						<!-- 세션없으면 alert메세지 주기  -->
 						<div class="row align-items-end pb-4">
 							<div class="col-sm-6">
@@ -199,6 +199,9 @@
 					</fieldset>
 				</form>
 				<div class="pt-1 mb-4"></div>
+				<button class="btn btn-warning btn-block" onclick="fnMove()">후기 보러가기</button>
+
+
 
 				<hr class="mb-2">
 				<div class="d-flex flex-wrap justify-content-between"></div>
@@ -232,55 +235,66 @@
 				<div class="card border-default">
 					<div class="card-body">
 						<div class="text-center">
-							<div class="d-inline align-baseline display-3 mr-1">4.0</div>
-							<div class="d-inline align-baseline text-sm text-warning mr-1">
+							<div class="d-inline align-baseline display-3 mr-1"><fmt:formatNumber value="${avg}" pattern="##.#" /></div>
+							<div class="d-inline align-baseline text-sm text-warning mr-1" id="ss">
 								<div class="rating-stars">
-									<i class="icon-star filled"></i> <i class="icon-star filled"></i>
-									<i class="icon-star filled"></i> <i class="icon-star filled"></i>
-									<i class="icon-star"></i>
+								<script>
+									
+									let star=parseInt(${avg});
+								
+									
+									for(let i=1;i<=star;i++){
+										 document.write("<i class='icon-star filled'></i>");
+									}
+									for(let j=1;j<=(5-star);j++){
+										document.write("<i class='icon-star'></i>");
+									}
+									
+								</script>
+								
 								</div>
 							</div>
 						</div>
-
+							
 						<div class="pt-3">
 							<!-- 5점 -->
 							<label class="text-medium text-sm">5stars <span
-								class="text-muted"> --- 20</span></label>
+								class="text-muted"> --- ${star5 }</span></label>
 							<div class="progress margin-bottom-1x">
 								<div class="progress-bar bg-warning" role="progressbar"
-									style="width: 70%; height: 2px;" aria-valuenow="70"
+									style="width: calc( ${star5 } * 10%); height: 2px;" aria-valuenow="70"
 									aria-valuemin="0" aria-valuemax="100"></div>
 							</div>
 							<!-- 4점 -->
 							<label class="text-medium text-sm">4stars <span
-								class="text-muted"> --- 14</span></label>
+								class="text-muted"> --- ${star4 }</span></label>
 							<div class="progress margin-bottom-1x">
 								<div class="progress-bar bg-warning" role="progressbar"
-									style="width: 20%; height: 2px;" aria-valuenow="20"
+									style="width:  calc( ${star4 } * 10%); height: 2px;" aria-valuenow="20"
 									aria-valuemin="0" aria-valuemax="100"></div>
 							</div>
 							<!-- 3점 -->
 							<label class="text-medium text-sm">3stars <span
-								class="text-muted"> --- 10</span></label>
+								class="text-muted"> --- ${star3 }</span></label>
 							<div class="progress margin-bottom-1x">
 								<div class="progress-bar bg-warning" role="progressbar"
-									style="width: 7%; height: 2px;" aria-valuenow="7"
+									style="width:  calc( ${star3 } * 10%); height: 2px;" aria-valuenow="7"
 									aria-valuemin="0" aria-valuemax="100"></div>
 							</div>
 							<!-- 2점 -->
 							<label class="text-medium text-sm">2stars <span
-								class="text-muted"> --- 8</span></label>
+								class="text-muted"> --- ${star2 }</span></label>
 							<div class="progress margin-bottom-1x">
 								<div class="progress-bar bg-warning" role="progressbar"
-									style="width: 3%; height: 2px;" aria-valuenow="3"
+									style="width:  calc( ${star2 } * 10%); height: 2px;" aria-valuenow="3"
 									aria-valuemin="0" aria-valuemax="100"></div>
 							</div>
 							<!-- 1점 -->
 							<label class="text-medium text-sm">1stars <span
-								class="text-muted"> --- 2</span></label>
+								class="text-muted"> --- ${star1 }</span></label>
 							<div class="progress mb-2">
 								<div class="progress-bar bg-warning" role="progressbar"
-									style="width: 0%; height: 2px;" aria-valuenow="0"
+									style="width:  calc( ${star1 } * 10%); height: 2px;" aria-valuenow="0"
 									aria-valuemin="0" aria-valuemax="100"></div>
 							</div>
 						</div>
@@ -291,7 +305,7 @@
 
 			<div class="col-md-8" >
 			<h3 class="padding-bottom-1x">최신 후기</h3>
-				<div id="reviewList">
+				<div id="reviewList">     
 				
 				
 				
@@ -325,12 +339,15 @@
      			</div>
      			<sec:authorize access="isAnonymous()">
 				 <div class="checking"><input type="button" class="btn btn-warning btn-block" value="후기 남기기" disabled='disabled'>
-				 	<span class="please">후기를 남기시려면 로그인이 필요합니다.</span></div> 
+				 	<span class="please">후기를 남기시려면 로그인이 필요합니다.</span>
+				 	
+				 	</div> 
 				  	</sec:authorize>
 				<sec:authorize access="isAuthenticated()">  	
 				  <input type="button" class="btn btn-warning btn-block" value="후기 남기기" id="btnAdd">
 				  	</sec:authorize>
      		 </form>
+     		
      		 
 				
 			
@@ -379,7 +396,7 @@
 
 
 	<!-- Back To Top Button-->
-	<a class="scroll-to-top-btn" href="#"><i class="icon-chevron-up"></i></a>
+	<a class="scroll-to-top-btn" href="#">맨위로<i class="icon-chevron-up"></i></a>
 	<!-- Backdrop-->
 	<div class="site-backdrop"></div>
 	<!-- JavaScript (jQuery) libraries, plugins and custom scripts-->
@@ -598,6 +615,13 @@
 
 	//	}
 	}
+	
+	function fnMove(seq){
+        var offset = $("#reviewList").offset();
+        $('html, body').animate({scrollTop : offset.top}, 1000);
+    }
+
+
 	
 
 	

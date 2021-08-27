@@ -96,7 +96,7 @@ a {
 					<button type="submit" class="form-control col-sm-1 w-1 p-2">검색</button>
 					<sec:authorize access="hasAnyRole('ADMIN', 'MANAGER')">
 						<div class="ml-md-auto" style="margin-right:20px;">
-							<button type="button" id="insertBtn" class="form-control btn-sm btn-outline-info" onclick="location.href='${pageContext.request.contextPath}/admin/community/board_list'">공지사항 작성 <i class="icon-arrow-right-circle"></i></button>
+							<button type="button" id="insertBtn" class="form-control btn-sm btn-outline-info" onclick="location.href='${pageContext.request.contextPath}/admin/community/board_list'">공지사항 관리 <i class="icon-arrow-right-circle"></i></button>
 						</div>
 					</sec:authorize>
 				</div>
