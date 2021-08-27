@@ -1,16 +1,22 @@
 package com.jhta.neocom.service;
 
+import java.io.File;
 import java.io.FileOutputStream;
-import java.io.InputStream;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
-import org.springframework.util.FileCopyUtils;
 import org.springframework.web.multipart.MultipartFile;
 
+import net.coobird.thumbnailator.Thumbnailator;
+
+import com.jhta.neocom.dto.Product_ImgDTO;
 import com.jhta.neocom.mapper.ImgFileMapper;
 import com.jhta.neocom.model.Product_ImgVo;
 
@@ -22,29 +28,58 @@ public class ImgFileService {
 	@Autowired
 	private ImgFileMapper mapper;
 
-	public Product_ImgVo uploadImg(MultipartFile img, int product_id, String img_category) {
+	private String getFolder() {
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+		Date date = new Date();
+		String str = sdf.format(date);
+		return str.replace("-", File.separator);
+	}
 
-		// 업로드할 폴더의 절대 경로 구하기
-		String img_path = uploadFilePath + "\\product_img";
+	private boolean checkImageType(File file) {
+		try {
+			String contentType = Files.probeContentType(file.toPath());
+			return contentType.startsWith("image");
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		return false;
+	}
 
-		System.out.println(img_path);
+	public Product_ImgDTO uploadImg(MultipartFile img, int product_id, String img_category) {
+
+		if (img == null) {
+			return null;
+		}
+
+		// 업로드할 폴더의 경로
+		String uploadFolder = uploadFilePath + "product_img/";
+
+		File uploadPath = new File(uploadFolder, getFolder());
+
+		if (uploadPath.exists() == false) {
+			uploadPath.mkdirs();
+		}
 
 		String img_name_origin = img.getOriginalFilename(); // 전송된 파일명
 		String img_name_save = UUID.randomUUID() + "_" + img_name_origin;
 		long img_size = img.getSize();
 
 		try {
-			InputStream is = img.getInputStream();
-			FileOutputStream fos = new FileOutputStream(img_path + "\\" + img_name_save);
-			FileCopyUtils.copy(is, fos);
-			is.close();
-			fos.close();
-			// 업로드된 파일정보 DB에 저장하기
+			File saveFile = new File(uploadPath, img_name_save);
+			img.transferTo(saveFile);
 
-			Product_ImgVo vo = new Product_ImgVo(0, product_id, img_name_save, img_name_origin, img_size, img_category);
-			this.insert(vo);
+			if (checkImageType(saveFile)) {
+				FileOutputStream thumbnail = new FileOutputStream(new File(uploadPath, "s_" + img_name_save));
+				Thumbnailator.createThumbnail(img.getInputStream(), thumbnail, 100, 100); // 섬네일 크기
 
-			return vo;
+				thumbnail.close();
+			}
+
+			// 업로드된 파일정보 dto에 저장하기
+			Product_ImgDTO dto = new Product_ImgDTO(product_id, img_name_save, img_name_origin,
+					uploadPath.getAbsolutePath(), img_size, img_category);
+
+			return dto;
 		} catch (Exception e) {
 			e.printStackTrace();
 			return null;

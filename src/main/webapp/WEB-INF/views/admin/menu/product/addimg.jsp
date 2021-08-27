@@ -67,8 +67,7 @@
 										<th width="10%">고유번호</th>
 										<th width="8%" data-orderable="true">이미지</th>
 										<th class="text-nowrap">상품명</th>
-										<th width="5%"></th>
-										<th width="5%"></th>
+										<th width="15%"></th>
 									</tr>
 								</thead>
 								<tbody>
@@ -85,7 +84,6 @@
 												</c:choose>
 											</c:forEach>
 											<td>${product_vo.product_name }</td>
-											<td class="text-center"><a href="${pageContext.request.contextPath }/admin/cate/delete?category_id=${vo.category_id }" class="btn btn-sm btn-primary w-60px me-1">삭제</a></td>
 											<td class="text-center"><a href="#modal-dialog" class="open_modal btn btn-sm btn-white w-60px" data-bs-toggle="modal" 
 											data-id="${product_vo.product_id}" data-name="${product_vo.product_name}">수정</a></td>
 										</tr>
@@ -129,7 +127,7 @@
 								<input type="text" id="product_name" name="product_name" class="form-control mb-5px" readonly/>
 							</div>
 					</div>
-					<div class ="row mb-15px">
+					<div class ="uploadDiv row mb-15px">
 						<label for="main_img" class="form-label">메인이미지선택</label>
   						<input class="prd_imgs form-control" type="file" name="main_img" id="main_img">
 						<label for="description_img" class="form-label">설명이미지선택</label>
@@ -145,6 +143,9 @@
                     				<div class="uploadResult">
                         				<ul></ul>
                    					 </div>
+									<div class='bigPictureWrapper'>
+										<div class='bigPicture'></div>
+									</div>
                 				</div>
             				</div>
         				</div>
@@ -180,29 +181,122 @@
 	<!-- ================== END page-js ================== -->
     <!-- script -->
     <script>
-		$(document).on("click", ".open_modal", function () {
-			$('#preview_img').empty();
-			var id = $(this).data('id');
-			var name = $(this).data('name');
-			$("#product_id").val(id);
-			$("#product_name").val(name);
-		});
 
-		$(".prd_imgs").on('change', function(){
-    		readInputFile(this);
-		});
+		function showImage(fileCallPath) {
+        		// alert(fileCallPath);
+				$(".bigPictureWrapper").css("display","flex").show();  //화면 가운데 배치
+        		$(".bigPicture")
+        		.html("<img src='${pageContext.request.contextPath}/admin/product/imgdisplay?fileName="+encodeURI(fileCallPath)+"'>")  //<img>추가
+        		.show({width:'100%', height:'100%'}, 1000);
 
-		$("#submitBtn").click(function () {                 
-			// Get form         
-			var form = $('#fileUploadForm')[0];
-			console.log("form:" + form.product_id); 	    
-			// Create an FormData object          
-			var formData = new FormData(form);  	 
+    	}
+
+		$(document).ready(function(e){
+
+			$(document).on("click", ".open_modal", function () {
+				$('#preview_img').empty();
+				var id = $(this).data('id');
+				var name = $(this).data('name');
+				$("#product_id").val(id);
+				$("#product_name").val(name);
+			});
+
+			$(".bigPictureWrapper").on("click", function(e){
+      			$(".bigPictureWrapper").hide();
+			});
+
+
+			// 업로드 파일 확장자 필터링
+			var regex = new RegExp("\\.(bmp|gif|jpg|jpeg|png)$");  //정규식
+			var maxSize = 5242880;  //5MB
 			
-			// FormData의 값 확인
-			for (var pair of formData.entries()) { console.log(pair[0]+ ', ' + pair[1]); }
+			function checkExtension(fileName, fileSize) {
+				if (fileSize >= maxSize) {
+					alert("파일 사이즈 초과");
+					return false;
+				}
+				
+				if (!regex.test(fileName)) {
+					alert("해당 종류의 파일은 업로드할 수 없습니다.");
+					return false;
+				}
+				return true;
+			}
+			
+			
+			var uploadResult = $(".uploadResult ul");
 
+			function showUploadedFile(uploadResultArr) {
 
+				if (!uploadResultArr || uploadResultArr.length == 0) {return;}
+
+   				var str = "";
+   
+   				$(uploadResultArr).each(function(i, obj) {
+					var fileCallPath = encodeURIComponent();
+					// var originPath = obj.uploadPath + "\\" + obj.img_name_save;
+					// originPath = originPath.replace(new RegExp(/\\/g),"/");
+
+					var fileCallPath = encodeURIComponent(obj.uploadPath+"/s_"+obj.img_name_save);
+					str += "<li><div>";
+					str += "<span> " + obj.img_category + ", " + obj.img_name_origin + "</span>";
+					str += "<button type='button' data-file=\'"+fileCallPath+"\' data-type='image' class='btn btn-warning btn-sm'><i class='fa fa-times'></i></button><br>";
+					str += "<img src='${pageContext.request.contextPath}/admin/product/imgdisplay?fileName="+fileCallPath+"'>";
+					str += "</div>";
+					str += "</li>";
+
+   				});
+   
+   				uploadResult.append(str);
+			}
+
+			$(".uploadResult").on("click","button",function(e){
+    			var targetFile = $(this).data("file");
+    			var type = $(this).data("type");
+
+				var targetLi = $(this).closest("li");
+
+    			$.ajax({
+        			url: '${pageContext.request.contextPath}/admin/product/deleteFile',
+        			data: {fileName: targetFile, type: type},
+        			dataType: 'text',
+        			type: 'POST',
+        			success: function(result) {
+            			alert(result);
+						targetLi.remove();
+        			}
+    			});
+			});
+
+			var cloneObj = $(".uploadDiv").clone(); 
+
+			$(document).on("change", $("input[type='file']") , function(e){
+				var inputFile = $("input[type='file']");
+				var files = inputFile[0].files;
+
+				for (var i = 0; i < files.length; i++) {
+				if (!checkExtension(files[i].name, files[i].size)) {
+						return false;
+					}
+				}
+
+				// Get form         
+				var form = $('#fileUploadForm')[0];
+				// Create an FormData object          
+				var formData = new FormData(form);  	 
+				
+				// FormData의 값 확인
+				for (var pair of formData.entries()) { 
+					var filechk=pair[1];
+					if(filechk.size==0){
+						formData.delete(pair[0]);
+					}
+				}
+				for (var pair of formData.entries()) { 
+					console.log(pair[0] + "," + pair[1]);
+				}
+
+			
 			$.ajax({             
 				type: "POST",          
 				enctype: 'multipart/form-data',  
@@ -213,50 +307,47 @@
 				contentType: false,      
 				cache: false,           
 				timeout: 600000,       
-				success: function (data) { 
-					alert("파일 업로드/수정 완료");           
-					$("#btnSubmit").prop("disabled", false);      
+				success: function (result) {        
+							
+					showUploadedFile(result);
+
+					$(".uploadDiv").html(cloneObj.html());
+
 				},          
 				error: function (e) {  
-					console.log("ERROR : ", e);     
-					$("#btnSubmit").prop("disabled", false);    
+					console.log("ERROR : ", e);       
 					alert("fail");      
 				}     
-			});  
+			});
 		});
 
-    	$('#data-table-responsive').DataTable({
-        	responsive: true,
+			
+		$("#submitBtn").click(function () {                 
+  
+		});
+
+		$('#data-table-responsive').DataTable({
+			responsive: true,
 			lengthMenu: [10,20,30,50],
 			language: {
-            emptyTable: "데이터가 없습니다.",
-            lengthMenu: "페이지당 _MENU_ 개씩 보기",
-            info: "현재 _START_ - _END_ / _TOTAL_건",
-            infoEmpty: "데이터 없음",
-            infoFiltered: "( _MAX_건의 데이터에서 필터링됨 )",
-            search: "",
-            zeroRecords: "일치하는 데이터가 없습니다.",
-            loadingRecords: "로딩중...",
-            processing: "잠시만 기다려 주세요.",
-            paginate: {
-              next: "다음",
-              previous: "이전",
-            },
-          	},
-    	});
+				emptyTable: "데이터가 없습니다.",
+				lengthMenu: "페이지당 _MENU_ 개씩 보기",
+				info: "현재 _START_ - _END_ / _TOTAL_건",
+				infoEmpty: "데이터 없음",
+				infoFiltered: "( _MAX_건의 데이터에서 필터링됨 )",
+				search: "",
+				zeroRecords: "일치하는 데이터가 없습니다.",
+				loadingRecords: "로딩중...",
+				processing: "잠시만 기다려 주세요.",
+				paginate: {
+					next: "다음",
+					previous: "이전",
+				},
+			},
+		});
+	});
 
-		function readInputFile(input) {
-			$('#preview_img').empty();
-			if(input.files && input.files[0]) {
-				var reader = new FileReader();
-				reader.onload = function (e) {
-					$('#preview_img').append(`
-					<img src="\${e.target.result}">
-					`);
-				}
-				reader.readAsDataURL(input.files[0]);
-			}
-		}
+
 
     </script>
 </body>

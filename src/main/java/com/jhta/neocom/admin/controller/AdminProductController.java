@@ -1,11 +1,21 @@
 package com.jhta.neocom.admin.controller;
 
+import java.io.File;
+import java.io.IOException;
+import java.io.UnsupportedEncodingException;
+import java.net.URLDecoder;
+import java.nio.file.Files;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.util.FileCopyUtils;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -14,6 +24,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.jhta.neocom.dto.Product_ImgDTO;
 import com.jhta.neocom.model.CategoryVo;
 import com.jhta.neocom.model.Category_relVo;
 import com.jhta.neocom.model.ProductVo;
@@ -45,9 +56,6 @@ public class AdminProductController {
 	public String insert(ProductVo vo, Model model, @RequestParam(value = "category_ids") List<String> category_ids) {
 
 		service.insert(vo);
-		Product_ImgVo img_vo = new Product_ImgVo(0, vo.getProduct_id(), "no_img_main.jpg", "no_img_main.jpg", 22314,
-				"main");
-		service1.insert(img_vo);
 		for (String category_id : category_ids) {
 			Category_relVo cate_relVo = new Category_relVo(0, vo.getProduct_id(), Integer.parseInt(category_id));
 			cate_relService.insert(cate_relVo);
@@ -72,15 +80,66 @@ public class AdminProductController {
 
 	}
 
-	@RequestMapping(value = "/admin/product/addimg", method = { RequestMethod.POST })
-	public @ResponseBody HashMap<String, Object> insertImg(Model model, MultipartFile main_img,
-			MultipartFile description_img, int product_id) {
-		HashMap<String, Object> map = new HashMap<String, Object>();
-		System.out.println(main_img.getOriginalFilename());
-		System.out.println(description_img.getOriginalFilename());
-		System.out.println(product_id);
+	@GetMapping("/admin/product/imgdisplay")
+	@ResponseBody
+	public ResponseEntity<byte[]> getFile(String fileName) {
 
-		return map;
+		File file = new File(fileName);
+
+		ResponseEntity<byte[]> result = null;
+
+		try {
+			HttpHeaders header = new HttpHeaders();
+
+			header.add("Content-Type", Files.probeContentType(file.toPath()));
+			result = new ResponseEntity<>(FileCopyUtils.copyToByteArray(file), header, HttpStatus.OK);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		return result;
+	}
+
+	@RequestMapping(value = "/admin/product/addimg", method = { RequestMethod.POST })
+	public @ResponseBody ResponseEntity<List<Product_ImgDTO>> insertImg(Model model,
+			@RequestParam(name = "main_img", required = false) MultipartFile main_img,
+			@RequestParam(name = "description_img", required = false) MultipartFile description_img, int product_id) {
+		List<Product_ImgDTO> list = new ArrayList<>();
+
+		if (main_img != null) {
+			Product_ImgDTO main_ImgDTO = service1.uploadImg(main_img, product_id, "main");
+			list.add(main_ImgDTO);
+		}
+
+		if (description_img != null) {
+			Product_ImgDTO description_ImgDTO = service1.uploadImg(description_img, product_id, "description");
+			list.add(description_ImgDTO);
+		}
+
+		return new ResponseEntity<>(list, HttpStatus.OK);
+
+	}
+
+	@PostMapping("/admin/product/deleteFile")
+	@ResponseBody
+	public ResponseEntity<String> deleteFile(String fileName, String type) {
+		File file;
+		try {
+			// 일반 파일일 경우, 파일만 삭제
+			file = new File(URLDecoder.decode(fileName, "UTF-8"));
+			file.delete();
+
+			// 이미지일 경우, 썸네일을 삭제 후 원본 삭제
+			if (type.equals("image")) {
+				String largeFileName = file.getAbsolutePath().replace("s_", "");
+				file = new File(largeFileName);
+				file.delete();
+			}
+		} catch (UnsupportedEncodingException e) {
+			e.printStackTrace();
+			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+		}
+
+		return new ResponseEntity<String>("deleted", HttpStatus.OK);
 	}
 
 	@RequestMapping(value = "/admin/product/findCategories")
