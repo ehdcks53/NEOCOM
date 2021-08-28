@@ -8,11 +8,14 @@ import org.springframework.stereotype.Service;
 
 import com.jhta.neocom.mapper.MemberMapper;
 import com.jhta.neocom.model.MemberVo;
+import com.jhta.neocom.repository.MemberRepository;
 
 @Service
 public class MemberService {
 	@Autowired
 	private MemberMapper mapper;
+	@Autowired
+	private MemberRepository memberRepository;
 
 	public int insert(MemberVo vo) {
 		return mapper.insert(vo);
@@ -72,5 +75,8 @@ public class MemberService {
 
 	public int delete(int mem_no) {
 		return mapper.delete(mem_no);
+	}
+	public boolean checkIdDuplicate(String id) {
+		return memberRepository.existsById(id);
 	}
 }

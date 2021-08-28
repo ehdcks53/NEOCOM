@@ -22,13 +22,14 @@ public class CustomUserDetails implements UserDetails {
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         Set<MemberRole> roles = memberVo.getRoles();
+        System.out.println("CUD"+memberVo.getRoles());
         List<SimpleGrantedAuthority> authorities = new ArrayList<>();
 
         for (MemberRole role : roles) {
             authorities.add(new SimpleGrantedAuthority(role.getRoleName()));
+            
         }
         
-
         return authorities;
     }
     

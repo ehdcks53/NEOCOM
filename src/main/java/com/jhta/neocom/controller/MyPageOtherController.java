@@ -7,16 +7,21 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.jhta.neocom.model.AdressVo;
 import com.jhta.neocom.model.CustomUserDetails;
 import com.jhta.neocom.model.MemberVo;
+import com.jhta.neocom.service.AdressService;
 import com.jhta.neocom.service.MemberService;
 import com.jhta.neocom.service.QnABoardService;
 
@@ -26,14 +31,42 @@ import com.jhta.neocom.service.QnABoardService;
 public class MyPageOtherController {
 	@Autowired
     private MemberService memberService;
-	
+	@Autowired
+	private AdressService adressService;
 	@Autowired private QnABoardService qna_service;
 	@Autowired
 	private BCryptPasswordEncoder bCryptPasswordEncoder;	
+	
 	@RequestMapping(value = "/account/mypage_delivery")
     public String frontendMyPageDelivery() {
         return "frontend/account/mypage_delivery";
     }
+	@GetMapping("/account/delivery")
+	public String PlusdeliveryForm() {
+		return "frontend/account/mypage_plusDelivery";
+	}
+	@PostMapping("/account/delivery")
+	public String Plusdelivery(AdressVo vo,Model model,Authentication auth) {
+		System.out.println("우편추가시작");
+		System.out.println("우편:"+vo.getZip_code()+"주소1:"+vo.getAddress()+"주소2:"+vo.getAdress_detail());
+//		try {
+//			AdressVo newvo=new AdressVo(vo.getAddr_no(), vo.getMem_no(), vo.getZip_code(), vo.getAdress(), vo.getAdress_detail());
+//			
+//			adressService.addrTest(vo);
+//			model.addAttribute("code","success");
+//			System.out.println("ok");
+//		}catch (Exception e) {
+//			e.printStackTrace();
+//			model.addAttribute("code","fail");
+//			System.out.println("no");
+//		}
+		CustomUserDetails cud=(CustomUserDetails) auth.getPrincipal();
+		MemberVo mvo=cud.getMemberVo();
+		int mem_no=mvo.getMem_no();
+		vo.setMem_no(mem_no);
+		adressService.addrTest(vo);
+		return "frontend/account/mypage_delivery";
+	}
 
 	// 나의 문의내역
     @RequestMapping(value = "/account/mypage_question")
@@ -85,7 +118,7 @@ public class MyPageOtherController {
         return "frontend/account/mypage_pwdmodify";
     }
     @RequestMapping(value = "/account/pwdmodify", method = RequestMethod.POST)
-    public String pwdModify() {
+    public String pwdModify(Model model) {
         return "frontend/account/mypage_pwdmodify";
     }
     @RequestMapping(value = "/account/memberDel", method = RequestMethod.GET)

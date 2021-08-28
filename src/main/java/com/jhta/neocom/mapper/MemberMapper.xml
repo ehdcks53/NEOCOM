@@ -56,4 +56,7 @@
 	<update id="update" parameterType="com.jhta.neocom.model.MemberVo">
 		update member_Info set nickname=#{nickname}, name = #{name}, birth_date = #{birth_date}, phone = #{phone} where mem_no=#{mem_no}
 	</update>
+	<update id="updatePwd" parameterType="com.jhta.neocom.model.MemberVo">
+		update member_Info set password=#{password} where id="#{id}"
+	</update>
 </mapper>

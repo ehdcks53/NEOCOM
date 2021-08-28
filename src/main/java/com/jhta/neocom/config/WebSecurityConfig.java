@@ -67,6 +67,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/admin/**").hasRole("ADMIN")
                 .antMatchers("/member/**").hasAnyRole("ADMIN", "MANAGER", "USER")
                 .antMatchers("/**").permitAll()//.and().formLogin()
+                
                 .and().formLogin()
                 .loginPage("/account/login") // 로그인이 수행 될 경로
                 .loginProcessingUrl("/account/login")// 로그인form의 action과 일치시켜주어야 함.
@@ -75,11 +76,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                                                                      // error=true로 보낸
                 .and().logout().permitAll().logoutUrl("/account/logout").logoutSuccessUrl("/").and().exceptionHandling()
                 .accessDeniedPage("/account/denied"); // 권한이 없는 대상이 접속을시도했을 때
-        http.authorizeRequests()
-        		.antMatchers("/notuser").hasRole("NOTUSER");
-        		
-        		
-        
+       
         http.rememberMe().key("jpa").userDetailsService(customSecurityUsersService).tokenRepository(tokenRepository());
     }
 

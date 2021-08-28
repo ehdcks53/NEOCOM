@@ -59,8 +59,20 @@
 	<!-- mypage_sidebar -->
 	<jsp:include page="/WEB-INF/views/frontend/account/inc/mypage_sidebar.jsp"/>
 	
-	<!-- 주문내역 -->
+	<!-- 배송지 관리 -->
+	<div class="col-lg-9 col-md-8 order-md-2">
+		<h6 class="text-muted text-lg text-uppercase">배송지 관리</h6>
+		<hr class="margin-bottom-1x">
+			
+		<div class="card-body">
+		
+		</div>
+		<div class="card-body">
+		<a href="${pageContext.request.contextPath }/account/delivery" class="btn btn-primary d-block">배송지정보 추가</a>
+		</div>
 	
+		
+</div>	
 </div>
 </div>
 <!-- 페이지 컨텐트 끝 -->

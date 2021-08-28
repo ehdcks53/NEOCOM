@@ -1,6 +1,10 @@
 package com.jhta.neocom.controller;
 
+import java.io.IOException;
+import java.io.PrintWriter;
+
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,14 +31,12 @@ public class LoginController {
 	}
 
 	@RequestMapping(value = "/account/login", method = RequestMethod.POST)
-	public String login(Authentication authentication, MemberVo vo, Model model, HttpServletRequest req) {
+	public String login(Authentication authentication, MemberVo vo, Model model, HttpServletRequest req,HttpServletResponse response) throws IOException {
 		System.out.println("로그인 컨트롤러 vo : " + vo);
 		System.out.println("로그인 컨트롤러 : " + authentication.getPrincipal() + ", " + authentication.getCredentials() + ", "
 				+ authentication.getAuthorities());
-		// 로그인 세션정보 수정(비밀번호추가)
-		HttpSession session = req.getSession();
-		MemberVo login = service.login(vo);
-		session.setAttribute("member", login);
+		PrintWriter out=response.getWriter();
+		out.println("<script>alert('');</script>");
 		return "redirect:/";
 	}
 
