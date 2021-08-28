@@ -1,5 +1,8 @@
 package com.jhta.neocom.service;
 
+import java.util.HashMap;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -12,5 +15,13 @@ public class AdressService {
 	
 	public int addrTest(AdressVo vo) {
 		return mapper.addrTest(vo);
+	}
+	
+	public List<AdressVo> addrList(String id){
+		return mapper.addrList(id);
+	}
+	
+	public int addrModify(AdressVo vo) {
+		return mapper.addrModify(vo);
 	}
 }

@@ -12,12 +12,17 @@
 		values (#{addr_no},#{mem_no},#{zip_code},#{address},#{adress_detail})
 	</insert>
 	
-	<delete id="addrDel" parameterType="int">
-		delete from address where addr_no=#{addr_no}	
-	</delete>
+	<update id="addrModify" parameterType="com.jhta.neocom.model.AdressVo">
+		update address set zip_code=#{zip_code},address=#{address},adress_detail=#{adress_detail}
+	</update>
 	
-	<select id="addrList" parameterMap="hashmap" resultType="hashmap">
-		select a.zip_code,a.address,a.adress_detail from address a
+	  
+	<select id="addrList" resultType="com.jhta.neocom.model.AdressVo" parameterType="String">
+		select id,zip_code,address,adress_detail
+		from member_Info 
+		left join address 
+		on address.mem_no=member_Info.mem_no
+		where id=#{id}
 	</select>
 	
 	</mapper>
