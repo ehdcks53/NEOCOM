@@ -13,14 +13,23 @@
 	<insert id="insert_role" parameterType="int">
 		insert into member_Info_member_role values(#{mem_no},3);
 	</insert>
+<<<<<<< HEAD
 
 	<select id="login" resultType="com.jhta.neocom.model.MemberVo">
+=======
+	
+	<select id="login" parameterType="String" resultType="com.jhta.neocom.model.MemberVo">
+>>>>>>> b95a5e38388413776c5e61a6bdc43a8a4c13232d
 		select id,nickname from member_Info where id=#{id} and password=#{password}
 	</select>
 
 	<select id="select" parameterType="String" resultType="com.jhta.neocom.model.MemberVo">
 		select m.*, r.* from member_Info m join member_Info_member_role r where id = #{id}
 	</select>
+	<select id="idcheck" parameterType="String" resultType="int">
+		select COUNT(*) from member_Info where id=#{id}
+	</select>
+	
 
 	<select id="isMember" parameterType="hashmap" resultType="com.jhta.neocom.model.MemberVo">
 		select id,password from member_Info where id=#{id} and password=#{password}
@@ -47,6 +56,7 @@
 	<select id="selectid" parameterType="String" resultType="com.jhta.neocom.model.MemberVo">
   		select m.* from member_Info m where m.id = #{id}
   	</select>
+<<<<<<< HEAD
 	<delete id="memberDel" parameterType="com.jhta.neocom.model.MemberVo">
   		delete from member_Info where id=#{id}
   	</delete>
@@ -59,4 +69,19 @@
 	<update id="updatePwd" parameterType="com.jhta.neocom.model.MemberVo">
 		update member_Info set password=#{password} where id="#{id}"
 	</update>
+=======
+  	
+  	<delete id="memberDel" parameterType="com.jhta.neocom.model.MemberVo">
+  		delete from member_Info where id=#{id}
+  	</delete>
+  	<insert id="delete_role" parameterType="int">
+		update member_Info_member_role set fno=(4) where mem_no=#{mem_no}
+	</insert>
+	<update id="pwdModify" parameterType="com.jhta.neocom.model.MemberVo">
+		update password member_Info where id=#{id}
+	</update>
+
+  	
+
+>>>>>>> b95a5e38388413776c5e61a6bdc43a8a4c13232d
 </mapper>

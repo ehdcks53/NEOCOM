@@ -3,17 +3,22 @@ package com.jhta.neocom.controller;
 import java.util.HashMap;
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
+import org.hibernate.internal.build.AllowSysOut;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
@@ -25,6 +30,8 @@ import com.jhta.neocom.service.AdressService;
 import com.jhta.neocom.service.MemberService;
 import com.jhta.neocom.service.QnABoardService;
 
+import ch.qos.logback.classic.Logger;
+
 // MyPageController AJAX때문에 컨트롤러 분리했습니다!!
 
 @Controller
@@ -33,9 +40,9 @@ public class MyPageOtherController {
     private MemberService memberService;
 	@Autowired
 	private AdressService adressService;
-	@Autowired private QnABoardService qna_service;
 	@Autowired
-	private BCryptPasswordEncoder bCryptPasswordEncoder;	
+	private BCryptPasswordEncoder bCryptPasswordEncoder;
+	@Autowired private QnABoardService qna_service;	
 	
 	@RequestMapping(value = "/account/mypage_delivery")
     public String frontendMyPageDelivery() {
@@ -128,10 +135,7 @@ public class MyPageOtherController {
         return mv;
     }
     @RequestMapping(value = "/account/memberDel", method = RequestMethod.POST)
-    public String memberDel( HttpSession session,MemberVo memberVo, Model model,String password) {
-    	
-
-    	
+    public String memberDel( HttpSession session,MemberVo memberVo, Model model,String password,HttpServletRequest req) {
     	//memberVo.setPassword(bCryptPasswordEncoder.encode(memberVo.getPassword()));
     	//password=req.getParameter("password");	
     	String encode = bCryptPasswordEncoder.encode(password);
@@ -156,6 +160,44 @@ public class MyPageOtherController {
     		return "redirect:/";
     	}
     }
+//	String result=null;
+//	BCryptPasswordEncoder encoder=new BCryptPasswordEncoder();
+//	
+//	MemberVo dbUser=(MemberVo) session.getAttribute("login");
+//	if(encoder.matches(password, dbUser.getPassword())) {
+//		result="pwConfirmOk";
+//		System.out.println("pwConfirmOk");
+//	}else {
+//		result="pwdConfirmNo";
+//		System.out.println("pwdConfirmNo");
+//	}
+//	return result;
+//}
+    	
+    	
+//    	MemberVo member=(MemberVo) session.getAttribute("member");
+//    	String oldPwd=member.getPassword();
+//    	System.out.println("oldPwd:"+oldPwd);
+//    	
+//    	
+//    	boolean passwordMatch = bCryptPasswordEncoder.matches(password, oldPwd);  // 첫번째 인자는 평문, 두번 째 인자는 암호화로 설정해야 오류가 안난다.
+//    	System.out.println("password:"+password);
+//    	System.out.println("비밀번호 비교 : " + passwordMatch);
+//    	
+//    	MemberVo vo=new MemberVo(memberVo.getMem_no(),memberVo.getNickname(), memberVo.getPhone(), memberVo.getBirth_date(), null, 
+//				 memberVo.getName(), memberVo.getId(), memberVo.getPassword(), memberVo.getRoles());
+//    	if(passwordMatch == true) {
+//    		memberService.memberDel(vo);
+//    		System.out.println("삭제");
+//    		session.invalidate();
+//    		return "redirect:/";
+//    	} else {
+//    		System.out.println("삭제실패");
+//    		return "redirect:/user/remove";
+//    	}
+//    	
+//    }  
+    
 	
 	
-}
+    }

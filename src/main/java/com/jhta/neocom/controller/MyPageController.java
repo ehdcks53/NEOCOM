@@ -17,6 +17,8 @@ import com.jhta.neocom.model.OrderMainVo;
 import com.jhta.neocom.service.OrderCancelService;
 import com.jhta.neocom.service.OrderMainService;
 import com.jhta.neocom.service.PaymentService;
+import com.jhta.neocom.service.OrderMainService;
+
 
 
 @RestController
@@ -31,7 +33,6 @@ public class MyPageController {
 
     @RequestMapping(value = "/account/mypage_order", produces = { MediaType.APPLICATION_JSON_VALUE })
     public ModelAndView frontendMyPageOrder(Authentication authentication) {
-
         CustomUserDetails cud = (CustomUserDetails) authentication.getPrincipal();
         MemberVo vo = cud.getMemberVo();
         int mem_no = vo.getMem_no();

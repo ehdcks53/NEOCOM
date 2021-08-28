@@ -28,6 +28,11 @@
 	height: 100px;
 	vertical-align: middle;
 }
+.form-control,.card-body {
+	width: 600px;
+	margin: auto;
+}
+
 </style>
 </head>
 <body>
@@ -111,6 +116,9 @@
 			<button class="btn btn-primary margin-bottom-none" type="submit">회원 탈퇴</button>
 		</div>
 		</form>		
+
+					
+
 	</div>	
 	<hr class="mt-2 mb-3">
 	</div>
