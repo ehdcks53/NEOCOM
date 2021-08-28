@@ -29,9 +29,6 @@ public class MemberService {
 	public MemberVo select(String id) {
 		return mapper.select(id);
 	}
-	public int idcheck(String id) {
-		return mapper.idcheck(id);
-	}
 
 	public MemberVo isMember(HashMap<String, String> map) {
 		return mapper.isMember(map);
@@ -84,11 +81,11 @@ public class MemberService {
 		return memberRepository.existsById(id);
 	}
 
-	public void register(MemberVo user) {
-		BCryptPasswordEncoder encoder=new BCryptPasswordEncoder();
-		String securePw=encoder.encode(user.getPassword());
-		user.setPassword(securePw);
-		mapper.pwdModify(user);
-	}
+//	public void register(MemberVo user) {
+//		BCryptPasswordEncoder encoder=new BCryptPasswordEncoder();
+//		String securePw=encoder.encode(user.getPassword());
+//		user.setPassword(securePw);
+//		mapper.pwdModify(user);
+//	}
 
 }

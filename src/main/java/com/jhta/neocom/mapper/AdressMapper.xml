@@ -4,11 +4,20 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
   <mapper namespace="com.jhta.neocom.mapper.AdressMapper">
   
-<insert id="addrTest" parameterType="com.jhta.neocom.model.AdressVo">
-		<selectKey keyProperty="addr_no" order="BEFORE" resultType="int">
-			select get_seq('addrSeq') as addr_no from dual
-		</selectKey>
-	insert into address (addr_no, mem_no, zip_code, address, adress_detail)
-	values (#{addr_no},#{mem_no},#{zip_code},#{address},#{adress_detail})
-</insert>
+	<insert id="addrTest" parameterType="com.jhta.neocom.model.AdressVo">
+	<selectKey keyProperty="addr_no" order="BEFORE" resultType="int">
+		select get_seq('addrSeq') as addr_no from dual
+	</selectKey>
+		insert into address (addr_no, mem_no, zip_code, address, adress_detail)
+		values (#{addr_no},#{mem_no},#{zip_code},#{address},#{adress_detail})
+	</insert>
+	
+	<delete id="addrDel" parameterType="int">
+		delete from address where addr_no=#{addr_no}	
+	</delete>
+	
+	<select id="addrList" parameterMap="hashmap" resultType="hashmap">
+		select a.zip_code,a.address,a.adress_detail from address a
+	</select>
+	
 	</mapper>

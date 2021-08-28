@@ -11,9 +11,7 @@ public interface MemberMapper {
 	int insert_role(int mem_no);
 
 	MemberVo select(String id);
-	
-	int idcheck(String id);
-	
+
 	MemberVo isMember(HashMap<String, String> map);
 
 	int searchNo(String id);
@@ -37,7 +35,4 @@ public interface MemberMapper {
 	int update(MemberVo vo);
 
 	int delete(int mem_no);
-	
-	int pwdModify(MemberVo vo);
-
 }

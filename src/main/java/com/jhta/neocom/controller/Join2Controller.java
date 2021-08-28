@@ -54,17 +54,17 @@ public class Join2Controller {
 	
 
 	//@RequestMapping(value = "/account/idcheck",produces = {MediaType.APPLICATION_JSON_VALUE})
-	@RequestMapping(value = "/account/idcheck")
-	@ResponseBody
-	public Map<Object, Object> idcheck(@RequestBody String id) {
-       
-        int count = 0;
-        Map<Object, Object> map = new HashMap<Object, Object>();
- 
-        count = service.idcheck(id);
-        map.put("cnt", count);
- 
-        return map;
-	}
+//	@RequestMapping(value = "/account/idcheck")
+//	@ResponseBody
+//	public Map<Object, Object> idcheck(@RequestBody String id) {
+//       
+//        int count = 0;
+//        Map<Object, Object> map = new HashMap<Object, Object>();
+// 
+//        count = service.idcheck(id);
+//        map.put("cnt", count);
+// 
+//        return map;
+//	}
 
 }
