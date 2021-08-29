@@ -65,7 +65,7 @@
 		<h6 class="text-muted text-lg text-uppercase">배송지 수정</h6>
 		<hr class="margin-bottom-1x">
 		
-		<form action="${pageContext.request.contextPath }/account/modifyDel" method="post">	
+		<form action="${pageContext.request.contextPath }/account/modifyDel?addr_no=${vo.addr_no }" method="post">	
 		<div class="card-body">
 			<div class="form-group input-group">
 				
@@ -74,7 +74,9 @@
 			</div>
 			<div class="form-group input-group">	
 				<input class="form-control" type="text" id="sample2_address" name="address"value="${vo.address }"><br>
-				<input class="form-control" type="text" id="sample2_detailAddress" name="adress_detail"value="${vo.adress_detail }"><br>			
+				<input class="form-control" type="text" id="sample2_detailAddress" name="adress_detail"value="${vo.adress_detail }"><br>	
+				<input class="form-control" type="text" id="sample2_extraAddress" placeholder="참고항목"><br>	
+				<input type="hidden" name="addr_no" value="${vo.addr_no }">	
 				<input class="btn btn-primary d-block" type="submit" value="배송지 수정">
 			</div>	
 		</div>

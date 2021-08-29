@@ -30,12 +30,6 @@
 			<a class="list-group-item" id="wishlist" href="${pageContext.request.contextPath }/account/mypage_wishlist">관심상품</a>
 			<a class="list-group-item" id="myreview" href="${pageContext.request.contextPath }/account/mypage_myreview">나의 리뷰</a>
 			<a class="list-group-item" id="modify" href="${pageContext.request.contextPath }/account/mypage_modify?id=${id}">개인 정보 관리</a>
-
-			<a class="list-group-item" id="myreview" href="${pageContext.request.contextPath }/account/mypage_myreview">나의 리뷰</a>		
-			
-			<a class="list-group-item" id="modify" href="${pageContext.request.contextPath }/account/mypage_modify?id=${id}">개인 정보 관리</a>
-			
-
 		</nav>
 	</div>
 	

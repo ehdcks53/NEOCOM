@@ -14,15 +14,24 @@
 	
 	<update id="addrModify" parameterType="com.jhta.neocom.model.AdressVo">
 		update address set zip_code=#{zip_code},address=#{address},adress_detail=#{adress_detail}
+		where addr_no=#{addr_no}
 	</update>
 	
 	  
 	<select id="addrList" resultType="com.jhta.neocom.model.AdressVo" parameterType="String">
-		select id,zip_code,address,adress_detail
+		select id,addr_no,zip_code,address,adress_detail
 		from member_Info 
 		left join address 
 		on address.mem_no=member_Info.mem_no
 		where id=#{id}
+	</select>
+	
+	<select id="zipSelect" resultType="com.jhta.neocom.model.AdressVo" parameterType="int">
+		select addr_no,zip_code,address,adress_detail
+		from member_Info 
+		left join address 
+		on address.mem_no=member_Info.mem_no
+		where addr_no=#{addr_no}
 	</select>
 	
 	</mapper>

@@ -24,4 +24,7 @@ public class AdressService {
 	public int addrModify(AdressVo vo) {
 		return mapper.addrModify(vo);
 	}
+	public AdressVo zipSelect(int addr_no) {
+		return mapper.zipSelect(addr_no);
+	}
 }

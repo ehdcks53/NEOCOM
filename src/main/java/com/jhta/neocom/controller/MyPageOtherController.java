@@ -44,6 +44,7 @@ public class MyPageOtherController {
 	private BCryptPasswordEncoder bCryptPasswordEncoder;
 	@Autowired private QnABoardService qna_service;	
 	
+	//마이페이지 배송지관리
 	@RequestMapping(value = "/account/mypage_delivery")
     public String frontendMyPageDelivery(Authentication auth, Model model) {
 		
@@ -56,10 +57,12 @@ public class MyPageOtherController {
         return "frontend/account/mypage_delivery";
     
 	}
+	//마이페이지 배송지추가
 	@GetMapping("/account/delivery")
 	public String PlusdeliveryForm(Model model) {
 		return "frontend/account/mypage_plusDelivery";
 	}
+	//배송지 추가,리스트 재출력
 	@PostMapping("/account/delivery")
 	public String Plusdelivery(AdressVo vo,Model model,Authentication auth) {
 		System.out.println("auth:"+auth);
@@ -76,11 +79,28 @@ public class MyPageOtherController {
 		model.addAttribute("list",list); 
 		return "frontend/account/mypage_delivery";
 	}
+	//배송지 수정
 	@GetMapping("/yongupdate")
-	public ModelAndView dddefsdf(AdressVo vo) {
-		ModelAndView mv=new ModelAndView("mypage_modifyDelivery");
-		mv.addObject("vo",adressService.addrModify(vo));
+	public ModelAndView dddefsdf(Authentication auth, int addr_no) {
+		System.out.println(addr_no);
+		ModelAndView mv=new ModelAndView("frontend/account/mypage_modifyDelivery");
+		mv.addObject("vo",adressService.zipSelect(addr_no));
 		return mv;
+	}
+	//배송지 수정및 리스트 재출력
+	@PostMapping("/account/modifyDel")
+	public String modifyDel(AdressVo vo, Authentication auth, Model model, int addr_no) {
+		System.out.println(addr_no);
+		System.out.println(vo);
+		
+		CustomUserDetails cud=(CustomUserDetails) auth.getPrincipal();
+		String id=cud.getUsername();
+		adressService.addrModify(vo);
+		System.out.println("MODIFY VO:"+vo);
+		List<AdressVo> list=adressService.addrList(id);
+		model.addAttribute("list",list); 
+
+		return "frontend/account/mypage_delivery";
 	}
 
 	// 나의 문의내역
@@ -167,45 +187,5 @@ public class MyPageOtherController {
     		session.invalidate();
     		return "redirect:/";
     	}
-    }
-//	String result=null;
-//	BCryptPasswordEncoder encoder=new BCryptPasswordEncoder();
-//	
-//	MemberVo dbUser=(MemberVo) session.getAttribute("login");
-//	if(encoder.matches(password, dbUser.getPassword())) {
-//		result="pwConfirmOk";
-//		System.out.println("pwConfirmOk");
-//	}else {
-//		result="pwdConfirmNo";
-//		System.out.println("pwdConfirmNo");
-//	}
-//	return result;
-//}
-    	
-    	
-//    	MemberVo member=(MemberVo) session.getAttribute("member");
-//    	String oldPwd=member.getPassword();
-//    	System.out.println("oldPwd:"+oldPwd);
-//    	
-//    	
-//    	boolean passwordMatch = bCryptPasswordEncoder.matches(password, oldPwd);  // 첫번째 인자는 평문, 두번 째 인자는 암호화로 설정해야 오류가 안난다.
-//    	System.out.println("password:"+password);
-//    	System.out.println("비밀번호 비교 : " + passwordMatch);
-//    	
-//    	MemberVo vo=new MemberVo(memberVo.getMem_no(),memberVo.getNickname(), memberVo.getPhone(), memberVo.getBirth_date(), null, 
-//				 memberVo.getName(), memberVo.getId(), memberVo.getPassword(), memberVo.getRoles());
-//    	if(passwordMatch == true) {
-//    		memberService.memberDel(vo);
-//    		System.out.println("삭제");
-//    		session.invalidate();
-//    		return "redirect:/";
-//    	} else {
-//    		System.out.println("삭제실패");
-//    		return "redirect:/user/remove";
-//    	}
-//    	
-//    }  
-    
-	
-	
-    }
+    }	
+ }

@@ -14,4 +14,6 @@ public interface AdressMapper {
 	List<AdressVo> addrList(String id);
 	
 	int addrModify(AdressVo vo);
+	
+	AdressVo zipSelect(int addr_no);
 }

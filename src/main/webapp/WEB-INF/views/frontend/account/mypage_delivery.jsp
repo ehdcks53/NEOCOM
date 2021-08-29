@@ -70,6 +70,7 @@
 			<table class="table table-hover">
 				<thead>
 					<tr>
+						<th style="width:100px;"></th>
 						<th style="width:100px;">우편번호</th>
 						<th style="width:200px;">주소</th>
 						<th style="width:200px;">상세주소</th>
@@ -82,10 +83,11 @@
 				<tbody>
 				<c:forEach var="vo" items="${list }">
 					<tr>
+						<th>${vo.addr_no }</th>
 						<th>${vo.zip_code }</th>
 						<th>${vo.address }</th>
 						<th>${vo.adress_detail }</th>
-						<th><a href="${pageContext.request.contextPath }/yongupdate">수정</a></th>
+						<th><a href="${pageContext.request.contextPath }/yongupdate?addr_no=${vo.addr_no}">수정</a></th>
 					</tr>
 				</c:forEach>
 				</tbody>
