@@ -76,18 +76,18 @@
 			<div class="column">
 				
 				<div class="shop-view">
-								 	<c:choose>
+				 	<c:choose>
 				 		<c:when test="${keyword ne null }">
-							<a class="grid-view" href="${pageContext.request.contextPath}/shop/product_grid?category_id=${category_id}&keyword=${keyword}"><span></span><span></span><span></span></a>
-							<a class="list-view active" href="${pageContext.request.contextPath}/shop/product_list?category_id=${category_id}&keyword=${keyword}"><span></span><span></span><span></span></a>		
+							<a class="grid-view active" href="${pageContext.request.contextPath}/shop/product_grid?category_id=${category_id}&keyword=${keyword}"><span></span><span></span><span></span></a>
+							<a class="list-view" href="${pageContext.request.contextPath}/shop/product_list?category_id=${category_id}&keyword=${keyword}"><span></span><span></span><span></span></a>		
 						</c:when>
 						<c:when test="${minPrice1 ne null }">
-						 	<a class="grid-view" href="${pageContext.request.contextPath}/shop/product_grid?category_id=${category_id}&keyword=${keyword}&minPrice=${minPrice1}&maxPrice=${maxPrice1}"><span></span><span></span><span></span></a>
-							<a class="list-view active" href="${pageContext.request.contextPath}/shop/product_list?category_id=${category_id}&keyword=${keyword}&minPrice=${minPrice1}&maxPrice=${maxPrice1}"><span></span><span></span><span></span></a>		
+						 	<a class="grid-view active" href="${pageContext.request.contextPath}/shop/product_grid?category_id=${category_id}&keyword=${keyword}&minPrice=${minPrice1}&maxPrice=${maxPrice1}"><span></span><span></span><span></span></a>
+							<a class="list-view" href="${pageContext.request.contextPath}/shop/product_list?category_id=${category_id}&keyword=${keyword}&minPrice=${minPrice1}&maxPrice=${maxPrice1}"><span></span><span></span><span></span></a>		
 						</c:when>
 						<c:otherwise>
-							<a class="grid-view" href="${pageContext.request.contextPath}/shop/product_grid?category_id=${category_id}"><span></span><span></span><span></span></a>
-							<a class="list-view active" href="${pageContext.request.contextPath}/shop/product_list?category_id=${category_id}"><span></span><span></span><span></span></a>	
+							<a class="grid-view active" href="${pageContext.request.contextPath}/shop/product_grid?category_id=${category_id}"><span></span><span></span><span></span></a>
+							<a class="list-view" href="${pageContext.request.contextPath}/shop/product_list?category_id=${category_id}"><span></span><span></span><span></span></a>	
 						</c:otherwise>
 				
 				</c:choose>
@@ -97,10 +97,12 @@
 		</div>
 		<!-- 상품리스트 -->
 		<input type="hidden" id="category_id" value="${category_id}" >
-		<div id="commList">
-	        
-          </div>
-
+		<div class="row" id="commList">
+		
+		 	
+			
+			<!-- forEach 끝 부분 -->
+		</div>
 		<div id="page"></div>
 		
 	</div>
@@ -114,58 +116,297 @@
 		<aside class="sidebar sidebar-offcanvas position-left">
 			<span class="sidebar-close"><i class="icon-x"></i></span>
 			<!-- 카테고리 -->
+			
+			
 			<section class="widget widget-categories">
 			<h3 class="widget-title">카테고리</h3>
+			
 			<ul>
-				<li class="has-children expanded"><a href="#">종류1</a><span>(100)</span>
+					<!-- cpu 시작 -->
+				<li class="has-children expanded"><a href="#">${clist[1].category_name }</a>
 					<ul>
-						<li><a href="#">테스트</a><span>(수량)</span>
+						<li><a href="#">${clist[8].category_name }</a>
 							<ul>
-								<li><a href="#">상품1</a></li>
-								<li><a href="#">상품2</a></li>
-								<li><a href="#">상품3</a></li>
+								<li><a href="#">${clist[41].category_name }</a></li> 
+								<li><a href="#">${clist[42].category_name }</a></li>
+								<li><a href="#">${clist[43].category_name }</a></li>
+								<li><a href="#">${clist[44].category_name }</a></li>
+								<li><a href="#">${clist[45].category_name }</a></li>
+								<li><a href="#">${clist[46].category_name }</a></li>
 							</ul> 
-						</li> 
-						<li><a href="#">상품분류2</a><span>(수량)</span>
+						</li>
+				
+			
+						<li><a href="#">${clist[9].category_name }</a>
 							<ul>
-								<li><a href="#">상품1</a></li>
-								<li><a href="#">상품2</a></li>
-								<li><a href="#">상품3</a></li>
+								<li><a href="#">${clist[47].category_name }</a></li>
+								<li><a href="#">${clist[48].category_name }</a></li>
+								<li><a href="#">${clist[49].category_name }</a></li>
+								<li><a href="#">${clist[50].category_name }</a></li>
 							</ul>
 						</li>
-						<li><a href="#">상품분류3</a><span>(수량)</span>
+						<li><a href="#">${clist[10].category_name }</a>
 							<ul>
-								<li><a href="#">상품1</a></li>
-								<li><a href="#">상품2</a></li>
-								<li><a href="#">상품3</a></li>
+								<li><a href="#">${clist[51].category_name }</a></li>
+								<li><a href="#">${clist[52].category_name }</a></li>
+								<li><a href="#">${clist[53].category_name }</a></li>
+								<li><a href="#">${clist[54].category_name }</a></li>
+								<li><a href="#">${clist[55].category_name }</a></li>
+								<li><a href="#">${clist[56].category_name }</a></li>
+								<li><a href="#">${clist[57].category_name }</a></li>
 							</ul>
 						</li>
+						<li><a href="#">${clist[11].category_name }</a>
+							<ul>
+								<li><a href="#">${clist[58].category_name }</a></li>
+								<li><a href="#">${clist[59].category_name }</a></li>
+								<li><a href="#">${clist[60].category_name }</a></li>
+								<li><a href="#">${clist[61].category_name }</a></li>
+							</ul>
+						</li>
+						
 					</ul>
-				</li>
-				<li class="has-children"><a href="#">종류2</a><span>(100)</span>
+				</li> 
+				<!-- cpu 끝 -->
+				<!-- 메인보드 시작 -->
+				<li class="has-children"><a href="#">${clist[2].category_name }</a>
 					<ul>
-						<li><a href="#">상품분류1</a><span>(수량)</span>
+						<li><a href="#">${clist[12].category_name }</a>
 							<ul>
-								<li><a href="#">상품1</a></li>
-								<li><a href="#">상품2</a></li>
-								<li><a href="#">상품3</a></li>
+								<li><a href="#">${clist[62].category_name }</a></li>
+								<li><a href="#">${clist[63].category_name }</a></li>
+								
 							</ul>
 						</li>
+						<li><a href="#">${clist[13].category_name }</a>
+							<ul>
+								<li><a href="#">${clist[64].category_name }</a></li> 
+								<li><a href="#">${clist[65].category_name }</a></li>
+								<li><a href="#">${clist[66].category_name }</a></li>
+								<li><a href="#">${clist[67].category_name }</a></li>
+								<li><a href="#">${clist[68].category_name }</a></li>
+								<li><a href="#">${clist[69].category_name }</a></li>
+								<li><a href="#">${clist[70].category_name }</a></li>
+								<li><a href="#">${clist[71].category_name }</a></li>
+							
+								
+							</ul> 
+						</li>
+						<li><a href="#">${clist[14].category_name }</a>
+							<ul>
+								<li><a href="#">${clist[72].category_name }</a></li> 
+								<li><a href="#">${clist[73].category_name }</a></li>
+								<li><a href="#">${clist[74].category_name }</a></li>
+								<li><a href="#">${clist[75].category_name }</a></li>
+								<li><a href="#">${clist[76].category_name }</a></li>
+								<li><a href="#">${clist[77].category_name }</a></li>
+								<li><a href="#">${clist[78].category_name }</a></li>
+								<li><a href="#">${clist[79].category_name }</a></li>
+								
+							</ul> 
+						</li>
+						<li><a href="#">${clist[15].category_name }</a>
+							<ul>
+								<li><a href="#">${clist[80].category_name }</a></li> 
+								<li><a href="#">${clist[81].category_name }</a></li>
+								<li><a href="#">${clist[82].category_name }</a></li>
+								<li><a href="#">${clist[83].category_name }</a></li>
+								
+							</ul> 
+						</li>
+						<li><a href="#">${clist[16].category_name }</a>
+							<ul>
+								<li><a href="#">${clist[84].category_name }</a></li> 
+								<li><a href="#">${clist[85].category_name }</a></li>
+								
+								
+							</ul> 
+						</li>
+						
 					</ul>
 				</li>
-				<li class="has-children"><a href="#">종류3</a><span>(100)</span>
+				<!-- 메인보드 끝 -->
+				<!-- 램 시작-->
+				<li class="has-children"><a href="#">${clist[3].category_name }</a>
 					<ul>
-						<li><a href="#">상품분류1</a><span>(수량)</span>
+						<li><a href="#">${clist[17].category_name }</a>
 							<ul>
-								<li><a href="#">상품1</a></li>
-								<li><a href="#">상품2</a></li>
-								<li><a href="#">상품3</a></li>
+								<li><a href="#">${clist[86].category_name }</a></li>
+								<li><a href="#">${clist[87].category_name }</a></li>
+							
+							</ul>
+						</li>
+						<li><a href="#">${clist[18].category_name }</a>
+							<ul>
+								<li><a href="#">${clist[88].category_name }</a></li>
+								<li><a href="#">${clist[89].category_name }</a></li>
+								<li><a href="#">${clist[90].category_name }</a></li>
+								<li><a href="#">${clist[91].category_name }</a></li>
+								<li><a href="#">${clist[92].category_name }</a></li>
+								<li><a href="#">${clist[93].category_name }</a></li>
+							</ul>
+						</li>
+						<li><a href="#">${clist[19].category_name }</a>
+							<ul>
+								<li><a href="#">${clist[94].category_name }</a></li>
+								<li><a href="#">${clist[95].category_name }</a></li>
+								<li><a href="#">${clist[96].category_name }</a></li>
+							</ul>
+						</li>
+						<li><a href="#">${clist[20].category_name }</a>
+							<ul>
+								<li><a href="#">${clist[97].category_name }</a></li>
+							
+							</ul>
+						</li>
+						<li><a href="#">${clist[21].category_name }</a>
+							<ul>
+								<li><a href="#">${clist[98].category_name }</a></li>
+								
 							</ul>
 						</li>
 					</ul>
 				</li>
+				<!-- 램 끝 -->
+				<!-- 그래픽카드 시작 -->
+				<li class="has-children"><a href="#">${clist[4].category_name }</a>
+					<ul>
+						<li><a href="#">${clist[22].category_name }</a>
+							<ul>
+								<li><a href="#">${clist[99].category_name }</a></li>
+								<li><a href="#">${clist[100].category_name }</a></li>
+							
+							</ul>
+						</li>
+						<li><a href="#">${clist[23].category_name }</a>
+							<ul>
+								<li><a href="#">${clist[101].category_name }</a></li>
+								<li><a href="#">${clist[102].category_name }</a></li>
+								<li><a href="#">${clist[103].category_name }</a></li>
+								<li><a href="#">${clist[104].category_name }</a></li>
+								<li><a href="#">${clist[105].category_name }</a></li>
+								<li><a href="#">${clist[106].category_name }</a></li>
+								<li><a href="#">${clist[107].category_name }</a></li>
+							</ul>
+						</li>
+						<li><a href="#">${clist[24].category_name }</a>
+							<ul>
+								<li><a href="#">${clist[108].category_name }</a></li>
+								<li><a href="#">${clist[109].category_name }</a></li>
+								
+							</ul>
+						</li>
+						<li><a href="#">${clist[25].category_name }</a>
+							<ul>
+								<li><a href="#">${clist[110].category_name }</a></li>
+								<li><a href="#">${clist[111].category_name }</a></li>
+								<li><a href="#">${clist[112].category_name }</a></li>
+								<li><a href="#">${clist[113].category_name }</a></li>
+								<li><a href="#">${clist[114].category_name }</a></li>
+							
+							</ul>
+						</li>
+						<li><a href="#">${clist[26].category_name }</a>
+							<ul>
+								<li><a href="#">${clist[115].category_name }</a></li>
+								<li><a href="#">${clist[116].category_name }</a></li>
+								<li><a href="#">${clist[117].category_name }</a></li>
+								<li><a href="#">${clist[118].category_name }</a></li>
+								
+							</ul>
+						</li>
+					</ul>
+				</li>
+				<!-- 그래픽카드 끝 -->
+				<!--  ssd 시작 -->
+				
+				<li class="has-children"><a href="#">${clist[3].category_name }</a>
+					<ul>
+						<li><a href="#">${clist[17].category_name }</a>
+							<ul>
+								<li><a href="#">${clist[86].category_name }</a></li>
+								<li><a href="#">${clist[87].category_name }</a></li>
+							
+							</ul>
+						</li>
+						<li><a href="#">${clist[18].category_name }</a>
+							<ul>
+								<li><a href="#">${clist[88].category_name }</a></li>
+								<li><a href="#">${clist[89].category_name }</a></li>
+								<li><a href="#">${clist[90].category_name }</a></li>
+								<li><a href="#">${clist[91].category_name }</a></li>
+								<li><a href="#">${clist[92].category_name }</a></li>
+								<li><a href="#">${clist[93].category_name }</a></li>
+							</ul>
+						</li>
+						<li><a href="#">${clist[19].category_name }</a>
+							<ul>
+								<li><a href="#">${clist[94].category_name }</a></li>
+								<li><a href="#">${clist[95].category_name }</a></li>
+								<li><a href="#">${clist[96].category_name }</a></li>
+							</ul>
+						</li>
+						<li><a href="#">${clist[20].category_name }</a>
+							<ul>
+								<li><a href="#">${clist[97].category_name }</a></li>
+							
+							</ul>
+						</li>
+						<li><a href="#">${clist[21].category_name }</a>
+							<ul>
+								<li><a href="#">${clist[98].category_name }</a></li>
+								
+							</ul>
+						</li>
+					</ul>
+				</li>
+				<!-- ssd 끝 -->
+				<li class="has-children"><a href="#">${clist[3].category_name }</a>
+					<ul>
+						<li><a href="#">${clist[17].category_name }</a>
+							<ul>
+								<li><a href="#">${clist[86].category_name }</a></li>
+								<li><a href="#">${clist[87].category_name }</a></li>
+							
+							</ul>
+						</li>
+						<li><a href="#">${clist[18].category_name }</a>
+							<ul>
+								<li><a href="#">${clist[88].category_name }</a></li>
+								<li><a href="#">${clist[89].category_name }</a></li>
+								<li><a href="#">${clist[90].category_name }</a></li>
+								<li><a href="#">${clist[91].category_name }</a></li>
+								<li><a href="#">${clist[92].category_name }</a></li>
+								<li><a href="#">${clist[93].category_name }</a></li>
+							</ul>
+						</li>
+						<li><a href="#">${clist[19].category_name }</a>
+							<ul>
+								<li><a href="#">${clist[94].category_name }</a></li>
+								<li><a href="#">${clist[95].category_name }</a></li>
+								<li><a href="#">${clist[96].category_name }</a></li>
+							</ul>
+						</li>
+						<li><a href="#">${clist[20].category_name }</a>
+							<ul>
+								<li><a href="#">${clist[97].category_name }</a></li>
+							
+							</ul>
+						</li>
+						<li><a href="#">${clist[21].category_name }</a>
+							<ul>
+								<li><a href="#">${clist[98].category_name }</a></li>
+								
+							</ul>
+						</li>
+					</ul>
+				</li>
+				
 			</ul> 
+			
 			</section>
+			
+			
 			<c:choose>
 				<c:when test="${minPrice1 ne null  }">
 			<!-- 가격 범위 --> 
@@ -275,11 +516,6 @@
 <!-- 페이지 컨텐트 끝 -->
 
 
-        
-             
-           
-          
-
 <!-- footer -->
 <jsp:include page="/WEB-INF/views/frontend/inc/footer.jsp"/>
 
@@ -294,15 +530,12 @@
 	
 	<script type="text/javascript">
 $(function(){
-	
-	
 	var category_id=$("#category_id").val();
 	var a='${param.category_id}';
 	var keyword='${param.keyword}';
 	var minPrice=$("input[name=minPrice]").val();
 	console.log("minPrice===="+minPrice);
 	var maxPrice=$("input[name=maxPrice]").val();
-	
 	function check(){
 		var theForm = document.priceCheck;
 		
@@ -310,8 +543,6 @@ $(function(){
 		theForm.method = "post";
 		theForm.action = "${pageContext.request.contextPath}/shop/product_grid";
 	}
-	
-	
 	
 	if(a=='10000')
 		{ 
@@ -350,8 +581,7 @@ $(function(){
 		};
 		 
 		currentPage=pageNum;
-		console.log(order);
-		console.log(pageNum);
+	
 		$("#commList").empty();
 		$.ajax({
 			url:"${pageContext.request.contextPath}/shop/ajaxlist",
@@ -374,13 +604,12 @@ $(function(){
 				else{
 				$(data.list).each(function(i,d){
 					
-					
 						<!-- forEach 시작 부분 -->
-						let html= " <div class='product-card product-list mb-30'>";
+						let	html=	"<div class='col-md-3 col-sm-6'>";			
+						html+=	"<div class='product-card mb-30'>";
 						html+=		"<a class='product-thumb' href='${pageContext.request.contextPath}/shop/product_detail"+"?n="+d.product_id+"&"+"m="+d.category_id+"'>";
 						html+=		"	<img src='<c:url value='/upload/product_img/"+d.img_name_save+"' />' alt='<c:url value='/upload/product_img/"+d.img_name_save+"' />' />";
 										html+=	"	</a> ";
-										html+= "<div class='product-card-inner'>";
 										html+=	"	<div class='product-card-body'>";
 										html+=		"	<div class='product-category'><a href='#'>"+d.brand+"</a></div>";
 										html+=			"<h3 class='product-title'><a href='#'>"+d.product_name +"</a></h3>"; 
@@ -398,12 +627,14 @@ $(function(){
 														html+=		"	data-toast-message='장바구니에 상품을 담았습니다!'> ";
 									html+=	"	<i class='icon-shopping-cart'></i><span>장바구니</span> ";
 									html+=	"	</a>";
-									
+									html+=	"</div>";
 									html+=	"</div>";
 									html+=	"</div>";
 									
 						<!-- forEach 끝 부분 -->
-						
+						html+=	"</div>";
+					
+						html+=	"</div>	";	
 					$("#commList").append(html);					
 				});
 				}

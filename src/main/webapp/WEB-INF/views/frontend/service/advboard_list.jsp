@@ -1,8 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
-<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%@ taglib prefix="sec"
+	uri="http://www.springframework.org/security/tags"%>
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -40,16 +41,19 @@
 a {
 	text-decoration: none;
 	color: black;
-} 
+}
+
 .table {
 	margin-left: auto;
 	margin-right: auto;
 }
-.table tbody tr td{
+
+.table tbody tr td {
 	height: 50px;
 	vertical-align: middle;
 }
-.table tbody tr td img{
+
+.table tbody tr td img {
 	width: 20px;
 }
 </style>
@@ -125,44 +129,56 @@ a {
 								<th style="width: 100px;">작성자</th>
 								<th style="width: 140px;">등록일시</th>
 								<th style="width: 100px;">조회수</th>
+								
 							</tr>
 						</thead>
 						<tbody>
 							<c:forEach var="item" items="${advboardlist}">
 								<tr>
 									<c:choose>
-										<c:when test="${item.adv_show  } ==1">
-											<td colspan="5" class="text-left"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-													[ ${item.adv_title } ]</span></td>
+										<c:when test="${item.adv_show  }==1">
+											<td colspan="5" class="text-left">
+											<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; [ ${item.adv_title } ]</span>
+											</td>
 										</c:when>
-										<c:when test="${item.adv_group_order >0 }">
+										<c:when test="${item.adv_group_order >1 }">
 											<td></td>
 											<td class="text-left"><a
 												href="${pageContext.request.contextPath }/service/advboard_detail?adv_board_no=${item.adv_board_no}&adv_secret_chk=${item.adv_secret_chk }">
 													<c:forEach var="i" begin="2" end="${item.adv_group_depth }">
 										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-									</c:forEach> [Re]&nbsp; ${item.adv_title }</a>
-									 <c:if test="${item.adv_secret_chk==true }">
-									<img src="${pageContext.request.contextPath}/static/frontend/assets/favicon&icon/lockicon.png" class="lock_img">
-									 </c:if>
+									</c:forEach> [Re]&nbsp; ${item.adv_title }
+											</a> <c:if test="${item.adv_secret_chk==true }">
+													<img
+														src="${pageContext.request.contextPath}/static/frontend/assets/favicon&icon/lockicon.png"
+														class="lock_img">
+												</c:if>
 											<td>${item.Nickname }</td>
-											<td><fmt:parseDate value="${item.adv_regdate }" var="adv_regdate" pattern="yyyy-MM-dd'T'HH:mm:ss" /><fmt:formatDate value="${adv_regdate }" pattern="yyyy-MM-dd HH:mm:ss" /></td>
-								            <td>${item.adv_hit }</td>
-											</td>
+											<td><fmt:parseDate value="${item.adv_regdate }"
+													var="adv_regdate" pattern="yyyy-MM-dd'T'HH:mm:ss" />
+												<fmt:formatDate value="${adv_regdate }"
+													pattern="yyyy-MM-dd HH:mm:ss" /></td>
+											<td>${item.adv_hit }</td>
+											
+
 										</c:when>
 										<c:otherwise>
+
+
 											<td>${item.adv_board_no }</td>
 											<td class="text-left"><a
 												href="${pageContext.request.contextPath }/service/advboard_detail?adv_board_no=${item.adv_board_no}&adv_secret_chk=${item.adv_secret_chk }">${item.adv_title }</a>
 												<c:if test="${item.adv_secret_chk==true }">
-													<img src="${pageContext.request.contextPath}/static/frontend/assets/favicon&icon/lockicon.png" class="lock_img">	
+													<img
+														src="${pageContext.request.contextPath}/static/frontend/assets/favicon&icon/lockicon.png"
+														class="lock_img">
 												</c:if>
 											<td>${item.Nickname }</td>
 											<td><fmt:parseDate value="${item.adv_regdate }"
 													var="adv_regdate" pattern="yyyy-MM-dd'T'HH:mm:ss" /> <fmt:formatDate
 													value="${adv_regdate }" pattern="yyyy-MM-dd HH:mm:ss" /></td>
 											<td>${item.adv_hit }</td>
-											</td>
+											
 										</c:otherwise>
 									</c:choose>
 								</tr>
@@ -170,70 +186,83 @@ a {
 						</tbody>
 					</table>
 				</div>
-				
+
 				<!-- 페이징 -->
-		<nav class="pagination" style="margin-top:20px;">
-			<div class="column">
-				<c:choose>
-					<c:when test="${pu.prevPage }">
-						<a class="btn btn-outline-secondary btn-sm" href="${pageContext.request.contextPath}/service/advboard_list?pageNum=${pu.pageNum-1 }&field=${field}&keyword=${keyword}"><i class="icon-chevron-left"></i> 이전</a>
-					</c:when>
-					<c:otherwise>
-						<a class="btn btn-outline-secondary btn-sm disabled"><i class="icon-chevron-left"></i> 이전</a>
-					</c:otherwise>
-				</c:choose>
+				<nav class="pagination" style="margin-top: 20px;">
+					<div class="column">
+						<c:choose>
+							<c:when test="${pu.prevPage }">
+								<a class="btn btn-outline-secondary btn-sm"
+									href="${pageContext.request.contextPath}/service/advboard_list?pageNum=${pu.pageNum-1 }&field=${field}&keyword=${keyword}"><i
+									class="icon-chevron-left"></i> 이전</a>
+							</c:when>
+							<c:otherwise>
+								<a class="btn btn-outline-secondary btn-sm disabled"><i
+									class="icon-chevron-left"></i> 이전</a>
+							</c:otherwise>
+						</c:choose>
+					</div>
+					<div class="column">
+						<ul class="pages" style="margin-top: 20px;">
+
+							<c:forEach var="i" begin="${pu.startPageNum }"
+								end="${pu.endPageNum }">
+								<c:choose>
+									<c:when test="${pu.pageNum==i }">
+										<li class="active"><a
+											href="${pageContext.request.contextPath}/service/advboard_list?pageNum=${i }&field=${field}&keyword=${keyword}">${i }</a>
+										</li>
+									</c:when>
+									<c:otherwise>
+										<li><a
+											href="${pageContext.request.contextPath}/service/advboard_list?pageNum=${i }&field=${field}&keyword=${keyword}">${i }</a>
+										</li>
+									</c:otherwise>
+								</c:choose>
+							</c:forEach>
+						</ul>
+					</div>
+					<div class="column">
+						<c:choose>
+							<c:when test="${pu.nextPage }">
+								<a class="btn btn-outline-secondary btn-sm"
+									href="${pageContext.request.contextPath}/service/advboard_list?pageNum=${pu.pageNum+1 }&field=${field}&keyword=${keyword}">다음
+									<i class="icon-chevron-right"></i>
+								</a>
+							</c:when>
+							<c:otherwise>
+								<a class="btn btn-outline-secondary btn-sm disabled">다음 <i
+									class="icon-chevron-right"></i></a>
+							</c:otherwise>
+						</c:choose>
+					</div>
+				</nav>
+				<div class="mb-4"></div>
+
 			</div>
-			<div class="column">
-			<ul class="pages" style="margin-top:20px;">
-			
-			<c:forEach var="i" begin="${pu.startPageNum }" end="${pu.endPageNum }">
-				<c:choose>
-					<c:when test="${pu.pageNum==i }">
-						<li class="active">
-							<a href="${pageContext.request.contextPath}/service/advboard_list?pageNum=${i }&field=${field}&keyword=${keyword}">${i }</a>
-						</li>
-					</c:when>
-					<c:otherwise>
-						<li>
-							<a href="${pageContext.request.contextPath}/service/advboard_list?pageNum=${i }&field=${field}&keyword=${keyword}">${i }</a>
-						</li>
-					</c:otherwise>
-				</c:choose>
-			</c:forEach>
-			</ul>
-			</div>
-			<div class="column">
-				<c:choose>
-					<c:when test="${pu.nextPage }">
-						<a class="btn btn-outline-secondary btn-sm" href="${pageContext.request.contextPath}/service/advboard_list?pageNum=${pu.pageNum+1 }&field=${field}&keyword=${keyword}">다음 <i class="icon-chevron-right"></i></a>
-					</c:when>
-					<c:otherwise>
-						<a class="btn btn-outline-secondary btn-sm disabled">다음 <i class="icon-chevron-right"></i></a>
-					</c:otherwise>
-				</c:choose>
-			</div>
-		</nav>
-		<div class="mb-4"></div>
-		
+		</div>
 	</div>
-</div>
-</div>
 
 	<!-- 페이지 컨텐트 끝 -->
-<!-- modal -->
+	<!-- modal -->
 	<div class="modal fade" id="loginModal">
 		<div class="modal-dialog" role="document">
 			<div class="modal-content">
 				<div class="modal-header">
 					<h4 class="modal-title">로그인이 필요한 서비스입니다.</h4>
-					<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">X</span></button>
+					<button type="button" class="close" data-dismiss="modal"
+						aria-label="Close">
+						<span aria-hidden="true">X</span>
+					</button>
 				</div>
 				<div class="modal-body">
 					<p>로그인 하시겠습니까?</p>
 				</div>
 				<div class="modal-footer">
-					<button type="submit" class="btn btn-info btn-sm" onclick="location.href='${pageContext.request.contextPath}/account/login'">Yes</button>
-					<button type="button" class="btn btn-secondary btn-sm" data-dismiss="modal" onclick="return false;">No</button>
+					<button type="submit" class="btn btn-info btn-sm"
+						onclick="location.href='${pageContext.request.contextPath}/account/login'">Yes</button>
+					<button type="button" class="btn btn-secondary btn-sm"
+						data-dismiss="modal" onclick="return false;">No</button>
 				</div>
 			</div>
 		</div>

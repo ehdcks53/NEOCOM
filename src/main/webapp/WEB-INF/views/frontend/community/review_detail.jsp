@@ -113,7 +113,7 @@
 				<div class="entry-navigation">
 					<div class="column text-left"></div>
 					<div class="column">
-						<a class="btn btn-outline-secondary view-all" href="${pageContext.request.contextPath }/community/review_list">
+						<a class="btn btn-outline-secondary view-all" href="${pageContext.request.contextPath }/review_list">
 							<i class="icon-menu"></i>
 						</a>
 					</div>
@@ -126,12 +126,12 @@
 				
 				<div class="ml-md-auto" style="margin-right:30px;">
 					<sec:authorize access="isAuthenticated()">
-					<sec:authentication property="principal.memberVo.id"/>
 					
-					<a class="btn btn-outline-secondary btn-sm" id="nextAtag" href="${pageContext.request.contextPath }/community/review_update?board_num=${rvo.board_num}">
+					
+					<a class="btn btn-outline-secondary btn-sm" id="nextAtag" href="${pageContext.request.contextPath }/review_update?board_num=${rvo.board_num}">
 						수정
 					</a>
-					<a class="btn btn-outline-secondary btn-sm" id="nextAtag" href="#" onclick="openDelForm(${rvo.board_num})">
+					<a class="btn btn-outline-secondary btn-sm" id="nextAtag" href="${pageContext.request.contextPath }/review_delete?board_num=${rvo.board_num}&product_id=${rvo.product_id}" >
 						삭제
 					</a>
 					</sec:authorize>
@@ -153,15 +153,6 @@
 	<!-- JavaScript (jQuery) libraries, plugins and custom scripts-->
 	<script src="${pageContext.request.contextPath}/static/frontend/assets/js/vendor.min.js"></script>
 	<script src="${pageContext.request.contextPath}/static/frontend/assets/js/scripts.min.js"></script>
-	<script>
-	var id="<sec:authentication property='principal.memberVo.id'/>";
-	var board_num=${rvo.board_num};
-	var product_id=${rvo.product_id};
-		function openDelForm(board_num){
-			window.name="parentForm";
-			window.open("${pageContext.request.contextPath}/community/review_delete?board_num="+board_num+"&product_id="+product_id,
-					"delForm","width=570,height=350,resizable=no,scrollbars=no");
-		}
-	</script>
+	
 </body>
 </html>

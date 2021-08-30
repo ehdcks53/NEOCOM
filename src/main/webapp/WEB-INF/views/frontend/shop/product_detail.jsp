@@ -152,7 +152,8 @@
 						<fmt:formatNumber pattern="###,###,###"
 							value="${goods.selling_price }" />
 						원
-					</del>&nbsp; 할인가</span>
+					</del>&nbsp; <fmt:formatNumber pattern="###,###,###"
+							value="${goods.selling_price *0.9}" />원</span>
 				<c:forEach var="clist" items="${clist }">
 					<p class="text-muted">${clist.category_name }</p>
 				</c:forEach>
@@ -215,9 +216,9 @@
 		id="details">
 		<div class="container">
 			<div class="row">
-				<div class="col-md-11">
+				<div class="col-md-12">
 					<h3 class="h4">상품정보</h3>
-
+					<div class="mb-4"></div>
 					<img
 						src="<c:url value='/upload/product_img/${list[1].img_name_save}' />"
 						alt="<c:url value='/upload/product_img/${img.img_name_save}' />" />
@@ -310,7 +311,7 @@
 				
 				
 				</div>
-				<a class="btn btn-secondary btn-block" href="${pageContext.request.contextPath}/community/review_list?product_id=${goods.product_id}">더보기</a>
+				<a class="btn btn-secondary btn-block" href="${pageContext.request.contextPath}/review_list?product_id=${goods.product_id}">더보기</a>
 				
 			
 			<div id="page"></div>
@@ -396,7 +397,7 @@
 
 
 	<!-- Back To Top Button-->
-	<a class="scroll-to-top-btn" href="#">맨위로<i class="icon-chevron-up"></i></a>
+	<a class="scroll-to-top-btn" href="#"><i class="icon-chevron-up"></i></a>
 	<!-- Backdrop-->
 	<div class="site-backdrop"></div>
 	<!-- JavaScript (jQuery) libraries, plugins and custom scripts-->
