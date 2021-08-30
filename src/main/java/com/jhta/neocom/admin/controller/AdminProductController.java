@@ -12,6 +12,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -61,7 +62,15 @@ public class AdminProductController {
 			cate_relService.insert(cate_relVo);
 		}
 
-		return "/admin/menu/product/addimg";
+		for (Product_ImgVo img_vo : vo.getImg_List()) {
+			String uploadPath = img_vo.getUploadPath().substring(img_vo.getUploadPath().length() - 10,
+					img_vo.getUploadPath().length());
+			img_vo.setProduct_id(vo.getProduct_id());
+			img_vo.setUploadPath(uploadPath);
+			service1.insert(img_vo);
+		}
+
+		return "redirect:/admin/product/addimg";
 	}
 
 	@GetMapping("/admin/product/productlist")
@@ -83,6 +92,7 @@ public class AdminProductController {
 	@GetMapping("/admin/product/imgdisplay")
 	@ResponseBody
 	public ResponseEntity<byte[]> getFile(String fileName) {
+		System.out.println(fileName);
 
 		File file = new File(fileName);
 
@@ -102,16 +112,16 @@ public class AdminProductController {
 	@RequestMapping(value = "/admin/product/addimg", method = { RequestMethod.POST })
 	public @ResponseBody ResponseEntity<List<Product_ImgDTO>> insertImg(Model model,
 			@RequestParam(name = "main_img", required = false) MultipartFile main_img,
-			@RequestParam(name = "description_img", required = false) MultipartFile description_img, int product_id) {
+			@RequestParam(name = "description_img", required = false) MultipartFile description_img) {
 		List<Product_ImgDTO> list = new ArrayList<>();
 
 		if (main_img != null) {
-			Product_ImgDTO main_ImgDTO = service1.uploadImg(main_img, product_id, "main");
+			Product_ImgDTO main_ImgDTO = service1.uploadImg(main_img, "main");
 			list.add(main_ImgDTO);
 		}
 
 		if (description_img != null) {
-			Product_ImgDTO description_ImgDTO = service1.uploadImg(description_img, product_id, "description");
+			Product_ImgDTO description_ImgDTO = service1.uploadImg(description_img, "description");
 			list.add(description_ImgDTO);
 		}
 
@@ -140,6 +150,13 @@ public class AdminProductController {
 		}
 
 		return new ResponseEntity<String>("deleted", HttpStatus.OK);
+	}
+
+	// 첨부파일 목록
+	@GetMapping(value = "/admin/product/getAttachList")
+	@ResponseBody
+	public ResponseEntity<List<Product_ImgVo>> getAttachList(int product_id) {
+		return new ResponseEntity<>(service1.findByPid(product_id), HttpStatus.OK);
 	}
 
 	@RequestMapping(value = "/admin/product/findCategories")
