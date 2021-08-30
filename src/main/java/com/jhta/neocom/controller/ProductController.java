@@ -100,14 +100,8 @@ public class ProductController {
 	@RequestMapping(value = "/shop/product_grid",method = {RequestMethod.GET, RequestMethod.POST}) 
     public ModelAndView frontendProductGrid(@RequestParam(value = "pageNum", defaultValue = "1") int pageNum, String field,
 			String keyword,String order,int category_id,String minPrice,String maxPrice) {
-		ArrayList<List<CategoryVo>> clist
-							=new ArrayList<List<CategoryVo>>();
-			
-			for(int i=0;i<80;i++){
-				List<CategoryVo> clist1=service2.classification(i+1);
-				clist.add(clist1); 
-			}
-			
+		List<CategoryVo> clist= service2.classification(1);
+		List<CategoryVo> extrall=service2.classification(2);
 		
 			
 
@@ -119,6 +113,8 @@ public class ProductController {
   			mv.addObject("minPrice1", minPrice);
   			mv.addObject("maxPrice1", maxPrice);
   			mv.addObject("clist", clist);
+  			mv.addObject("all", extrall);
+  			System.out.println("clist==="+clist);
 
   			
   		

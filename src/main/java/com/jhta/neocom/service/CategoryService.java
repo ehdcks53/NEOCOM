@@ -52,8 +52,8 @@ public class CategoryService {
 		return mapper.selectjoin(product_id);
 		
 	}
-	public List<CategoryVo> classification(int category_parent){
-		return mapper.classification(category_parent);
+	public List<CategoryVo> classification(int category_id){
+		return mapper.classification(category_id);
 	}
 
 }
