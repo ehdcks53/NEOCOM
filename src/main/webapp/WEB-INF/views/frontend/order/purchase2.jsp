@@ -37,161 +37,205 @@
 
 </head>
 <body>
-	<div class="col-xl-9 col-md-12">
-		<div class="steps flex-sm-nowrap mb-5">
-			<a class="step" href="checkout-address.html">
-				<h4 class="step-title">
-					<i class="icon-check-circle"></i>1. Address
-				</h4>
-			</a><a class="step active" href="checkout-shipping.html">
-				<h4 class="step-title">2. Shipping</h4>
-			</a><a class="step" href="checkout-payment.html">
-				<h4 class="step-title">3. Payment</h4>
-			</a><a class="step" href="checkout-review.html">
-				<h4 class="step-title">4. Review</h4>
-			</a>
-		</div>
-		<h4>Choose Shipping Method</h4>
-		<hr class="padding-bottom-1x">
-		<div class="table-responsive">
-			<table class="table table-hover">
-				<thead class="thead-default">
-					<tr>
-						<th></th>
-						<th>Shipping method</th>
-						<th>Delivery time</th>
-						<th>Handling fee</th>
-					</tr>
-				</thead>
-				<tbody>
-					<tr>
-						<td class="align-middle">
-							<div class="custom-control custom-radio mb-0">
-								<input class="custom-control-input" type="radio" id="courier"
-									name="shipping-method" checked> <label
-									class="custom-control-label" for="courier"></label>
-							</div>
-						</td>
-						<td class="align-middle"><span class="text-gray-dark">Courier</span><br>
-						<span class="text-muted text-sm">All Addresses(default
-								zone), United States & Canada</span></td>
-						<td class="align-middle">2 - 4 days</td>
-						<td class="align-middle">$26.50</td>
-					</tr>
-					<tr>
-						<td class="align-middle">
-							<div class="custom-control custom-radio mb-0">
-								<input class="custom-control-input" type="radio" id="local"
-									name="shipping-method"> <label
-									class="custom-control-label" for="local"></label>
-							</div>
-						</td>
-						<td class="align-middle"><span class="text-gray-dark">Local
-								Shipping</span><br>
-						<span class="text-muted text-sm">All Addresses(default
-								zone), United States & Canada</span></td>
-						<td class="align-middle">up to one week</td>
-						<td class="align-middle">$10.00</td>
-					</tr>
-					<tr>
-						<td class="align-middle">
-							<div class="custom-control custom-radio mb-0">
-								<input class="custom-control-input" type="radio" id="flat"
-									name="shipping-method"> <label
-									class="custom-control-label" for="flat"></label>
-							</div>
-						</td>
-						<td class="align-middle"><span class="text-gray-darkm">Flat
-								Rate</span><br>
-						<span class="text-muted text-sm">All Addresses(default
-								zone)</span></td>
-						<td class="align-middle">5 - 7 days</td>
-						<td class="align-middle">$33.85</td>
-					</tr>
-					<tr>
-						<td class="align-middle">
-							<div class="custom-control custom-radio mb-0">
-								<input class="custom-control-input" type="radio" id="ups"
-									name="shipping-method"> <label
-									class="custom-control-label" for="ups"></label>
-							</div>
-						</td>
-						<td class="align-middle"><span class="text-gray-dark">UPS
-								Ground Shipping</span><br>
-						<span class="text-muted text-sm">All Addresses(default
-								zone)</span></td>
-						<td class="align-middle">4 - 6 days</td>
-						<td class="align-middle">$18.00</td>
-					</tr>
-					<tr>
-						<td class="align-middle">
-							<div class="custom-control custom-radio mb-0">
-								<input class="custom-control-input" type="radio" id="pickup"
-									name="shipping-method"> <label
-									class="custom-control-label" for="pickup"></label>
-							</div>
-						</td>
-						<td class="align-middle"><span class="text-gray-dark">Local
-								Pickup from store</span><br>
-						<span class="text-muted text-sm">All Addresses(default
-								zone)</span></td>
-						<td class="align-middle">&mdash;</td>
-						<td class="align-middle">$0.00</td>
-					</tr>
-					<tr>
-						<td class="align-middle">
-							<div class="custom-control custom-radio mb-0">
-								<input class="custom-control-input" type="radio" id="locker"
-									name="shipping-method"> <label
-									class="custom-control-label" for="locker"></label>
-							</div>
-						</td>
-						<td class="align-middle"><span class="text-gray-dark">Pick
-								Up at Unishop Locker</span><br>
-						<span class="text-muted text-sm">All Addresses(default
-								zone), United States & Canada</span></td>
-						<td class="align-middle">&mdash;</td>
-						<td class="align-middle">$9.99</td>
-					</tr>
-					<tr>
-						<td class="align-middle">
-							<div class="custom-control custom-radio mb-0">
-								<input class="custom-control-input" type="radio" id="global"
-									name="shipping-method"> <label
-									class="custom-control-label" for="global"></label>
-							</div>
-						</td>
-						<td class="align-middle"><span class="text-gray-dark">Unishop
-								Global Export</span><br>
-						<span class="text-muted text-sm">All Addresses(default
-								zone), outside United States</span></td>
-						<td class="align-middle">3 - 4 days;</td>
-						<td class="align-middle">$25.00</td>
-					</tr>
-				</tbody>	
-			</table>
-				<div>
-					주문번호 보내기<input type="text" id="order_no" value="${order_no }">
-					결제자<input type="text" id="orderer_name" value="${orderer_name }">
-					결제자<input type="text" id="zip_code" value="${zip_code }">
-					결제자<input type="text" id="order_address" value="${order_address }">
-					결제자<input type="text" id="order_address_detail" value="${order_address_detail }">
-				</div>
-			
-				<div class="d-flex justify-content-between paddin-top-1x mt-4">
+	<jsp:include page="/WEB-INF/views/frontend/inc/header.jsp"/>
+	
+	 <!-- Page Title-->
+    <div class="page-title">
+      <div class="container">
+        <div class="column">
+          <h1>주문서 작성/결제</h1>
+        </div>
+        <div class="column">
+          <ul class="breadcrumbs">
+            <li><a href="index.html">Home</a>
+            </li>
+            <li class="separator">&nbsp;</li>
+            <li>주문/결제</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+	
+	<!-- Page Content-->
+    <div class="container padding-bottom-3x mb-2">
+      <div class="row">
+        <!-- Checkout Adress-->
+        <div class="col-xl-9 col-lg-8">
+          <div class="steps flex-sm-nowrap mb-5"><a class="step" href="checkout-address.html">
+              <h4 class="step-title"><i class="icon-check-circle"></i>1. 주소</h4></a><a class="step active" href="checkout-shipping.html">
+              <h4 class="step-title">2. 결제</h4></a></div>
+          <h4>Choose Payment Method</h4>
+          <hr class="padding-bottom-1x">
+          <div class="accordion" id="accordion" role="tablist">
+            <div class="card">
+              <div class="card-header" role="tab">
+                <h6><a href="#card" data-toggle="collapse"><i class="icon-credit-card"></i>Pay with Credit Card</a></h6>
+              </div>
+              <div class="collapse show" id="card" data-parent="#accordion" role="tabpanel">
+                <div class="card-body">
+                  <p>We accept following credit cards:&nbsp;&nbsp;<img class="d-inline-block align-middle" src="img/credit-cards.png" style="width: 120px;" alt="Cerdit Cards"></p>
+                  <div class="card-wrapper"></div>
+                  <form class="interactive-credit-card row">
+                    <div class="form-group col-sm-6">
+                      <input class="form-control" type="text" name="number" placeholder="Card Number" required>
+                    </div>
+                    <div class="form-group col-sm-6">
+                      <input class="form-control" type="text" name="name" placeholder="Full Name" required>
+                    </div>
+                    <div class="form-group col-sm-3">
+                      <input class="form-control" type="text" name="expiry" placeholder="MM/YY" required>
+                    </div>
+                    <div class="form-group col-sm-3">
+                      <input class="form-control" type="text" name="cvc" placeholder="CVC" required>
+                    </div>
+                    <div class="col-sm-6">
+                      <button class="btn btn-outline-primary btn-block mt-0" type="submit">Submit</button>
+                    </div>
+                  </form>
+                </div>
+              </div>
+            </div>
+            <div class="card">
+              <div class="card-header" role="tab">
+                <h6><a class="collapsed" href="#paypal" data-toggle="collapse"><i class="socicon-paypal"></i>Pay with PayPal</a></h6>
+              </div>
+              <div class="collapse" id="paypal" data-parent="#accordion" role="tabpanel">
+                <div class="card-body">
+                  <p>PayPal - the safer, easier way to pay</p>
+                  <form class="row" method="post">
+                    <div class="col-sm-6">
+                      <div class="form-group">
+                        <input class="form-control" type="email" placeholder="E-mail" required>
+                      </div>
+                    </div>
+                    <div class="col-sm-6">
+                      <div class="form-group">
+                        <input class="form-control" type="password" placeholder="Password" required>
+                      </div>
+                    </div>
+                    <div class="col-12">
+                      <div class="d-flex flex-wrap justify-content-between align-items-center"><a class="navi-link" href="#"><u>Forgot password?</u></a>
+                        <button class="btn btn-outline-primary margin-top-none" type="submit">Log In</button>
+                      </div>
+                    </div>
+                  </form>
+                </div>
+              </div>
+            </div>
+            <div class="card">
+              <div class="card-header" role="tab">
+                <h6><a class="collapsed" href="#points" data-toggle="collapse"><i class="icon-award"></i>Redeem Reward Points</a></h6>
+              </div>
+              <div class="collapse" id="points" data-parent="#accordion" role="tabpanel">
+                <div class="card-body">
+                  <p>You currently have<span class="text-medium"> 2,549</span> Reward Points to spend.</p>
+                  <div class="custom-control custom-checkbox d-block">
+                    <input class="custom-control-input" type="checkbox" id="use_points">
+                    <label class="custom-control-label" for="use_points">Use my Reward Points to pay for this order.</label>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+      		<div class="d-flex justify-content-between paddin-top-1x mt-4">
 					<a class="btn btn-outline-secondary" href="cart.html"><i
-						class="icon-arrow-left"></i><span class="hidden-xs-down">&nbsp;Back
-							To Cart</span></a><button id="check_module" class="btn btn-primary" 
+						class="icon-arrow-left"></i><span class="hidden-xs-down">&nbsp;장바구니로
+						</span></a><button id="check_module" class="btn btn-primary" 
 							type="button"><span
 						class="hidden-xs-down">결제하기&nbsp;</span><i
 						class="icon-arrow-right"></i></button>
+			</div>
+       </div>
+        <!-- Sidebar          -->
+        <div class="col-xl-3 col-lg-4">
+          <aside class="sidebar">
+            <div class="padding-top-2x hidden-lg-up"></div>
+            <!-- Order Summary Widget-->
+            <section class="widget widget-order-summary">
+              <h3 class="widget-title">Order Summary</h3>
+              <table class="table">
+                <tr>
+                  <td>Cart Subtotal:</td>
+                  <td class="text-gray-dark">$2,548.50</td>
+                </tr>
+                <tr>
+                  <td>Shipping:</td>
+                  <td class="text-gray-dark">$26.50</td>
+                </tr>
+                <tr>
+                  <td>Estimated tax:</td>
+                  <td class="text-gray-dark">$9.72</td>
+                </tr>
+                <tr>
+                  <td></td>
+                  <td class="text-lg text-gray-dark">$2,584.72</td>
+                </tr>
+              </table>
+            </section>
+            <!-- Featured Products Widget-->
+            <section class="widget widget-featured-products">
+              <h3 class="widget-title">Recently Viewed</h3>
+              <!-- Entry-->
+              <div class="entry">
+                <div class="entry-thumb"><a href="shop-single.html"><img src="img/shop/widget/01.jpg" alt="Product"></a></div>
+                <div class="entry-content">
+                  <h4 class="entry-title"><a href="shop-single.html">GoPro Hero4 Silver</a></h4><span class="entry-meta">$287.99</span>
+                </div>
+              </div>
+              <!-- Entry-->
+              <div class="entry">
+                <div class="entry-thumb"><a href="shop-single.html"><img src="img/shop/widget/02.jpg" alt="Product"></a></div>
+                <div class="entry-content">
+                  <h4 class="entry-title"><a href="shop-single.html">Puro Sound Labs BT2200</a></h4><span class="entry-meta">$95.99</span>
+                </div>
+              </div>
+              <!-- Entry-->
+              <div class="entry">
+                <div class="entry-thumb"><a href="shop-single.html"><img src="img/shop/widget/03.jpg" alt="Product"></a></div>
+                <div class="entry-content">
+                  <h4 class="entry-title"><a href="shop-single.html">HP OfficeJet Pro 8710</a></h4><span class="entry-meta">$89.70</span>
+                </div>
+              </div>
+              <!-- Entry-->
+              <div class="entry pb-2">
+                <div class="entry-thumb"><a href="shop-single.html"><img src="img/shop/widget/05.jpg" alt="Product"></a></div>
+                <div class="entry-content">
+                  <h4 class="entry-title"><a href="shop-single.html">iPhone X 256 GB Space Gray</a></h4><span class="entry-meta">$1,450.00</span>
+                </div>
+              </div>
+            </section>
+            <!-- Promo Banner--><a class="card border-0 bg-secondary" href="shop-grid-ls.html">
+              <div class="card-body"><span class="d-block text-lg text-thin mb-2">Limited Time Deals</span>
+                <h3>Surface Pro 4</h3>
+                <p class="d-inline-block bg-warning text-white">&nbsp;&nbsp;Shop Now&nbsp;<i class="icon-chevron-right d-inline-block align-middle"></i>&nbsp;</p>
+              </div><img class="d-block mx-auto" src="img/shop/widget/promo.jpg" alt="Surface Pro"></a>
+          </aside>
+        </div>
+      </div>	
+				<div>
+					주문번호 보내기<input type="text" id="order_no" value="${order_no }">
+					<input type="hidden" id="orderer_name" value="${orderer_name }">
+					<input type="hidden" id="zip_code" value="${zip_code }">
+					<input type="hidden" id="order_address" value="${order_address }">
+					<input type="hidden" id="order_address_detail" value="${order_address_detail }">
+					<input type="text" id="request_item" value="${request_item }">
 				</div>
+			
+				
 				<form method="post">
-				<input type="text" name="ab">ab
+				
 				</form>
 		</div>
-	</div>
-	<button type="button" onclick="cancelPay()">aaaa</button>
+	
+	<!-- footer -->
+	<jsp:include page="/WEB-INF/views/frontend/inc/footer.jsp" />
+
+
+	<!-- Back To Top Button-->
+	<a class="scroll-to-top-btn" href="#"><i class="icon-chevron-up"></i></a>
+	<!-- Backdrop-->
+	<div class="site-backdrop"></div>
 </body>
 
 

@@ -11,15 +11,15 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.MediaType;
 import org.springframework.security.core.Authentication;
 import org.springframework.util.FileCopyUtils;
-
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.jhta.neocom.model.CategoryVo;
 import com.jhta.neocom.model.CustomUserDetails;
 import com.jhta.neocom.model.MemberVo;
 import com.jhta.neocom.model.ProductVo;
@@ -51,32 +51,68 @@ public class ProductController {
 	@RequestMapping(value = "/shop/ajaxlist", produces = { MediaType.APPLICATION_JSON_VALUE })
 	public @ResponseBody HashMap<String, Object> cpulist(
 			@RequestParam(value = "pageNum", defaultValue = "1") int pageNum, String order, int category_id,
-			String keyword) {
-		HashMap<String, Object> map = new HashMap<String, Object>();
-		int totalRowCount = service.getCount(map);// 전체 글의 갯수
+			String keyword, String minPrice, String maxPrice) {
+
+		HashMap<String, Object> pmap = new HashMap<String, Object>(); // 매퍼에 넣을거
+		HashMap<String, Object> map = new HashMap<String, Object>(); // list ,grid에 뿌릴거
+
+		int min = Integer.parseInt(minPrice);
+		int max = Integer.parseInt(maxPrice);
+		pmap.put("minPrice", min);
+		pmap.put("maxPrice", max);
+		pmap.put("keyword", keyword);
+		pmap.put("category_id", category_id);
+		pmap.put("order", order);
+		int totalRowCount = service.getCount(pmap);// 전체 글의 갯수
 		PageUtil pu = new PageUtil(pageNum, 10, 10, totalRowCount);
-		HashMap<String, Object> pmap = new HashMap<String, Object>();
 		pmap.put("startRow", pu.getStartRow());
-		pmap.put("endRow", pu.getEndRow());
-		map.put("order", order);
-		map.put("category_id", category_id);
-		map.put("keyword", keyword);
-		List<HashMap<String, Object>> list = service.list(map);
+
+		// map.put("order",order);
+		// map.put("category_id", category_id);
+		// map.put("keyword", keyword);
+
+		List<HashMap<String, Object>> list = service.list(pmap);
+
 		map.put("list", list);
 		map.put("startPageNum", pu.getStartPageNum());
+		map.put("minPrice", min);
+		map.put("maxPrice", max);
 		map.put("endPageNum", pu.getEndPageNum());
 		map.put("pageCount", pu.getTotalPageCount());
 		map.put("pageNum", pageNum);
 		return map;
+
 	}
 
-	// 상품 리스트(product_list) 페이지
-	@GetMapping(value = "/shop/product_list")
+	// 상품 리스트(product_list) 페이지 list
+	@RequestMapping(value = "/shop/product_list", method = { RequestMethod.GET, RequestMethod.POST })
 	public ModelAndView frontendProductList(@RequestParam(value = "pageNum", defaultValue = "1") int pageNum,
-			String field, String keyword, String order, int category_id) {
+			String field, String keyword, String order, int category_id, String minPrice, String maxPrice) {
 		ModelAndView mv = new ModelAndView("frontend/shop/product_list");
 		mv.addObject("category_id", category_id);
 		mv.addObject("keyword", keyword);
+		mv.addObject("minPrice1", minPrice);
+		mv.addObject("maxPrice1", maxPrice);
+
+		return mv;
+
+	}
+
+	// 상품 리스트(product_grid) 페이지 grid
+	@RequestMapping(value = "/shop/product_grid", method = { RequestMethod.GET, RequestMethod.POST })
+	public ModelAndView frontendProductGrid(@RequestParam(value = "pageNum", defaultValue = "1") int pageNum,
+			String field, String keyword, String order, int category_id, String minPrice, String maxPrice) {
+		List<CategoryVo> clist = service2.classification(1);
+		List<CategoryVo> extrall = service2.classification(2);
+
+		ModelAndView mv = new ModelAndView("frontend/shop/product_grid");
+		mv.addObject("category_id", category_id);
+		mv.addObject("keyword", keyword);
+		mv.addObject("minPrice1", minPrice);
+		mv.addObject("maxPrice1", maxPrice);
+		mv.addObject("clist", clist);
+		mv.addObject("all", extrall);
+		System.out.println("clist===" + clist);
 
 		return mv;
 
@@ -124,6 +160,7 @@ public class ProductController {
 		}
 
 		return mv;
+
 	}
 
 	// 리뷰 AJAX 등록
@@ -166,7 +203,10 @@ public class ProductController {
 	}
 
 	// 리뷰 리스트 ajax
-	@RequestMapping(value = "/review/ajaxlist", produces = { MediaType.APPLICATION_JSON_VALUE })
+	@RequestMapping(value = "/review/ajaxlist", produces = { MediaType.APPLICATION_JSON_VALUE
+
+	})
+
 	public @ResponseBody HashMap<String, Object> reviewlist(
 			@RequestParam(value = "pageNum", defaultValue = "1") int pageNum, int product_id) {
 		HashMap<String, Object> map = new HashMap<String, Object>();

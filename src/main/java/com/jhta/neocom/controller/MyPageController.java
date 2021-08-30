@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.security.core.Authentication;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -14,9 +15,12 @@ import com.jhta.neocom.model.CustomUserDetails;
 import com.jhta.neocom.model.MemberVo;
 import com.jhta.neocom.model.OrderCancelVo;
 import com.jhta.neocom.model.OrderMainVo;
+import com.jhta.neocom.model.SendBackVo;
 import com.jhta.neocom.service.OrderCancelService;
 import com.jhta.neocom.service.OrderMainService;
 import com.jhta.neocom.service.PaymentService;
+import com.jhta.neocom.service.SendBackService;
+import com.jhta.neocom.util.PageUtil;
 
 
 @RestController
@@ -27,6 +31,8 @@ public class MyPageController {
     private PaymentService pservice;
     @Autowired
     private OrderCancelService occservice;
+    @Autowired
+    private SendBackService sbservice;
 
 
     @RequestMapping(value = "/account/mypage_order", produces = { MediaType.APPLICATION_JSON_VALUE })
@@ -35,9 +41,18 @@ public class MyPageController {
         CustomUserDetails cud = (CustomUserDetails) authentication.getPrincipal();
         MemberVo vo = cud.getMemberVo();
         int mem_no = vo.getMem_no();
-        List<OrderMainVo> myOrderList = service.myOrderList(mem_no);
-        //System.out.println("mem_no은"+mem_no+"리시트는"+myOrderList);
+        System.out.println("mem_no은 :"+mem_no);
+        int totalRowCount =service.getCount(mem_no);
+        PageUtil pu = new PageUtil(1, 10, 10, totalRowCount);
+        int startRow = pu.getStartRow() - 1;
+		int endRow = pu.getEndRow();
+        HashMap<String, Object> map2 = new HashMap<String, Object>();
+        map2.put("mem_no", mem_no);
+        map2.put("startRow", startRow);
+        List<OrderMainVo> myOrderList = service.myOrderList(map2);
         ModelAndView mv = new ModelAndView("frontend/account/mypage_order");
+        mv.addObject("pu",pu);
+        System.out.println(pu+"puuuuu");
         mv.addObject("myOrderList", myOrderList);
         
         return mv;
@@ -45,14 +60,22 @@ public class MyPageController {
     }
     
     @RequestMapping(value = "/account/mypage_order2", produces = { MediaType.APPLICATION_JSON_VALUE })
-    public HashMap<String, Object> MyPageOrderList(Authentication authentication) {
+    public HashMap<String, Object> MyPageOrderList(Authentication authentication,int pageNum) {
         CustomUserDetails cud = (CustomUserDetails) authentication.getPrincipal();
         MemberVo vo = cud.getMemberVo();
         int mem_no = vo.getMem_no();
-        
+        int totalRowCount =service.getCount(mem_no);
+        PageUtil pu = new PageUtil(pageNum, 10, 10, totalRowCount);
+        int startRow = pu.getStartRow() - 1;
+		int endRow = pu.getEndRow();
+        HashMap<String, Object> map2 = new HashMap<String, Object>();
+        map2.put("mem_no", mem_no);
+        map2.put("startRow", startRow);
+        System.out.println(pu+"puuuuu");
         HashMap<String, Object> map = new HashMap<String, Object>();
         
-        List<OrderMainVo> myOrderList = service.myOrderList(mem_no);
+        List<OrderMainVo> myOrderList = service.myOrderList(map2);
+        map.put("pu",pu);
         map.put("myOrderList", myOrderList);
         
         return map;
@@ -73,6 +96,7 @@ public class MyPageController {
     	
     	return map;
     }
+
     
     
     @RequestMapping(value = "/OrderPaymentCC", produces = { MediaType.APPLICATION_JSON_VALUE })
@@ -87,8 +111,9 @@ public class MyPageController {
     	return map;
     }
     
-    @PostMapping("/abcd")
+    @PostMapping("/orderCancelSuccess")
     public ModelAndView order_cc(OrderCancelVo vo,Model model) {
+    	System.out.println(vo.getOrder_no());
     	int pnum=pservice.searchnum(vo.getOrder_no());
     	vo.setPayment_num(pnum);
     	vo.setOd_cc_status("취소 접수");
@@ -97,11 +122,52 @@ public class MyPageController {
     	HashMap<String, Object> map=new HashMap<String, Object>();
     	map.put("order_no", vo.getOrder_no());
     	map.put("order_status", "취소 접수");
+    	map.put("od_cc_status", "취소 접수");
     	service.updateCC(map);
-    	ModelAndView mv = new ModelAndView("frontend/account/mypage_delivery");
+    	ModelAndView mv = new ModelAndView("frontend/account/mypage_order");
         return mv;
     }
-
+    
+    @GetMapping("/orderCCInfo" )
+    public ModelAndView OrderCCInfo(Authentication authentication,int order_no) {
+    	CustomUserDetails cud = (CustomUserDetails) authentication.getPrincipal();
+		MemberVo vo = cud.getMemberVo();
+		int mem_no = vo.getMem_no();
+		List<OrderMainVo> searchOrder=service.searchOrder(order_no);
+		System.out.println(order_no);
+		
+		ModelAndView mv = new ModelAndView("frontend/account/orderCCInfo");
+        return mv;
+    }
+    
+    @RequestMapping(value = "/orderReturn", produces = { MediaType.APPLICATION_JSON_VALUE })
+    public HashMap<String, Object> orderReturn(Authentication authentication,int order_no) {
+    	CustomUserDetails cud = (CustomUserDetails) authentication.getPrincipal();
+		MemberVo vo = cud.getMemberVo();
+		int mem_no = vo.getMem_no();
+		System.out.println(order_no);
+		List<OrderMainVo> searchOrder=service.searchOrder(order_no);
+    	HashMap<String, Object> map=new HashMap<String, Object>();
+    	map.put("searchOrder", searchOrder);
+    	
+    	return map;
+    }
+    
+    @PostMapping("/orderReturnSuccess")
+    public ModelAndView orderReturnSuccess(SendBackVo vo,Model model) {
+    	int pnum=pservice.searchnum(vo.getOrder_no());
+    	vo.setPayment_num(pnum);
+    	vo.setReturn_status("반품 접수");
+    	System.out.println(vo+":변경후");
+    	sbservice.insert(vo);
+    	HashMap<String, Object> map=new HashMap<String, Object>();
+    	map.put("order_no", vo.getOrder_no());
+    	map.put("order_status", "반품 접수");
+    	map.put("od_cc_status", "반품 접수");
+    	service.updateCC(map);
+    	ModelAndView mv = new ModelAndView("frontend/account/mypage_order");
+        return mv;
+    }
 }
 
 
