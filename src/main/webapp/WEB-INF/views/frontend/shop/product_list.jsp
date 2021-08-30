@@ -114,57 +114,612 @@
 		<aside class="sidebar sidebar-offcanvas position-left">
 			<span class="sidebar-close"><i class="icon-x"></i></span>
 			<!-- 카테고리 -->
-			<section class="widget widget-categories">
+			
+			
+			
+		<section class="widget widget-categories">
 			<h3 class="widget-title">카테고리</h3>
+			
 			<ul>
-				<li class="has-children expanded"><a href="#">종류1</a><span>(100)</span>
+					<!-- cpu 시작 -->
+				<li class="has-children expanded"><a href="#">${clist[1].category_name }</a>
 					<ul>
-						<li><a href="#">테스트</a><span>(수량)</span>
+						<li><a href="#">${clist[8].category_name }</a>
 							<ul>
-								<li><a href="#">상품1</a></li>
-								<li><a href="#">상품2</a></li>
-								<li><a href="#">상품3</a></li>
+								<li><a href="#">${clist[41].category_name }</a></li> 
+								<li><a href="#">${clist[42].category_name }</a></li>
+								<li><a href="#">${clist[43].category_name }</a></li>
+								<li><a href="#">${clist[44].category_name }</a></li>
+								<li><a href="#">${clist[45].category_name }</a></li>
+								<li><a href="#">${clist[46].category_name }</a></li>
 							</ul> 
-						</li> 
-						<li><a href="#">상품분류2</a><span>(수량)</span>
+						</li>
+				
+			
+						<li><a href="#">${clist[9].category_name }</a>
 							<ul>
-								<li><a href="#">상품1</a></li>
-								<li><a href="#">상품2</a></li>
-								<li><a href="#">상품3</a></li>
+								<li><a href="#">${clist[47].category_name }</a></li>
+								<li><a href="#">${clist[48].category_name }</a></li>
+								<li><a href="#">${clist[49].category_name }</a></li>
+								<li><a href="#">${clist[50].category_name }</a></li>
 							</ul>
 						</li>
-						<li><a href="#">상품분류3</a><span>(수량)</span>
+						<li><a href="#">${clist[10].category_name }</a>
 							<ul>
-								<li><a href="#">상품1</a></li>
-								<li><a href="#">상품2</a></li>
-								<li><a href="#">상품3</a></li>
+								<li><a href="#">${clist[51].category_name }</a></li>
+								<li><a href="#">${clist[52].category_name }</a></li>
+								<li><a href="#">${clist[53].category_name }</a></li>
+								<li><a href="#">${clist[54].category_name }</a></li>
+								<li><a href="#">${clist[55].category_name }</a></li>
+								<li><a href="#">${clist[56].category_name }</a></li>
+								<li><a href="#">${clist[57].category_name }</a></li>
 							</ul>
 						</li>
+						<li><a href="#">${clist[11].category_name }</a>
+							<ul>
+								<li><a href="#">${clist[58].category_name }</a></li>
+								<li><a href="#">${clist[59].category_name }</a></li>
+								<li><a href="#">${clist[60].category_name }</a></li>
+								<li><a href="#">${clist[61].category_name }</a></li>
+							</ul>
+						</li>
+						
 					</ul>
-				</li>
-				<li class="has-children"><a href="#">종류2</a><span>(100)</span>
+				</li> 
+				<!-- cpu 끝 -->
+				<!-- 메인보드 시작 -->
+				<li class="has-children"><a href="#">${clist[2].category_name }</a>
 					<ul>
-						<li><a href="#">상품분류1</a><span>(수량)</span>
+						<li><a href="#">${clist[12].category_name }</a>
 							<ul>
-								<li><a href="#">상품1</a></li>
-								<li><a href="#">상품2</a></li>
-								<li><a href="#">상품3</a></li>
+								<li><a href="#">${clist[62].category_name }</a></li>
+								<li><a href="#">${clist[63].category_name }</a></li>
+								
 							</ul>
 						</li>
+						<li><a href="#">${clist[13].category_name }</a>
+							<ul>
+								<li><a href="#">${clist[64].category_name }</a></li> 
+								<li><a href="#">${clist[65].category_name }</a></li>
+								<li><a href="#">${clist[66].category_name }</a></li>
+								<li><a href="#">${clist[67].category_name }</a></li>
+								<li><a href="#">${clist[68].category_name }</a></li>
+								<li><a href="#">${clist[69].category_name }</a></li>
+								<li><a href="#">${clist[70].category_name }</a></li>
+								<li><a href="#">${clist[71].category_name }</a></li>
+							
+								
+							</ul> 
+						</li>
+						<li><a href="#">${clist[14].category_name }</a>
+							<ul>
+								<li><a href="#">${clist[72].category_name }</a></li> 
+								<li><a href="#">${clist[73].category_name }</a></li>
+								<li><a href="#">${clist[74].category_name }</a></li>
+								<li><a href="#">${clist[75].category_name }</a></li>
+								<li><a href="#">${clist[76].category_name }</a></li>
+								<li><a href="#">${clist[77].category_name }</a></li>
+								<li><a href="#">${clist[78].category_name }</a></li>
+								<li><a href="#">${clist[79].category_name }</a></li>
+								
+							</ul> 
+						</li>
+						<li><a href="#">${clist[15].category_name }</a>
+							<ul>
+								<li><a href="#">${clist[80].category_name }</a></li> 
+								<li><a href="#">${clist[81].category_name }</a></li>
+								<li><a href="#">${clist[82].category_name }</a></li>
+								<li><a href="#">${clist[83].category_name }</a></li>
+								
+							</ul> 
+						</li>
+						<li><a href="#">${clist[16].category_name }</a>
+							<ul>
+								<li><a href="#">${clist[84].category_name }</a></li> 
+								<li><a href="#">${clist[85].category_name }</a></li>
+								
+								
+							</ul> 
+						</li>
+						
 					</ul>
 				</li>
-				<li class="has-children"><a href="#">종류3</a><span>(100)</span>
+				<!-- 메인보드 끝 -->
+				<!-- 램 시작-->
+				<li class="has-children"><a href="#">${clist[3].category_name }</a>
 					<ul>
-						<li><a href="#">상품분류1</a><span>(수량)</span>
+						<li><a href="#">${clist[17].category_name }</a>
 							<ul>
-								<li><a href="#">상품1</a></li>
-								<li><a href="#">상품2</a></li>
-								<li><a href="#">상품3</a></li>
+								<li><a href="#">${clist[86].category_name }</a></li>
+								<li><a href="#">${clist[87].category_name }</a></li>
+							
+							</ul>
+						</li>
+						<li><a href="#">${clist[18].category_name }</a>
+							<ul>
+								<li><a href="#">${clist[88].category_name }</a></li>
+								<li><a href="#">${clist[89].category_name }</a></li>
+								<li><a href="#">${clist[90].category_name }</a></li>
+								<li><a href="#">${clist[91].category_name }</a></li>
+								<li><a href="#">${clist[92].category_name }</a></li>
+								<li><a href="#">${clist[93].category_name }</a></li>
+							</ul>
+						</li>
+						<li><a href="#">${clist[19].category_name }</a>
+							<ul>
+								<li><a href="#">${clist[94].category_name }</a></li>
+								<li><a href="#">${clist[95].category_name }</a></li>
+								<li><a href="#">${clist[96].category_name }</a></li>
+							</ul>
+						</li>
+						<li><a href="#">${clist[20].category_name }</a>
+							<ul>
+								<li><a href="#">${clist[97].category_name }</a></li>
+							
+							</ul>
+						</li>
+						<li><a href="#">${clist[21].category_name }</a>
+							<ul>
+								<li><a href="#">${clist[98].category_name }</a></li>
+								
 							</ul>
 						</li>
 					</ul>
 				</li>
+				<!-- 램 끝 -->
+				<!-- 그래픽카드 시작 -->
+				<li class="has-children"><a href="#">${clist[4].category_name }</a>
+					<ul>
+						<li><a href="#">${clist[22].category_name }</a>
+							<ul>
+								<li><a href="#">${clist[99].category_name }</a></li>
+								<li><a href="#">${clist[100].category_name }</a></li>
+							
+							</ul>
+						</li>
+						<li><a href="#">${clist[23].category_name }</a>
+							<ul>
+								<li><a href="#">${clist[101].category_name }</a></li>
+								<li><a href="#">${clist[102].category_name }</a></li>
+								<li><a href="#">${clist[103].category_name }</a></li>
+								<li><a href="#">${clist[104].category_name }</a></li>
+								<li><a href="#">${clist[105].category_name }</a></li>
+								<li><a href="#">${clist[106].category_name }</a></li>
+								<li><a href="#">${clist[107].category_name }</a></li>
+							</ul>
+						</li>
+						<li><a href="#">${clist[24].category_name }</a>
+							<ul>
+								<li><a href="#">${clist[108].category_name }</a></li>
+								<li><a href="#">${clist[109].category_name }</a></li>
+								
+							</ul>
+						</li>
+						<li><a href="#">${clist[25].category_name }</a>
+							<ul>
+								<li><a href="#">${clist[110].category_name }</a></li>
+								<li><a href="#">${clist[111].category_name }</a></li>
+								<li><a href="#">${clist[112].category_name }</a></li>
+								<li><a href="#">${clist[113].category_name }</a></li>
+								<li><a href="#">${clist[114].category_name }</a></li>
+							
+							</ul>
+						</li>
+						<li><a href="#">${clist[26].category_name }</a>
+							<ul>
+								<li><a href="#">${clist[115].category_name }</a></li>
+								<li><a href="#">${clist[116].category_name }</a></li>
+								<li><a href="#">${clist[117].category_name }</a></li>
+								<li><a href="#">${clist[118].category_name }</a></li>
+								
+							</ul>
+						</li>
+					</ul>
+				</li>
+				<!-- 그래픽카드 끝 -->
+				<!--  ssd 시작 -->
+				<li class="has-children"><a href="#">${clist[5].category_name }</a>
+					<ul>
+						<li><a href="#">${clist[27].category_name }</a>
+							<ul>
+								<li><a href="#">${clist[119].category_name }</a></li>
+								<li><a href="#">${clist[120].category_name }</a></li>
+								<li><a href="#">${clist[121].category_name }</a></li>
+							
+							</ul>
+						</li>
+						<li><a href="#">${clist[28].category_name }</a>
+							<ul>
+								<li><a href="#">${clist[122].category_name }</a></li>
+								<li><a href="#">${clist[123].category_name }</a></li>
+							</ul>
+						</li>
+						<li><a href="#">${clist[29].category_name }</a>
+							<ul>
+								<li><a href="#">${clist[124].category_name }</a></li>
+								<li><a href="#">${clist[125].category_name }</a></li>
+								<li><a href="#">${clist[126].category_name }</a></li>
+								<li><a href="#">${clist[127].category_name }</a></li>
+								<li><a href="#">${clist[128].category_name }</a></li>
+								<li><a href="#">${clist[129].category_name }</a></li>
+								<li><a href="#">${clist[130].category_name }</a></li>
+								<li><a href="#">${clist[131].category_name }</a></li>
+								<li><a href="#">${clist[132].category_name }</a></li>
+								<li><a href="#">${clist[133].category_name }</a></li>
+							</ul>
+						</li>
+						<li><a href="#">${clist[30].category_name }</a>
+							<ul>
+								<li><a href="#">${clist[134].category_name }</a></li>
+								<li><a href="#">${clist[135].category_name }</a></li>
+								<li><a href="#">${clist[136].category_name }</a></li>
+							</ul>
+						</li>
+						<li><a href="#">${clist[31].category_name }</a>
+							<ul>
+								<li><a href="#">${clist[137].category_name }</a></li>
+								<li><a href="#">${clist[138].category_name }</a></li>
+								<li><a href="#">${clist[139].category_name }</a></li>
+								<li><a href="#">${clist[140].category_name }</a></li>
+								<li><a href="#">${clist[141].category_name }</a></li>
+								<li><a href="#">${clist[142].category_name }</a></li>
+								<li><a href="#">${clist[143].category_name }</a></li>
+							</ul>
+						</li>
+					</ul>
+				</li>
+				<!-- ssd 끝 -->
+				<!-- hdd 시작 -->
+				<li class="has-children"><a href="#">${clist[6].category_name }</a>
+					<ul>
+						<li><a href="#">${clist[32].category_name }</a>
+							<ul>
+								<li><a href="#">${clist[144].category_name }</a></li>
+								<li><a href="#">${clist[145].category_name }</a></li>
+								<li><a href="#">${clist[146].category_name }</a></li>
+								<li><a href="#">${clist[147].category_name }</a></li>
+								<li><a href="#">${clist[148].category_name }</a></li>
+								<li><a href="#">${clist[149].category_name }</a></li>
+							</ul>
+						</li>
+						<li><a href="#">${clist[33].category_name }</a>
+							<ul>
+								<li><a href="#">${clist[150].category_name }</a></li>
+								<li><a href="#">${clist[151].category_name }</a></li>
+								<li><a href="#">${clist[152].category_name }</a></li>
+								<li><a href="#">${clist[153].category_name }</a></li>
+								<li><a href="#">${clist[154].category_name }</a></li>
+								<li><a href="#">${clist[155].category_name }</a></li>
+								<li><a href="#">${clist[156].category_name }</a></li>
+								<li><a href="#">${clist[157].category_name }</a></li>
+							</ul>
+						</li>
+						<li><a href="#">${clist[34].category_name }</a>
+							<ul>
+								<li><a href="#">${clist[158].category_name }</a></li>
+								<li><a href="#">${clist[159].category_name }</a></li>
+								<li><a href="#">${clist[160].category_name }</a></li>
+							</ul>
+						</li>
+						<li><a href="#">${clist[35].category_name }</a>
+							<ul>
+								<li><a href="#">${clist[161].category_name }</a></li>
+								<li><a href="#">${clist[162].category_name }</a></li>
+								<li><a href="#">${clist[163].category_name }</a></li>
+							</ul>
+						</li>
+						<li><a href="#">${clist[36].category_name }</a>
+							<ul>
+								<li><a href="#">${clist[164].category_name }</a></li>
+								<li><a href="#">${clist[165].category_name }</a></li>
+								<li><a href="#">${clist[166].category_name }</a></li>
+								<li><a href="#">${clist[167].category_name }</a></li>
+								<li><a href="#">${clist[168].category_name }</a></li>
+							</ul>
+						</li>
+					</ul>
+				</li>
+				<!-- hdd 끝 -->
+				<!-- power 시작 -->
+				<li class="has-children"><a href="#">${clist[7].category_name }</a>
+					<ul>
+						<li><a href="#">${clist[37].category_name }</a>
+							<ul>
+								<li><a href="#">${clist[169].category_name }</a></li>
+								<li><a href="#">${clist[170].category_name }</a></li>
+								<li><a href="#">${clist[171].category_name }</a></li>
+								<li><a href="#">${clist[172].category_name }</a></li>
+								<li><a href="#">${clist[173].category_name }</a></li>
+							</ul>
+						</li>
+						<li><a href="#">${clist[38].category_name }</a>
+							<ul>
+								<li><a href="#">${clist[174].category_name }</a></li>
+								<li><a href="#">${clist[175].category_name }</a></li>
+							</ul>
+						</li>
+						<li><a href="#">${clist[39].category_name }</a>
+							<ul>
+								<li><a href="#">${clist[176].category_name }</a></li>
+								<li><a href="#">${clist[177].category_name }</a></li>
+								<li><a href="#">${clist[178].category_name }</a></li>
+								<li><a href="#">${clist[179].category_name }</a></li>
+							</ul>
+						</li>
+						<li><a href="#">${clist[40].category_name }</a>
+							<ul>
+								<li><a href="#">${clist[180].category_name }</a></li>
+								<li><a href="#">${clist[181].category_name }</a></li>
+								<li><a href="#">${clist[182].category_name }</a></li>
+								<li><a href="#">${clist[183].category_name }</a></li>
+								<li><a href="#">${clist[184].category_name }</a></li>
+							</ul>
+						</li>
+					</ul>
+				</li>
+				<!-- 쿨러 시작 -->
+				<li class="has-children"><a href="#">${all[1].category_name }</a>
+					<ul>
+						<li><a href="#">${all[6].category_name }</a>
+							<ul>
+								<li><a href="#">${all[24].category_name }</a></li>
+								<li><a href="#">${all[25].category_name }</a></li>
+								<li><a href="#">${all[26].category_name }</a></li>
+								<li><a href="#">${all[27].category_name }</a></li>
+								<li><a href="#">${all[28].category_name }</a></li>
+								<li><a href="#">${all[29].category_name }</a></li>
+								<li><a href="#">${all[30].category_name }</a></li>
+								<li><a href="#">${all[31].category_name }</a></li>
+								<li><a href="#">${all[32].category_name }</a></li>
+								<li><a href="#">${all[33].category_name }</a></li>
+								<li><a href="#">${all[34].category_name }</a></li>
+								<li><a href="#">${all[35].category_name }</a></li>
+								<li><a href="#">${all[36].category_name }</a></li>
+								<li><a href="#">${all[37].category_name }</a></li>
+								<li><a href="#">${all[38].category_name }</a></li>
+								<li><a href="#">${all[39].category_name }</a></li>
+								<li><a href="#">${all[40].category_name }</a></li>
+								<li><a href="#">${all[41].category_name }</a></li>
+								<li><a href="#">${all[42].category_name }</a></li>
+								
+							
+							</ul>
+						</li>
+						<li><a href="#">${all[7].category_name }</a>
+							<ul>
+								<li><a href="#">${all[43].category_name }</a></li>
+								<li><a href="#">${all[44].category_name }</a></li>
+								
+							</ul>
+						</li>
+						<li><a href="#">${clist[8].category_name }</a>
+							<ul>
+								<li><a href="#">${all[45].category_name }</a></li>
+								<li><a href="#">${all[46].category_name }</a></li>
+								<li><a href="#">${all[47].category_name }</a></li>
+								<li><a href="#">${all[48].category_name }</a></li>								
+							</ul>
+						</li>
+						<li><a href="#">${all[9].category_name }</a>
+							<ul>
+								<li><a href="#">${all[49].category_name }</a></li>
+								<li><a href="#">${all[50].category_name }</a></li>
+								<li><a href="#">${all[51].category_name }</a></li>
+								
+							
+							</ul>
+						</li>
+						<li><a href="#">${all[10].category_name }</a>
+							<ul>
+								<li><a href="#">${all[52].category_name }</a></li>
+								<li><a href="#">${all[53].category_name }</a></li>
+								<li><a href="#">${all[54].category_name }</a></li>
+								<li><a href="#">${all[55].category_name }</a></li>
+								<li><a href="#">${all[56].category_name }</a></li>
+								<li><a href="#">${all[57].category_name }</a></li>
+								<li><a href="#">${all[58].category_name }</a></li>								
+							</ul>
+						</li>
+					</ul>
+				</li>
+				<!-- 쿨러 끝 -->
+
+			<!-- 컨트롤러 시작 -->
+				<li class="has-children"><a href="#">${all[2].category_name }</a>
+					<ul>
+						<li><a href="#">${all[11].category_name }</a>
+							<ul>
+								<li><a href="#">${all[59].category_name }</a></li>
+								<li><a href="#">${all[60].category_name }</a></li>
+								<li><a href="#">${all[61].category_name }</a></li>
+								<li><a href="#">${all[62].category_name }</a></li>
+								<li><a href="#">${all[63].category_name }</a></li>
+								<li><a href="#">${all[64].category_name }</a></li>
+								<li><a href="#">${all[65].category_name }</a></li>
+								<li><a href="#">${all[66].category_name }</a></li>
+								<li><a href="#">${all[67].category_name }</a></li>
+								<li><a href="#">${all[68].category_name }</a></li>
+								<li><a href="#">${all[69].category_name }</a></li>
+								<li><a href="#">${all[70].category_name }</a></li>
+								<li><a href="#">${all[71].category_name }</a></li>
+								
+								
+							
+							</ul>
+						</li>
+						<li><a href="#">${all[12].category_name }</a>
+							<ul>
+								<li><a href="#">${all[72].category_name }</a></li>
+								<li><a href="#">${all[73].category_name }</a></li>
+								<li><a href="#">${all[74].category_name }</a></li>
+								<li><a href="#">${all[75].category_name }</a></li>
+								<li><a href="#">${all[76].category_name }</a></li>
+								<li><a href="#">${all[77].category_name }</a></li>
+								<li><a href="#">${all[78].category_name }</a></li>
+								<li><a href="#">${all[79].category_name }</a></li>
+								<li><a href="#">${all[80].category_name }</a></li>
+								<li><a href="#">${all[81].category_name }</a></li>
+								<li><a href="#">${all[82].category_name }</a></li>
+								<li><a href="#">${all[83].category_name }</a></li>
+								<li><a href="#">${all[84].category_name }</a></li>
+								<li><a href="#">${all[85].category_name }</a></li>
+								<li><a href="#">${all[86].category_name }</a></li>
+								<li><a href="#">${all[87].category_name }</a></li>
+								<li><a href="#">${all[88].category_name }</a></li>
+								<li><a href="#">${all[89].category_name }</a></li>
+								<li><a href="#">${all[90].category_name }</a></li>
+								<li><a href="#">${all[91].category_name }</a></li>
+								<li><a href="#">${all[92].category_name }</a></li>
+															
+							</ul>
+						</li>
+						<li><a href="#">${clist[13].category_name }</a>
+							<ul>
+								<li><a href="#">${all[93].category_name }</a></li>
+								<li><a href="#">${all[94].category_name }</a></li>
+								<li><a href="#">${all[95].category_name }</a></li>
+								<li><a href="#">${all[96].category_name }</a></li>
+								<li><a href="#">${all[97].category_name }</a></li>
+								<li><a href="#">${all[98].category_name }</a></li>
+								<li><a href="#">${all[99].category_name }</a></li>
+								<li><a href="#">${all[100].category_name }</a></li>
+								<li><a href="#">${all[101].category_name }</a></li>
+								<li><a href="#">${all[102].category_name }</a></li>
+								<li><a href="#">${all[103].category_name }</a></li>
+								<li><a href="#">${all[104].category_name }</a></li>
+								<li><a href="#">${all[105].category_name }</a></li>
+								<li><a href="#">${all[106].category_name }</a></li>
+								<li><a href="#">${all[107].category_name }</a></li>
+								<li><a href="#">${all[108].category_name }</a></li>									
+							</ul>
+						</li>
+						<li><a href="#">${all[14].category_name }</a>
+							<ul>
+								<li><a href="#">${all[109].category_name }</a></li>
+							</ul>
+						</li>
+						
+					</ul>
+				</li>
+				<!-- 컨트롤러 끝 -->
+
+			<!-- 외장하드 시작 -->
+				<li class="has-children"><a href="#">${all[3].category_name }</a>
+					<ul>
+						<li><a href="#">${all[15].category_name }</a>
+							<ul>
+								<li><a href="#">${all[110].category_name }</a></li>
+								<li><a href="#">${all[111].category_name }</a></li>
+								<li><a href="#">${all[112].category_name }</a></li>
+								<li><a href="#">${all[113].category_name }</a></li>
+								<li><a href="#">${all[114].category_name }</a></li>
+								<li><a href="#">${all[115].category_name }</a></li>
+
+								
+								
+							
+							</ul>
+						</li>
+						<li><a href="#">${all[16].category_name }</a>
+							<ul>
+								<li><a href="#">${all[116].category_name }</a></li>
+								<li><a href="#">${all[117].category_name }</a></li>
+								<li><a href="#">${all[118].category_name }</a></li>
+								<li><a href="#">${all[119].category_name }</a></li>
+								<li><a href="#">${all[120].category_name }</a></li>
+								<li><a href="#">${all[121].category_name }</a></li>
+								
+															
+							</ul>
+						</li>
+						<li><a href="#">${clist[17].category_name }</a>
+							<ul>
+								<li><a href="#">${all[122].category_name }</a></li>
+								<li><a href="#">${all[123].category_name }</a></li>
+								<li><a href="#">${all[124].category_name }</a></li>
+								<li><a href="#">${all[125].category_name }</a></li>
+								<li><a href="#">${all[126].category_name }</a></li>
+								<li><a href="#">${all[127].category_name }</a></li>
+								<li><a href="#">${all[128].category_name }</a></li>
+								<li><a href="#">${all[129].category_name }</a></li>
+								<li><a href="#">${all[130].category_name }</a></li>
+								<li><a href="#">${all[131].category_name }</a></li>
+								<li><a href="#">${all[132].category_name }</a></li>
+								<li><a href="#">${all[133].category_name }</a></li>
+								<li><a href="#">${all[134].category_name }</a></li>
+									
+							</ul>
+						</li>
+						<li><a href="#">${all[18].category_name }</a>
+							<ul>
+								<li><a href="#">${all[135].category_name }</a></li>
+								<li><a href="#">${all[136].category_name }</a></li>
+							</ul>
+						</li>
+						
+					</ul>
+				</li>
+				<!-- 외장하드 끝 -->
+			<!-- 케이블 시작 -->
+				<li class="has-children"><a href="#">${all[4].category_name }</a>
+					<ul>
+						<li><a href="#">${all[19].category_name }</a>
+							<ul>
+								<li><a href="#">${all[137].category_name }</a></li>
+								<li><a href="#">${all[138].category_name }</a></li>
+								<li><a href="#">${all[139].category_name }</a></li>
+								
+
+								
+								
+							
+							</ul>
+						</li>
+						<li><a href="#">${all[20].category_name }</a>
+							<ul>
+								<li><a href="#">${all[140].category_name }</a></li>
+								<li><a href="#">${all[141].category_name }</a></li>
+								
+							</ul>
+						</li>
+						
+						
+					</ul>
+				</li>
+				<!-- 케이블 끝 -->
+
+				<!-- usb 시작 -->
+				<li class="has-children"><a href="#">${all[5].category_name }</a>
+					<ul>
+						<li><a href="#">${all[21].category_name }</a>
+							<ul>
+								<li><a href="#">${all[142].category_name }</a></li>
+								<li><a href="#">${all[143].category_name }</a></li>
+								<li><a href="#">${all[144].category_name }</a></li>
+								<li><a href="#">${all[145].category_name }</a></li>
+								<li><a href="#">${all[146].category_name }</a></li>
+								<li><a href="#">${all[147].category_name }</a></li>								
+								<li><a href="#">${all[148].category_name }</a></li>
+								
+								
+							
+							</ul>
+						</li>
+						<li><a href="#">${all[22].category_name }</a>
+							<ul>
+								<li><a href="#">${all[149].category_name }</a></li>
+								<li><a href="#">${all[150].category_name }</a></li>
+								
+							</ul>
+						</li>
+
+						
+						
+					</ul>
+				</li>
+				<!-- usb 끝 -->
 			</ul> 
+			
 			</section>
 			<c:choose>
 				<c:when test="${minPrice1 ne null  }">

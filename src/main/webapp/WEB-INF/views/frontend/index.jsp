@@ -154,12 +154,12 @@
 		<div class="row">
 			<c:forEach var="vo" items="${list }" end="7">
 
-				<div class="col-lg-3 col-md-4 col-sm-6">
+				<div class="col-lg-3 col-md-4 col-sm-6" style="width:auto;height:auto;">
 					<div class="product-card mb-30">
-						<a class="product-thumb"
+						<a class="product-thumb" 
 							href="${pageContext.request.contextPath}/shop/product_detail?n=${vo.product_id}&m=${vo.category_id}">
 
-							<img src="<c:url value='/upload/product_img/${vo.img_name_save}' />"
+							<img   src="<c:url value='/upload/product_img/${vo.img_name_save}' />"
 							alt="<c:url value='/upload/product_img/${vo.img_name_save}' />" />
 						</a>
 						<div class="product-card-body">
