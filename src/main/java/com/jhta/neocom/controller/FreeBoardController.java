@@ -84,17 +84,20 @@ public class FreeBoardController {
 		HashMap<String,Object> map = service.detail(free_board_no);
 		int groupNo = Integer.parseInt(map.get("free_group_no").toString());
 		int mem_no = Integer.parseInt(map.get("mem_no").toString());
+		int groupOrder = Integer.parseInt(map.get("free_group_order").toString());
 		
-		int countReply = service.countReply(free_board_no);
-		if(countReply == 1) {  //답글 없을 경우 바로 삭제
+		int countReply = service.countReply(groupNo);
+		
+		if(countReply == (groupOrder+1)) {  // 답글이 없거나, 맨 마지막 group_no 일 경우 바로 삭제
 			service.delete(free_board_no);
-		}else if(mem_no == 1 || mem_no == 2) {  // 답글이 있어도 관리자는 바로 삭제 가능
-			vo.setFree_group_no(groupNo);
-			
+		}else if(mem_no == 1 || mem_no ==2 ){  // 관리자일 경우 바로 삭제 - show 2번 부여
+			vo.setFree_show(2);
 			service.delete(free_board_no);
-		}else {  // 답글 있을 경우 삭제글로 표시
+		}else {  // 답글 있을 경우 삭제글로 표시 - show 1번 부여
+			vo.setFree_show(1);
 			service.showDeletePost(free_board_no);
 		}
+		System.out.println("ㅇㅇㅇㅇㅇㅇㅇㅇㅇ" + countReply + "," + groupOrder  + "ㅇㅇㅇㅇㅇㅇㅇㅇㅇ");
 		
 		return "redirect:/community/freeboard_list";
 	}

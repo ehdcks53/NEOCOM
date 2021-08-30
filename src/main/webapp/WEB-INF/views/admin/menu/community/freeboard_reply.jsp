@@ -48,17 +48,17 @@
 					<div class="panel panel-inverse">
 						<!-- BEGIN panel-heading -->
 						<div class="panel-heading">
-							<h4 class="panel-title">문의한 내용</h4>
+							<h4 class="panel-title">원글</h4>
 						</div>
 						<!-- END panel-heading -->
 						<!-- BEGIN panel-body -->
 						<div class="panel-body">
 						
-							<form method="post" name="qnaForm" action="#">
+							<form method="post" name="freeForm" action="#">
 								<div class="row mb-15px">
 									<label class="form-label col-form-label col-md-3">글번호</label>
 									<div class="col-md-9">
-										<input type="text" class="form-control mb-5px" value="${map.qna_board_no }" readonly />
+										<input type="text" class="form-control mb-5px" value="${map.free_board_no }" readonly />
 									</div>
 								</div>
 								<div class="row mb-15px">
@@ -70,25 +70,25 @@
 								<div class="row mb-15px">
 									<label class="form-label col-form-label col-md-3">제목</label>
 									<div class="col-md-9">
-										<input type="text" class="form-control mb-5px" value="${map.qna_title }" readonly />
+										<input type="text" class="form-control mb-5px" value="${map.free_title }" readonly />
 									</div>
 								</div>
 								<div class="row mb-15px">
 									<label class="form-label col-form-label col-md-3">내용</label>
 									<div class="col-md-9">
 									<!--<input type="text" name="n_content" class="form-control mb-5px" placeholder="내용" />-->
-										<textarea rows="18" cols="4000" class="form-control mb-5px" readonly >${map.qna_content }</textarea>
+										<textarea rows="20" cols="4000" class="form-control mb-5px" readonly >${map.free_content }</textarea>
 									</div>
 								</div>
 								<div class="row mb-15px">
 									<label class="form-label col-form-label col-md-3">게시일</label>
 									<div class="col-md-9">
-										<input type="text" class="form-control mb-5px" value="<fmt:parseDate value="${map.qna_regdate }" var="qna_regdate" pattern="yyyy-MM-dd'T'HH:mm:ss" /><fmt:formatDate value="${qna_regdate }" pattern="yyyy-MM-dd HH:mm:ss" />" readonly />
+										<input type="text" class="form-control mb-5px" value="<fmt:parseDate value="${map.free_regdate }" var="free_regdate" pattern="yyyy-MM-dd'T'HH:mm:ss" /><fmt:formatDate value="${free_regdate }" pattern="yyyy-MM-dd HH:mm:ss" />" readonly />
 									</div>
 								</div>
 								
 								<div class="row mb-15px">
-									<label class="form-label col-form-label col-md-3">공개여부</label>
+								<!--<label class="form-label col-form-label col-md-3">공개여부</label>
 									<div class="col-md-9 pt-2">
 										<div class="form-check form-check-inline">
 											<input class="form-check-input" type="radio" id="radio_all" name="radio_all"/>
@@ -98,7 +98,7 @@
 											<input class="form-check-input" type="radio" id="radio_secret" name="radio_secret"/>
 											<label class="form-check-label" for="radio_secret">비공개</label>
 										</div>
-									</div>
+									</div> -->
 								</div>
 							</form>
 							
@@ -115,40 +115,40 @@
 					<div class="panel panel-inverse">
 						<!-- BEGIN panel-heading -->
 						<div class="panel-heading">
-							<h4 class="panel-title">답변하기</h4>
+							<h4 class="panel-title">답글쓰기</h4>
 						</div>
 						<!-- END panel-heading -->
 						<!-- BEGIN panel-body -->
 						<div class="panel-body">
-							<form method="post" name="qnaForm" action="${pageContext.request.contextPath }/admin/community/qnaboard_reply?qna_board_no=${map.qna_board_no }">
+							<form method="post" name="freeForm" action="${pageContext.request.contextPath }/admin/community/freeboard_reply?free_board_no=${map.free_board_no }">
 								<div class="row mb-15px">
 									<label class="form-label col-form-label col-md-3">제목</label>
 									<div class="col-md-9">
-										<input type="text" class="form-control mb-5px" placeholder="제목" name="qna_title" id="qna_title" />
+										<input type="text" class="form-control mb-5px" placeholder="제목" name="free_title" id="free_title" />
 									</div>
 								</div>
 								<div class="row mb-15px">
 									<label class="form-label col-form-label col-md-3">내용</label>
 									<div class="col-md-9">
 									<!--<input type="text" name="n_content" class="form-control mb-5px" placeholder="내용" />-->
-										<textarea rows="26" cols="4000" class="form-control mb-10px" placeholder="내용" name="qna_content" id="qna_content" ></textarea>
+										<textarea rows="26" cols="4000" class="form-control mb-10px" placeholder="내용" name="free_content" id="free_content" ></textarea>
 									</div>
 								</div>
 								<div class="row mb-15px">
 								<!--<label class="form-label col-form-label col-md-3">공개여부</label>
 									<div class="col-md-9">
 										<div class="form-check form-check-inline">
-											<input class="form-check-input" type="checkbox" name="qna_secret_chk" id="qna_secret_chk" />
-											<label class="form-check-label" for="qna_secret_chk">비밀글</label>
+											<input class="form-check-input" type="checkbox" name="free_secret_chk" id="free_secret_chk" />
+											<label class="form-check-label" for="free_secret_chk">비밀글</label>
 										</div>
 										<div class="form-check form-check-inline">
-											<input class="form-control" type="password" name="qna_password" id="qna_password" />
+											<input class="form-control" type="password" name="free_password" id="free_password" />
 										</div>
 									</div> -->
 								</div>
 								<div class="row mb-15px">
 									<div class="col-md-12 text-center"> 
-	   									<button type="submit" class="btn btn-primary" onclick="clickAdd(event,qnaForm)">등록</button>
+	   									<button type="submit" class="btn btn-primary" onclick="clickAdd(event,freeForm)">등록</button>
 	   									<button type="button" class="btn btn-white" onclick="clickCancel()">취소</button>
 									</div>
 								</div>
@@ -189,45 +189,45 @@
 	<!-- ================== END page-js ================== -->
     <!-- script -->
     <script>
-	function clickAdd(e,formName) {
-	if(!confirm("답변을 등록하시겠습니까?")) {
-		e.preventDefault();
-			return false;
-		}else {
-			formName.action = "${pageContext.request.contextPath }/admin/community/qnaboard_reply?qna_board_no=${map.qna_board_no }";
-			formName.method = "post";
-			formName.submit();
-		}
-	}
-		
-	function clickCancel() {
-		if(!confirm("작성을 취소하시겠습니까?")) {
-			return false;
-		}else {
-			location.href = "${pageContext.request.contextPath }/admin/community/board_list";
-		}
-	}
-	
-	if(${map.qna_secret_chk==false}) {  //문의글이 전체공개일 경우
-		$("#radio_all").prop("checked",true);
-		$("#radio_secret").prop("disabled",true);
-	}else if(${map.qna_secret_chk==true}) {  //문의글이 비공개일 경우
-		$("#radio_secret").prop("checked",true);
-		$("#radio_all").prop("disabled",true);
-	}
-	
-/*	$("#qna_password").attr("disabled",true);
-	$("#qna_secret_chk").on("click",function(){
-		var chk = $("input:checkbox[id='qna_secret_chk']").is(":checked");
-		if(chk==true){
-			$("#qna_password").prop("disabled",false);
-			$(this).val(1);
-		}else{
-			$("#qna_password").prop("disabled",true);
-			$(this).val(0);
-		}
-	}); */
-	
+	    function clickAdd(e,formName) {
+	    	if(!confirm("답글을 등록하시겠습니까?")) {
+	    		e.preventDefault();
+	            return false;
+	        }else {
+	        	formName.action = "${pageContext.request.contextPath }/admin/community/freeboard_reply?free_board_no=${map.free_board_no }";
+				formName.method = "post";
+				formName.submit();
+	        }
+	    }
+	    
+	    function clickCancel() {
+	        if(!confirm("작성을 취소하시겠습니까?")) {
+	        	return false;
+	        }else {
+	        	location.href = "${pageContext.request.contextPath }/admin/community/board_list";
+	        }
+	    }
+	    
+/*	    if(${map.free_secret_chk==false}) {  //문의글이 전체공개일 경우
+	    	$("#radio_all").prop("checked",true);
+	    	$("#radio_secret").prop("disabled",true);
+	    }else if(${map.free_secret_chk==true}) {  //문의글이 비공개일 경우
+	    	$("#radio_secret").prop("checked",true);
+	    	$("#radio_all").prop("disabled",true);
+	    } */
+	    
+/*	    $("#qna_password").attr("disabled",true);
+		$("#qna_secret_chk").on("click",function(){
+			var chk = $("input:checkbox[id='qna_secret_chk']").is(":checked");
+			if(chk==true){
+				$("#qna_password").prop("disabled",false);
+				$(this).val(1);
+			}else{
+				$("#qna_password").prop("disabled",true);
+				$(this).val(0);
+			}
+		}); */
+	    
     </script>
 </body>
 </html>
