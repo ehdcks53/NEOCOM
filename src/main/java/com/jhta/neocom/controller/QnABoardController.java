@@ -102,9 +102,10 @@ public class QnABoardController {
 		HashMap<String, Object> map = service.detail(qna_board_no);
 		int groupNo = Integer.parseInt(map.get("qna_group_no").toString());
 		int mem_no = Integer.parseInt(map.get("mem_no").toString());
+		int groupOrder = Integer.parseInt(map.get("qna_group_order").toString());
 		
 		int countReply = service.countReply(qna_board_no);
-		if(countReply == 1) {  // 동일 group_no 조회시 개수가 1개일 때 = 답글이 없는 경우
+		if(countReply == (groupOrder+1)) {  // 답글이 없는 경우 혹은 그룹 내 마지막글일 경우
 			service.delete(qna_board_no);
 		}else if(mem_no == 1 || mem_no == 2) {  // 답글이 있어도 관리자일 경우 바로 삭제 + 원글은 답변대기 상태로 변경됨
 			vo.setQna_group_no(groupNo);
@@ -112,7 +113,7 @@ public class QnABoardController {
 			
 			service.delete(qna_board_no);
 			service.status(vo);
-		}else {  // 답글이 있을 경우 제목과 내용 수정해서 삭제글 표시
+		}else {  // 답글이 있을 경우 제목과 내용 수정해서 삭제글로 표시
 			service.showDeletePost(qna_board_no);			
 		}
 		

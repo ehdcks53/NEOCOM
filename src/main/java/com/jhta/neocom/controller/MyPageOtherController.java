@@ -3,9 +3,11 @@ package com.jhta.neocom.controller;
 import java.util.HashMap;
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
@@ -13,12 +15,15 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.jhta.neocom.model.CustomUserDetails;
 import com.jhta.neocom.model.MemberVo;
+import com.jhta.neocom.model.WishlistVo;
 import com.jhta.neocom.service.MemberService;
 import com.jhta.neocom.service.QnABoardService;
+import com.jhta.neocom.service.WishlistService;
 
 // MyPageController AJAX때문에 컨트롤러 분리했습니다!!
 
@@ -28,6 +33,7 @@ public class MyPageOtherController {
     private MemberService memberService;
 	
 	@Autowired private QnABoardService qna_service;
+	@Autowired private WishlistService wishlist_service;
 	@Autowired
 	private BCryptPasswordEncoder bCryptPasswordEncoder;	
 	@RequestMapping(value = "/account/mypage_delivery")
@@ -41,24 +47,79 @@ public class MyPageOtherController {
     	CustomUserDetails cud = (CustomUserDetails) auth.getPrincipal();
 		MemberVo mvo = cud.getMemberVo();
 		int mem_no = mvo.getMem_no();
-		System.out.println(mvo);
+		//System.out.println(mvo);
 		List<HashMap<String, Object>> list = qna_service.myqna(mem_no);
 		
 		model.addAttribute("list", list);
-		System.out.println(list);
 		
         return "frontend/account/mypage_question";
     }
     
-    @RequestMapping(value = "/account/mypage_qnadetail")
-    public String frontendMyPageQnADetail(Model model, Authentication auth) throws Exception {
-    	
-    	return "frontend/account/mypage_qnadetail";
-    }
+//    @RequestMapping(value = "/account/mypage_qnadetail")
+//    public String frontendMyPageQnADetail(Model model, Authentication auth) throws Exception {
+//    	
+//    	return "frontend/account/mypage_qnadetail";
+//    }
 
+    // 관심상품 리스트 출력
     @RequestMapping(value = "/account/mypage_wishlist")
-    public String frontendMyPageWishlist() {
+    public String frontendMyPageWishlist(Model model, Authentication auth) throws Exception {
+    	CustomUserDetails cud = (CustomUserDetails) auth.getPrincipal();
+		MemberVo mvo = cud.getMemberVo();
+		int mem_no = mvo.getMem_no();
+		List<HashMap<String,Object>> list = wishlist_service.list(mem_no);
+		
+		model.addAttribute("list", list);
+    	
         return "frontend/account/mypage_wishlist";
+    }
+    
+    // 관심상품 db 저장 / db 삭제
+    @RequestMapping(value = "/account/mypage_wishinsert", produces = {MediaType.APPLICATION_JSON_VALUE})
+    public @ResponseBody HashMap<String, Object> frontendMyPageWishInsert(Authentication auth, int product_id) {
+    	CustomUserDetails cud = (CustomUserDetails) auth.getPrincipal();
+		MemberVo mvo = cud.getMemberVo();
+		int mem_no = mvo.getMem_no();
+		
+		WishlistVo vo = new WishlistVo();
+		vo.setMem_no(mem_no);
+		vo.setProduct_id(product_id);
+		
+		int n = wishlist_service.getCount(vo);
+		
+		HashMap<String,Object> map = new HashMap<String,Object>();
+		System.out.println("회원번호:" + mem_no + ", " + "상품번호:" + product_id);
+				
+    	map.put("mem_no", mem_no);
+    	map.put("product_id", product_id);
+		
+		if(n != 0) {
+			wishlist_service.delete(map);
+			map.put("status",0);
+		}else {
+			wishlist_service.insert(map);
+			map.put("status",1);
+		}
+		
+    	return map;
+    }
+    
+    // 관심상품 마이페이지 내에서 삭제
+    @RequestMapping(value = "/account/mypage_wishdelete", method = RequestMethod.GET)
+    public String frontendMyPageWishDelete(Authentication auth, int product_id) throws Exception {
+    	CustomUserDetails cud = (CustomUserDetails) auth.getPrincipal();
+		MemberVo mvo = cud.getMemberVo();
+		int mem_no = mvo.getMem_no();
+		
+		HashMap<String,Object> map = new HashMap<String,Object>();
+		System.out.println("회원번호:" + mem_no + "," + "상품번호:" + product_id);
+    	
+    	map.put("mem_no", mem_no);
+    	map.put("product_id", product_id);
+    	
+    	wishlist_service.delete(map);
+    	
+    	return "redirect:/account/mypage_wishlist";
     }
 
     @RequestMapping(value = "/account/mypage_myreview")

@@ -25,6 +25,7 @@ public class ProductService {
 	}
 
 	public List<HashMap<String, Object>> list(HashMap<String, Object> map) {
+		System.out.println("map뭐뭐 들어오나" +map);
 		return mapper.list(map);
 
 	}
@@ -49,19 +50,11 @@ public class ProductService {
 		return mapper.select(product_id);
 	}
 
-//	public List<ProductVo> selectone(int product_id) {
-//		return mapper.selectone(product_id);
-//	}
+
 	
 	public List<ProductVo> purchaseList(int product_id){
 		return mapper.purchaseList(product_id);
 	}
-	
-//public List<HashMap<String, Object>> search(HashMap<String,Object> map){
-	// return mapper.list(map);
-	//
-	// } 만들어놓긴했었는데
-	//
 
 
 }

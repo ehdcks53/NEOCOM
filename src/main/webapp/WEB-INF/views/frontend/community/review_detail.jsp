@@ -2,6 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -76,6 +77,7 @@
 					<col width="20%"/>
 				</colgroup>
 				<thead class="thead-default">
+					
 					<tr>
 						<th scope="row">글번호</th>
 						<td>${rvo.board_num }</td>
@@ -87,7 +89,9 @@
 					<tr>
 						<th scope="row">제목</th>
 						<td colspan="3">${rvo.review_title }</td>
-						
+						<th scope="row">평점</th>
+						<td colspan="2">${rvo.star }
+						</td>
 						
 					</tr>
 				</thead>
@@ -109,7 +113,7 @@
 				<div class="entry-navigation">
 					<div class="column text-left"></div>
 					<div class="column">
-						<a class="btn btn-outline-secondary view-all" href="${pageContext.request.contextPath }/community/review_list">
+						<a class="btn btn-outline-secondary view-all" href="${pageContext.request.contextPath }/review_list">
 							<i class="icon-menu"></i>
 						</a>
 					</div>
@@ -121,12 +125,16 @@
 			<div class="row" style="margin-bottom:40px;">
 				
 				<div class="ml-md-auto" style="margin-right:30px;">
-					<a class="btn btn-outline-secondary btn-sm" id="nextAtag" href="${pageContext.request.contextPath }/community/review_update?board_num=${rvo.board_num}">
+					<sec:authorize access="isAuthenticated()">
+					
+					
+					<a class="btn btn-outline-secondary btn-sm" id="nextAtag" href="${pageContext.request.contextPath }/review_update?board_num=${rvo.board_num}">
 						수정
 					</a>
-					<a class="btn btn-outline-secondary btn-sm" id="nextAtag" href="${pageContext.request.contextPath }/community/review_delete?board_num=${rvo.board_num}&product_id=${rvo.product_id}">
+					<a class="btn btn-outline-secondary btn-sm" id="nextAtag" href="${pageContext.request.contextPath }/review_delete?board_num=${rvo.board_num}&product_id=${rvo.product_id}" >
 						삭제
 					</a>
+					</sec:authorize>
 				</div>
 			</div>
 			
@@ -145,5 +153,6 @@
 	<!-- JavaScript (jQuery) libraries, plugins and custom scripts-->
 	<script src="${pageContext.request.contextPath}/static/frontend/assets/js/vendor.min.js"></script>
 	<script src="${pageContext.request.contextPath}/static/frontend/assets/js/scripts.min.js"></script>
+	
 </body>
 </html>
