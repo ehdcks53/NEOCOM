@@ -12,7 +12,7 @@ public interface MemberMapper {
 
 	MemberVo select(String id);
 
-	MemberVo isMember(HashMap<String, String> map);
+	MemberVo isMember(String id);
 
 	int searchNo(String id);
 
@@ -33,8 +33,18 @@ public interface MemberMapper {
 	MemberVo login(MemberVo vo);
 
 	int update(MemberVo vo);
+	
+	int updatePwd(MemberVo vo);
 
 	int delete(int mem_no);
 	
 	String findId(String phone);
+	
+	String findPwd(String id);
+	
+	int idCheck(String id);
+	
+	int emailCheck(String email);
+	
+	MemberVo logina(String id);
 }

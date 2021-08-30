@@ -13,6 +13,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
+import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
@@ -36,7 +37,6 @@ public class MemberVo {
 	@NotBlank(message = "필수입력 값입니다.")
 	private String nickname;
 	@NotBlank(message = "필수입력 값입니다.")
-	@Pattern (regexp ="[0-9]{10,11}")
 	private String phone;
 	@NotBlank(message = "필수입력 값입니다.")
 	private String birth_date;
@@ -44,7 +44,9 @@ public class MemberVo {
 
 	@NotBlank(message = "필수입력 값입니다.")
 	private String name;
-
+	@NotBlank(message = "필수입력 값입니다.")
+	@Email(message = "이메일형식이 틀립니다.")
+	private String email;
 	@NotBlank(message = "필수입력 값입니다.")
 	@Size(min = 4, max = 8, message = "아이디는 4~8자리이어야 합니다.")
 	private String id;
