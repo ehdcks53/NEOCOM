@@ -42,9 +42,9 @@ public interface MemberMapper {
 	
 	String findPwd(String id);
 	
-	int idCheck(String id);
+	int idcheck(String id);
 	
-	int emailCheck(String email);
+	int emailcheck(String email);
 	
 	MemberVo logina(String id);
 }

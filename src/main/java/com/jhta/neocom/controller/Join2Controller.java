@@ -47,26 +47,36 @@ public class Join2Controller {
 		}
 		System.out.println("오예성공");
 		memberVo.setPassword(bCryptPasswordEncoder.encode(memberVo.getPassword()));
+		System.out.println(memberVo.getPassword());
 		MemberVo vo=new MemberVo(memberVo.getMem_no(), memberVo.getNickname(), memberVo.getEmail(),memberVo.getPhone(), memberVo.getBirth_date(), null, memberVo.getName(), memberVo.getId(), memberVo.getPassword(), memberVo.getRoles());
 		service.insert(memberVo);
 		service.insert_role(memberVo.getMem_no());
 		return "/frontend/account/join3";
 
 	}
-	/* 현재작업중..
-	@RequestMapping("/idcheck.do")
+	@RequestMapping(value = "/idcheck.do", method = RequestMethod.POST)
     @ResponseBody
-    public Map<Object, Object> idcheck(@RequestBody String id) {
-        
+    public Map<Object, Object> idcheck(@RequestParam("id") String id) {
         int count = 0;
         Map<Object, Object> map = new HashMap<Object, Object>();
  
-        count = service.idCheck(id);
+        count = service.idcheck(id);
         map.put("cnt", count);
  
         return map;
     }
-    */
+	
+	@RequestMapping(value = "/emailcheck.do", method = RequestMethod.POST)
+    @ResponseBody
+    public Map<Object, Object> emailcheck(@RequestParam("email") String email) {
+        int count = 0;
+        Map<Object, Object> map = new HashMap<Object, Object>();
+ 
+        count = service.emailcheck(email);
+        map.put("cnt", count);
+ 
+        return map;
+    }
 	// 아이디 중복 검사(AJAX)
 //	@RequestMapping(value = "/check_id", method = RequestMethod.POST)
 //	public void check_id(@RequestParam("id"), HttpServletResponse response, Authentication authentication) throws Exception{

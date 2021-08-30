@@ -22,15 +22,15 @@ public class CustomSecurityUsersService implements UserDetailsService {
         System.out.println("vo"+memberVo);
         System.out.println("b "+memberVo.getRoles());
         
-        memberVo.getRoles().forEach((e)->{
-
-        	if(e.getRoleName().equals("ROLE_NOTUSER")){
-        		a=true;
-        	}
-        });
-        if(a==true){
-        return null;
-        }
+//        memberVo.getRoles().forEach((e)->{
+//
+//        	if(e.getRoleName().equals("ROLE_NOTUSER")){
+//        		a=true;
+//        	}
+//        });
+//        if(a==true){
+//        return null;
+//        }
 
 
         return new CustomUserDetails(memberVo);

@@ -98,11 +98,11 @@ public class MemberService {
 		return mapper.logina(id);
 	}
 	
-	public int idCheck(String id) {
-		return mapper.idCheck(id);
+	public int idcheck(String id) {
+		return mapper.idcheck(id);
 	}
-	public int emailCheck(String email) {
-		return mapper.emailCheck(email);
+	public int emailcheck(String email) {
+		return mapper.emailcheck(email);
 	}
 	
 //	public MemberVo findPwd(String id) {
@@ -166,40 +166,11 @@ public class MemberService {
 		}
 	}
 	 
-	public void check_id(String id, HttpServletResponse response) throws Exception {
-		PrintWriter out = response.getWriter();
-		out.println(service.idCheck(id));
-		out.close();
-	}
-
 	// 이메일 중복 검사(AJAX)
-	public void check_email(String email, HttpServletResponse response) throws Exception {
-		PrintWriter out = response.getWriter();
-		out.println(service.emailCheck(email));
-		out.close();
-	}
-	public int join_member(MemberVo member, HttpServletResponse response) throws Exception {
-		response.setContentType("text/html;charset=utf-8");
-		PrintWriter out = response.getWriter();
-
-		if (service.idCheck(member.getId()) == 1) {
-			out.println("<script>");
-			out.println("alert('동일한 아이디가 있습니다.');");
-			out.println("history.go(-1);");
-			out.println("</script>");
-			out.close();
-			return 0;
-		} else if (service.emailCheck(member.getEmail()) == 1) {
-			out.println("<script>");
-			out.println("alert('동일한 이메일이 있습니다.');");
-			out.println("history.go(-1);");
-			out.println("</script>");
-			out.close();
-			return 0;
-		} else {
-			service.insert(member);
-			return 1;
-		}
-	}
+//	public void check_email(String email, HttpServletResponse response) throws Exception {
+//		PrintWriter out = response.getWriter();
+//		out.println(service.emailCheck(email));
+//		out.close();
+//	}
 
 }
