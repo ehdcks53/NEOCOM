@@ -1,14 +1,10 @@
 package com.jhta.neocom.controller;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.LinkedHashMap;
-import java.util.LinkedList;
-import java.util.List;
 
+import java.util.HashMap;
+import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.core.task.AsyncListenableTaskExecutor;
 import org.springframework.http.MediaType;
 import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -29,6 +25,7 @@ import com.jhta.neocom.service.MemberService;
 import com.jhta.neocom.service.ProductService;
 import com.jhta.neocom.service.ReviewService;
 import com.jhta.neocom.util.PageUtil;
+
 
 
 
@@ -58,8 +55,8 @@ public class ProductController {
 		pmap.put("category_id", category_id);
 		pmap.put("order", order);
 		int totalRowCount = service.getCount(pmap);// 전체 글의 갯수
-		PageUtil pu = new PageUtil(pageNum, 10, 10, totalRowCount);
-		pmap.put("startRow",pu.getStartRow());
+		PageUtil pu = new PageUtil(pageNum, 5, 5, totalRowCount);
+		pmap.put("startRow",pu.getStartRow()-1);
 		
 		
 
@@ -68,7 +65,8 @@ public class ProductController {
 //		map.put("keyword", keyword);
 		
 		List<HashMap<String, Object>> list = service.list(pmap);
-		
+		map.put("next", pu.isNextPage());
+		map.put("prev", pu.isPrevPage());
 		map.put("list", list);
 		map.put("startPageNum", pu.getStartPageNum());
 		map.put("minPrice", min);
@@ -76,7 +74,13 @@ public class ProductController {
 		map.put("endPageNum", pu.getEndPageNum());
 		map.put("pageCount", pu.getTotalPageCount());
 		map.put("pageNum", pageNum);
+		map.put("keyword", keyword);
+		System.out.println("order=="+order);
+		System.out.println("category_id=="+ category_id);
+		System.out.println("keyword=="+keyword);
+		System.out.println(pu.isNextPage()+"=="+ pu.isPrevPage()+"=="+pu.getStartPageNum()+"=="+pu.getEndPageNum()+"=="+pu.getTotalPageCount()+"=="+pageNum);
 		return map;
+		
 		
 	} 
 	
@@ -84,11 +88,18 @@ public class ProductController {
 	@RequestMapping(value = "/shop/product_list",method = {RequestMethod.GET, RequestMethod.POST}) 
     public ModelAndView frontendProductList(@RequestParam(value = "pageNum", defaultValue = "1") int pageNum, String field,
 			String keyword,String order,int category_id,String minPrice,String maxPrice) { 
+		
+		
+		List<CategoryVo> clist= service2.classification(1);
+		List<CategoryVo> extrall=service2.classification(2);
+		
   		ModelAndView mv = new ModelAndView("frontend/shop/product_list");
   			mv.addObject("category_id", category_id);
   			mv.addObject("keyword",keyword);
   			mv.addObject("minPrice1", minPrice);
   			mv.addObject("maxPrice1", maxPrice);
+  			mv.addObject("clist", clist);
+  			mv.addObject("all", extrall);
 
   	
 
@@ -114,7 +125,7 @@ public class ProductController {
   			mv.addObject("maxPrice1", maxPrice);
   			mv.addObject("clist", clist);
   			mv.addObject("all", extrall);
-  			System.out.println("clist==="+clist);
+  		
 
   			
   		
