@@ -190,7 +190,8 @@
 							</a>
 							<a
 								class="product-button"
-								onclick="insertCart(${vo.product_id})"
+								href="javascript:insertCart(${vo.product_id});" 
+								
 								data-toast data-toast-type="success"
 								data-toast-position="topRight"
 								data-toast-icon="icon-check-circle" data-toast-title=" "

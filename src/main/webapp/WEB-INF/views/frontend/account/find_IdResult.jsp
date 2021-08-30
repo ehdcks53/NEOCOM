@@ -1,7 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@taglib prefix="form" uri="http://www.springframework.org/tags/form" %>    
-<%@taglib prefix="sec" uri="http://www.springframework.org/security/tags"%>
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -11,10 +9,9 @@
 	<meta name="description" content="Unishop - Universal E-Commerce Template">
 	<meta name="keywords" content="shop, e-commerce, modern, flat style, responsive, online store, business, mobile, blog, bootstrap 4, html5, css3, jquery, js, gallery, slider, touch, creative, clean">
 	<meta name="author" content="Rokaux">
-	
 	<!-- Favicon and Apple Icons-->
-	<link rel="icon" type="image/x-icon" href="${pageContext.request.contextPath}/static/frontend/assets/favicon&icon/neocom_favicon.ico">
-	<link rel="icon" type="image/png" href="${pageContext.request.contextPath}/static/frontend/assets/favicon&icon/neocom_favicon.png">
+	<link rel="icon" type="image/x-icon" href="${pageContext.request.contextPath}/static/frontend/assets/favicon&icon/favicon.ico">
+	<link rel="icon" type="image/png" href="${pageContext.request.contextPath}/static/frontend/assets/favicon&icon/favicon.png">
 	<link rel="apple-touch-icon" href="${pageContext.request.contextPath}/static/frontend/assets/favicon&icon/touch-icon-iphone.png">
 	<link rel="apple-touch-icon" sizes="152x152" href="${pageContext.request.contextPath}/static/frontend/assets/favicon&icon/touch-icon-ipad.png">
 	<link rel="apple-touch-icon" sizes="180x180" href="${pageContext.request.contextPath}/static/frontend/assets/favicon&icon/touch-icon-iphone-retina.png">
@@ -26,10 +23,9 @@
 	<!-- Modernizr-->
 	<script src="${pageContext.request.contextPath}/static/frontend/assets/js/modernizr.min.js"></script>
 	<style type="text/css">
-            .errormsg {
-                color: red; padding-left: 10px; padding-top: 5px;
-            }
-        </style>
+		h6{font-size: 15px; text-align: center;}
+		.form-group{padding-left: 30px; margin: auto;}
+	</style>
 </head>
 <body>
 
@@ -56,47 +52,40 @@
 
 
 <!-- 페이지 컨텐트 -->
-<div class="container padding-bottom-3x mb-2">
+<div class="container mb-2">
 	<div class="row">
 		<div class="col-md-3"></div>
 		<div class="col-md-6">
-		
-			<form method="post" action="${pageContext.request.contextPath }/account/login">
-
-					<h4 class="margin-bottom-1x text-center">로그인 하기</h4>
-					<div class="form-group input-group">
-
-						<input class="form-control" type="text" name="username" placeholder="ID">
-						
-					</div>
-					<div class="form-group input-group">
-
-						<input class="form-control" type="password" name="password" placeholder="PWD">
-						<div class="errormsg">${errMsg }</div>
-						
-					</div>
-					<%-- <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" /> --%>
-					 <div class="d-flex flex-wrap justify-content-between padding-bottom-1x">
-						<!-- 로그인 이력 저장 기능 구현하면 넣고 아니면 빼기 -->
-						<div class="custom-control custom-checkbox">
-                 			<input class="custom-control-input" type="checkbox" name="remember-me" id="remember-me">
-							<label class="custom-control-label" for="remember-me">로그인 유지</label>
-						</div>
-						<!-- 아이디/비밀번호 찾기 -->
-						<a class="navi-link" href="${pageContext.request.contextPath }/account/findAccount">아이디/비밀번호 찾기</a>
-					</div>
-					<div class="text-center text-sm-right">
-						<button class="btn btn-primary margin-bottom-none" type="submit">로그인</button>
-							
-					</div>
-					</form>
+			<form class="card" method="post">
+				<div class="card-body">	
+					<h3 class="margin-bottom-1x text-center">아이디 찾기</h3>
+					<h6>회원님의 아이디는</h6>
+					<h6>[ ${id } ] 입니다.</h6>
 				</div>
-			
-			
+			</form>
 		</div>
-		<div class="col-md-3"></div>
 	</div>
-
+</div>
+<div class="container mb-2">
+<div class="row">
+		<div class="col-md-3"></div>
+		<div class="col-md-6">
+             <form class="row" action="${pageContext.request.contextPath }/" method="post">
+                <div class="form-group">
+                <a href="/">
+                <button class="btn btn-primary margin-bottom-none" type="submit">메인페이지</button>
+                </a>
+                </div>
+             </form>
+              		
+		</div>
+	<div class="col-md-3"></div>
+</div>	
+</div>
+					
+			
+		
+		
 <!-- 페이지 컨텐트 끝 -->
 
 

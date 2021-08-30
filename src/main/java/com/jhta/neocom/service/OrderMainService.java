@@ -34,6 +34,10 @@ public class OrderMainService {
 		return mapper.update(map);
 	}
 	
+	public int updateDelivery(HashMap<String, Object> map) {
+		return mapper.updateDelivery(map);
+	}
+	
 	public int updateMidNum(HashMap<String, Object> map) {
 		return mapper.updateMidNum(map);
 	}
@@ -45,9 +49,13 @@ public class OrderMainService {
 	public int updateCC(HashMap<String, Object> map) {
 		return mapper.updateCC(map);
 	}
+	
+	public int getCount(int mem_no) {
+		return mapper.getCount(mem_no);
+	}
 
-	public List<OrderMainVo> myOrderList(int mem_no) {
-		return mapper.myOrderList(mem_no);
+	public List<OrderMainVo> myOrderList(HashMap<String, Object> map) {
+		return mapper.myOrderList(map);
 	}
 	
 	public List<OrderMainVo> searchOrder(int order_no) {

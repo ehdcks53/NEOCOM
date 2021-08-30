@@ -1,17 +1,15 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@taglib prefix="form" uri="http://www.springframework.org/tags/form" %>    
-<%@taglib prefix="sec" uri="http://www.springframework.org/security/tags"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
-<html lang="ko">
+<html>
 <head>
 <meta charset="UTF-8">
 <title>neocom</title>
-	<!-- SEO Meta  Tags-->
+	<!-- SEO Meta Tags-->
 	<meta name="description" content="Unishop - Universal E-Commerce Template">
 	<meta name="keywords" content="shop, e-commerce, modern, flat style, responsive, online store, business, mobile, blog, bootstrap 4, html5, css3, jquery, js, gallery, slider, touch, creative, clean">
 	<meta name="author" content="Rokaux">
-	
 	<!-- Favicon and Apple Icons-->
 	<link rel="icon" type="image/x-icon" href="${pageContext.request.contextPath}/static/frontend/assets/favicon&icon/neocom_favicon.ico">
 	<link rel="icon" type="image/png" href="${pageContext.request.contextPath}/static/frontend/assets/favicon&icon/neocom_favicon.png">
@@ -25,11 +23,13 @@
 	<link id="mainStyles" rel="stylesheet" media="screen" href="${pageContext.request.contextPath}/static/frontend/assets/css/styles.min.css">
 	<!-- Modernizr-->
 	<script src="${pageContext.request.contextPath}/static/frontend/assets/js/modernizr.min.js"></script>
-	<style type="text/css">
-            .errormsg {
-                color: red; padding-left: 10px; padding-top: 5px;
-            }
-        </style>
+<style>
+	.table tbody tr td {
+		height: 100px;
+		vertical-align: middle;
+	}
+	.table-responsive a {width:120px;}
+</style>
 </head>
 <body>
 
@@ -41,13 +41,13 @@
 <div class="page-title">
 	<div class="container">
 		<div class="column">
-			<h1>로그인</h1>
+			<h1>마이페이지</h1>
 		</div>
 		<div class="column">
 			<ul class="breadcrumbs">
 				<li><a href="#">Home</a></li>
 				<li class="separator">&nbsp;</li>
-				<li>Login</li>
+				<li>My Page</li>
 			</ul>
 		</div>
 	</div>
@@ -57,46 +57,35 @@
 
 <!-- 페이지 컨텐트 -->
 <div class="container padding-bottom-3x mb-2">
-	<div class="row">
-		<div class="col-md-3"></div>
-		<div class="col-md-6">
-		
-			<form method="post" action="${pageContext.request.contextPath }/account/login">
-
-					<h4 class="margin-bottom-1x text-center">로그인 하기</h4>
-					<div class="form-group input-group">
-
-						<input class="form-control" type="text" name="username" placeholder="ID">
-						
-					</div>
-					<div class="form-group input-group">
-
-						<input class="form-control" type="password" name="password" placeholder="PWD">
-						<div class="errormsg">${errMsg }</div>
-						
-					</div>
-					<%-- <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" /> --%>
-					 <div class="d-flex flex-wrap justify-content-between padding-bottom-1x">
-						<!-- 로그인 이력 저장 기능 구현하면 넣고 아니면 빼기 -->
-						<div class="custom-control custom-checkbox">
-                 			<input class="custom-control-input" type="checkbox" name="remember-me" id="remember-me">
-							<label class="custom-control-label" for="remember-me">로그인 유지</label>
-						</div>
-						<!-- 아이디/비밀번호 찾기 -->
-						<a class="navi-link" href="${pageContext.request.contextPath }/account/findAccount">아이디/비밀번호 찾기</a>
-					</div>
-					<div class="text-center text-sm-right">
-						<button class="btn btn-primary margin-bottom-none" type="submit">로그인</button>
-							
-					</div>
-					</form>
-				</div>
-			
-			
+<div class="row">
+	<!-- mypage_sidebar -->
+	<jsp:include page="/WEB-INF/views/frontend/account/inc/mypage_sidebar.jsp"/>
+	
+	<!-- 주문내역 -->
+	
+	<div class="col-lg-9 col-md-8 order-md-2" id="parent">
+		<div id="order_cc">
+		<h6 class="text-muted text-lg text-uppercase">주문 내역</h6>
+									<hr class="margin-bottom-1x">
+							<h4 class="margin-bottom-3x text-center" style="margin-top:50px;">주문 상세내역</h4>
+								<div class="table-responsive mb-0">
+									<h5 class="text-muted text-lg text-uppercase" style="margin-left:20px;">취소 상세 정보</h5>
+									<table class="table" >
+									
+									
+									</table>
+									<div id="order_cc">
+									</div>
+								</div>
 		</div>
-		<div class="col-md-3"></div>
 	</div>
-
+	
+</div>
+	<div>
+				<iframe title="하단광고" scrolling="no" frameborder="0" marginheight="0" parginwidth="0"
+				width="100%" style="margin-top:50px;" src="http://ad.danawa.com/RealMedia/ads/adstream_sx.ads/www.danawa.com/blog_BABY@Middle1"></iframe>
+			</div>
+</div>
 <!-- 페이지 컨텐트 끝 -->
 
 
@@ -106,8 +95,5 @@
 	<!-- Back To Top Button--><a class="scroll-to-top-btn" href="#"><i class="icon-chevron-up"></i></a>
 	<!-- Backdrop-->
 	<div class="site-backdrop"></div>
-	<!-- JavaScript (jQuery) libraries, plugins and custom scripts-->
-	<script src="${pageContext.request.contextPath}/static/frontend/assets/js/vendor.min.js"></script>
-	<script src="${pageContext.request.contextPath}/static/frontend/assets/js/scripts.min.js"></script>
 </body>
 </html>

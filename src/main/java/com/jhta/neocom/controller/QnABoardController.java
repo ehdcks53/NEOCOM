@@ -154,6 +154,7 @@ public class QnABoardController {
 
 		int totalRowCount = service.getCount(map); // 전체 글 개수
 		PageUtil pu = new PageUtil(pageNum, 10, 10, totalRowCount);
+		
 		int startRow = pu.getStartRow() - 1;
 		int endRow = pu.getEndRow();
 

@@ -42,7 +42,7 @@ public class CartController {
 		CustomUserDetails cud = (CustomUserDetails) authentication.getPrincipal();
 		MemberVo vo = cud.getMemberVo();
 		int mem_no = vo.getMem_no();
-
+		
 		HashMap<String, Object> map = new HashMap<String, Object>();
 		List<CartVo> cartList = service.cartList(mem_no);
 		map.put("list", cartList);

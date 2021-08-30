@@ -63,10 +63,7 @@
         </div>
       </div>
     </div>
-    <!-- Page Content-->
-	
-	
-	
+
 	<!-- Page Content-->
 	
 	
@@ -95,14 +92,14 @@
 			       	    			<td><img width=45; height=45; src="<c:url value='/upload/product_img/${vo.img_name_save}' />" alt="<c:url value='/upload/product_img/${vo.img_name_save}' />" /></td>
 				       	    		<td>${vo.product_name }</td>
 				       	    		<td>${vo.selling_price } 원</td>
-				       	    		<td>${cnt[i.index] }</td>
-				       	    		<td>${vo.selling_price * cnt[i.index]} 원</td>
+				       	    		<td>${vo.product_count }</td>
+				       	    		<td>${vo.selling_price * vo.product_count} 원</td>
 				       	    		
 			       	    		</tr>
-			       	    		<c:set var= "total" value="${total + vo.selling_price * cnt[i.index] }"/>
+			       	    		<c:set var= "total" value="${total + vo.selling_price * vo.product_count }"/>
 			       	    		<input type="hidden" name="product_id" value="${vo.product_id }">
-			       	    		<input type="hidden" name="product_count" value="${cnt[i.index] }">
-			       	    		<input type="hidden" name="order_price" value="${vo.selling_price*cnt[i.index] }">
+			       	    		<input type="hidden" name="product_count" value="${vo.product_count }">
+			       	    		<input type="hidden" name="order_price" value="${vo.selling_price*vo.product_count }">
 			       	    	</c:forEach>
 			       	    	
 			       	    		
@@ -129,12 +126,8 @@
 				<div class="steps flex-sm-nowrap mb-5">
 					<a class="step active" href="checkout-address.html">
 						<h4 class="step-title">1. 주소</h4>
-					</a><a class="step" href="${pageContext.request.contextPath }/purchase2">
-						<h4 class="step-title">2. 배송</h4>
-					</a><a class="step" href="checkout-payment.html">
-						<h4 class="step-title">3. 결제</h4>
 					</a><a class="step" href="checkout-review.html">
-						<h4 class="step-title">4. 리뷰</h4>
+						<h4 class="step-title">2. 결제</h4>
 					</a>
 				</div>
 				<h4>주문 정보</h4>
@@ -160,25 +153,25 @@
 						</div>
 						<div class="col-sm-6">
 							<div class="form-group">
-								<label for="checkout-ln">할인코드</label> <input
+								<label for="checkout-ln">수령인 이름</label> <input
 									class="form-control" type="text" 
-									name="discount_ref_no" id="discount_ref_no">
+									name="recipient_name" id="recipient_name">
 							</div>
 						</div>
 					</div>
 					<div class="row">
 						<div class="col-sm-6">
 							<div class="form-group">
-								<label for="checkout-email">수령인 이름</label> <input
+								<label for="checkout-email">전화번호</label> <input
 									class="form-control" type="text" 
-									name="recipient_name" id="recipient_name">
+									name="phone" id="phone">
 							</div>
 						</div>
 						<div class="col-sm-6">
 							<div class="form-group">
 								<label for="checkout-">배송비</label> <input
-									class="form-control" type="text" 
-									name="delevery_cost" id="delevery_cost">
+									class="form-control" type="text" readonly="readonly" 
+									name="delevery_cost" value="0원" id="delevery_cost">
 							</div>
 						</div>
 					</div>
@@ -187,50 +180,39 @@
 							<div class="form-group">
 								<label for="checkout-zip_code">주소</label> <input
 									class="form-control" type="text" 
-									name="zip_code" id="zip_code">
+									name="zip_code" id="zip_code" style="margin:5px;">
 									<input class="form-control" type="text"
-									name="order_address" id="order_address">
+									name="order_address" id="order_address" style="margin:5px;">
 									<input	class="form-control" type="text"
-									name="order_address_detail" id="order_address_detail">
+									name="order_address_detail" id="order_address_detail"
+									style="margin:5px;">
 							</div>
 						</div>
-						<div class="col-sm-6">
+					<!-- <div class="col-sm-6">
 							<div class="form-group">
-								<label for="checkout-country">Country</label> <select
-									class="form-control" id="checkout-country">
-									<option>Choose country</option>
-									<option>Australia</option>
-									<option>Canada</option>
-									<option>France</option>
-									<option>Germany</option>
-									<option>Switzerland</option>
-									<option>USA</option>
-								</select>
+							<label for="checkout-city">배송시 요청사항</label>
+								
+								<textarea class="form-control" rows="5" cols="120"></textarea>
+								
+						
 							</div>
-						</div>
+						</div>-->
 					</div>
-					<div class="row">
+					  <div class="row">
 						<div class="col-sm-6">
 							<div class="form-group">
-								<label for="checkout-city">City</label> <select
-									class="form-control" id="checkout-city">
-									<option>Choose city</option>
-									<option>Amsterdam</option>
-									<option>Berlin</option>
-									<option>Geneve</option>
-									<option>New York</option>
-									<option>Paris</option>
-								</select>
+								<label for="checkout-city">배송시 요청사항</label>
+								<textarea class="form-control" name="request_item" id="request_item" rows="3" cols="30"></textarea>
 							</div>
 						</div>
 						<div class="col-sm-6">
 							<div class="form-group">
-								<label for="checkout-zip">ZIP Code</label> <input
+								<label for="checkout-zip">쿠폰 번호 입력</label> <input
 									class="form-control" type="text" id="checkout-zip">
 							</div>
 						</div>
 					</div>
-					<div class="row padding-bottom-1x">
+					<!--  <div class="row padding-bottom-1x">
 						<div class="col-sm-6">
 							<div class="form-group">
 								<label for="checkout-address1">Address 1</label> <input
@@ -243,7 +225,7 @@
 									class="form-control" type="text" id="checkout-address2">
 							</div>
 						</div>
-					</div>
+					</div>-->
 					<h4>Shipping Address</h4>
 					<hr class="padding-bottom-1x">
 					<div class="form-group">
@@ -255,9 +237,9 @@
 						</div>
 					</div>
 					<div class="d-flex justify-content-between paddin-top-1x mt-4">
-						<a class="btn btn-outline-secondary" href="cart.html"><i
-							class="icon-arrow-left"></i><span class="hidden-xs-down">&nbsp;Back
-								To Cart</span></a><button onclick="payment()" class="btn btn-primary" 
+						<a class="btn btn-outline-secondary" href="${pageContext.request.contextPath }/member/cart"><i
+							class="icon-arrow-left"></i><span class="hidden-xs-down">&nbsp;장바구니로
+							</span></a><button onclick="payment()" class="btn btn-primary" 
 								type="button"><span
 							class="hidden-xs-down">결제하기&nbsp;</span><i
 							class="icon-arrow-right"></i></button>
@@ -282,12 +264,8 @@
 								<td class="text-gray-dark">0원</td>
 							</tr>
 							<tr>
-								<td>추정세(Estimated tax):</td>
-								<td class="text-gray-dark">$9.72</td>
-							</tr>
-							<tr>
 								<td></td>
-								<td class="text-lg text-gray-dark">$2,584.72</td>
+								<td class="text-lg text-gray-dark">${total} 원</td>
 							</tr>
 						</table>
 					</section>
