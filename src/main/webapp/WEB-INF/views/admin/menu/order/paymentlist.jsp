@@ -172,7 +172,7 @@
 	<!-- ================== END page-js ================== -->
     <!-- script -->
     <script>
-		$(document).on("click", ".open_modal", function () {
+	/*	$(document).on("click", ".open_modal", function () {
 			data-order_no="${vo.order_no}" data-mem_no="${vo.mem_no}" data-order_num="${vo.order_num}" data-tot_price="${vo.tot_price}"
 											data-order_date="${vo.order_date}" data-order_status="${vo.order_status}
 			var order_no = $(this).data('order_no');
@@ -190,11 +190,12 @@
 
 		$(document).on("click", "" , function (){
 
-		});
+		}); */
 		
     	$('#data-table-responsive').DataTable({
         	responsive: true,
 			lengthMenu: [10,20,30,50],
+			order: [ [ 0, "desc" ] ],
 			language: {
             emptyTable: "데이터가 없습니다.",
             lengthMenu: "페이지당 _MENU_ 개씩 보기",

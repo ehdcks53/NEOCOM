@@ -74,22 +74,33 @@
 				</div>
 			</div>
 			<div class="column">
-				<!-- grid / list 두가지 버전 구현 가능할 때 쓰기 
+				
 				<div class="shop-view">
-					<a class="grid-view active" href="#"><span></span><span></span><span></span></a>
-					<a class="list-view" href="#"><span></span><span></span><span></span></a>
+								 	<c:choose>
+				 		<c:when test="${keyword ne null }">
+							<a class="grid-view" href="${pageContext.request.contextPath}/shop/product_grid?category_id=${category_id}&keyword=${keyword}"><span></span><span></span><span></span></a>
+							<a class="list-view active" href="${pageContext.request.contextPath}/shop/product_list?category_id=${category_id}&keyword=${keyword}"><span></span><span></span><span></span></a>		
+						</c:when>
+						<c:when test="${minPrice1 ne null }">
+						 	<a class="grid-view" href="${pageContext.request.contextPath}/shop/product_grid?category_id=${category_id}&keyword=${keyword}&minPrice=${minPrice1}&maxPrice=${maxPrice1}"><span></span><span></span><span></span></a>
+							<a class="list-view active" href="${pageContext.request.contextPath}/shop/product_list?category_id=${category_id}&keyword=${keyword}&minPrice=${minPrice1}&maxPrice=${maxPrice1}"><span></span><span></span><span></span></a>		
+						</c:when>
+						<c:otherwise>
+							<a class="grid-view" href="${pageContext.request.contextPath}/shop/product_grid?category_id=${category_id}"><span></span><span></span><span></span></a>
+							<a class="list-view active" href="${pageContext.request.contextPath}/shop/product_list?category_id=${category_id}"><span></span><span></span><span></span></a>	
+						</c:otherwise>
+				
+				</c:choose>
 				</div>
-				-->
+				
 			</div>
 		</div>
 		<!-- 상품리스트 -->
 		<input type="hidden" id="category_id" value="${category_id}" >
-		<div class="row" id="commList">
-		
-		 	
-			
-			<!-- forEach 끝 부분 -->
-		</div>
+		<div id="commList">
+	        
+          </div>
+
 		<div id="page"></div>
 		
 	</div>
@@ -108,13 +119,13 @@
 			<ul>
 				<li class="has-children expanded"><a href="#">종류1</a><span>(100)</span>
 					<ul>
-						<li><a href="#">상품분류1</a><span>(수량)</span>
+						<li><a href="#">테스트</a><span>(수량)</span>
 							<ul>
 								<li><a href="#">상품1</a></li>
 								<li><a href="#">상품2</a></li>
 								<li><a href="#">상품3</a></li>
-							</ul>
-						</li>
+							</ul> 
+						</li> 
 						<li><a href="#">상품분류2</a><span>(수량)</span>
 							<ul>
 								<li><a href="#">상품1</a></li>
@@ -153,37 +164,81 @@
 						</li>
 					</ul>
 				</li>
-			</ul>
+			</ul> 
 			</section>
-			<!-- 가격 범위 -->
+			<c:choose>
+				<c:when test="${minPrice1 ne null  }">
+			<!-- 가격 범위 --> 
 			<section class="widget widget-categories">
 			<h3 class="widget-title">가격</h3>
 				<form 
-				class="price-range-slider" method="post" 
-				data-start-min="0"
-				data-start-max="10000000"
+				class="price-range-slider" id="priceCheck"
+				data-start-min="${minPrice1 }"
+				data-start-max="${maxPrice1 }"
 				data-min="0"
 				data-max="10000000"
-				data-step="10000">
+				data-step="5000">
 					<div class="ui-range-slider"></div>
 					<footer class="ui-range-slider-footer">
 						<div class="column">
-							<button class="btn btn-outline-primary btn-sm" type="submit">적용</button>
+							<input type="hidden" name="category_id" value="${category_id}">
+							<input type="hidden" name="keywrod" value="${keyword }">
+							<button class="btn btn-outline-primary btn-sm" onclick=check()>적용</button>
 						</div>
 						<div class="column">
 							<div class="ui-range-values mb-3">
 								<div class="ui-range-value-min">
-									￦<span></span> <input type="hidden">
+									￦<span></span> <input type="hidden" name="minPrice"  >
 								</div>
 								&nbsp;-&nbsp;
 								<div class="ui-range-value-max">
-									￦<span></span> <input type="hidden">
+									￦<span></span> <input type="hidden" name="maxPrice"  >
+									
 								</div>
 							</div>
 						</div>
 					</footer>
 				</form>
 			</section>
+			</c:when>
+			<c:otherwise>
+			
+			<!-- 가격 범위 --> 
+			<section class="widget widget-categories">
+			<h3 class="widget-title">가격</h3>
+				<form 
+				class="price-range-slider" id="priceCheck"
+				data-start-min="0"
+				data-start-max="10000000"
+				data-min="0"
+				data-max="10000000"
+				data-step="5000">
+					<div class="ui-range-slider"></div>
+					<footer class="ui-range-slider-footer">
+						<div class="column">
+							<input type="hidden" name="category_id" value="${category_id}">
+							<input type="hidden" name="keywrod" value="${keyword }">
+							<button class="btn btn-outline-primary btn-sm" onclick=check()>적용</button>
+						</div>
+						<div class="column">
+							<div class="ui-range-values mb-3">
+								<div class="ui-range-value-min">
+									￦<span></span> <input type="hidden" name="minPrice"  value="${minPrice1 }">
+								</div>
+								&nbsp;-&nbsp;
+								<div class="ui-range-value-max">
+									￦<span></span> <input type="hidden" name="maxPrice" value="${maxPrice1 }" >
+									
+								</div>
+							</div>
+						</div>
+					</footer>
+				</form>
+			</section>
+			
+			
+			</c:otherwise>
+			</c:choose>
 			<!-- 브랜드 필터 -->
 			<section class="widget">
 			<h3 class="widget-title">브랜드</h3>
@@ -220,6 +275,11 @@
 <!-- 페이지 컨텐트 끝 -->
 
 
+        
+             
+           
+          
+
 <!-- footer -->
 <jsp:include page="/WEB-INF/views/frontend/inc/footer.jsp"/>
 
@@ -239,30 +299,41 @@ $(function(){
 	var category_id=$("#category_id").val();
 	var a='${param.category_id}';
 	var keyword='${param.keyword}';
+	var minPrice=$("input[name=minPrice]").val();
+	console.log("minPrice===="+minPrice);
+	var maxPrice=$("input[name=maxPrice]").val();
+	
+	function check(){
+		var theForm = document.priceCheck;
+		
+		
+		theForm.method = "post";
+		theForm.action = "${pageContext.request.contextPath}/shop/product_grid";
+	}
+	
+	
+	
 	if(a=='10000')
 		{ 
-		list(1,"new",10000,keyword);
+		list(1,"new",10000,keyword,minPrice,maxPrice);
 		}
 	else 
-		list(1,"new",category_id,keyword); 
+		list(1,"new",category_id,keyword,minPrice,maxPrice); 
 	
 	
-
-
 	$("#order").change(function(){
 		
 		var order=$(this).val(); 
 		console.log(order);
-		list(1,order,category_id,keyword); 
+		list(1,order,category_id,keyword,minPrice,maxPrice); 
 		   
 	}); //option값 가져오기 
 	
 	
-
 //list(1); 지우니까 오류가없네여
 });
 	var currentPage=1; 
-	function list(pageNum,order,category_id,keyword){ 
+	function list(pageNum,order,category_id,keyword,minPrice,maxPrice){ 
 		
 		Number.prototype.format = function(){
 		    if(this==0) return 0;
@@ -271,7 +342,6 @@ $(function(){
 		    while (reg.test(n)) n = n.replace(reg, '$1' + ',' + '$2');
 		    return n;
 		};
-
 		//문자에 대한 기능 추가
 		String.prototype.format = function(){
 		    var num = parseFloat(this);
@@ -285,7 +355,7 @@ $(function(){
 		$("#commList").empty();
 		$.ajax({
 			url:"${pageContext.request.contextPath}/shop/ajaxlist",
-			data:{"pageNum":pageNum,"order":order,"category_id":category_id,"keyword":keyword},  
+			data:{"pageNum":pageNum,"order":order,"category_id":category_id,"keyword":keyword,"minPrice":minPrice,"maxPrice":maxPrice},  
 			dataType:"json", 
 			Type:"GET", 
 			success:function(data){ 
@@ -304,12 +374,13 @@ $(function(){
 				else{
 				$(data.list).each(function(i,d){
 					
+					
 						<!-- forEach 시작 부분 -->
-						let	html=	"<div class='col-md-3 col-sm-6'>";			
-						html+=	"<div class='product-card mb-30'>";
+						let html= " <div class='product-card product-list mb-30'>";
 						html+=		"<a class='product-thumb' href='${pageContext.request.contextPath}/shop/product_detail"+"?n="+d.product_id+"&"+"m="+d.category_id+"'>";
 						html+=		"	<img src='<c:url value='/upload/product_img/"+d.img_name_save+"' />' alt='<c:url value='/upload/product_img/"+d.img_name_save+"' />' />";
 										html+=	"	</a> ";
+										html+= "<div class='product-card-inner'>";
 										html+=	"	<div class='product-card-body'>";
 										html+=		"	<div class='product-category'><a href='#'>"+d.brand+"</a></div>";
 										html+=			"<h3 class='product-title'><a href='#'>"+d.product_name +"</a></h3>"; 
@@ -327,14 +398,12 @@ $(function(){
 														html+=		"	data-toast-message='장바구니에 상품을 담았습니다!'> ";
 									html+=	"	<i class='icon-shopping-cart'></i><span>장바구니</span> ";
 									html+=	"	</a>";
-									html+=	"</div>";
+									
 									html+=	"</div>";
 									html+=	"</div>";
 									
 						<!-- forEach 끝 부분 -->
-						html+=	"</div>";
-					
-						html+=	"</div>	";	
+						
 					$("#commList").append(html);					
 				});
 				}
@@ -362,7 +431,6 @@ $(function(){
 		});	
 	}
 	
-
 </script>
 </body>
 </html>

@@ -2,6 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 <%@taglib uri="http://www.springframework.org/tags" prefix="spring"%> 
 <!DOCTYPE html>
 
@@ -176,10 +177,21 @@
 							</h4>
 						</div>
 						<div class="product-button-group">
-							<a class="product-button btn-wishlist" href="#"><i
-								class="icon-heart"></i><span>관심상품</span></a> <a
+							<a id="wish" class="product-button btn-wish" href="#" onclick="insertWish(${vo.product_id})">
+								<c:choose>
+									<c:when test="${status == 0 }">
+										<i class="icon-heart" style="color:red;"></i>
+									</c:when>
+									<c:otherwise>
+										<i class="icon-heart"></i>
+									</c:otherwise>
+								</c:choose>
+								<span>관심상품</span>
+							</a>
+							<a
 								class="product-button"
-								onclick="insertCart(${vo.product_id})"
+								href="javascript:insertCart(${vo.product_id});" 
+								
 								data-toast data-toast-type="success"
 								data-toast-position="topRight"
 								data-toast-icon="icon-check-circle" data-toast-title=" "
@@ -266,6 +278,26 @@
 	<!-- 쇼핑몰 서비스 끝 -->
 
 
+	<!-- modal -->
+	<div class="modal fade" id="loginModal">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h4 class="modal-title">로그인이 필요한 서비스입니다.</h4>
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">X</span></button>
+				</div>
+				<div class="modal-body">
+					<p>로그인 하시겠습니까?</p>
+				</div>
+				<div class="modal-footer">
+					<button type="submit" class="btn btn-info btn-sm" onclick="location.href='${pageContext.request.contextPath}/account/login'">Yes</button>
+					<button type="button" class="btn btn-secondary btn-sm" data-dismiss="modal" onclick="return false;">No</button>
+				</div>
+			</div>
+		</div>
+	</div>
+	
+
 	<!-- footer -->
 	<jsp:include page="/WEB-INF/views/frontend/inc/footer.jsp" />
 
@@ -297,7 +329,84 @@
 				}
 			});	
 	};
-			
+	
+	/* 관심상품 눌렀을 때 처리 - 토스트 메시지 원하는대로 구현하기 어려워서...이렇게라도 */
+	var status = 0;
+	function insertWish(product_id){
+		var id = null;
+		<sec:authorize access="isAuthenticated()">
+			id = '<sec:authentication property="principal.memberVo.id"/>';
+		</sec:authorize>
+		
+		if(id != null && id!='') {
+			$.ajax({
+				url:"${pageContext.request.contextPath}/account/mypage_wishinsert",
+				dataType:"json",
+				data:{"product_id" : product_id},
+				success:function(data){
+					console.log("결과값 (1=관심상품추가,0=관심상품삭제) : " + data.status);
+					
+					if(data.status == 0){
+						$(".btn-wish",function(){
+							var b=$(this).data("iteration")||1,
+							c={title:" ",animateInside:!1,position:"topRight",progressBar:!1,
+								timeout:3200,transitionIn:"fadeInLeft",transitionOut:"fadeOut",
+								transitionInMobile:"fadeIn",transitionOutMobile:"fadeOut"
+							};
+
+							switch(b){
+								case 1:
+								$(this).removeClass("active"),
+								c.class="iziToast-danger",
+								c.message="관심상품에서 삭제되었습니다!",
+								c.icon="icon-slash";
+								break;
+		
+								case 2:
+								$(this).addClass("active"),
+								c.class="iziToast-info",
+								c.message="관심상품에 추가되었습니다!",
+								c.icon="icon-info"
+							}
+							iziToast.show(c),
+							$(this).data("iteration",b)
+						})
+					}else{
+						$(".btn-wish",function(){
+							var b=$(this).data("iteration")||1,
+							c={title:" ",animateInside:!1,position:"topRight",progressBar:!1,
+								timeout:3200,transitionIn:"fadeInLeft",transitionOut:"fadeOut",
+								transitionInMobile:"fadeIn",transitionOutMobile:"fadeOut"
+							};
+
+							switch(b){
+								case 1:
+								$(this).addClass("active"),
+								c.class="iziToast-info",
+								c.message="관심상품에 추가되었습니다!",
+								c.icon="icon-info";
+								break;
+		
+								case 2:
+								$(this).removeClass("active"),
+								c.class="iziToast-danger",
+								c.message="관심상품에서 삭제되었습니다!",
+								c.icon="icon-slash"
+							}
+							iziToast.show(c),
+							$(this).data("iteration",b)
+						})
+					}
+					
+				},error:function(error){
+					console.log("error:" + error);
+				}
+			});
+		}else{
+			$("#loginModal").modal();
+		}
+	};
+	
 	</script>		
 </body>
 

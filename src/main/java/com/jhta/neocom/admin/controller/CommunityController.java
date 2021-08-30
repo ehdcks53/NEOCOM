@@ -12,11 +12,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.jhta.neocom.model.AdvBoardVo;
 import com.jhta.neocom.model.CustomUserDetails;
 import com.jhta.neocom.model.FreeBoardVo;
 import com.jhta.neocom.model.MemberVo;
 import com.jhta.neocom.model.NoticeBoardVo;
 import com.jhta.neocom.model.QnABoardVo;
+import com.jhta.neocom.service.AdvBoardService;
 import com.jhta.neocom.service.FreeBoardService;
 import com.jhta.neocom.service.MemberService;
 import com.jhta.neocom.service.NoticeBoardService;
@@ -28,13 +30,15 @@ public class CommunityController {
 	@Autowired private NoticeBoardService nn_service;
 	@Autowired private QnABoardService qq_service;
 	@Autowired private FreeBoardService ff_service;
+	@Autowired private AdvBoardService aa_service;
 	@Autowired private MemberService mm_service;
 	
 	// board_list 내용
 	@RequestMapping(value = "/admin/community/board_list", method = RequestMethod.GET)
 	public String boardList(Model nn_model, HashMap<String, Object> nn_map,
 							Model qq_model, HashMap<String, Object> qq_map,
-							Model ff_model, HashMap<String, Object> ff_map) {
+							Model ff_model, HashMap<String, Object> ff_map,
+							Model aa_model, HashMap<String, Object> aa_map) {
 		// 공지사항 리스트
 		nn_model.addAttribute("nn_list", nn_service.nn_list(nn_map));
 
@@ -43,7 +47,10 @@ public class CommunityController {
 		
 		// 자유게시판 리스트
 		ff_model.addAttribute("ff_list", ff_service.ff_list(ff_map));
-
+		
+		// 견적게시판 리스트
+		aa_model.addAttribute("aa_list", aa_service.aa_list(aa_map));
+		
 		return "/admin/menu/community/board_list";
 	}
 	
@@ -279,4 +286,106 @@ public class CommunityController {
 		return "redirect:/admin/community/board_list";
 	}
 	// -------------------------------- 자유게시판 끝 --------------------------------
+	
+	
+	// -------------------------------- 견적문의게시판 ----------------------------------
+	// 견적문의게시판 상세보기 페이지 이동
+	@RequestMapping(value = "/admin/community/advboard_detail", method = RequestMethod.GET)
+	public String advboardDetail(Model model, int adv_board_no) {
+		HashMap<String, Object> map = aa_service.detail(adv_board_no);
+		aa_service.cntHit(adv_board_no);
+		model.addAttribute("map", map);
+
+		return "/admin/menu/community/advboard_detail";
+	}
+	
+	// 견적문의게시판 답변 페이지 이동
+	@RequestMapping(value = "/admin/community/advboard_reply", method = RequestMethod.GET)
+	public String advboardReply(Model model, int adv_board_no) {
+		HashMap<String, Object> map = aa_service.detail(adv_board_no);
+		model.addAttribute("map", map);
+
+		return "/admin/menu/community/advboard_reply";
+	}
+	
+	// 견적문의게시판 답변 작성
+	@RequestMapping(value = "/admin/community/advboard_reply", method = RequestMethod.POST)
+	public String advboardReplyOk(Model model, AdvBoardVo vo, Authentication auth, int adv_board_no) {
+		CustomUserDetails cud = (CustomUserDetails) auth.getPrincipal();
+		MemberVo mvo = cud.getMemberVo();
+		int mem_no = mvo.getMem_no();
+		vo.setMem_no(mem_no);
+		String Nickname = mvo.getNickname();
+		vo.setNickname(Nickname);
+
+		HashMap<String, Object> map = aa_service.detail(adv_board_no);
+		// System.out.println("맵:" + map);
+		int groupNo = Integer.parseInt(map.get("adv_group_no").toString());
+		int groupOrder = Integer.parseInt(map.get("adv_group_order").toString());
+		int groupDepth = Integer.parseInt(map.get("adv_group_depth").toString());
+		String adv_secret_chk = map.get("adv_secret_chk").toString();
+
+		if (!adv_secret_chk.equals(null)) { // 문의글이 비밀글인지 아닌지에 따라 등록됨
+			if (adv_secret_chk.equals("true")) {
+				String adv_password = map.get("adv_password").toString();
+				vo.setAdv_secret_chk(1);
+				vo.setAdv_password(adv_password); // 비밀글일 경우 문의작성자가 등록한 비밀번호로 등록
+			} else {
+				vo.setAdv_secret_chk(0);
+				vo.setAdv_password(null);
+			}
+		}
+
+		vo.setAdv_group_no(groupNo);
+		vo.setAdv_group_order(groupOrder);
+		vo.setAdv_group_depth(groupDepth);
+		vo.setAdv_status(1);
+
+		aa_service.ReRe(vo);
+		aa_service.insertReply(vo);
+		aa_service.status(vo); // 답변상태 변경
+
+		return "redirect:/admin/community/board_list";
+	}
+	
+
+	// 문의게시판 답변 삭제
+	@RequestMapping(value = "/admin/community/advboard_delete", method = RequestMethod.GET)
+	public String advboardDelete(int adv_board_no, AdvBoardVo vo) {
+		HashMap<String, Object> map = aa_service.detail(adv_board_no);
+		int groupNo = Integer.parseInt(map.get("adv_group_no").toString());
+		int mem_no = Integer.parseInt(map.get("mem_no").toString());
+		int groupOrder = Integer.parseInt(map.get("adv_group_order").toString());
+		
+		int countReply = qq_service.countReply(groupNo);
+		
+		if(countReply == (groupOrder+1)) {
+			vo.setAdv_group_no(groupNo);
+			vo.setAdv_status(0);  // 답변 삭제하면 답변상태는 다시 답변대기로 바꾸기
+			
+			aa_service.delete(adv_board_no);
+			aa_service.status(vo);
+		}else if(mem_no == 1 || mem_no == 2) {
+			vo.setAdv_group_no(groupNo);
+			vo.setAdv_status(0);  // 답변 삭제하면 답변상태는 다시 답변대기로 바꾸기
+			
+			aa_service.delete(adv_board_no);
+			aa_service.status(vo);
+		}else {
+			aa_service.showDeletePost(adv_board_no);
+		}
+
+		return "redirect:/admin/community/board_list";
+	}
+
+	
+	// 견적문의게시판 수정
+	@RequestMapping(value = "/admin/community/advboard_update", method = RequestMethod.POST)
+	public String advboardUpdate(AdvBoardVo vo) {
+		System.out.println(vo);
+		aa_service.update(vo);
+
+		return "redirect:/admin/community/board_list";
+	}
+	// -------------------------------- 견적문의게시판 끝 --------------------------------
 }

@@ -113,6 +113,14 @@
 		update adv_board set adv_hit=adv_hit+1 where adv_board_no=#{adv_board_no}
 	</update>
 	
+	
+	<!-- 어드민 용 -->
+	<select id="aa_list" resultType="hashmap" parameterType="hashmap">
+		select aa.*,mm.mem_no,mm.Nickname 
+		from adv_board aa inner join member_Info mm on aa.mem_no=mm.mem_no 
+		order by aa.adv_group_no desc, aa.adv_group_order asc 
+	</select>
+	
  </mapper>
 
 

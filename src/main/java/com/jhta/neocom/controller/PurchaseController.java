@@ -1,6 +1,7 @@
 package com.jhta.neocom.controller;
 
 import java.text.DecimalFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.HashMap;
 
@@ -18,11 +19,15 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
+
+import com.jhta.neocom.model.CartVo;
 import com.jhta.neocom.model.CustomUserDetails;
 import com.jhta.neocom.model.MemberVo;
 import com.jhta.neocom.model.OrderDetailVo;
 import com.jhta.neocom.model.OrderMainVo;
 import com.jhta.neocom.model.PaymentVo;
+import com.jhta.neocom.model.ProductVo;
+import com.jhta.neocom.service.CartService;
 import com.jhta.neocom.service.OrderDetailService;
 import com.jhta.neocom.service.OrderMainService;
 import com.jhta.neocom.service.PaymentService;
@@ -35,6 +40,8 @@ public class PurchaseController {
 	private PaymentService pservice;
 	@Autowired
 	private OrderDetailService odservice;
+	@Autowired
+	private CartService cartservice;
 
 	
 	// 직접 상품페이지에서 주문
@@ -59,30 +66,36 @@ public class PurchaseController {
 	   }
 
 	// 장바구니에서 주문
-	@RequestMapping(value = "/purchase1", produces = { MediaType.APPLICATION_JSON_VALUE })
-	@ResponseBody
-	public HashMap<String, Object> purchase1(HttpSession session, Model model,@RequestParam("id") HashMap<String, Object> cart_vo_list) {
+	@PostMapping("/member/purchase1")
+	public ModelAndView purchase1(HttpSession session, Model model,@RequestParam("cart_nos") ArrayList<String> cart_nos) {
 	/*public ModelAndView purchase1(HttpSession session, Model model, @RequestParam("chkbox") ArrayList<Integer> chkbox,
 			@RequestParam("cnt") ArrayList<Integer> cnt) {
 		
 		 * if(session!=null) { //회원인 경우 세션에 아이디 담기 session.setAttribute("id", id);
 		 * return "order_dc/purchase"; }else {
 		 */
-		System.out.println(cart_vo_list);
 		/*
 		//int a = Integer.parseInt(chkbox.get(0));
 		ArrayList<ProductVo> purchaseList = new ArrayList<ProductVo>();
 		/*for (int i = 0; i < chkbox.size(); i++) {
 			purchaseList.addAll(productservice.purchaseList(chkbox.get(i)));
 		}
+
 		System.out.println(purchaseList);
-		ModelAndView mv = new ModelAndView("frontend/order/purchase");
+		
 		
 		mv.addObject("purchaseList", purchaseList);
 		//mv.addObject("cnt", cnt);
 		*/
-		HashMap<String, Object> map=new HashMap<String, Object>();
-		return map;
+		System.out.println(cart_nos);
+		ModelAndView mv = new ModelAndView("frontend/order/purchase");
+		ArrayList<CartVo> purchaseList=new ArrayList<CartVo>();
+		for(int i=0;i<cart_nos.size();i++) {			
+			purchaseList.addAll(cartservice.cartnoSearch(Integer.parseInt(cart_nos.get(i))));	
+		}
+		System.out.println(purchaseList);
+		mv.addObject("purchaseList", purchaseList);
+		return mv;
 
 		/* } */
 
@@ -161,7 +174,7 @@ public class PurchaseController {
 			mv.addObject("zip_code",vo.getZip_code());
 			mv.addObject("order_address",vo.getOrder_address());
 			mv.addObject("order_address_detail",vo.getOrder_address_detail());
-			
+			mv.addObject("request_item",vo.getRequest_item());
 //			OrderDetailVo odvo0 = new OrderDetailVo();
 //			odvo0.setMem_no(mem_no);
 //			int a0 = Integer.parseInt(product_count);

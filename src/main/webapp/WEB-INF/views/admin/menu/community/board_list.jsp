@@ -320,7 +320,6 @@
 		
 	
 	
-	
 	<!-- ///////////////////////////// 자유게시판 ///////////////////////// -->
 	<!-- BEGIN #content -->
 	<div id="content" class="app-content">
@@ -530,6 +529,168 @@
 	
 	
 	
+	<!-- ///////////////////////////// 견적게시판 ///////////////////////// -->
+	<!-- BEGIN #content -->
+	<div id="content" class="app-content">
+
+	<!-- BEGIN row -->
+	<div class="row">
+	<!-- BEGIN col-12 -->
+	<div class="col-xl-12">
+	<!-- BEGIN panel -->
+	<div class="panel panel-inverse">
+		<!-- BEGIN panel-heading -->
+		<div class="panel-heading">
+			<h4 class="panel-title">견적문의게시판 목록</h4>
+			<div class="panel-heading-btn">
+				<a href="javascript:;" class="btn btn-xs btn-icon btn-default" data-toggle="panel-expand"><i class="fa fa-expand"></i></a>
+				<a href="javascript:;" class="btn btn-xs btn-icon btn-success" data-toggle="panel-reload"><i class="fa fa-redo"></i></a>
+				<a href="javascript:;" class="btn btn-xs btn-icon btn-warning" data-toggle="panel-collapse"><i class="fa fa-minus"></i></a>
+				<a href="javascript:;" class="btn btn-xs btn-icon btn-danger" data-toggle="panel-remove"><i class="fa fa-times"></i></a>
+			</div>
+		</div>
+		<!-- END panel-heading -->
+		<!-- BEGIN panel-body -->
+		<div class="panel-body">
+			<table id="data-table-responsive-aa" class="table table-striped table-bordered align-middle">
+				<thead>
+					<tr>
+						<th width="10%">글번호</th>
+						<th width="50%" data-orderable="true">제목</th>
+						<th class="text-nowrap">작성자 닉네임</th>
+						<th class="text-nowrap">게시일</th>
+						<th class="text-nowrap">조회수</th>
+						<th width="5%"></th>
+						<th width="5%"></th>
+					</tr>
+				</thead>
+				<tbody>
+					<c:forEach var="avo" items="${aa_list }" varStatus="status">
+					<tr>
+					<c:choose>
+						<c:when test="${avo.adv_show == true } ">
+							<td>${avo.adv_board_no }</td>
+							<td style="color:gray; height:30px;">
+								<c:if test="${avo.adv_group_order > 1 }">
+									<c:forEach var="i" begin="2" end="${avo.adv_group_depth }">
+										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+									</c:forEach>
+									[Re]&nbsp;
+								</c:if>
+								작성자에 의해 삭제된 글 입니다.
+							</td>
+							<td></td>
+							<td></td>
+							<td></td>
+						</c:when>
+						<c:otherwise>
+							<td>${avo.adv_board_no }</td>
+							<td>
+								<a href="${pageContext.request.contextPath }/admin/community/advboard_detail?adv_board_no=${avo.adv_board_no}" style="text-decoration:none; color:black;">
+									<c:if test="${avo.adv_group_order > 1 }">
+										<c:forEach var="i" begin="2" end="${avo.adv_group_depth }">
+											&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+										</c:forEach>
+										[Re]&nbsp;
+									</c:if>
+									${avo.adv_title }
+									<c:if test="${avo.adv_secret_chk==true }">
+										<img src="${pageContext.request.contextPath}/static/frontend/assets/favicon&icon/lockicon.png" class="lock_img">
+									</c:if>
+								</a>
+							</td>
+							<td>${avo.Nickname }</td>
+							<td><fmt:parseDate value="${avo.adv_regdate }" var="adv_regdate" pattern="yyyy-MM-dd'T'HH:mm:ss" /><fmt:formatDate value="${adv_regdate }" pattern="yyyy-MM-dd HH:mm:ss" /></td>
+							<td>${avo.adv_hit }</td>
+						</c:otherwise>
+					</c:choose>
+					
+					<c:choose>
+						<c:when test="${avo.mem_no==1 || avo.mem_no==2 }">
+							<td>
+								<a href="${pageContext.request.contextPath }/admin/community/advboard_delete?adv_board_no=${avo.adv_board_no }" class="btn btn-sm btn-secondary w-60px me-1">삭제</a>
+							</td>
+							<td>
+								<a href="#modal-dialog-aa" class="open_modal btn btn-sm btn-white w-60px" data-bs-toggle="modal" 
+								data-id="${avo.adv_board_no}" data-name="${avo.adv_title}" data-parent="${avo.adv_content}"
+								data-order="<fmt:parseDate value="${avo.adv_regdate }" var="adv_regdate" pattern="yyyy-MM-dd'T'HH:mm:ss" /><fmt:formatDate value="${adv_regdate }" pattern="yyyy-MM-dd HH:mm:ss" />">수정</a>
+							</td>
+						</c:when>
+						<c:otherwise>
+							<td>
+								<a href="${pageContext.request.contextPath }/admin/community/advboard_delete?adv_board_no=${avo.adv_board_no }" class="btn btn-sm btn-secondary w-60px me-1">삭제</a>
+							</td>
+							<td>
+								
+									<a href="${pageContext.request.contextPath }/admin/community/advboard_reply?adv_board_no=${avo.adv_board_no}" class="btn btn-sm btn-success w-60px me-1">답변</a>
+								
+							</td>
+						</c:otherwise>
+					</c:choose>
+					</tr>
+					</c:forEach>
+				</tbody>
+			</table>
+		</div>
+		<!-- END panel-body -->
+	</div>
+	<!-- END panel -->
+	</div>
+	<!-- END col-12 -->
+	</div>
+	<!-- END row -->
+	</div>
+	<!-- END #content -->
+	
+
+	<!-- #modal-dialog -->
+	<div class="modal fade" id="modal-dialog-aa">
+	<div class="modal-dialog">
+		<div class="modal-content">
+		<div class="modal-header">
+			<h4 class="modal-title">답변 내용 수정</h4>
+			<button type="button" class="btn-close" data-bs-dismiss="modal" aria-hidden="true"></button>
+		</div>
+		<div class="modal-body">
+			<form method="post" id="aa_category" action="${pageContext.request.contextPath }/admin/community/advboard_update">
+				<div class="row mb-15px">
+					<label class="form-label col-form-label col-md-3">글번호</label>
+						<div class="col-md-9">
+							<input type="text" id="adv_board_no" name="adv_board_no" class="form-control mb-5px" readonly/>
+						</div>
+				</div>
+				<div class="row mb-15px">
+					<label class="form-label col-form-label col-md-3">글제목</label>
+						<div class="col-md-9">
+							<input type="text" id="adv_title" name="adv_title" class="form-control mb-5px"/>
+						</div>
+				</div>
+				<div class="row mb-15px">
+					<label class="form-label col-form-label col-md-3">내용</label>
+						<div class="col-md-9">
+						<!--<input type="text" id="adv_content" name="adv_content" class="form-control mb-5px"/> -->
+							<textarea rows="15" cols="4000" id="adv_content" name="adv_content" class="form-control mb-5px"></textarea>
+						</div>
+				</div>
+				<div class="row mb-15px">
+					<label class="form-label col-form-label col-md-3">게시일</label>
+						<div class="col-md-9">
+							<input type="text" id="adv_regdate" class="form-control mb-5px" readonly/>
+						</div>
+				</div>
+				<div class="modal-footer">
+					<a href="javascript:;" class="btn btn-white" data-bs-dismiss="modal">닫기</a>
+				<!--<a href="javascript:;" class="btn btn-success">수정</a> -->
+					<button type="submit" class="btn btn-success">수정</button>
+				</div>
+			</form>
+		</div>
+		</div>
+	</div>
+	</div>
+	<!-- ///////////////////////////// 견적게시판 끝 ///////////////////////// -->
+	
+	
 	
 	<!-- BEGIN scroll to top btn -->
 	<a href="javascript:;" class="btn btn-icon btn-circle btn-success btn-scroll-to-top" data-toggle="scroll-to-top"><i class="fa fa-angle-up"></i></a>
@@ -663,7 +824,42 @@
           	},
           	ordering : false
     	});
-
+    	
+    	
+    	/* 견적게시판 */
+    	$(document).on("click", ".open_modal", function () {
+			var aa_id = $(this).data('id');
+			var aa_name = $(this).data('name');
+			var aa_parent = $(this).data('parent');
+			var aa_order = $(this).data('order');
+			console.log(aa_id, aa_name, aa_parent, aa_order);
+			$("#adv_board_no").val(aa_id);
+			$("#adv_title").val(aa_name);
+			$("#adv_content").val(aa_parent);
+			$("#adv_regdate").val(aa_order);
+		});
+    	
+    	$('#data-table-responsive-aa').DataTable({
+        	responsive: true,
+			lengthMenu: [10,20,30,50],
+			language: {
+            emptyTable: "데이터가 없습니다.",
+            lengthMenu: "페이지당 _MENU_ 개씩 보기",
+            info: "현재 _START_ - _END_ / _TOTAL_건",
+            infoEmpty: "데이터 없음",
+            infoFiltered: "( _MAX_건의 데이터에서 필터링됨 )",
+            search: "",
+            zeroRecords: "일치하는 데이터가 없습니다.",
+            loadingRecords: "로딩중...",
+            processing: "잠시만 기다려 주세요.",
+            paginate: {
+              next: "다음",
+              previous: "이전",
+            },
+          	},
+          	ordering : false
+    	});
+    	
     </script>
 </body>
 </html>
