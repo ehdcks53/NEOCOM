@@ -76,18 +76,18 @@
 			<div class="column">
 				
 				<div class="shop-view">
-								 	<c:choose>
+				 	<c:choose>
 				 		<c:when test="${keyword ne null }">
-							<a class="grid-view" href="${pageContext.request.contextPath}/shop/product_grid?category_id=${category_id}&keyword=${keyword}"><span></span><span></span><span></span></a>
-							<a class="list-view active" href="${pageContext.request.contextPath}/shop/product_list?category_id=${category_id}&keyword=${keyword}"><span></span><span></span><span></span></a>		
+							<a class="grid-view active" href="${pageContext.request.contextPath}/shop/product_grid?category_id=${category_id}&keyword=${keyword}"><span></span><span></span><span></span></a>
+							<a class="list-view" href="${pageContext.request.contextPath}/shop/product_list?category_id=${category_id}&keyword=${keyword}"><span></span><span></span><span></span></a>		
 						</c:when>
 						<c:when test="${minPrice1 ne null }">
-						 	<a class="grid-view" href="${pageContext.request.contextPath}/shop/product_grid?category_id=${category_id}&keyword=${keyword}&minPrice=${minPrice1}&maxPrice=${maxPrice1}"><span></span><span></span><span></span></a>
-							<a class="list-view active" href="${pageContext.request.contextPath}/shop/product_list?category_id=${category_id}&keyword=${keyword}&minPrice=${minPrice1}&maxPrice=${maxPrice1}"><span></span><span></span><span></span></a>		
+						 	<a class="grid-view active" href="${pageContext.request.contextPath}/shop/product_grid?category_id=${category_id}&keyword=${keyword}&minPrice=${minPrice1}&maxPrice=${maxPrice1}"><span></span><span></span><span></span></a>
+							<a class="list-view" href="${pageContext.request.contextPath}/shop/product_list?category_id=${category_id}&keyword=${keyword}&minPrice=${minPrice1}&maxPrice=${maxPrice1}"><span></span><span></span><span></span></a>		
 						</c:when>
 						<c:otherwise>
-							<a class="grid-view" href="${pageContext.request.contextPath}/shop/product_grid?category_id=${category_id}"><span></span><span></span><span></span></a>
-							<a class="list-view active" href="${pageContext.request.contextPath}/shop/product_list?category_id=${category_id}"><span></span><span></span><span></span></a>	
+							<a class="grid-view active" href="${pageContext.request.contextPath}/shop/product_grid?category_id=${category_id}"><span></span><span></span><span></span></a>
+							<a class="list-view" href="${pageContext.request.contextPath}/shop/product_list?category_id=${category_id}"><span></span><span></span><span></span></a>	
 						</c:otherwise>
 				
 				</c:choose>
@@ -97,10 +97,12 @@
 		</div>
 		<!-- 상품리스트 -->
 		<input type="hidden" id="category_id" value="${category_id}" >
-		<div id="commList">
-	        
-          </div>
-
+		<div class="row" id="commList">
+		
+		 	
+			
+			<!-- forEach 끝 부분 -->
+		</div>
 		<div id="page"></div>
 		
 	</div>
@@ -116,28 +118,46 @@
 			<!-- 카테고리 -->
 			<section class="widget widget-categories">
 			<h3 class="widget-title">카테고리</h3>
+			<c:choose>
+			<c:when test="${category_id == 3 }">
 			<ul>
-				<li class="has-children expanded"><a href="#">종류1</a><span>(100)</span>
+				<li class="has-children expanded"><a href="#">${clist[0][0].category_name }</a>
 					<ul>
-						<li><a href="#">테스트</a><span>(수량)</span>
+						<li><a href="#">${clist[2][0].category_name }</a>
 							<ul>
-								<li><a href="#">상품1</a></li>
-								<li><a href="#">상품2</a></li>
-								<li><a href="#">상품3</a></li>
+								<li><a href="#">${clist[29][0].category_name }</a></li> 
+								<li><a href="#">${clist[29][1].category_name }</a></li>
+								<li><a href="#">${clist[29][2].category_name }</a></li>
+								<li><a href="#">${clist[29][3].category_name }</a></li>
+								<li><a href="#">${clist[29][4].category_name }</a></li>
+								<li><a href="#">${clist[29][5].category_name }</a></li>
 							</ul> 
 						</li> 
-						<li><a href="#">상품분류2</a><span>(수량)</span>
+						<li><a href="#">${clist[2][1].category_name }</a>
 							<ul>
-								<li><a href="#">상품1</a></li>
-								<li><a href="#">상품2</a></li>
-								<li><a href="#">상품3</a></li>
+								<li><a href="#">${clist[30][0].category_name }</a></li>
+								<li><a href="#">${clist[30][1].category_name }</a></li>
+								<li><a href="#">${clist[30][2].category_name }</a></li>
+								<li><a href="#">${clist[30][3].category_name }</a></li>
 							</ul>
 						</li>
-						<li><a href="#">상품분류3</a><span>(수량)</span>
+						<li><a href="#">${clist[2][2].category_name }</a>
 							<ul>
-								<li><a href="#">상품1</a></li>
-								<li><a href="#">상품2</a></li>
-								<li><a href="#">상품3</a></li>
+								<li><a href="#">${clist[31][0].category_name }</a></li>
+								<li><a href="#">${clist[31][1].category_name }</a></li>
+								<li><a href="#">${clist[31][2].category_name }</a></li>
+								<li><a href="#">${clist[31][3].category_name }</a></li>
+								<li><a href="#">${clist[31][4].category_name }</a></li>
+								<li><a href="#">${clist[31][5].category_name }</a></li>
+								<li><a href="#">${clist[31][6].category_name }</a></li>
+							</ul>
+						</li>
+						<li><a href="#">${clist[2][3].category_name }</a>
+							<ul>
+								<li><a href="#">${clist[32][0].category_name }</a></li>
+								<li><a href="#">${clist[32][1].category_name }</a></li>
+								<li><a href="#">${clist[32][2].category_name }</a></li>
+								<li><a href="#">${clist[32][3].category_name }</a></li>
 							</ul>
 						</li>
 					</ul>
@@ -165,6 +185,8 @@
 					</ul>
 				</li>
 			</ul> 
+			</c:when>
+			</c:choose>
 			</section>
 			<c:choose>
 				<c:when test="${minPrice1 ne null  }">
@@ -275,11 +297,6 @@
 <!-- 페이지 컨텐트 끝 -->
 
 
-        
-             
-           
-          
-
 <!-- footer -->
 <jsp:include page="/WEB-INF/views/frontend/inc/footer.jsp"/>
 
@@ -294,15 +311,12 @@
 	
 	<script type="text/javascript">
 $(function(){
-	
-	
 	var category_id=$("#category_id").val();
 	var a='${param.category_id}';
 	var keyword='${param.keyword}';
 	var minPrice=$("input[name=minPrice]").val();
 	console.log("minPrice===="+minPrice);
 	var maxPrice=$("input[name=maxPrice]").val();
-	
 	function check(){
 		var theForm = document.priceCheck;
 		
@@ -310,8 +324,6 @@ $(function(){
 		theForm.method = "post";
 		theForm.action = "${pageContext.request.contextPath}/shop/product_grid";
 	}
-	
-	
 	
 	if(a=='10000')
 		{ 
@@ -350,8 +362,7 @@ $(function(){
 		};
 		 
 		currentPage=pageNum;
-		console.log(order);
-		console.log(pageNum);
+	
 		$("#commList").empty();
 		$.ajax({
 			url:"${pageContext.request.contextPath}/shop/ajaxlist",
@@ -374,13 +385,12 @@ $(function(){
 				else{
 				$(data.list).each(function(i,d){
 					
-					
 						<!-- forEach 시작 부분 -->
-						let html= " <div class='product-card product-list mb-30'>";
+						let	html=	"<div class='col-md-3 col-sm-6'>";			
+						html+=	"<div class='product-card mb-30'>";
 						html+=		"<a class='product-thumb' href='${pageContext.request.contextPath}/shop/product_detail"+"?n="+d.product_id+"&"+"m="+d.category_id+"'>";
 						html+=		"	<img src='<c:url value='/upload/product_img/"+d.img_name_save+"' />' alt='<c:url value='/upload/product_img/"+d.img_name_save+"' />' />";
 										html+=	"	</a> ";
-										html+= "<div class='product-card-inner'>";
 										html+=	"	<div class='product-card-body'>";
 										html+=		"	<div class='product-category'><a href='#'>"+d.brand+"</a></div>";
 										html+=			"<h3 class='product-title'><a href='#'>"+d.product_name +"</a></h3>"; 
@@ -398,12 +408,14 @@ $(function(){
 														html+=		"	data-toast-message='장바구니에 상품을 담았습니다!'> ";
 									html+=	"	<i class='icon-shopping-cart'></i><span>장바구니</span> ";
 									html+=	"	</a>";
-									
+									html+=	"</div>";
 									html+=	"</div>";
 									html+=	"</div>";
 									
 						<!-- forEach 끝 부분 -->
-						
+						html+=	"</div>";
+					
+						html+=	"</div>	";	
 					$("#commList").append(html);					
 				});
 				}
