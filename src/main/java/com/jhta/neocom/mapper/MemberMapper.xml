@@ -64,5 +64,9 @@
 	<update id="updatePwd" parameterType="com.jhta.neocom.model.MemberVo">
 		update member_Info set password=#{password} where id="#{id}"
 	</update>
+	
+	<select id="findId" parameterType="String" resultType="String">
+		select id from member_Info where phone=#{phone}
+	</select>
 
 </mapper>

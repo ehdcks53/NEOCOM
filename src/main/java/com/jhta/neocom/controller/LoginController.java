@@ -17,6 +17,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.jhta.neocom.model.CustomUserDetails;
@@ -86,6 +87,18 @@ public class LoginController {
 	public String logout(HttpSession session) {
 		session.invalidate();
 		return "redirect:/";
+	}
+	
+	@GetMapping("/account/findAccount")
+	public String findA() {
+		return "frontend/account/findId_Pwd";
+	}
+	@RequestMapping(value = "/account/findId", method = RequestMethod.POST)
+	public String find_id(HttpServletResponse response, @RequestParam("phone") String phone, Model md) throws Exception{
+		md.addAttribute("id", service.find_id(response, phone));
+		System.out.println("result:"+phone);
+		return "frontend/account/find_IdResult";
+		
 	}
 
 }

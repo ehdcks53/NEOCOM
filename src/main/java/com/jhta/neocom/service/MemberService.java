@@ -1,7 +1,10 @@
 package com.jhta.neocom.service;
 
+import java.io.PrintWriter;
 import java.util.HashMap;
 import java.util.List;
+
+import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -80,6 +83,22 @@ public class MemberService {
 	}
 	public boolean checkIdDuplicate(String id) {
 		return memberRepository.existsById(id);
+	}
+	public String find_id(HttpServletResponse response, String phone) throws Exception {
+		response.setContentType("text/html;charset=utf-8");
+		PrintWriter out = response.getWriter();
+		String id = mapper.findId(phone);
+		
+		if (id == null) {
+			out.println("<script>");
+			out.println("alert('가입된 아이디가 없습니다.');");
+			out.println("history.go(-1);");
+			out.println("</script>");
+			out.close();
+			return null;
+		} else {
+			return id;
+		}
 	}
 
 //	public void register(MemberVo user) {
