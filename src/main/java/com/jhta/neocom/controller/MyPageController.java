@@ -23,6 +23,7 @@ import com.jhta.neocom.service.SendBackService;
 import com.jhta.neocom.util.PageUtil;
 
 
+
 @RestController
 public class MyPageController {
     @Autowired
@@ -37,7 +38,6 @@ public class MyPageController {
 
     @RequestMapping(value = "/account/mypage_order", produces = { MediaType.APPLICATION_JSON_VALUE })
     public ModelAndView frontendMyPageOrder(Authentication authentication) {
-
         CustomUserDetails cud = (CustomUserDetails) authentication.getPrincipal();
         MemberVo vo = cud.getMemberVo();
         int mem_no = vo.getMem_no();

@@ -103,8 +103,13 @@
 			
 			<!-- forEach 끝 부분 -->
 		</div>
-		<div id="page"></div>
-		
+		<!-- 페이징  -->
+			<nav class="pagination" style="margin-top:20px;">
+		<div class="column" id="page"></div>
+		<div class="column" id="page1"></div>
+		<div class="column" id="page2"></div>
+		</nav>
+		<div class="mb-4"></div>
 	</div>
 	<!-- ///////////////////// 상품리스트 그리드 끝 ///////////////////// -->
 	
@@ -458,6 +463,267 @@
 						</li>
 					</ul>
 				</li>
+				<!-- 쿨러 시작 -->
+				<li class="has-children"><a href="#">${all[1].category_name }</a>
+					<ul>
+						<li><a href="#">${all[6].category_name }</a>
+							<ul>
+								<li><a href="#">${all[24].category_name }</a></li>
+								<li><a href="#">${all[25].category_name }</a></li>
+								<li><a href="#">${all[26].category_name }</a></li>
+								<li><a href="#">${all[27].category_name }</a></li>
+								<li><a href="#">${all[28].category_name }</a></li>
+								<li><a href="#">${all[29].category_name }</a></li>
+								<li><a href="#">${all[30].category_name }</a></li>
+								<li><a href="#">${all[31].category_name }</a></li>
+								<li><a href="#">${all[32].category_name }</a></li>
+								<li><a href="#">${all[33].category_name }</a></li>
+								<li><a href="#">${all[34].category_name }</a></li>
+								<li><a href="#">${all[35].category_name }</a></li>
+								<li><a href="#">${all[36].category_name }</a></li>
+								<li><a href="#">${all[37].category_name }</a></li>
+								<li><a href="#">${all[38].category_name }</a></li>
+								<li><a href="#">${all[39].category_name }</a></li>
+								<li><a href="#">${all[40].category_name }</a></li>
+								<li><a href="#">${all[41].category_name }</a></li>
+								<li><a href="#">${all[42].category_name }</a></li>
+								
+							
+							</ul>
+						</li>
+						<li><a href="#">${all[7].category_name }</a>
+							<ul>
+								<li><a href="#">${all[43].category_name }</a></li>
+								<li><a href="#">${all[44].category_name }</a></li>
+								
+							</ul>
+						</li>
+						<li><a href="#">${clist[8].category_name }</a>
+							<ul>
+								<li><a href="#">${all[45].category_name }</a></li>
+								<li><a href="#">${all[46].category_name }</a></li>
+								<li><a href="#">${all[47].category_name }</a></li>
+								<li><a href="#">${all[48].category_name }</a></li>								
+							</ul>
+						</li>
+						<li><a href="#">${all[9].category_name }</a>
+							<ul>
+								<li><a href="#">${all[49].category_name }</a></li>
+								<li><a href="#">${all[50].category_name }</a></li>
+								<li><a href="#">${all[51].category_name }</a></li>
+								
+							
+							</ul>
+						</li>
+						<li><a href="#">${all[10].category_name }</a>
+							<ul>
+								<li><a href="#">${all[52].category_name }</a></li>
+								<li><a href="#">${all[53].category_name }</a></li>
+								<li><a href="#">${all[54].category_name }</a></li>
+								<li><a href="#">${all[55].category_name }</a></li>
+								<li><a href="#">${all[56].category_name }</a></li>
+								<li><a href="#">${all[57].category_name }</a></li>
+								<li><a href="#">${all[58].category_name }</a></li>								
+							</ul>
+						</li>
+					</ul>
+				</li>
+				<!-- 쿨러 끝 -->
+
+			<!-- 컨트롤러 시작 -->
+				<li class="has-children"><a href="#">${all[2].category_name }</a>
+					<ul>
+						<li><a href="#">${all[11].category_name }</a>
+							<ul>
+								<li><a href="#">${all[59].category_name }</a></li>
+								<li><a href="#">${all[60].category_name }</a></li>
+								<li><a href="#">${all[61].category_name }</a></li>
+								<li><a href="#">${all[62].category_name }</a></li>
+								<li><a href="#">${all[63].category_name }</a></li>
+								<li><a href="#">${all[64].category_name }</a></li>
+								<li><a href="#">${all[65].category_name }</a></li>
+								<li><a href="#">${all[66].category_name }</a></li>
+								<li><a href="#">${all[67].category_name }</a></li>
+								<li><a href="#">${all[68].category_name }</a></li>
+								<li><a href="#">${all[69].category_name }</a></li>
+								<li><a href="#">${all[70].category_name }</a></li>
+								<li><a href="#">${all[71].category_name }</a></li>
+								
+								
+							
+							</ul>
+						</li>
+						<li><a href="#">${all[12].category_name }</a>
+							<ul>
+								<li><a href="#">${all[72].category_name }</a></li>
+								<li><a href="#">${all[73].category_name }</a></li>
+								<li><a href="#">${all[74].category_name }</a></li>
+								<li><a href="#">${all[75].category_name }</a></li>
+								<li><a href="#">${all[76].category_name }</a></li>
+								<li><a href="#">${all[77].category_name }</a></li>
+								<li><a href="#">${all[78].category_name }</a></li>
+								<li><a href="#">${all[79].category_name }</a></li>
+								<li><a href="#">${all[80].category_name }</a></li>
+								<li><a href="#">${all[81].category_name }</a></li>
+								<li><a href="#">${all[82].category_name }</a></li>
+								<li><a href="#">${all[83].category_name }</a></li>
+								<li><a href="#">${all[84].category_name }</a></li>
+								<li><a href="#">${all[85].category_name }</a></li>
+								<li><a href="#">${all[86].category_name }</a></li>
+								<li><a href="#">${all[87].category_name }</a></li>
+								<li><a href="#">${all[88].category_name }</a></li>
+								<li><a href="#">${all[89].category_name }</a></li>
+								<li><a href="#">${all[90].category_name }</a></li>
+								<li><a href="#">${all[91].category_name }</a></li>
+								<li><a href="#">${all[92].category_name }</a></li>
+															
+							</ul>
+						</li>
+						<li><a href="#">${clist[13].category_name }</a>
+							<ul>
+								<li><a href="#">${all[93].category_name }</a></li>
+								<li><a href="#">${all[94].category_name }</a></li>
+								<li><a href="#">${all[95].category_name }</a></li>
+								<li><a href="#">${all[96].category_name }</a></li>
+								<li><a href="#">${all[97].category_name }</a></li>
+								<li><a href="#">${all[98].category_name }</a></li>
+								<li><a href="#">${all[99].category_name }</a></li>
+								<li><a href="#">${all[100].category_name }</a></li>
+								<li><a href="#">${all[101].category_name }</a></li>
+								<li><a href="#">${all[102].category_name }</a></li>
+								<li><a href="#">${all[103].category_name }</a></li>
+								<li><a href="#">${all[104].category_name }</a></li>
+								<li><a href="#">${all[105].category_name }</a></li>
+								<li><a href="#">${all[106].category_name }</a></li>
+								<li><a href="#">${all[107].category_name }</a></li>
+								<li><a href="#">${all[108].category_name }</a></li>									
+							</ul>
+						</li>
+						<li><a href="#">${all[14].category_name }</a>
+							<ul>
+								<li><a href="#">${all[109].category_name }</a></li>
+							</ul>
+						</li>
+						
+					</ul>
+				</li>
+				<!-- 컨트롤러 끝 -->
+
+			<!-- 외장하드 시작 -->
+				<li class="has-children"><a href="#">${all[3].category_name }</a>
+					<ul>
+						<li><a href="#">${all[15].category_name }</a>
+							<ul>
+								<li><a href="#">${all[110].category_name }</a></li>
+								<li><a href="#">${all[111].category_name }</a></li>
+								<li><a href="#">${all[112].category_name }</a></li>
+								<li><a href="#">${all[113].category_name }</a></li>
+								<li><a href="#">${all[114].category_name }</a></li>
+								<li><a href="#">${all[115].category_name }</a></li>
+
+								
+								
+							
+							</ul>
+						</li>
+						<li><a href="#">${all[16].category_name }</a>
+							<ul>
+								<li><a href="#">${all[116].category_name }</a></li>
+								<li><a href="#">${all[117].category_name }</a></li>
+								<li><a href="#">${all[118].category_name }</a></li>
+								<li><a href="#">${all[119].category_name }</a></li>
+								<li><a href="#">${all[120].category_name }</a></li>
+								<li><a href="#">${all[121].category_name }</a></li>
+								
+															
+							</ul>
+						</li>
+						<li><a href="#">${clist[17].category_name }</a>
+							<ul>
+								<li><a href="#">${all[122].category_name }</a></li>
+								<li><a href="#">${all[123].category_name }</a></li>
+								<li><a href="#">${all[124].category_name }</a></li>
+								<li><a href="#">${all[125].category_name }</a></li>
+								<li><a href="#">${all[126].category_name }</a></li>
+								<li><a href="#">${all[127].category_name }</a></li>
+								<li><a href="#">${all[128].category_name }</a></li>
+								<li><a href="#">${all[129].category_name }</a></li>
+								<li><a href="#">${all[130].category_name }</a></li>
+								<li><a href="#">${all[131].category_name }</a></li>
+								<li><a href="#">${all[132].category_name }</a></li>
+								<li><a href="#">${all[133].category_name }</a></li>
+								<li><a href="#">${all[134].category_name }</a></li>
+									
+							</ul>
+						</li>
+						<li><a href="#">${all[18].category_name }</a>
+							<ul>
+								<li><a href="#">${all[135].category_name }</a></li>
+								<li><a href="#">${all[136].category_name }</a></li>
+							</ul>
+						</li>
+						
+					</ul>
+				</li>
+				<!-- 외장하드 끝 -->
+			<!-- 케이블 시작 -->
+				<li class="has-children"><a href="#">${all[4].category_name }</a>
+					<ul>
+						<li><a href="#">${all[19].category_name }</a>
+							<ul>
+								<li><a href="#">${all[137].category_name }</a></li>
+								<li><a href="#">${all[138].category_name }</a></li>
+								<li><a href="#">${all[139].category_name }</a></li>
+								
+
+								
+								
+							
+							</ul>
+						</li>
+						<li><a href="#">${all[20].category_name }</a>
+							<ul>
+								<li><a href="#">${all[140].category_name }</a></li>
+								<li><a href="#">${all[141].category_name }</a></li>
+								
+							</ul>
+						</li>
+						
+						
+					</ul>
+				</li>
+				<!-- 케이블 끝 -->
+
+				<!-- usb 시작 -->
+				<li class="has-children"><a href="#">${all[5].category_name }</a>
+					<ul>
+						<li><a href="#">${all[21].category_name }</a>
+							<ul>
+								<li><a href="#">${all[142].category_name }</a></li>
+								<li><a href="#">${all[143].category_name }</a></li>
+								<li><a href="#">${all[144].category_name }</a></li>
+								<li><a href="#">${all[145].category_name }</a></li>
+								<li><a href="#">${all[146].category_name }</a></li>
+								<li><a href="#">${all[147].category_name }</a></li>								
+								<li><a href="#">${all[148].category_name }</a></li>
+								
+								
+							
+							</ul>
+						</li>
+						<li><a href="#">${all[22].category_name }</a>
+							<ul>
+								<li><a href="#">${all[149].category_name }</a></li>
+								<li><a href="#">${all[150].category_name }</a></li>
+								
+							</ul>
+						</li>
+
+						
+						
+					</ul>
+				</li>
+				<!-- usb 끝 -->
 			</ul> 
 			
 			</section>
@@ -566,6 +832,7 @@
 			</section>
 		</aside>
 	</div>
+	
 	<!-- ///////////////////// 상품리스트 사이드바 끝 ///////////////////// -->
 </div>
 </div>
@@ -603,15 +870,16 @@ $(function(){
 	if(a=='10000')
 		{ 
 		list(1,"new",10000,keyword,minPrice,maxPrice);
+	
 		}
 	else 
 		list(1,"new",category_id,keyword,minPrice,maxPrice); 
-	
+		
 	
 	$("#order").change(function(){
 		
 		var order=$(this).val(); 
-		console.log(order);
+		
 		list(1,order,category_id,keyword,minPrice,maxPrice); 
 		   
 	}); //option값 가져오기 
@@ -695,25 +963,52 @@ $(function(){
 				});
 				}
 				//페이징 처리
+				$("#page").empty();
+				$("#page1").empty();
+				$("#page2").empty();
 				let startPage=data.startPageNum;
 				let endPage=data.endPageNum;
+				let prev=data.prev;
+				let next=data.next;
 				
-				let pageCount=data.totalPageCount;
+				
+				
+				console.log("order=="+order);
+				 console.log("minPrice=="+minPrice);
+				 console.log("maxPrice=="+maxPrice);
+				 console.log("keyword=="+keyword);
+				 console.log("category_id=="+category_id)
+				let pageCount=data.pageCount;
+			
 				let pageHtml="";
-				if(startPage>5){
-					pageHtml += "<a href='javascript:list("+ (startPage-1) + ")'>이전</a>";
+				let pageHtml2="";
+				let pageHtml3="";
+				if(prev==true){
+					pageHtml += "<a class='btn btn-outline-secondary btn-sm' href='javascript:list("+ (startPage-1)+",order,category_id,keyword,minPrice,maxPrice)'><i class='icon-chevron-left'></i>이전</a>";
+				}else{
+					pageHtml += "<a class='btn btn-outline-secondary btn-sm disabled'><i class='icon-chevron-left'></i> 이전</a>";
 				}
+				
+				pageHtml2 +="<ul class='pages' style='margin-top:20px;'>";
 				for(let i=startPage;i<=endPage;i++){
-					if(i==pageNum){
-						pageHtml += "<a href='javascript:list("+ i + ")'><span style='color:blue' >"+ i + "</span></a> ";
-					}else{
-						pageHtml += "<a href='javascript:list("+ i + ")'><span style='color:gray' >"+ i + "</span></a> ";
+					if(pageNum==i){
+						
+						pageHtml2 +="<li class='active'>";
+						pageHtml2 += "<a href='javascript:list("+ i +","+order+","+category_id+","+keyword+","+minPrice+","+maxPrice+");'>"+ i + "</a> ";
+						pageHtml2 +="</li>";
+					}else{                                 
+						pageHtml2 += "<a href='javascript:list("+ i +","+order+","+category_id+","+keyword+","+minPrice+","+maxPrice+");'>"+ i + "</a> ";
 					}	
 				}
-				if(endPage<pageCount){
-					pageHtml += "<a href='javascript:list("+ (endPage+1) + ")'>다음</a>";
+				
+				if(next==true){
+					pageHtml3 += "<a class='btn btn-outline-secondary btn-sm' href='javascript:list("+ (endPage+1)+",order,category_id,keyword,minPrice,maxPrice)'>다음<i class='icon-chevron-right'></i></a>";
+				}else{
+					pageHtml3 += "<a class='btn btn-outline-secondary btn-sm disabled'>다음 <i class='icon-chevron-right'></i></a>";
 				}
-				$("#page").html(pageHtml);
+				$("#page").append(pageHtml);
+				$("#page1").append(pageHtml2);
+				$("#page2").append(pageHtml3);
 			}		
 		});	
 	}

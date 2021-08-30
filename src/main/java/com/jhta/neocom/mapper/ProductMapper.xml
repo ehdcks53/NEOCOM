@@ -85,7 +85,7 @@
                   on aa.product_id= bb.product_id
 				<include refid="cate"/>	
 		)a where img_category='main' <include refid="price"/>	
-        limit #{startRow},10
+        limit #{startRow},5
 	</select>
 
 	<update id="update" parameterType="ProductVo">
