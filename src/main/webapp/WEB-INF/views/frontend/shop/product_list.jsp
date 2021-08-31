@@ -99,10 +99,16 @@
 		<input type="hidden" id="category_id" value="${category_id}" >
 		<div id="commList">
 	        
-          </div>
-
-		<div id="page"></div>
-		
+    		
+			<!-- forEach 끝 부분 -->
+		</div>
+		<!-- 페이징  -->
+			<nav class="pagination" style="margin-top:20px; ">
+		<div class="column" id="page"></div>
+		<div class="column" id="page1"></div>
+		<div class="column" id="page2"></div>
+		</nav>
+		<div class="mb-4"></div>
 	</div>
 	<!-- ///////////////////// 상품리스트 그리드 끝 ///////////////////// -->
 	
@@ -122,7 +128,7 @@
 			
 			<ul>
 					<!-- cpu 시작 -->
-				<li class="has-children expanded"><a href="#">${clist[1].category_name }</a>
+				<li class="has-children expanded" id="cpu_li"><a href="#">${clist[1].category_name }</a>
 					<ul>
 						<li><a href="#">${clist[8].category_name }</a>
 							<ul>
@@ -168,7 +174,7 @@
 				</li> 
 				<!-- cpu 끝 -->
 				<!-- 메인보드 시작 -->
-				<li class="has-children"><a href="#">${clist[2].category_name }</a>
+				<li class="has-children" id="main_li"><a href="#">${clist[2].category_name }</a>
 					<ul>
 						<li><a href="#">${clist[12].category_name }</a>
 							<ul>
@@ -226,7 +232,7 @@
 				</li>
 				<!-- 메인보드 끝 -->
 				<!-- 램 시작-->
-				<li class="has-children"><a href="#">${clist[3].category_name }</a>
+				<li class="has-children" id="ram_li"><a href="#">${clist[3].category_name }</a>
 					<ul>
 						<li><a href="#">${clist[17].category_name }</a>
 							<ul>
@@ -268,7 +274,7 @@
 				</li>
 				<!-- 램 끝 -->
 				<!-- 그래픽카드 시작 -->
-				<li class="has-children"><a href="#">${clist[4].category_name }</a>
+				<li class="has-children"  id="vga_li"><a href="#">${clist[4].category_name }</a>
 					<ul>
 						<li><a href="#">${clist[22].category_name }</a>
 							<ul>
@@ -318,7 +324,7 @@
 				</li>
 				<!-- 그래픽카드 끝 -->
 				<!--  ssd 시작 -->
-				<li class="has-children"><a href="#">${clist[5].category_name }</a>
+				<li class="has-children" id="ssd_li"><a href="#">${clist[5].category_name }</a>
 					<ul>
 						<li><a href="#">${clist[27].category_name }</a>
 							<ul>
@@ -370,7 +376,7 @@
 				</li>
 				<!-- ssd 끝 -->
 				<!-- hdd 시작 -->
-				<li class="has-children"><a href="#">${clist[6].category_name }</a>
+				<li class="has-children" id="hdd_li"><a href="#">${clist[6].category_name }</a>
 					<ul>
 						<li><a href="#">${clist[32].category_name }</a>
 							<ul>
@@ -382,7 +388,7 @@
 								<li><a href="${pageContext.request.contextPath }/shop/product_list?category_id=213">${clist[149].category_name }</a></li>
 							</ul>
 						</li>
-						<li><a href="#">${clist[33].category_name }</a>
+						<li><a href="#" id="power_li">${clist[33].category_name }</a>
 							<ul>
 								<li><a href="${pageContext.request.contextPath }/shop/product_list?category_id=214">${clist[150].category_name }</a></li>
 								<li><a href="${pageContext.request.contextPath }/shop/product_list?category_id=215">${clist[151].category_name }</a></li>
@@ -421,7 +427,7 @@
 				</li>
 				<!-- hdd 끝 -->
 				<!-- power 시작 -->
-				<li class="has-children"><a href="#">${clist[7].category_name }</a>
+				<li class="has-children" id="cool_li"><a href="#">${clist[7].category_name }</a>
 					<ul>
 						<li><a href="#">${clist[37].category_name }</a>
 							<ul>
@@ -458,7 +464,7 @@
 					</ul>
 				</li>
 				<!-- 쿨러 시작 -->
-				<li class="has-children"><a href="#">${all[1].category_name }</a>
+				<li class="has-children" id="con_li"><a href="#">${all[1].category_name }</a>
 					<ul>
 						<li><a href="#">${all[6].category_name }</a>
 							<ul>
@@ -525,7 +531,7 @@
 				<!-- 쿨러 끝 -->
 
 			<!-- 컨트롤러 시작 -->
-				<li class="has-children"><a href="#">${all[2].category_name }</a>
+				<li class="has-children" id="ext_li"><a href="#">${all[2].category_name }</a>
 					<ul>
 						<li><a href="#">${all[11].category_name }</a>
 							<ul>
@@ -604,7 +610,7 @@
 				<!-- 컨트롤러 끝 -->
 
 			<!-- 외장하드 시작 -->
-				<li class="has-children"><a href="#">${all[3].category_name }</a>
+				<li class="has-children" id="cab_li"><a href="#">${all[3].category_name }</a>
 					<ul>
 						<li><a href="#">${all[15].category_name }</a>
 							<ul>
@@ -661,7 +667,7 @@
 				</li>
 				<!-- 외장하드 끝 -->
 			<!-- 케이블 시작 -->
-				<li class="has-children"><a href="#">${all[4].category_name }</a>
+				<li class="has-children" id="usb_li"><a href="#">${all[4].category_name }</a>
 					<ul>
 						<li><a href="#">${all[19].category_name }</a>
 							<ul>
@@ -850,6 +856,36 @@
 	<script type="text/javascript">
 $(function(){
 	
+
+	var g=${param.category_id}; 
+	if(g>=101 && g<=121){
+		$("#cpu_li").addClass("expanded");
+	}else if(g>=122 && g<=145){
+		$("#main_li").addClass("expanded");
+	}else if(g>=149 && g<=161){
+		$("#ram_li").addClass("expanded");
+	}else if(g>=162 && g<=181) {
+		$("#vga_li").addClass("expanded");
+	}else if(g>=182 && g<=207){
+		$("#ssd_li").addClass("expanded");
+	}else if(g>=208 && g<=232){
+		$("#hdd_li").addClass("expanded");
+	}else if(g>=233 && g<=248){
+		$("#power_li").addClass("expanded");
+	}else if(g>=249 && g<=283) {
+		$("#cool_li").addClass("expanded");
+	}else if(g>=284 && g<=334){
+		$("#con_li").addClass("expanded");
+	}else if(g>=335 && g<=361) {
+		$("#ext_li").addClass("expanded");
+	}else if(g>=362 && g<=366) {
+		$("#cab_li").addClass("expanded");
+	}else if(g>=367 && g<=375) {
+		$("#usb_li").addClass("expanded");
+	}else {
+		$(".sec-ul li").removeClass("expanded");
+	}
+	
 	
 	var category_id=$("#category_id").val();
 	var a='${param.category_id}';
@@ -963,25 +999,56 @@ $(function(){
 				});
 				}
 				//페이징 처리
+				$("#page").empty();
+				$("#page1").empty();
+				$("#page2").empty();
 				let startPage=data.startPageNum;
 				let endPage=data.endPageNum;
+				let prev=data.prev;
+				let next=data.next;
 				
-				let pageCount=data.totalPageCount;
+				
+				
+				console.log("order=="+order);
+				 console.log("minPrice=="+minPrice);
+				 console.log("maxPrice=="+maxPrice);
+				 console.log("keyword=="+keyword);
+				 console.log("category_id=="+category_id)
+				let pageCount=data.pageCount;
+			
 				let pageHtml="";
-				if(startPage>5){
-					pageHtml += "<a href='javascript:list("+ (startPage-1) + ")'>이전</a>";
+				let pageHtml2="";
+				let pageHtml3="";
+				if(prev==true){
+					pageHtml += "<a class='btn btn-outline-secondary btn-sm' href=\"javascript:list("+ (startPage-1)+",'"+order+"',"+category_id+",'"+keyword+"',"+minPrice+","+maxPrice+");\"><i class='icon-chevron-left'></i>이전</a>";
+				}else{
+					pageHtml += "<a class='btn btn-outline-secondary btn-sm disabled'><i class='icon-chevron-left'></i> 이전</a>";
 				}
+				
+				pageHtml2 +="<ul class='pages' style='margin-top:20px;'>";
 				for(let i=startPage;i<=endPage;i++){
-					if(i==pageNum){
-						pageHtml += "<a href='javascript:list("+ i + ")'><span style='color:blue' >"+ i + "</span></a> ";
+					if(pageNum==i){
+						
+						pageHtml2 +="<li class='active'>";
+						pageHtml2 += "<a href=\"javascript:list("+ i +",'"+order+"',"+category_id+",'"+keyword+"',"+minPrice+","+maxPrice+");\">"+ i + "</a> ";
+
+						pageHtml2 +="</li>";
 					}else{
-						pageHtml += "<a href='javascript:list("+ i + ")'><span style='color:gray' >"+ i + "</span></a> ";
+						pageHtml2 +="<li>";
+						pageHtml2 += "<a href=\"javascript:list("+ i +",'"+order+"',"+category_id+",'"+keyword+"',"+minPrice+","+maxPrice+");\">"+ i + "</a> ";
+						pageHtml2 +="</li>";
 					}	
 				}
-				if(endPage<pageCount){
-					pageHtml += "<a href='javascript:list("+ (endPage+1) + ")'>다음</a>";
+				pageHtml2 +="</ul>";
+				
+				if(next==true){
+					pageHtml3 += "<a class='btn btn-outline-secondary btn-sm' href=\"javascript:list("+ (endPage+1)+",'"+order+"',"+category_id+",'"+keyword+"',"+minPrice+","+maxPrice+");\"><i class='icon-chevron-right'></i>다음</a>";
+				}else{
+					pageHtml3 += "<a class='btn btn-outline-secondary btn-sm disabled'>다음 <i class='icon-chevron-right'></i></a>";
 				}
-				$("#page").html(pageHtml);
+				$("#page").append(pageHtml);
+				$("#page1").append(pageHtml2);
+				$("#page2").append(pageHtml3);
 			}		
 		});	
 	}

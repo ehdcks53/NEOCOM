@@ -20,5 +20,7 @@ public interface ReviewMapper {
 	double getAvgStar(int product_id);
 	int getCountStar(HashMap<String,Integer> map);
 	List<HashMap<String,Integer>> getStar(int product_id);
+	List<HashMap<String,Object>> mylist(int mem_no);
+	int getmycnt(int mem_no);
 
 }

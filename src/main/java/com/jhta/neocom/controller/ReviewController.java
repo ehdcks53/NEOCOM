@@ -98,6 +98,7 @@ public class ReviewController {
 
 		return "frontend/community/review_list";
 	}
+	
 
 	// 리뷰게시판 상세 페이지 이동
 	@RequestMapping(value = "/review_detail", method = RequestMethod.GET)

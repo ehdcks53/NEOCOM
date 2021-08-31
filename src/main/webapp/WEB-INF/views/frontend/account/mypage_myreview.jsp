@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -63,9 +65,47 @@
 	<div class="col-lg-9 col-md-8 order-md-2">
 		<h6 class="text-muted text-lg text-uppercase">나의 리뷰</h6>
 		<hr class="margin-bottom-1x">
+		<div class="table-responsive wishlist-table mb-0">
+			<div class="row mb-2" style="margin-left:5px;">
+				<!--
+				<input value="${startDate }" type="date" id="startDate" name="startDate" class="form-control col-md-3">
+				<span>~</span>
+				<input value="${endDate }" type="date" id="endDate" name="endDate" class="form-control col-md-3">
+				 -->
+			</div>
+			
+			
+			
+			<table class="table">
+				<thead>
+					<tr>
+						<th width="10%" class="text-center">상품번호</th>
+						<th width="60%" class="text-center">제목</th>
+						<th width="25%" class="text-center">등록일자</th>
+						<th width="15%" class="text-center">이미지 </th>
+					</tr>
+				</thead>
+				<tbody>
+				<c:forEach var="vo" items="${list }">
+					<tr>
+						<td></td>
+						<td>
+							<a href="${pageContext.request.contextPath }/reivew_detail?board_num=${vo.board_num}">
+								${vo.review_title }
+							</a>
+						</td>
+						<td class="text-center"><fmt:parseDate value="${vo.regdate }" var="regdate" pattern="yyyy-MM-dd'T'HH:mm:ss" /><fmt:formatDate value="${regdate }" pattern="yyyy-MM-dd HH:mm:ss" /></td>
+						<td class="text-center">
+							<img  src="<c:url value='/upload/review_img/${vo.review_img}' />"
+							alt="<c:url value='/upload/product_img/${vo.review_img}' />" />
+						</td>
+					</tr>
+				</c:forEach>
+				</tbody>
+			</table>
 		
-	</div>	
-	
+		</div>
+		</div>
 </div>
 </div>
 <!-- 페이지 컨텐트 끝 -->

@@ -136,7 +136,7 @@ a {
 							<c:forEach var="item" items="${advboardlist}">
 								<tr>
 									<c:choose>
-										<c:when test="${item.adv_show  }==1">
+										<c:when test="${item.adv_show eq true }">
 											<td colspan="5" class="text-left">
 											<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; [ ${item.adv_title } ]</span>
 											</td>

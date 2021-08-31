@@ -34,7 +34,9 @@ import com.jhta.neocom.service.AdressService;
 import com.jhta.neocom.model.WishlistVo;
 import com.jhta.neocom.service.MemberService;
 import com.jhta.neocom.service.QnABoardService;
+import com.jhta.neocom.service.ReviewService;
 import com.jhta.neocom.service.WishlistService;
+import com.jhta.neocom.util.PageUtil;
 
 import ch.qos.logback.classic.Logger;
 
@@ -50,7 +52,7 @@ public class MyPageOtherController {
 	private AdressService adressService;
 	@Autowired
 	private BCryptPasswordEncoder bCryptPasswordEncoder;
-	
+	@Autowired private ReviewService r_service;
 	
 	//마이페이지 배송지관리
 	@RequestMapping(value = "/account/mypage_delivery")
@@ -193,9 +195,33 @@ public class MyPageOtherController {
     }
 
     @RequestMapping(value = "/account/mypage_myreview")
-    public String frontendMyPageMyreview() {
-        return "frontend/account/mypage_myreview";
-    }
+    public String frontendMyPageMyreview(@RequestParam(value = "pageNum", defaultValue = "1") int pageNum, 
+			Model model, HashMap<String, Object> map, Authentication authentication) {
+		
+		
+		
+			CustomUserDetails cud = (CustomUserDetails) authentication.getPrincipal();
+			MemberVo mvo = cud.getMemberVo();
+			map.put("mem_no", mvo.getMem_no()); // 세션에 있는 로그인 정보 가져오기
+
+			int totalRowCount = r_service.getmycnt(mvo.getMem_no()); // 전체 글 개수
+			PageUtil pu = new PageUtil(pageNum, 3, 3, totalRowCount);
+			int startRow = pu.getStartRow() - 1;
+	
+
+			map.put("startRow", startRow);
+
+
+			model.addAttribute("list", r_service.mylist(mvo.getMem_no()));
+			model.addAttribute("pu", pu);
+			
+		
+		
+	
+		
+
+		return "frontend/account/mypage_myreview";
+	}
     //회원정보수정페이지
     @RequestMapping(value = "/account/mypage_modify", method = RequestMethod.GET)
     public ModelAndView frontendMyPageModify(String id) {
