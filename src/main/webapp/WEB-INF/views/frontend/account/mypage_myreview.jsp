@@ -75,7 +75,9 @@
 			</div>
 			
 			
-			<c:when test=""></c:when>
+		
+		
+			
 			<table class="table">
 				<thead>
 					<tr>
@@ -103,6 +105,7 @@
 				</c:forEach>
 				</tbody>
 			</table>
+			
 					<!-- 페이징 -->
 		<nav class="pagination" style="margin-top:20px;">
 			<div class="column">

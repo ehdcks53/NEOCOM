@@ -95,7 +95,7 @@
 				<ul class="breadcrumbs">
 					<li><a href="${pageContext.request.contextPath}/">Home</a></li>
 					<li class="separator">&nbsp;</li>
-					<li><a href="#">Shop</a></li>
+					<li><a href="${pageContext.request.contextPath}/shop/product_grid?category_id=20000">Shop</a></li>
 					<li class="separator">&nbsp;</li>
 					<li>Product Detail</li>
 				</ul>
