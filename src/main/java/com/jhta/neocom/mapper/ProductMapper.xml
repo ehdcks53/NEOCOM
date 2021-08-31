@@ -41,7 +41,14 @@
 						<if test="order=='name_high'">order by product_name asc </if>
 						<if test="order=='name_low'">order by product_name desc </if> 
 				</when>
-				
+				<when test="category_id==1500"> <!-- 주변기기 다  -->
+					where category_id between 10 and 15
+						<if test="order=='new'">order by product_id desc</if>
+						<if test="order=='low'">order by selling_price asc </if>
+						<if test="order=='high'">order by selling_price desc </if>
+						<if test="order=='name_high'">order by product_name asc </if>
+						<if test="order=='name_low'">order by product_name desc </if> 
+				</when>
 				<otherwise>
 				<if test="category_id!=null and category_id!=''"> <!-- 그 이외에 -->
 					where category_id=#{category_id}
@@ -54,6 +61,15 @@
 				</if>
 				</otherwise>
 				</choose>
+		</sql>
+		<sql id="find">
+				<if test="category_id!=null and category_id!=''"> <!-- 상품 세부 선택 -->
+					<if test="order=='new'">order by product_id desc</if>
+					<if test="order=='low'">order by selling_price asc </if>
+					<if test="order=='high'">order by selling_price desc </if>
+					<if test="order=='name_high'">order by product_name asc </if>
+					<if test="order=='name_low'">order by product_name desc </if> 
+				</if>
 		</sql>
 	
 		<!--해당 전체 상품의 갯수 -->
@@ -85,7 +101,7 @@
                   on aa.product_id= bb.product_id
 				<include refid="cate"/>	
 		)a where img_category='main' <include refid="price"/>	
-        limit #{startRow},5
+        limit #{startRow},7
 	</select>
 
 	<update id="update" parameterType="ProductVo">
@@ -125,5 +141,16 @@
   		select * from product p inner join buy_option b on p.product_id=b.product_id where optionName=#{optionName}
   	</select>
 
+	<select id="findcate" parameterType="hashmap" resultType="hashmap">
+	select a.* from (select p.product_id,p.product_name,p.selling_price,p.availability,p.regdate,i.img_name_save,i.img_name_origin,i.uploadPath,i.img_category,c.category_id 
+	from product p inner join product_img i on p.product_id=i.product_id 
+	inner join category_rel c on p.product_id=c.product_id 
+	where c.category_id= #{category_id} <include refid="find"/>
+		)a
+	where img_category='main' <include refid="price"/>	
+	</select>
 
+	<select id="extra" parameterType="hashmap" resultType="hashmap">
+		
+	</select>
 </mapper>

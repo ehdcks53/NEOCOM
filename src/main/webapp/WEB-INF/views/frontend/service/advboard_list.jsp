@@ -135,6 +135,7 @@ a {
 						<tbody>
 							<c:forEach var="item" items="${advboardlist}">
 								<tr>
+<<<<<<< HEAD
 					<c:choose>
 						<c:when test="${item.adv_show eq true}">
 							<td></td>	
@@ -180,6 +181,7 @@ a {
 				</tbody>
 			</table>
 		</div>
+
 
 				<!-- 페이징 -->
 				<nav class="pagination" style="margin-top: 20px;">

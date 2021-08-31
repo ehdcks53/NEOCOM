@@ -100,7 +100,7 @@
 					
 						
 						<tr>
-						<td  colspan="3"><img  src="<c:url value='/upload/product_img/${rvo.review_img}' />"
+						<td  colspan="3"><img  src="<c:url value='/upload/review_img/${rvo.review_img}' />"
 							alt="<c:url value='/upload/product_img/${rvo.review_img}' />" /></td>
 						<td colspan="10">
 							<p>${rvo.review_content }</p>
