@@ -47,9 +47,9 @@ public class Join2Controller {
 		}
 		System.out.println("오예성공");
 		memberVo.setPassword(bCryptPasswordEncoder.encode(memberVo.getPassword()));
-		MemberVo vo = new MemberVo(memberVo.getMem_no(), memberVo.getNickname(), memberVo.getEmail(),
-				memberVo.getPhone(), memberVo.getBirth_date(), null, memberVo.getName(), memberVo.getId(),
-				memberVo.getPassword(), memberVo.getRoles());
+//		MemberVo vo = new MemberVo(memberVo.getMem_no(), memberVo.getNickname(), memberVo.getEmail(),
+//				memberVo.getPhone(), memberVo.getBirth_date(), null, memberVo.getName(), memberVo.getId(),
+//				memberVo.getPassword(), memberVo.getRoles());
 		service.insert(memberVo);
 		service.insert_role(memberVo.getMem_no());
 		return "/frontend/account/join3";
