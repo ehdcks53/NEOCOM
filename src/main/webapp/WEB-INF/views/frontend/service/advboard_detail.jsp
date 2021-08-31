@@ -133,7 +133,7 @@
 				</c:if>
 				</sec:authorize>
 				
-				<c:if test="${mvo.mem_no != 1 && mvo.mem_no != 2 }">
+				<c:if test="${mvo.mem_no != 1 && mvo.mem_no != 2  }">
 					<div style="margin-left:30px;">
 						<a class="btn btn-outline-secondary btn-sm" id="prevAtag" href="${pageContext.request.contextPath }/service/advboard_reply?adv_board_no=${map.adv_board_no}">
 							재문의하기
@@ -141,7 +141,7 @@
 					</div>
 				</c:if>
 				
-				<c:if test="${map.mem_no == mvo.mem_no }">
+				<c:if test="${map.mem_no == mvo.mem_no && map.mem_no=1 && map.mem_no=2 }">
 					<div class="ml-md-auto" style="margin-right:30px;">
 						<a class="btn btn-outline-secondary btn-sm" id="nextAtag" href="${pageContext.request.contextPath }/service/advboard_update?adv_board_no=${map.adv_board_no}">
 							수정
