@@ -9,7 +9,6 @@ import javax.servlet.ServletResponse;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-
 import org.hibernate.internal.build.AllowSysOut;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
@@ -28,12 +27,12 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
-import com.jhta.neocom.model.AdressVo;
+import com.jhta.neocom.model.AddressVo;
 import com.jhta.neocom.model.CustomUserDetails;
 import com.jhta.neocom.model.MemberVo;
-import com.jhta.neocom.service.AdressService;
 import com.jhta.neocom.model.WishlistVo;
+import com.jhta.neocom.service.AddressService;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import com.jhta.neocom.service.MemberService;
 import com.jhta.neocom.service.QnABoardService;
 import com.jhta.neocom.service.ReviewService;
@@ -47,16 +46,17 @@ import ch.qos.logback.classic.Logger;
 @Controller
 public class MyPageOtherController {
 	@Autowired
-	private MemberService memberService;
-	@Autowired
+    private MemberService memberService;
+	@Autowired 
 	private QnABoardService qna_service;
+	@Autowired 
+	private WishlistService wishlist_service;	
 	@Autowired
-	private WishlistService wishlist_service;
-	@Autowired
-	private AdressService adressService;
+	private AddressService adressService;
 	@Autowired
 	private BCryptPasswordEncoder bCryptPasswordEncoder;
 	@Autowired private ReviewService r_service;
+
 	// 마이페이지 배송지관리
 	@RequestMapping(value = "/account/mypage_delivery")
 	public String frontendMyPageDelivery(Authentication auth, Model model) {
@@ -64,11 +64,10 @@ public class MyPageOtherController {
 		CustomUserDetails cud = (CustomUserDetails) auth.getPrincipal();
 		String id = cud.getUsername();
 		System.out.println(id);
-		List<AdressVo> list = adressService.addrList(id);
-		model.addAttribute("list", list);
-		System.out.println("리스트:" + list);
-		return "frontend/account/mypage_delivery";
-
+		List<AddressVo> list=adressService.addrList(id);
+		model.addAttribute("list",list); 
+		System.out.println("리스트:"+list);
+        return "frontend/account/mypage_delivery";
 	}
 
 	// 마이페이지 배송지추가
@@ -79,8 +78,8 @@ public class MyPageOtherController {
 
 	// 배송지 추가,리스트 재출력
 	@PostMapping("/account/delivery")
-	public String Plusdelivery(AdressVo vo, Model model, Authentication auth) {
-		System.out.println("auth:" + auth);
+	public String Plusdelivery(AddressVo vo,Model model,Authentication auth) {
+		System.out.println("auth:"+auth);
 		System.out.println("우편추가시작");
 		System.out.println("우편:" + vo.getZip_code() + "주소1:" + vo.getAddress() + "주소2:" + vo.getAdress_detail());
 
@@ -90,8 +89,8 @@ public class MyPageOtherController {
 		int mem_no = mvo.getMem_no();
 		vo.setMem_no(mem_no);
 		adressService.addrTest(vo);
-		List<AdressVo> list = adressService.addrList(id);
-		model.addAttribute("list", list);
+		List<AddressVo> list=adressService.addrList(id);
+		model.addAttribute("list",list); 
 		return "frontend/account/mypage_delivery";
 	}
 
@@ -106,14 +105,13 @@ public class MyPageOtherController {
 
 	// 배송지 수정및 리스트 재출력
 	@PostMapping("/account/modifyDel")
-	public String modifyDel(AdressVo vo, Authentication auth, Model model, int addr_no) {
+	public String modifyDel(AddressVo vo, Authentication auth, Model model, int addr_no) {
 		System.out.println(addr_no);
 		System.out.println(vo);
-
 		CustomUserDetails cud = (CustomUserDetails) auth.getPrincipal();
 		String id = cud.getUsername();
 		adressService.addrModify(vo);
-		List<AdressVo> list=adressService.addrList(id);
+		List<AddressVo> list=adressService.addrList(id);
 		model.addAttribute("list",list); 
 		return "frontend/account/mypage_delivery";
 	}
