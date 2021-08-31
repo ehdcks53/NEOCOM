@@ -85,6 +85,10 @@
 			<input class="form-control" type="text" name="name" value="${vo.name }">
 		</div>
 		<div class="form-group input-group">
+			이메일
+			<input class="form-control" type="text" name="email" value="${vo.email }">
+		</div>
+		<div class="form-group input-group">
 			휴대폰번호
 			<input class="form-control" type="text" name="phone" value="${vo.phone }">
 		</div>
@@ -104,6 +108,7 @@
 		</form>	
 		<form action="${pageContext.request.contextPath }/account/pwdmodify">
 		<div class="text-center text-sm-right">					
+			<input class="form-control" type="hidden" name="id" readonly="readonly" value="${vo.id }">
 			<input class="form-control" type="hidden" name="password" readonly="readonly" value="${vo.password }">		
 			<button class="btn btn-primary margin-bottom-none" type="submit">비밀번호변경</button>
 		</div>	

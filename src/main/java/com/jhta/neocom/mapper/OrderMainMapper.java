@@ -12,6 +12,8 @@ public interface OrderMainMapper {
 
 	int searchno(HashMap<String, Object> map);
 
+	OrderMainVo searchOrderMain(int order_no);
+	
 	OrderMainVo searchRndNo(HashMap<String, Object> map);
 
 	int update(HashMap<String, Object> map);

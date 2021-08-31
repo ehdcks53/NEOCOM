@@ -170,12 +170,12 @@
 							<td class="text-center"><input type="checkbox"
 								name="cart_no" class="cart_nos" value="${vo.cart_no}"></td>
 							<td class="text-center text-lg"><img width=100; height=100;
-								src="<c:url value='/upload/product_img/${vo.img_name_save}' />"
-								alt="<c:url value='/upload/product_img/${vo.img_name_save}' />" />
+								src="<c:url value='/upload/product_img/${vo.uploadPath}/${vo.img_name_save}' />"
+								alt="<c:url value='/upload/product_img/${vo.uploadPath}/${vo.img_name_save}' />" />
 							</td>
-							<td class="text-center text-lg" style="font-size: 21px;">
+							<td class="text-center text-lg" style="font-size: 15px;">
 								${vo.product_name }</td>
-							<td class="text-center text-lg">${vo.selling_price } 원</td>
+							<td class="text-center text-lg" style="font-size: 15px;">${vo.selling_price } 원</td>
 							<td class="text-center">
 								<div class="count-input">
 									<p style="display: table; margin: 0 auto;">
@@ -193,7 +193,7 @@
 									</a>
 								</div>
 							</td>
-							<td class="text-center text-lg">${vo.product_count*vo.selling_price } 원</td>
+							<td class="text-center text-lg" style="font-size: 15px;">${vo.product_count*vo.selling_price } 원</td>
 							<td class="text-center text-lg"><a class="remove-from-cart"
 								onclick="remove(${vo.cart_no})" data-toggle="tooltip" title="삭제"><i
 									class="icon-x"></i></a></td>
@@ -210,31 +210,12 @@
 			<div class="column">
 				<form class="coupon-form" method="post">
 					<input class="form-control form-control-sm" type="text"
-						placeholder="Coupon code" required>
-					<button class="btn btn-outline-primary btn-sm" type="submit">Apply
-						Coupon</button>
+						placeholder="쿠폰 번호" required>
+					<button class="btn btn-outline-primary btn-sm" type="submit">쿠폰 조회
+						</button>
 				</form>
 			</div>
 
-			<!--  <button type="button" class="btn btn-outline btn-primary pull-right" id="selectBtn">선택</button>	
-	        <table>
-	        	<thead>
-	        		<tr>
-	        			<th>상품 금액</th>
-	        			<th>배송비</th>
-	        			<th>할인 금액</th>
-	        			<th>총 결제금액</th>	
-	        		</tr>
-	        	</thead>
-	        	<tr>
-	        		<td>ab</td>
-	        		<td>2500원</td>
-	        		<td></td>
-	        		<td> 원</td>
-	        	</tr>
-	        </table>
-	        <div id="ex1"></div>
-	        <div id="ex2"></div>	-->
 
 			<div class="column text-lg">
 				<span class="text-muted">총액 :&nbsp;<input type="text"
@@ -255,7 +236,7 @@
 
 				<form id="cart_nos_form" method="post"
 					action="${pageContext.request.contextPath}/member/purchase1">
-					<input type="submit" class="btn btn-primary" value="구매하기">
+					<input type="submit" id="purchase_btn" class="btn btn-primary" value="구매하기">
 				</form>
 			</div>
 
@@ -263,8 +244,8 @@
 		</div>
 
 		<!-- Related Products Carousel-->
-		<h3 class="text-center padding-top-2x mt-2 padding-bottom-1x">★★추천
-			상품★★(You May Also Like)</h3>
+		<h2 class="text-center padding-top-2x mt-2 padding-bottom-1x">★★추천
+			상품★★</h2>
 		<!-- Carousel-->
 		<div class="owl-carousel"
 			data-owl-carousel="{ &quot;nav&quot;: false, &quot;dots&quot;: true, &quot;margin&quot;: 30, &quot;responsive&quot;: {&quot;0&quot;:{&quot;items&quot;:1},&quot;576&quot;:{&quot;items&quot;:2},&quot;768&quot;:{&quot;items&quot;:3},&quot;991&quot;:{&quot;items&quot;:4},&quot;1200&quot;:{&quot;items&quot;:4}} }">
@@ -281,15 +262,13 @@
 						<a href="shop-single.html">무선 마우스</a>
 					</h3>
 					<h4 class="product-price">
-						<del>$62.00</del>
-						$49.99
+						<del>5900 원</del>
+						590원
 					</h4>
 				</div>
 				<div class="product-button-group">
 					<a class="product-button btn-wishlist" href="#"><i
 						class="icon-heart"></i><span>Wishlist</span></a><a
-						class="product-button btn-compare" href="#"><i
-						class="icon-repeat"></i><span>Compare</span></a><a
 						class="product-button" href="#" data-toast
 						data-toast-type="success" data-toast-position="topRight"
 						data-toast-icon="icon-check-circle" data-toast-title="Product"
@@ -308,13 +287,11 @@
 					<h3 class="product-title">
 						<a href="shop-single.html">헤드폰 W855BT Bluetooth</a>
 					</h3>
-					<h4 class="product-price">$99.75</h4>
+					<h4 class="product-price">50 원</h4>
 				</div>
 				<div class="product-button-group">
 					<a class="product-button btn-wishlist" href="#"><i
 						class="icon-heart"></i><span>Wishlist</span></a><a
-						class="product-button btn-compare" href="#"><i
-						class="icon-repeat"></i><span>Compare</span></a><a
 						class="product-button" href="#" data-toast
 						data-toast-type="success" data-toast-position="topRight"
 						data-toast-icon="icon-check-circle" data-toast-title="Product"
@@ -338,13 +315,11 @@
 					<h3 class="product-title">
 						<a href="shop-single.html">LG 최신모니터</a>
 					</h3>
-					<h4 class="product-price">$298.99</h4>
+					<h4 class="product-price">50000 원</h4>
 				</div>
 				<div class="product-button-group">
 					<a class="product-button btn-wishlist" href="#"><i
 						class="icon-heart"></i><span>Wishlist</span></a><a
-						class="product-button btn-compare" href="#"><i
-						class="icon-repeat"></i><span>Compare</span></a><a
 						class="product-button" href="#" data-toast
 						data-toast-type="success" data-toast-position="topRight"
 						data-toast-icon="icon-check-circle" data-toast-title="Product"
@@ -361,15 +336,13 @@
 						<a href="#">스피커</a>
 					</div>
 					<h3 class="product-title">
-						<a href="shop-single.html">최신 스피커</a>
+						<a href="shop-single.html">퍼팩트 사운드바 스피커</a>
 					</h3>
-					<h4 class="product-price">$839.99</h4>
+					<h4 class="product-price">5500 원</h4>
 				</div>
 				<div class="product-button-group">
 					<a class="product-button btn-wishlist" href="#"><i
 						class="icon-heart"></i><span>Wishlist</span></a><a
-						class="product-button btn-compare" href="#"><i
-						class="icon-repeat"></i><span>Compare</span></a><a
 						class="product-button" href="#" data-toast
 						data-toast-type="success" data-toast-position="topRight"
 						data-toast-icon="icon-check-circle" data-toast-title="Product"
@@ -390,13 +363,11 @@
 					<h3 class="product-title">
 						<a href="shop-single.html">시리즈 3</a>
 					</h3>
-					<h4 class="product-price">$329.10</h4>
+					<h4 class="product-price">500 원</h4>
 				</div>
 				<div class="product-button-group">
 					<a class="product-button btn-wishlist" href="#"><i
-						class="icon-heart"></i><span>Wishlist</span></a><a
-						class="product-button btn-compare" href="#"><i
-						class="icon-repeat"></i><span>Compare</span></a><a
+						class="icon-heart"></i><span>Wishlist</span></a><<a
 						class="product-button" href="shop-single.html"><i
 						class="icon-arrow-right"></i><span>Details</span></a>
 				</div>
@@ -415,15 +386,13 @@
 						<a href="#">A &amp; B</a>
 					</div>
 					<h3 class="product-title">
-						<a href="shop-single.html">세트</a>
+						<a href="shop-single.html">게이밍 키보드</a>
 					</h3>
-					<h4 class="product-price">$249.50</h4>
+					<h4 class="product-price">9900원</h4>
 				</div>
 				<div class="product-button-group">
 					<a class="product-button btn-wishlist" href="#"><i
 						class="icon-heart"></i><span>Wishlist</span></a><a
-						class="product-button btn-compare" href="#"><i
-						class="icon-repeat"></i><span>Compare</span></a><a
 						class="product-button" href="#" data-toast
 						data-toast-type="success" data-toast-position="topRight"
 						data-toast-icon="icon-check-circle" data-toast-title="Product"
@@ -444,15 +413,13 @@
 						<a href="shop-single.html">16gb 램</a>
 					</h3>
 					<h4 class="product-price">
-						<del>$74.00</del>
-						$68.00
+						<del>1200 원</del>
+						990원
 					</h4>
 				</div>
 				<div class="product-button-group">
 					<a class="product-button btn-wishlist" href="#"><i
 						class="icon-heart"></i><span>Wishlist</span></a><a
-						class="product-button btn-compare" href="#"><i
-						class="icon-repeat"></i><span>Compare</span></a><a
 						class="product-button" href="#" data-toast
 						data-toast-type="success" data-toast-position="topRight"
 						data-toast-icon="icon-check-circle" data-toast-title="Product"
@@ -462,7 +429,6 @@
 			</div>
 		</div>
 	</div>
-	<input type="text" id="user" value="huskdoll">
 
 	<!-- Site Footer-->
 	<jsp:include page="/WEB-INF/views/frontend/inc/footer.jsp" />
@@ -470,7 +436,7 @@
 	<a class="scroll-to-top-btn" href="#"><i class="icon-chevron-up"></i></a>
 	<!-- Backdrop-->
 	<div class="site-backdrop"></div>
-
+	<button id="purchase_btn2">aaa</button>
 
 	<!-- JavaScript (jQuery) libraries, plugins and custom scripts-->
 	<script
@@ -520,7 +486,14 @@
 			});
 
 		});
-
+		
+		$("#purchase_btn").on("click",function(){
+			var chked=$("input:checkbox[name=cart_no]:checked").length;
+			if(chked==0){
+				alert("장바구니 품목을 하나 이상 체크하세요.");
+				return false;
+			};
+		});
 				
 
 			/*	// 구매하기 버튼 클릭했을때
@@ -576,13 +549,13 @@
 							<tr>
 									<td class="text-center"><input type="checkbox" name="cart_no" class="cart_nos" value="\${cart_no}" ></td>
 									<td class="text-center text-lg">
-										<img width=100; height=100; src="<c:url value='/upload/product_img/\${img_name_save}' />" alt="<c:url value='/upload/product_img/\${img_name_save}' />" />
+										<img width=70px; height=70px; src="<c:url value='/upload/product_img/\${img_name_save}' />" alt="<c:url value='/upload/product_img/\${img_name_save}' />" />
 									</td>
-									<td class="text-center text-lg" style="font-size: 21px;">
+									<td class="text-center text-lg"  style="font-size: 15px;">
 										<input type="hidden" name="product_name" class="product_names" value="\${product_name}">
 										\${product_name }
 									</td>
-									<td class="text-center text-lg">\${selling_price } 원</td>									
+									<td class="text-center text-lg" style="font-size: 15px;">\${selling_price } 원</td>								
 									<td class="text-center">
 										<div class="count-input">
 											<p style="display:table;margin:0 auto;">
@@ -595,7 +568,7 @@
 											</a>	
 										</div>
 									</td>
-									<td class="text-center text-lg">\${product_count*selling_price } 원</td>
+									<td class="text-center text-lg" style="font-size: 15px;">\${product_count*selling_price } 원</td>
 									<td class="text-center text-lg">
 										<a class="remove-from-cart" onclick="remove(\${cart_no})" data-toggle="tooltip" title="삭제"><i class="icon-x"></i></a>
 									</td>	

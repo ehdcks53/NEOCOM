@@ -92,6 +92,7 @@ public class ReviewController {
 
 		return "frontend/community/review_list";
 	}
+	
 
 	// 리뷰게시판 상세 페이지 이동
 	@RequestMapping(value = "/review_detail", method = RequestMethod.GET)
@@ -119,7 +120,7 @@ public class ReviewController {
 			dir.mkdir();
 
 		}
-		System.out.println(img_path);
+		
 
 		String review_img_origin = file1.getOriginalFilename(); // 전송된 파일명
 		String review_img = UUID.randomUUID() + "_" + review_img_origin;

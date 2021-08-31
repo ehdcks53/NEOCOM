@@ -29,6 +29,13 @@
 		vertical-align: middle;
 	}
 	.table-responsive a {width:120px;}
+	#cancelReason{
+		cursor:default;
+	}
+	
+	#returnReason{
+		cursor:default;
+	}
 </style>
 </head>
 <body>
@@ -128,6 +135,7 @@
 					
 				</tbody>
 			</table>
+				<div id="paging"></div>
 			</div>
 			
 		</div>
@@ -135,7 +143,7 @@
 	
 	
 </div>
-	<div id="paging"></div>
+	
 	<div>
 		<iframe title="하단광고" scrolling="no" frameborder="0" marginheight="0" parginwidth="0"
 		width="100%" style="margin-top:50px;" src="http://ad.danawa.com/RealMedia/ads/adstream_sx.ads/www.danawa.com/blog_BABY@Middle1"></iframe>
@@ -156,7 +164,6 @@
 	<script src="${pageContext.request.contextPath}/static/frontend/assets/js/jquery-3.6.0.min.js"></script>
 	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
 	<script type="text/javascript">
-	
 	function order_cc(order_no){
 		var result = confirm("주문을 취소하시겠습니까?");
 		if (result) {
@@ -267,6 +274,7 @@
 							
 							let product_name=d.product_name;
 							let img_name_save=d.img_name_save;
+							let uploadPath=d.uploadPath;
 							let order_date=moment(d.order_date).format("YYYY-MM-DD");
 							let return_date=moment(moment(), "HHmmss").add(3, 'days').toDate();
 							return_schedule_date=moment(return_date).format("YYYY-MM-DD");
@@ -281,7 +289,7 @@
 									`
 									<tr>
 										<td class="text-center text-lg">\${order_no}</td>
-										<td class="text-center text-lg"><img width=100; height=100; src="<c:url value='/upload/product_img/\${img_name_save}' />" alt="<c:url value='/upload/product_img/\${img_name_save}' />" /></td>
+										<td class="text-center text-lg"><img width=100; height=100; src="<c:url value='/upload/product_img/\${uploadPath}/\${img_name_save}' />" alt="<c:url value='/upload/product_img/\${uploadPath}/\${img_name_save}' />" /></td>
 										<td class="text-center text-lg">\${product_name}</td>
 										<td class="text-center text-lg">\${order_date}</td>
 										<td class="text-center text-lg">\${tot_price}</td>
@@ -318,7 +326,7 @@
 													</select>
 													<h5 class="margin-bottom-2x text-center">반품취소 사유</h5>
 													<textarea name="return_reason" style="margin-bottom:50px;" class="form-control" cols="500" rows="10" 
-													 id="returnReason" style="margin-top:10px;" readonly="readonly" style="cursor:default"
+													 id="returnReason" style="margin-top:10px;" readonly="readonly"
 													 placeholder=""/></textarea>
 													<form:errors path="id" cssClass="errormsg" />
 												</div>
@@ -413,6 +421,7 @@
 							
 							let product_name=d.product_name;
 							let img_name_save=d.img_name_save;
+							let uploadPath = d.uploadPath;
 							let order_date=moment(d.order_date).format("YYYY-MM-DD");
 							let order_cc_date=moment(moment(), "HHmmss").add(3, 'days').toDate();
 							order_cc_schedule_date=moment(order_cc_date).format("YYYY-MM-DD");
@@ -427,7 +436,7 @@
 									`
 									<tr>
 										<td class="text-center text-lg">\${order_no}</td>
-										<td class="text-center text-lg"><img width=100; height=100; src="<c:url value='/upload/product_img/\${img_name_save}' />" alt="<c:url value='/upload/product_img/\${img_name_save}' />" /></td>
+										<td class="text-center text-lg"><img width=100; height=100; src="<c:url value='/upload/product_img/\${uploadPath}/\${img_name_save}' />" alt="<c:url value='/upload/product_img/\${uploadPath}/\${img_name_save}' />" /></td>
 										<td class="text-center text-lg">\${product_name}</td>
 										<td class="text-center text-lg">\${order_date}</td>
 										<td class="text-center text-lg">\${tot_price}</td>
@@ -504,14 +513,15 @@
 	function purchase(order_no){
 		location.href="${pageContext.request.contextPath}/purchase2?order_no="+order_no;
 	}
-
-
+	
+	var pageNum=1;
+	
 	function list(){
 		console.log("here");
 		$("#myOrderList").empty();
 		
 		$.ajax({
-			url:"${pageContext.request.contextPath}/account/mypage_order2?pageNum=1",
+			url:"${pageContext.request.contextPath}/account/mypage_order2?pageNum="+pageNum,
 			dataType:"json",
 			success:function(data){
 				console.log("success");
@@ -519,7 +529,9 @@
 					$(data.pu).each(function(i,d){
 						console.log("aa");
 						let startPageNum=d.startPageNum;
-						let pageNum=d.pageNum;
+						let endPageNum=d.endPageNum;
+						pageNum=d.pageNum;
+						console.log(d.pageNum);
 						let prevPage=d.prevPage;
 						let nextPage=d.nextPage;
 						console.log(startPageNum);
@@ -541,21 +553,32 @@
 									</div>
 									<div class="column">
 									<ul class="pages" style="margin-top:20px;">
-									<c:forEach var="i" begin="1" end="12">
-										\${pageNum+ i}
-										<c:choose>
-											<c:when test="\${pageNum==i }">
-												<li class="active">
-													<a href="${pageContext.request.contextPath}/account/mypage_order2?pageNum=\${i }">\${i }</a>
-												</li>
-											</c:when>
-											<c:otherwise>
-												<li>
-													<a href="${pageContext.request.contextPath}/account/mypage_order2?pageNum=\${i }">\${i }</a>
-												</li>
-											</c:otherwise>
-										</c:choose>
-									</c:forEach>
+									</ul>
+									`
+									);
+									 for(var i=startPageNum;i<endPageNum;i++){
+										if(pageNum==i){
+											$(".pages").append(
+											`
+											<li class="active">
+											<a href="${pageContext.request.contextPath}/account/mypage_order3?pageNum=\${i }">\${i }</a>
+											</li>
+											`
+											);
+										}else{
+											$(".pages").append(
+											`
+											<li>
+												<a href="${pageContext.request.contextPath}/account/mypage_order3?pageNum=\${i }">\${i }</a>
+											</li>
+											`
+											);
+										}
+									}
+									+
+									`
+									
+									
 									</ul>
 									</div>
 									<div class="column">
@@ -570,13 +593,14 @@
 									</div>
 								</nav>
 								`
-							);
+							
 					});
 	
 				$(data.myOrderList).each(function(i,d){
 						let order_no=d.order_no;
 						let product_name=d.product_name;
 						let img_name_save=d.img_name_save;
+						let uploadPath=d.uploadPath;
 						let order_date=moment(d.order_date).format("YYYY-MM-DD");
 						let product_count=d.product_count;
 						let tot_price=d.tot_price;
@@ -589,7 +613,7 @@
 								`
 								<tr>
 									<td class="od_no text-center text-lg">\${order_no }</td>
-									<td class="text-center text-lg"><img width=100; height=100; src="<c:url value='/upload/product_img/\${img_name_save}' />" alt="<c:url value='/upload/product_img/\${img_name_save}' />" /></td>
+									<td class="text-center text-lg"><img width=100; height=100; src="<c:url value='/upload/product_img/\${uploadPath}/\${img_name_save}' />" alt="<c:url value='/upload/product_img/\${uploadPath}/\${img_name_save}' />" /></td>
 									<td class="text-center text-lg">\${product_name }</td>
 									<td class="text-center text-lg">\${order_date }</td>
 									<td class="text-center text-lg">\${tot_price }</td>
@@ -607,7 +631,7 @@
 								`
 								<tr>
 									<td class="text-center text-lg">\${order_no }</td>
-									<td class="text-center text-lg"><img width=100; height=100; src="<c:url value='/upload/product_img/\${img_name_save}' />" alt="<c:url value='/upload/product_img/\${img_name_save}' />" /></td>
+									<td class="text-center text-lg"><img width=100; height=100; src="<c:url value='/upload/product_img/\${uploadPath}/\${img_name_save}' />" alt="<c:url value='/upload/product_img/\${uploadPath}/\${img_name_save}' />" /></td>
 									<td class="text-center text-lg">\${product_name }</td>
 									<td class="text-center text-lg">\${order_date }</td>
 									<td class="text-center text-lg">\${tot_price }</td>
@@ -626,7 +650,7 @@
 								`
 								<tr>
 									<td class="text-center text-lg">\${order_no }</td>
-									<td class="text-center text-lg"><img width=100; height=100; src="<c:url value='/upload/product_img/\${img_name_save}' />" alt="<c:url value='/upload/product_img/\${img_name_save}' />" /></td>
+									<td class="text-center text-lg"><img width=100; height=100; src="<c:url value='/upload/product_img/\${uploadPath}/\${img_name_save}' />" alt="<c:url value='/upload/product_img/\${uploadPath}/\${img_name_save}' />" /></td>
 									<td class="text-center text-lg">\${product_name }</td>
 									<td class="text-center text-lg">\${order_date }</td>
 									<td class="text-center text-lg">\${tot_price }</td>
@@ -645,7 +669,7 @@
 								`
 								<tr>
 									<td class="text-center text-lg">\${order_no }</td>
-									<td class="text-center text-lg"><img width=100; height=100; src="<c:url value='/upload/product_img/\${img_name_save}' />" alt="<c:url value='/upload/product_img/\${img_name_save}' />" /></td>
+									<td class="text-center text-lg"><img width=100; height=100; src="<c:url value='/upload/product_img/\${uploadPath}/\${img_name_save}' />" alt="<c:url value='/upload/product_img/\${uploadPath}/\${img_name_save}' />" /></td>
 									<td class="text-center text-lg">\${product_name }</td>
 									<td class="text-center text-lg">\${order_date }</td>
 									<td class="text-center text-lg">\${tot_price }</td>
@@ -664,7 +688,7 @@
 								`
 								<tr>
 									<td class="text-center text-lg">\${order_no }</td>
-									<td class="text-center text-lg"><img width=100; height=100; src="<c:url value='/upload/product_img/\${img_name_save}' />" alt="<c:url value='/upload/product_img/\${img_name_save}' />" /></td>
+									<td class="text-center text-lg"><img width=100; height=100; src="<c:url value='/upload/product_img/\${uploadPath}/\${img_name_save}' />" alt="<c:url value='/upload/product_img/\${uploadPath}/\${img_name_save}' />" /></td>
 									<td class="text-center text-lg">\${product_name }</td>
 									<td class="text-center text-lg">\${order_date }</td>
 									<td class="text-center text-lg">\${tot_price }</td>
@@ -683,7 +707,7 @@
 								`
 								<tr>
 									<td class="text-center text-lg">\${order_no }</td>
-									<td class="text-center text-lg"><img width=100; height=100; src="<c:url value='/upload/product_img/\${img_name_save}' />" alt="<c:url value='/upload/product_img/\${img_name_save}' />" /></td>
+									<td class="text-center text-lg"><img width=100; height=100; src="<c:url value='/upload/product_img/\${uploadPath}/\${img_name_save}' />" alt="<c:url value='/upload/product_img/\${uploadPath}/\${img_name_save}' />" /></td>
 									<td class="text-center text-lg">\${product_name }</td>
 									<td class="text-center text-lg">\${order_date }</td>
 									<td class="text-center text-lg">\${tot_price }</td>
@@ -702,7 +726,7 @@
 								`
 								<tr>
 									<td class="text-center text-lg">\${order_no }</td>
-									<td class="text-center text-lg"><img width=100; height=100; src="<c:url value='/upload/product_img/\${img_name_save}' />" alt="<c:url value='/upload/product_img/\${img_name_save}' />" /></td>
+									<td class="text-center text-lg"><img width=100; height=100; src="<c:url value='/upload/product_img/\${uploadPath}/\${img_name_save}' />" alt="<c:url value='/upload/product_img/\${uploadPath}/\${img_name_save}' />" /></td>
 									<td class="text-center text-lg">\${product_name }</td>
 									<td class="text-center text-lg">\${order_date }</td>
 									<td class="text-center text-lg">\${tot_price }</td>
@@ -759,26 +783,32 @@
 		if(select=="-- 반품사유 선택 --"){
 			$("#returnReason").val("").prop("selected", true);
 			document.getElementById("returnReason").readOnly= true;
+			document.getElementById("returnReason").style.cursor="default";
 		}
 		if(select=="단순 반품"){
 			$("#returnReason").val("단순 반품").prop("selected", true);
 			document.getElementById("returnReason").readOnly= true;
+			document.getElementById("returnReason").style.cursor="default";
 		}
 		if(select=="색상/사이즈/가격 불만"){
 			$("#returnReason").val("색상/사이즈/가격 불만").prop("selected", true);
 			document.getElementById("returnReason").readOnly= true;
+			document.getElementById("returnReason").style.cursor="default";
 		}
 		if(select=="사진/설명과 다른 상품"){
 			$("#returnReason").val("사진/설명과 다른 상품").prop("selected", true);
 			document.getElementById("returnReason").readOnly= true;
+			document.getElementById("returnReason").style.cursor="default";
 		}
 		if(select=="상품 파손/불량"){
 			$("#returnReason").val("상품 파손/불량").prop("selected", true);
 			document.getElementById("returnReason").readOnly= true;
+			document.getElementById("returnReason").style.cursor="default";
 		}
 		if(select=="구성품의 누락"){
 			$("#returnReason").val("구성품의 누락").prop("selected", true);
 			document.getElementById("returnReason").readOnly= true;
+			document.getElementById("returnReason").style.cursor="default";
 		}
 		if(select=="직접 입력"){
 			document.getElementById("returnReason").readOnly= false;
@@ -857,9 +887,15 @@
 			}
 		}
 	});
-
+	
 	window.onload = function () { 
+		var a = '${pageNum3}';
+		if(a){
+			pageNum=a;
+		}
+		
 		list();
+		
 
 	}
 

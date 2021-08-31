@@ -802,34 +802,8 @@
 			
 			</c:otherwise>
 			</c:choose>
-			<!-- 브랜드 필터 -->
-			<section class="widget">
-			<h3 class="widget-title">브랜드</h3>
-				<div class="custom-control ustom-checkbox">
-					<input class="custom-control-input" type="checkbox" id="brand1">
-					<label class="custom-control-label" for="brand1">
-						brand1 &nbsp;<span class="text-muted">(100)</span>
-					</label>
-				</div>
-				<div class="custom-control ustom-checkbox">
-					<input class="custom-control-input" type="checkbox" id="brand2">
-					<label class="custom-control-label" for="brand2">
-						brand2 &nbsp;<span class="text-muted">(200)</span>
-					</label>
-				</div>
-				<div class="custom-control ustom-checkbox">
-					<input class="custom-control-input" type="checkbox" id="brand3">
-					<label class="custom-control-label" for="brand3">
-						brand3 &nbsp;<span class="text-muted">(300)</span>
-					</label>
-				</div>
-				<div class="custom-control ustom-checkbox">
-					<input class="custom-control-input" type="checkbox" id="brand4">
-					<label class="custom-control-label" for="brand4">
-						brand4 &nbsp;<span class="text-muted">(400)</span>
-					</label>
-				</div>
-			</section>
+			
+			
 		</aside>
 	</div>
 	
@@ -852,6 +826,24 @@
 	<script src="${pageContext.request.contextPath}/static/frontend/assets/js/modernizr.min.js"></script>
 	
 	<script type="text/javascript">
+	//장바구니 담기
+	function insertCart(product_id){
+		
+		console.log(product_id)
+			$.ajax({
+				url:"${pageContext.request.contextPath}/member/insertCart",
+				dataType:"json",
+				data:{"product_id" : product_id},
+				Type:'post',
+				success:function(data){
+					
+				},error:function(request, status, error){
+
+					alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
+				}
+			});	
+	};
+	
 $(function(){
 	
 	
@@ -959,7 +951,7 @@ $(function(){
 						let	html=	"<div class='col-md-3 col-sm-6'>";			
 						html+=	"<div class='product-card mb-30'>";
 						html+=		"<a class='product-thumb' href='${pageContext.request.contextPath}/shop/product_detail"+"?n="+d.product_id+"&"+"m="+d.category_id+"'>";
-						html+=		"	<img src='<c:url value='/upload/product_img/"+d.img_name_save+"' />' alt='<c:url value='/upload/product_img/"+d.img_name_save+"' />' />";
+						html+=		"	<img src='<c:url value='/upload/product_img/"+d.uploadPath+"/"+d.img_name_save+"' />' alt='<c:url value='/upload/product_img/"+d.uploadPath+"/"+d.img_name_save+"' />' />";
 										html+=	"	</a> ";
 										html+=	"	<div class='product-card-body'>";
 										html+=		"	<div class='product-category'><a href='#'>"+d.brand+"</a></div>";
@@ -968,10 +960,9 @@ $(function(){
 										html+=		"	</div> ";
 										html+=	"	<div class='product-button-group'>";
 									<!-- 위시리스트 토스트 수정은 scripts.min.js 파일 -->
-									html+=			"	<a class='product-button btn-wishlist' href='#'><i class='icon-heart'></i><span>관심상품</span></a>";
-									html+=	"	<a class='product-button' href='#'" ;
-										html+=		"	data-toast " ;
-										html+=		"	data-toast-type='success'" ;
+							 		html+=			"	<a class='product-button btn-wishlist' href='#'><i class='icon-heart'></i><span>관심상품</span></a>";
+									html+=	"	<a class='product-button' href='javascript:insertCart("+d.product_id+");'" ;
+										html+=		"	data-toast data-toast-type='success'" ;
 											html+=		"	data-toast-position='topRight'" ;
 												html+=		"	data-toast-icon='icon-check-circle' " ;
 													html+=		"	data-toast-title=' ' " ;
