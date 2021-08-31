@@ -132,7 +132,7 @@ a {
 						<tbody>
 							<c:forEach var="item" items="${advboardlist}">
 								<tr>
-<<<<<<< HEAD
+
 					<c:choose>
 						<c:when test="${item.adv_show eq true}">
 							<td></td>	
