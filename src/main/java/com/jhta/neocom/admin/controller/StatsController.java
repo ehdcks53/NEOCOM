@@ -19,6 +19,8 @@ public class StatsController {
     @RequestMapping(value = "/admin/stats/totsales")
     public @ResponseBody HashMap<String, Object> totsales(@RequestParam HashMap<String, Object> map) {
         HashMap<String, Object> result = new HashMap<String, Object>();
+        System.out.println(map.get("startDate"));
+        System.out.println(map.get("endDate"));
 
         result.put("totSales", service.selectTotSales(map).get("totSales"));
         result.put("orderCount", service.selectTotSales(map).get("orderCount"));
