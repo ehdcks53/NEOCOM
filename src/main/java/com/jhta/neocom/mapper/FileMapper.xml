@@ -22,5 +22,17 @@
 	<select id="fileInfo" resultType="file" parameterType="int">
 		select * from file where file_num=#{file_num}
 	</select>
+	
+	<select id="count">
+		select IFnull(count(*),0) from file where free_board_no=#{free_board_no}
+	</select>
+	
+	<select id="findFileNum" resultType="file" parameterType="int">
+		select * from file where free_board_no=#{free_board_no}
+	</select>
+	
+	<delete id="fileDelete" parameterType="int">
+		delete from file where file_num=#{file_num}
+	</delete>
 
 </mapper>
