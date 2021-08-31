@@ -183,14 +183,7 @@
 							<li><a href="${pageContext.request.contextPath }/shop/product_grid?category_id=14">USB</a></li>
 						</ul>
 					</li>
-					<li><span class="mega-menu-title">월간견적 PC</span>
-						<ul class="sub-menu">
-							<li><a href="#">소분류1</a></li>
-							<li><a href="#">소분류2</a></li>
-							<li><a href="#">소분류3</a></li>
-							<li><a href="#">소분류4</a></li>
-						</ul>
-					</li>
+					
 				</ul>
 			</li>
 			<li class="has-submenu" id="service-li"><a href="${pageContext.request.contextPath }/service/advboard_list">Service</a>

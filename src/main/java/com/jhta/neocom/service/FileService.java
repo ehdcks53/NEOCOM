@@ -2,7 +2,6 @@ package com.jhta.neocom.service;
 
 import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -24,5 +23,13 @@ public class FileService {
 	
 	public FileVo fileInfo(int file_num) {
 		return mapper.fileInfo(file_num);
+	}
+	
+	public List<FileVo> findFileNum(int free_board_no) {
+		return mapper.findFileNum(free_board_no);
+	}
+	
+	public int fileDelete(int file_num) {
+		return mapper.fileDelete(file_num);
 	}
 }

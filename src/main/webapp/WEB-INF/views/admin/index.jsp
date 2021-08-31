@@ -289,7 +289,7 @@
 	<!-- ================== END page-js ================== -->
 	<script>
 	var handleDateRangeFilter = function() {
-		$('#daterange-filter span').html(moment().subtract('days', 7).format('YYYY-MM-DD') + ' - ' + moment().format('YYYY-MM-DD'));
+		$('#daterange-filter span').html(moment().subtract(7, 'days').format('YYYY-MM-DD') + ' - ' + moment().format('YYYY-MM-DD'));
 
 		$('#daterange-filter').daterangepicker({
 			format: 'YYYY-MM-DD',
@@ -334,6 +334,7 @@
 	};
 
 	var sendDates = function (startDate, endDate) {
+		console.log(startDate + " to " + endDate);
 		$.ajax({
 				url:"${pageContext.request.contextPath}/admin/stats/totsales",
 				data:{"startDate":startDate , "endDate":endDate},
@@ -341,6 +342,10 @@
 				dataType:"json",
 				success:function(result){
 					console.log(result);
+					if(result.totSales == null || result.totSales == ""){
+						alert("선택한 기간에는 판매한 상품이 없습니다.");
+						return;
+					}
 					var tot_sales = $('#tot_sales'); // 총 매출
 					var order_count = $('#order_count'); // 총 주문수
 					var sales_per_order = $('#sales_per_order'); // 주문당 매출
@@ -393,7 +398,7 @@
 			//main function
 			init: function () {
 				handleDateRangeFilter();
-				sendDates(moment().subtract('days', 7).format('YYYY-MM-DD'), moment().format('YYYY-MM-DD'));
+				sendDates(moment().subtract(7, 'days').format('YYYY-MM-DD'), moment().format('YYYY-MM-DD'));
 			}
 		};
 	}();

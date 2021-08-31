@@ -1,21 +1,14 @@
 package com.jhta.neocom.service;
 
 import java.io.PrintWriter;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Optional;
 
 import javax.servlet.http.HttpServletResponse;
 
-
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.userdetails.User;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.jhta.neocom.mapper.MemberMapper;
-import com.jhta.neocom.model.CustomUserDetails;
 import com.jhta.neocom.model.MemberVo;
 import com.jhta.neocom.repository.MemberRepository;
 
@@ -24,13 +17,7 @@ public class MemberService {
 	@Autowired
 	private MemberMapper mapper;
 	@Autowired
-	private PasswordEncoder passwordEncoder;
-	@Autowired
 	private MemberRepository memberRepository;
-	@Autowired
-	private MemberService service;
-	@Autowired
-	private BCryptPasswordEncoder bCryptPasswordEncoder;
 
 	public int insert(MemberVo vo) {
 		return mapper.insert(vo);
@@ -39,12 +26,11 @@ public class MemberService {
 	public int insert_role(int mem_no) {
 		return mapper.insert_role(mem_no);
 	}
-	
 
 	public MemberVo select(String id) {
 		return mapper.select(id);
 	}
-	
+
 	public String selectpwd(String id) {
 		return mapper.selectpwd(id);
 	}
@@ -72,6 +58,7 @@ public class MemberService {
 	public int updatePhone(MemberVo vo) {
 		return mapper.updatePhone(vo);
 	}
+
 	public int updateEmail(MemberVo vo) {
 		return mapper.updateEmail(vo);
 	}
@@ -79,10 +66,10 @@ public class MemberService {
 	public MemberVo selectid(String id) {
 		return mapper.selectid(id);
 	}
+
 	public MemberVo findPwd(String id) {
 		return mapper.findPwd(id);
 	}
-	
 
 	public int memberDel(MemberVo vo) {
 		return mapper.memberDel(vo);
@@ -99,6 +86,7 @@ public class MemberService {
 	public int update(MemberVo vo) {
 		return mapper.update(vo);
 	}
+
 	public int updatePwd(MemberVo vo) {
 		return mapper.updatePwd(vo);
 	}
@@ -106,26 +94,25 @@ public class MemberService {
 	public int delete(int mem_no) {
 		return mapper.delete(mem_no);
 	}
-	
-	
+
 	public int idcheck(String id) {
 		return mapper.idcheck(id);
 	}
+
 	public int emailcheck(String email) {
 		return mapper.emailcheck(email);
 	}
-	
 
-	
 	public boolean checkIdDuplicate(String id) {
 		return memberRepository.existsById(id);
 	}
-	//아이디찾기
+
+	// 아이디찾기
 	public String find_id(HttpServletResponse response, String email) throws Exception {
 		response.setContentType("text/html;charset=utf-8");
 		PrintWriter out = response.getWriter();
 		String id = mapper.findId(email);
-		
+
 		if (id == null) {
 			out.println("<script>");
 			out.println("alert('가입된 아이디가 없습니다.');");
@@ -137,23 +124,23 @@ public class MemberService {
 			return id;
 		}
 	}
-	//아이디찾기
-		public String find_pwd(HttpServletResponse response, String id) throws Exception {
-			response.setContentType("text/html;charset=utf-8");
-			PrintWriter out = response.getWriter();
-			String pwd = mapper.find_Pwd(id);
-			
-			if (pwd == null) {
-				out.println("<script>");
-				out.println("alert('가입된 비밀번호가 없습니다.');");
-				out.println("history.go(-1);");
-				out.println("</script>");
-				out.close();
-				return null;
-			} else {
-				return pwd;
-			}
-		}
 
+	// 아이디찾기
+	public String find_pwd(HttpServletResponse response, String id) throws Exception {
+		response.setContentType("text/html;charset=utf-8");
+		PrintWriter out = response.getWriter();
+		String pwd = mapper.find_Pwd(id);
+
+		if (pwd == null) {
+			out.println("<script>");
+			out.println("alert('가입된 비밀번호가 없습니다.');");
+			out.println("history.go(-1);");
+			out.println("</script>");
+			out.close();
+			return null;
+		} else {
+			return pwd;
+		}
+	}
 
 }

@@ -133,7 +133,7 @@
 				</c:if>
 				</sec:authorize>
 				
-				<c:if test="${mvo.mem_no != 1 && mvo.mem_no != 2 }">
+				<c:if test="${mvo.mem_no != 1 && mvo.mem_no != 2  }">
 					<div style="margin-left:30px;">
 						<a class="btn btn-outline-secondary btn-sm" id="prevAtag" href="${pageContext.request.contextPath }/service/advboard_reply?adv_board_no=${map.adv_board_no}">
 							재문의하기

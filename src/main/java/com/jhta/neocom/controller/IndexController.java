@@ -45,7 +45,6 @@ public class IndexController {
 		map.put("startRow", startRow);
 		map.put("endRow", endRow);
 		List<HashMap<String, Object>> list = service.list(map);
-		System.out.println(list.get(0));
 
 		ModelAndView mv = new ModelAndView("/frontend/index");
 		mv.addObject("list", list);

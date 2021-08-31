@@ -92,7 +92,6 @@ public class ReviewController {
 
 		return "frontend/community/review_list";
 	}
-	
 
 	// 리뷰게시판 상세 페이지 이동
 	@RequestMapping(value = "/review_detail", method = RequestMethod.GET)
@@ -120,7 +119,6 @@ public class ReviewController {
 			dir.mkdir();
 
 		}
-		
 
 		String review_img_origin = file1.getOriginalFilename(); // 전송된 파일명
 		String review_img = UUID.randomUUID() + "_" + review_img_origin;
@@ -138,7 +136,7 @@ public class ReviewController {
 
 			ReviewVo vo = new ReviewVo(0, mvo.getMem_no(), mvo.getNickname(), product_id, review_title, review_content,
 					star, review_img, review_img_origin, null);
-			int n = r_service.insert(vo);
+			r_service.insert(vo);
 			map.put("code", "success");
 
 		} catch (Exception e) {
