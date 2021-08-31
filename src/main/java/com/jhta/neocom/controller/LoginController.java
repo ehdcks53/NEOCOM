@@ -9,7 +9,6 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
@@ -24,16 +23,11 @@ import com.jhta.neocom.model.CustomUserDetails;
 import com.jhta.neocom.model.MemberVo;
 import com.jhta.neocom.service.MemberService;
 
-import javassist.bytecode.Descriptor.Iterator;
-
 @Controller
 public class LoginController {
 
 	@Autowired
 	private MemberService service;
-	@Autowired
-	private BCryptPasswordEncoder bCryptPasswordEncoder;
-
 
 	@RequestMapping(value = "/account/login", method = RequestMethod.GET)
 	public String loginForm(Model model, HttpSession session, boolean error) {
@@ -43,11 +37,11 @@ public class LoginController {
 		}
 		return "frontend/account/login";
 	}
-	
+
 	@GetMapping("/user")
 	public @ResponseBody String user(@AuthenticationPrincipal CustomUserDetails principal) {
 		System.out.println("Principal : " + principal);
-		System.out.println("OAuth2 : "+principal.getUsername());
+		System.out.println("OAuth2 : " + principal.getUsername());
 		// iterator 순차 출력 해보기
 		java.util.Iterator<? extends GrantedAuthority> iter = principal.getAuthorities().iterator();
 		while (iter.hasNext()) {
@@ -60,11 +54,12 @@ public class LoginController {
 
 	@RequestMapping(value = "/account/login", method = RequestMethod.POST)
 
-	public String login(Authentication authentication, MemberVo vo, Model model, HttpServletRequest req,HttpServletResponse response) throws IOException {
+	public String login(Authentication authentication, MemberVo vo, Model model, HttpServletRequest req,
+			HttpServletResponse response) throws IOException {
 		System.out.println("로그인 컨트롤러 vo : " + vo);
 		System.out.println("로그인 컨트롤러 : " + authentication.getPrincipal() + ", " + authentication.getCredentials() + ", "
 				+ authentication.getAuthorities());
-		PrintWriter out=response.getWriter();
+		PrintWriter out = response.getWriter();
 		out.println("<script>alert('');</script>");
 		return "redirect:/";
 	}
@@ -79,30 +74,27 @@ public class LoginController {
 		session.invalidate();
 		return "redirect:/";
 	}
-	
+
 	@GetMapping("/account/findAccount")
 	public String findA() {
 		return "frontend/account/findId_Pwd";
 	}
+
 	@RequestMapping(value = "/account/findId", method = RequestMethod.POST)
-	public String find_id(HttpServletResponse response, @RequestParam("email") String email, Model md) throws Exception{
+	public String find_id(HttpServletResponse response, @RequestParam("email") String email, Model md)
+			throws Exception {
 		md.addAttribute("id", service.find_id(response, email));
-		System.out.println("result:"+email);
+		System.out.println("result:" + email);
 		return "frontend/account/find_IdResult";
-		
+
 	}
-	
+
 	@RequestMapping(value = "/account/findPwd", method = RequestMethod.POST)
-	public String find_Pwd(HttpServletResponse response, @RequestParam("id") String id, Model md) throws Exception{
+	public String find_Pwd(HttpServletResponse response, @RequestParam("id") String id, Model md) throws Exception {
 		md.addAttribute("pwd", service.find_pwd(response, id));
-		System.out.println("result:"+id);
+		System.out.println("result:" + id);
 		return "frontend/account/find_PwdResult";
-		
+
 	}
-	
-	
-
-	
-
 
 }
