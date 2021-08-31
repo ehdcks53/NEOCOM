@@ -1023,7 +1023,6 @@ $(function(){
 						
 						pageHtml2 +="<li class='active'>";
 						pageHtml2 += "<a href=\"javascript:list("+ i +",'"+order+"',"+category_id+",'"+keyword+"',"+minPrice+","+maxPrice+");\">"+ i + "</a> ";
-
 						pageHtml2 +="</li>";
 					}else{
 						pageHtml2 +="<li>";
