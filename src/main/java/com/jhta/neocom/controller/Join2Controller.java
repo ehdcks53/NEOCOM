@@ -55,48 +55,29 @@ public class Join2Controller {
 		return "/frontend/account/join3";
 
 	}
-	/*
-	 * 현재작업중..
-	 * 
-	 * @RequestMapping("/idcheck.do")
-	 * 
-	 * @ResponseBody public Map<Object, Object> idcheck(@RequestBody String id) {
-	 * 
-	 * int count = 0; Map<Object, Object> map = new HashMap<Object, Object>();
-	 * 
-	 * count = service.idCheck(id); map.put("cnt", count);
-	 * 
-	 * return map; }
-	 */
-	// 아이디 중복 검사(AJAX)
-	// @RequestMapping(value = "/check_id", method = RequestMethod.POST)
-	// public void check_id(@RequestParam("id"), HttpServletResponse response,
-	// Authentication authentication) throws Exception{
-	// CustomUserDetails cud=(CustomUserDetails)authentication.getPrincipal();
-	// String id=cud.getUsername();
-	// service.check_id(id, response);
-	// }
 
-	// 이메일 중복 검사(AJAX)
-	// @RequestMapping(value = "/check_email.do", method = RequestMethod.POST)
-	// public void check_email(@RequestParam("email") String email,
-	// HttpServletResponse response) throws Exception{
-	// service.check_email(email, response);
-	// }
-
-	// @RequestMapping(value = "/account/idcheck",produces =
-	// {MediaType.APPLICATION_JSON_VALUE})
-	// @RequestMapping(value = "/account/idcheck")
-	// @ResponseBody
-	// public Map<Object, Object> idcheck(@RequestBody String id) {
-	//
-	// int count = 0;
-	// Map<Object, Object> map = new HashMap<Object, Object>();
-	//
-	// count = service.idcheck(id);
-	// map.put("cnt", count);
-	//
-	// return map;
-	// }
+	@RequestMapping(value = "/idcheck.do", method = RequestMethod.POST)
+    @ResponseBody
+    public Map<Object, Object> idcheck(@RequestParam("id") String id) {
+        int count = 0;
+        Map<Object, Object> map = new HashMap<Object, Object>();
+ 
+        count = service.idcheck(id);
+        map.put("cnt", count);
+ 
+        return map;
+    }
+	
+	@RequestMapping(value = "/emailcheck.do", method = RequestMethod.POST)
+    @ResponseBody
+    public Map<Object, Object> emailcheck(@RequestParam("email") String email) {
+        int count = 0;
+        Map<Object, Object> map = new HashMap<Object, Object>();
+ 
+        count = service.emailcheck(email);
+        map.put("cnt", count);
+ 
+        return map;
+    }
 
 }

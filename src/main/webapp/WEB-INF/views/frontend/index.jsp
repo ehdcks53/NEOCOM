@@ -63,10 +63,10 @@
 									alt="">
 								<div class="h2 text-body mb-2 pt-1">AMD 라이젠7-4세대 5800X<br> (버미어) (멀티팩)</div>
 								<div class="h2 text-body mb-4 pb-1">
-									판매가 &nbsp;<span class="text-medium">481,000 원</span>
+									판매가 &nbsp;<span class="text-medium">432,900 원</span>
 								</div>
 							</div>
-							<a class="btn btn-primary scale-up delay-1" href="#">
+							<a class="btn btn-primary scale-up delay-1" href="${pageContext.request.contextPath}/shop/product_detail?n=95&m=3">
 								제품 보러가기&nbsp;<i class="icon-arrow-right"></i>
 							</a>
 						</div>
@@ -91,10 +91,10 @@
 									alt="">
 								<div class="h2 text-body mb-2 pt-1">JONSBO CR-1000 AUTO RGB <br> (WHITE)</div>
 								<div class="h2 text-body mb-4 pb-1">
-									판매가 &nbsp;<span class="text-medium">26,000 원</span>
+									판매가 &nbsp;<span class="text-medium">23,400 원</span>
 								</div>
 							</div>
-							<a class="btn btn-primary scale-up delay-1" href="#">
+							<a class="btn btn-primary scale-up delay-1" href="${pageContext.request.contextPath}/shop/product_detail?n=96&m=10">
 								제품 보러가기&nbsp;<i class="icon-arrow-right"></i>
 							</a>
 						</div>
@@ -122,7 +122,7 @@
 									판매가 &nbsp;<span class="text-medium">250,500 원</span>
 								</div>
 							</div>
-							<a class="btn btn-primary scale-up delay-1" href="#">
+							<a class="btn btn-primary scale-up delay-1" href="${pageContext.request.contextPath}/shop/product_detail?n=85&m=5">
 								제품 보러가기&nbsp;<i class="icon-arrow-right"></i>
 							</a>
 						</div>
@@ -159,8 +159,8 @@
 						<a class="product-thumb" 
 							href="${pageContext.request.contextPath}/shop/product_detail?n=${vo.product_id}&m=${vo.category_id}">
 
-							<img   src="<c:url value='/upload/product_img/${vo.img_name_save}' />"
-							alt="<c:url value='/upload/product_img/${vo.img_name_save}' />" />
+							<img   src="<c:url value='/upload/product_img/${vo.uploadPath}/${vo.img_name_save}' />"
+							alt="<c:url value='/upload/product_img/${vo.uploadPath}/${vo.img_name_save}' />" />
 						</a>
 						<div class="product-card-body">
 							<div class="product-category">

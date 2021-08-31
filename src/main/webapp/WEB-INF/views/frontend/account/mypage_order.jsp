@@ -267,6 +267,7 @@
 							
 							let product_name=d.product_name;
 							let img_name_save=d.img_name_save;
+							let uploadPath=d.uploadPath;
 							let order_date=moment(d.order_date).format("YYYY-MM-DD");
 							let return_date=moment(moment(), "HHmmss").add(3, 'days').toDate();
 							return_schedule_date=moment(return_date).format("YYYY-MM-DD");
@@ -281,7 +282,7 @@
 									`
 									<tr>
 										<td class="text-center text-lg">\${order_no}</td>
-										<td class="text-center text-lg"><img width=100; height=100; src="<c:url value='/upload/product_img/\${img_name_save}' />" alt="<c:url value='/upload/product_img/\${img_name_save}' />" /></td>
+										<td class="text-center text-lg"><img width=100; height=100; src="<c:url value='/upload/product_img/\${uploadPath}/\${img_name_save}' />" alt="<c:url value='/upload/product_img/\${uploadPath}/\${img_name_save}' />" /></td>
 										<td class="text-center text-lg">\${product_name}</td>
 										<td class="text-center text-lg">\${order_date}</td>
 										<td class="text-center text-lg">\${tot_price}</td>
@@ -413,6 +414,7 @@
 							
 							let product_name=d.product_name;
 							let img_name_save=d.img_name_save;
+							let uploadPath = d.uploadPath;
 							let order_date=moment(d.order_date).format("YYYY-MM-DD");
 							let order_cc_date=moment(moment(), "HHmmss").add(3, 'days').toDate();
 							order_cc_schedule_date=moment(order_cc_date).format("YYYY-MM-DD");
@@ -427,7 +429,7 @@
 									`
 									<tr>
 										<td class="text-center text-lg">\${order_no}</td>
-										<td class="text-center text-lg"><img width=100; height=100; src="<c:url value='/upload/product_img/\${img_name_save}' />" alt="<c:url value='/upload/product_img/\${img_name_save}' />" /></td>
+										<td class="text-center text-lg"><img width=100; height=100; src="<c:url value='/upload/product_img/\${uploadPath}/\${img_name_save}' />" alt="<c:url value='/upload/product_img/\${uploadPath}/\${img_name_save}' />" /></td>
 										<td class="text-center text-lg">\${product_name}</td>
 										<td class="text-center text-lg">\${order_date}</td>
 										<td class="text-center text-lg">\${tot_price}</td>
@@ -577,6 +579,7 @@
 						let order_no=d.order_no;
 						let product_name=d.product_name;
 						let img_name_save=d.img_name_save;
+						let uploadPath=d.uploadPath;
 						let order_date=moment(d.order_date).format("YYYY-MM-DD");
 						let product_count=d.product_count;
 						let tot_price=d.tot_price;
@@ -589,7 +592,7 @@
 								`
 								<tr>
 									<td class="od_no text-center text-lg">\${order_no }</td>
-									<td class="text-center text-lg"><img width=100; height=100; src="<c:url value='/upload/product_img/\${img_name_save}' />" alt="<c:url value='/upload/product_img/\${img_name_save}' />" /></td>
+									<td class="text-center text-lg"><img width=100; height=100; src="<c:url value='/upload/product_img/\${uploadPath}/\${img_name_save}' />" alt="<c:url value='/upload/product_img/\${uploadPath}/\${img_name_save}' />" /></td>
 									<td class="text-center text-lg">\${product_name }</td>
 									<td class="text-center text-lg">\${order_date }</td>
 									<td class="text-center text-lg">\${tot_price }</td>
@@ -607,7 +610,7 @@
 								`
 								<tr>
 									<td class="text-center text-lg">\${order_no }</td>
-									<td class="text-center text-lg"><img width=100; height=100; src="<c:url value='/upload/product_img/\${img_name_save}' />" alt="<c:url value='/upload/product_img/\${img_name_save}' />" /></td>
+									<td class="text-center text-lg"><img width=100; height=100; src="<c:url value='/upload/product_img/\${uploadPath}/\${img_name_save}' />" alt="<c:url value='/upload/product_img/\${uploadPath}/\${img_name_save}' />" /></td>
 									<td class="text-center text-lg">\${product_name }</td>
 									<td class="text-center text-lg">\${order_date }</td>
 									<td class="text-center text-lg">\${tot_price }</td>
@@ -626,7 +629,7 @@
 								`
 								<tr>
 									<td class="text-center text-lg">\${order_no }</td>
-									<td class="text-center text-lg"><img width=100; height=100; src="<c:url value='/upload/product_img/\${img_name_save}' />" alt="<c:url value='/upload/product_img/\${img_name_save}' />" /></td>
+									<td class="text-center text-lg"><img width=100; height=100; src="<c:url value='/upload/product_img/\${uploadPath}/\${img_name_save}' />" alt="<c:url value='/upload/product_img/\${uploadPath}/\${img_name_save}' />" /></td>
 									<td class="text-center text-lg">\${product_name }</td>
 									<td class="text-center text-lg">\${order_date }</td>
 									<td class="text-center text-lg">\${tot_price }</td>
@@ -645,7 +648,7 @@
 								`
 								<tr>
 									<td class="text-center text-lg">\${order_no }</td>
-									<td class="text-center text-lg"><img width=100; height=100; src="<c:url value='/upload/product_img/\${img_name_save}' />" alt="<c:url value='/upload/product_img/\${img_name_save}' />" /></td>
+									<td class="text-center text-lg"><img width=100; height=100; src="<c:url value='/upload/product_img/\${uploadPath}/\${img_name_save}' />" alt="<c:url value='/upload/product_img/\${uploadPath}/\${img_name_save}' />" /></td>
 									<td class="text-center text-lg">\${product_name }</td>
 									<td class="text-center text-lg">\${order_date }</td>
 									<td class="text-center text-lg">\${tot_price }</td>
@@ -664,7 +667,7 @@
 								`
 								<tr>
 									<td class="text-center text-lg">\${order_no }</td>
-									<td class="text-center text-lg"><img width=100; height=100; src="<c:url value='/upload/product_img/\${img_name_save}' />" alt="<c:url value='/upload/product_img/\${img_name_save}' />" /></td>
+									<td class="text-center text-lg"><img width=100; height=100; src="<c:url value='/upload/product_img/\${uploadPath}/\${img_name_save}' />" alt="<c:url value='/upload/product_img/\${uploadPath}/\${img_name_save}' />" /></td>
 									<td class="text-center text-lg">\${product_name }</td>
 									<td class="text-center text-lg">\${order_date }</td>
 									<td class="text-center text-lg">\${tot_price }</td>
@@ -683,7 +686,7 @@
 								`
 								<tr>
 									<td class="text-center text-lg">\${order_no }</td>
-									<td class="text-center text-lg"><img width=100; height=100; src="<c:url value='/upload/product_img/\${img_name_save}' />" alt="<c:url value='/upload/product_img/\${img_name_save}' />" /></td>
+									<td class="text-center text-lg"><img width=100; height=100; src="<c:url value='/upload/product_img/\${uploadPath}/\${img_name_save}' />" alt="<c:url value='/upload/product_img/\${uploadPath}/\${img_name_save}' />" /></td>
 									<td class="text-center text-lg">\${product_name }</td>
 									<td class="text-center text-lg">\${order_date }</td>
 									<td class="text-center text-lg">\${tot_price }</td>
@@ -702,7 +705,7 @@
 								`
 								<tr>
 									<td class="text-center text-lg">\${order_no }</td>
-									<td class="text-center text-lg"><img width=100; height=100; src="<c:url value='/upload/product_img/\${img_name_save}' />" alt="<c:url value='/upload/product_img/\${img_name_save}' />" /></td>
+									<td class="text-center text-lg"><img width=100; height=100; src="<c:url value='/upload/product_img/\${uploadPath}/\${img_name_save}' />" alt="<c:url value='/upload/product_img/\${uploadPath}/\${img_name_save}' />" /></td>
 									<td class="text-center text-lg">\${product_name }</td>
 									<td class="text-center text-lg">\${order_date }</td>
 									<td class="text-center text-lg">\${tot_price }</td>

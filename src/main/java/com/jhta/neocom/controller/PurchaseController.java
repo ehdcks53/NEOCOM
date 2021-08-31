@@ -5,7 +5,6 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.HashMap;
 
-
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -43,11 +42,10 @@ public class PurchaseController {
 	@Autowired
 	private CartService cartservice;
 
-	
 	// 직접 상품페이지에서 주문
 	@PostMapping("/member/purchase0")
 	public ModelAndView purchase0(int product_count, int product_id, String product_name, int selling_price,
-			String img_name_save, Model model) {
+			String img_name_save, String uploadPath, Model model) {
 		/*
 		 * if(session!=null) { //회원인 경우 세션에 아이디 담기 session.setAttribute("id", id);
 		 * return "order_dc/purchase"; }else {
@@ -59,39 +57,42 @@ public class PurchaseController {
 		mv.addObject("product_name", product_name);
 		mv.addObject("selling_price", selling_price);
 		mv.addObject("img_name_save", img_name_save);
-		System.out.println(product_id+"aa"+img_name_save);
+		mv.addObject("uploadPath", uploadPath);
+
+		System.out.println(product_id + "aa" + img_name_save);
 		return mv;
 		/* } */
 
-	   }
+	}
 
 	// 장바구니에서 주문
 	@PostMapping("/member/purchase1")
-	public ModelAndView purchase1(HttpSession session, Model model,@RequestParam("cart_nos") ArrayList<String> cart_nos) {
-	/*public ModelAndView purchase1(HttpSession session, Model model, @RequestParam("chkbox") ArrayList<Integer> chkbox,
-			@RequestParam("cnt") ArrayList<Integer> cnt) {
-		
+	public ModelAndView purchase1(HttpSession session, Model model,
+			@RequestParam("cart_nos") ArrayList<String> cart_nos) {
+		/*
+		 * public ModelAndView purchase1(HttpSession session, Model
+		 * model, @RequestParam("chkbox") ArrayList<Integer> chkbox,
+		 * 
+		 * @RequestParam("cnt") ArrayList<Integer> cnt) {
+		 * 
 		 * if(session!=null) { //회원인 경우 세션에 아이디 담기 session.setAttribute("id", id);
 		 * return "order_dc/purchase"; }else {
 		 */
 		/*
-		//int a = Integer.parseInt(chkbox.get(0));
-		ArrayList<ProductVo> purchaseList = new ArrayList<ProductVo>();
-		/*for (int i = 0; i < chkbox.size(); i++) {
-			purchaseList.addAll(productservice.purchaseList(chkbox.get(i)));
-		}
-
-		System.out.println(purchaseList);
-		
-		
-		mv.addObject("purchaseList", purchaseList);
-		//mv.addObject("cnt", cnt);
-		*/
+		 * //int a = Integer.parseInt(chkbox.get(0)); ArrayList<ProductVo> purchaseList
+		 * = new ArrayList<ProductVo>(); /*for (int i = 0; i < chkbox.size(); i++) {
+		 * purchaseList.addAll(productservice.purchaseList(chkbox.get(i))); }
+		 * 
+		 * System.out.println(purchaseList);
+		 * 
+		 * 
+		 * mv.addObject("purchaseList", purchaseList); //mv.addObject("cnt", cnt);
+		 */
 		System.out.println(cart_nos);
 		ModelAndView mv = new ModelAndView("frontend/order/purchase");
-		ArrayList<CartVo> purchaseList=new ArrayList<CartVo>();
-		for(int i=0;i<cart_nos.size();i++) {			
-			purchaseList.addAll(cartservice.cartnoSearch(Integer.parseInt(cart_nos.get(i))));	
+		ArrayList<CartVo> purchaseList = new ArrayList<CartVo>();
+		for (int i = 0; i < cart_nos.size(); i++) {
+			purchaseList.addAll(cartservice.cartnoSearch(Integer.parseInt(cart_nos.get(i))));
 		}
 		System.out.println(purchaseList);
 		mv.addObject("purchaseList", purchaseList);
@@ -104,14 +105,14 @@ public class PurchaseController {
 	// 주문 등록
 	// 주문 번호 만들기..
 	@PostMapping("/purchase")
-	public ModelAndView purchase(OrderMainVo vo,String[] order_price, String[] product_count,
-			String[] product_id, Authentication authentication, Model model) {
+	public ModelAndView purchase(OrderMainVo vo, String[] order_price, String[] product_count, String[] product_id,
+			Authentication authentication, Model model) {
 		try {
 			CustomUserDetails cud = (CustomUserDetails) authentication.getPrincipal();
 			MemberVo mvo = cud.getMemberVo();
 			int mem_no = mvo.getMem_no();
 			vo.setMem_no(mem_no);
-			System.out.println(order_price[0]+"원"+product_count[0]+": 개수");
+			System.out.println(order_price[0] + "원" + product_count[0] + ": 개수");
 			// 주문 번호 만들기(ex:210817 + order_no )
 			Calendar cal = Calendar.getInstance();
 			int year = cal.get(Calendar.YEAR);
@@ -170,29 +171,29 @@ public class PurchaseController {
 			omservice.updateno(map3);
 			ModelAndView mv = new ModelAndView("frontend/order/purchase2");
 			mv.addObject("order_no", order_num_update);
-			mv.addObject("orderer_name",vo.getOrderer_name());
-			mv.addObject("zip_code",vo.getZip_code());
-			mv.addObject("order_address",vo.getOrder_address());
-			mv.addObject("order_address_detail",vo.getOrder_address_detail());
-			mv.addObject("request_item",vo.getRequest_item());
-//			OrderDetailVo odvo0 = new OrderDetailVo();
-//			odvo0.setMem_no(mem_no);
-//			int a0 = Integer.parseInt(product_count);
-//			odvo0.setProduct_count(a0);
-//			odvo0.setProduct_id(product_id);
-//			odvo0.setOrder_price(order_price);
-//			odvo0.setOrder_no(order_num_update);
-			
-//			vo3.setOrder_no(order_num_update); vo3.setMem_no(mem_no);
-//			System.out.println(vo3); odservice.insert(vo3);
-			
-			System.out.println("id랭쓰"+product_id.length);
+			mv.addObject("orderer_name", vo.getOrderer_name());
+			mv.addObject("zip_code", vo.getZip_code());
+			mv.addObject("order_address", vo.getOrder_address());
+			mv.addObject("order_address_detail", vo.getOrder_address_detail());
+			mv.addObject("request_item", vo.getRequest_item());
+			// OrderDetailVo odvo0 = new OrderDetailVo();
+			// odvo0.setMem_no(mem_no);
+			// int a0 = Integer.parseInt(product_count);
+			// odvo0.setProduct_count(a0);
+			// odvo0.setProduct_id(product_id);
+			// odvo0.setOrder_price(order_price);
+			// odvo0.setOrder_no(order_num_update);
+
+			// vo3.setOrder_no(order_num_update); vo3.setMem_no(mem_no);
+			// System.out.println(vo3); odservice.insert(vo3);
+
+			System.out.println("id랭쓰" + product_id.length);
 			OrderDetailVo odvo1 = new OrderDetailVo();
-			if(product_id.length==1) {
+			if (product_id.length == 1) {
 				int a = Integer.parseInt(product_count[0]);
 				System.out.println(a + 2 + "count");
 				int b = Integer.parseInt(product_id[0]);
-				int c =Integer.parseInt(order_price[0]);
+				int c = Integer.parseInt(order_price[0]);
 				System.out.println(b + 2 + "id");
 				odvo1.setProduct_count(a);
 				odvo1.setProduct_id(b);
@@ -207,7 +208,7 @@ public class PurchaseController {
 				int a = Integer.parseInt(product_count[i]);
 				System.out.println(a + 2 + "count");
 				int b = Integer.parseInt(product_id[i]);
-				int c =Integer.parseInt(order_price[i]);
+				int c = Integer.parseInt(order_price[i]);
 				System.out.println(b + 2 + "id");
 				odvo1.setProduct_count(a);
 				odvo1.setProduct_id(b);
@@ -226,15 +227,15 @@ public class PurchaseController {
 		}
 
 	}
-	
-	//결제 페이지
+
+	// 결제 페이지
 	@GetMapping("/purchase2")
-	public String purchase(String id, int order_no,Authentication authentication, Model model) {
+	public String purchase(String id, int order_no, Authentication authentication, Model model) {
 		CustomUserDetails cud = (CustomUserDetails) authentication.getPrincipal();
 		MemberVo mvo = cud.getMemberVo();
 		int mem_no = mvo.getMem_no();
 		model.addAttribute("order_no", order_no);
-		model.addAttribute("mem_no",mem_no);
+		model.addAttribute("mem_no", mem_no);
 		System.out.println(order_no);
 		return "frontend/order/purchase2";
 	}
@@ -244,10 +245,10 @@ public class PurchaseController {
 	public HashMap<String, Object> insert(PaymentVo vo) {
 		HashMap<String, Object> map = new HashMap<String, Object>();
 		HashMap<String, Object> map2 = new HashMap<String, Object>();
-		
+
 		try {
 			map2.put("order_no", vo.getOrder_no());
-			map2.put("mid_num",vo.getMid_num());
+			map2.put("mid_num", vo.getMid_num());
 			System.out.println(vo);
 			pservice.insert(vo);
 			omservice.updateMidNum(map2);
@@ -258,23 +259,23 @@ public class PurchaseController {
 		}
 		return map;
 	}
-	
+
 	@GetMapping("/paymentSuccess")
-	public String paymentSuccess(HttpSession session, Model model,int order_no,String mid_num) {
+	public String paymentSuccess(HttpSession session, Model model, int order_no, String mid_num) {
 		HashMap<String, Object> map = new HashMap<String, Object>();
-		map.put("order_no",order_no );	
-		map.put("order_status","배송 준비중" );
-		map.put("payment_status","결제 완료" );
+		map.put("order_no", order_no);
+		map.put("order_status", "배송 준비중");
+		map.put("payment_status", "결제 완료");
 		omservice.update(map);
 		System.out.println(mid_num);
 		HashMap<String, Object> map2 = new HashMap<String, Object>();
-		map2.put("order_no",order_no );	
-		map2.put("payment_status","결제 완료" );
+		map2.put("order_no", order_no);
+		map2.put("payment_status", "결제 완료");
 		pservice.update(map);
 		model.addAttribute("order_no", order_no);
 		return "frontend/order/paymentSuccess";
 	}
-	
+
 	@RequestMapping(value = "/paymentCCtest", produces = { MediaType.APPLICATION_JSON_VALUE })
 	@ResponseBody
 	public HashMap<String, Object> paymentCC(PaymentVo vo) {
@@ -289,11 +290,11 @@ public class PurchaseController {
 		}
 		return map;
 	}
-	
+
 	@GetMapping("/paymentFail")
-	public String paymentFail(HttpSession session, Model model,String payment_status,int order_no) {
+	public String paymentFail(HttpSession session, Model model, String payment_status, int order_no) {
 		model.addAttribute("order_no", order_no);
 		return "frontend/order/paymentFail";
 	}
-	
+
 }

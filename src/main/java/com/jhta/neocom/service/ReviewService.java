@@ -52,4 +52,11 @@ public class ReviewService {
 	{
 		return mapper.getStar(product_id);
 	}
+	public List<HashMap<String,Object>> mylist(HashMap<String,Object> map) {
+		
+		return mapper.mylist(map); //mypage 리스트용
+	}
+	public int getmycnt(int mem_no) {
+		return mapper.getmycnt(mem_no);
+	}
 }
