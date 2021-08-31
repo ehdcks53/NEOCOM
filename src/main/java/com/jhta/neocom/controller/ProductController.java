@@ -1,22 +1,16 @@
 package com.jhta.neocom.controller;
 
-import java.io.FileOutputStream;
-import java.io.InputStream;
 import java.util.HashMap;
 import java.util.List;
-import java.util.UUID;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.MediaType;
 import org.springframework.security.core.Authentication;
-import org.springframework.util.FileCopyUtils;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.jhta.neocom.model.CategoryVo;
@@ -24,7 +18,6 @@ import com.jhta.neocom.model.CustomUserDetails;
 import com.jhta.neocom.model.MemberVo;
 import com.jhta.neocom.model.ProductVo;
 import com.jhta.neocom.model.Product_ImgVo;
-import com.jhta.neocom.model.ReviewVo;
 import com.jhta.neocom.service.CategoryService;
 import com.jhta.neocom.service.ImgFileService;
 import com.jhta.neocom.service.MemberService;
@@ -168,79 +161,10 @@ public class ProductController {
 			CustomUserDetails cud = (CustomUserDetails) authentication.getPrincipal();
 			MemberVo mvo = cud.getMemberVo();
 			mv.addObject("id", mvo.getId());
-			System.out.println("id====" + mvo.getId());
+
 		}
 
 		return mv;
-
-	}
-
-	// 리뷰 AJAX 등록
-	@RequestMapping(value = "/review/insert", produces = { MediaType.APPLICATION_JSON_VALUE })
-
-	public @ResponseBody HashMap<String, Object> insert(String review_title, String review_content,
-			Authentication authentication, int star, int product_id, MultipartFile file1) {
-		// String id = (String) session.getAttribute("id");
-		// MemberVo mvo = service3.select(id);
-		CustomUserDetails cud = (CustomUserDetails) authentication.getPrincipal();
-		MemberVo mvo = cud.getMemberVo();
-		System.out.println("멤버 테스트" + mvo.getMem_no());
-		System.out.println("멤버 닉네임 테스트+====" + mvo.getNickname());
-
-		String img_path = uploadFilePath + "\\product_img";
-		String review_img_origin = file1.getOriginalFilename(); // 전송된 파일명
-		String review_img = UUID.randomUUID() + "_" + review_img_origin;
-
-		HashMap<String, Object> map = new HashMap<String, Object>();
-		try {
-			// 1.파일업로드 하기
-			InputStream is = file1.getInputStream();
-			FileOutputStream fos = new FileOutputStream(img_path + "\\" + review_img);
-			FileCopyUtils.copy(is, fos);
-			is.close();
-			fos.close();
-
-			// 2.업로드된 파일정보 DB에 저장하기
-
-			ReviewVo vo = new ReviewVo(0, mvo.getMem_no(), mvo.getNickname(), product_id, review_title, review_content,
-					star, review_img, review_img_origin, null);
-			int n = r_service.insert(vo);
-			map.put("code", "success");
-
-		} catch (Exception e) {
-			e.printStackTrace();
-			map.put("code", "fail");
-		}
-		return map;
-	}
-
-	// 리뷰 리스트 ajax
-	@RequestMapping(value = "/review/ajaxlist", produces = { MediaType.APPLICATION_JSON_VALUE
-
-	})
-
-	public @ResponseBody HashMap<String, Object> reviewlist(
-			@RequestParam(value = "pageNum", defaultValue = "1") int pageNum, int product_id) {
-		HashMap<String, Object> map = new HashMap<String, Object>();
-
-		int totalRowCount = r_service.getCount(map);// 전체 글의 갯수
-
-		PageUtil pu = new PageUtil(pageNum, 3, 10, totalRowCount);
-		int startRow = pu.getStartRow() - 1;
-
-		map.put("startRow", startRow);
-		map.put("product_id", product_id);
-
-		List<HashMap<String, Object>> review = r_service.ajaxlist(map);
-
-		map.put("review", review);
-		map.put("startPageNum", pu.getStartPageNum());
-		map.put("endPageNum", pu.getEndPageNum());
-		map.put("pageCount", pu.getTotalPageCount());
-		map.put("pu", pu);
-
-		map.put("pageNum", pageNum);
-		return map;
 	}
 
 }

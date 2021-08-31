@@ -14,24 +14,24 @@ import org.springframework.stereotype.Service;
 public class CustomSecurityUsersService implements UserDetailsService {
     @Autowired
     private MemberRepository memberRepository;
-    boolean a=false;
+    boolean a = false;
+
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         MemberVo memberVo = memberRepository.findById(username)
                 .orElseThrow(() -> new UsernameNotFoundException("아이디 또는 비밀번호가 틀렸습니다."));
-        System.out.println("vo"+memberVo);
-        System.out.println("b "+memberVo.getRoles());
-        
-        memberVo.getRoles().forEach((e)->{
+        // System.out.println("vo"+memberVo);
+        // System.out.println("b "+memberVo.getRoles());
 
-        	if(e.getRoleName().equals("ROLE_NOTUSER")){
-        		a=true;
-        	}
+        memberVo.getRoles().forEach((e) -> {
+
+            if (e.getRoleName().equals("ROLE_NOTUSER")) {
+                a = true;
+            }
         });
-        if(a==true){
-        return null;
+        if (a == true) {
+            return null;
         }
-
 
         return new CustomUserDetails(memberVo);
     }
