@@ -1,16 +1,25 @@
 package com.jhta.neocom.controller;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
+import org.springframework.security.core.Authentication;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.jhta.neocom.model.CustomUserDetails;
 import com.jhta.neocom.model.MemberVo;
 import com.jhta.neocom.service.MemberService;
 
@@ -42,5 +51,20 @@ public class Join2Controller {
 		return "/frontend/account/join3";
 
 	}
+	
+
+	//@RequestMapping(value = "/account/idcheck",produces = {MediaType.APPLICATION_JSON_VALUE})
+//	@RequestMapping(value = "/account/idcheck")
+//	@ResponseBody
+//	public Map<Object, Object> idcheck(@RequestBody String id) {
+//       
+//        int count = 0;
+//        Map<Object, Object> map = new HashMap<Object, Object>();
+// 
+//        count = service.idcheck(id);
+//        map.put("cnt", count);
+// 
+//        return map;
+//	}
 
 }

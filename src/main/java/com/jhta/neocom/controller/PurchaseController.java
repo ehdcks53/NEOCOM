@@ -4,7 +4,7 @@ import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.HashMap;
-
+import java.util.List;
 
 import javax.servlet.http.HttpSession;
 
@@ -20,6 +20,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.jhta.neocom.model.AddressVo;
 import com.jhta.neocom.model.CartVo;
 import com.jhta.neocom.model.CustomUserDetails;
 import com.jhta.neocom.model.MemberVo;
@@ -27,6 +28,7 @@ import com.jhta.neocom.model.OrderDetailVo;
 import com.jhta.neocom.model.OrderMainVo;
 import com.jhta.neocom.model.PaymentVo;
 import com.jhta.neocom.model.ProductVo;
+import com.jhta.neocom.service.AddressService;
 import com.jhta.neocom.service.CartService;
 import com.jhta.neocom.service.OrderDetailService;
 import com.jhta.neocom.service.OrderMainService;
@@ -42,18 +44,40 @@ public class PurchaseController {
 	private OrderDetailService odservice;
 	@Autowired
 	private CartService cartservice;
+	@Autowired
+	private AddressService addrservice;
 
+	@RequestMapping(value = "/searchAddr", produces = { MediaType.APPLICATION_JSON_VALUE })
+	@ResponseBody
+	public HashMap<String, Object> searchAddr(String address_name,Authentication authentication ) {
+		CustomUserDetails cud = (CustomUserDetails) authentication.getPrincipal();
+		MemberVo mvo = cud.getMemberVo();
+		int mem_no = mvo.getMem_no();
+		HashMap<String, Object> map2 = new HashMap<String, Object>();
+		map2.put("address_name", address_name);
+		map2.put("mem_no", mem_no);
+		System.out.println(address_name+"<주소와>"+mem_no);
+		AddressVo vo=addrservice.searchAddr(map2);
+		System.out.println("vo는"+vo);
+		
+		HashMap<String, Object> map = new HashMap<String, Object>();
+		map.put("vo", vo);
+		return map;
+	}
+	
 	
 	// 직접 상품페이지에서 주문
 	@PostMapping("/member/purchase0")
 	public ModelAndView purchase0(int product_count, int product_id, String product_name, int selling_price,
-			String img_name_save, Model model) {
-		/*
-		 * if(session!=null) { //회원인 경우 세션에 아이디 담기 session.setAttribute("id", id);
-		 * return "order_dc/purchase"; }else {
-		 */
+			String img_name_save, Model model,Authentication authentication) {
+		CustomUserDetails cud = (CustomUserDetails) authentication.getPrincipal();
+		MemberVo mvo = cud.getMemberVo();
+		int mem_no = mvo.getMem_no();
+		List<AddressVo> myAddrList=addrservice.myAddrList(mem_no);
+		System.out.println("내주소 리스트"+myAddrList);
 		System.out.println(product_count);
 		ModelAndView mv = new ModelAndView("frontend/order/purchase");
+		mv.addObject("myAddrList", myAddrList);
 		mv.addObject("product_count", product_count);
 		mv.addObject("product_id", product_id);
 		mv.addObject("product_name", product_name);
@@ -67,26 +91,14 @@ public class PurchaseController {
 
 	// 장바구니에서 주문
 	@PostMapping("/member/purchase1")
-	public ModelAndView purchase1(HttpSession session, Model model,@RequestParam("cart_nos") ArrayList<String> cart_nos) {
-	/*public ModelAndView purchase1(HttpSession session, Model model, @RequestParam("chkbox") ArrayList<Integer> chkbox,
-			@RequestParam("cnt") ArrayList<Integer> cnt) {
+	public ModelAndView purchase1(HttpSession session, Model model,@RequestParam("cart_nos") ArrayList<String> cart_nos,
+			Authentication authentication) {
+		CustomUserDetails cud = (CustomUserDetails) authentication.getPrincipal();
+		MemberVo mvo = cud.getMemberVo();
+		int mem_no = mvo.getMem_no();
+		List<AddressVo> myAddrList=addrservice.myAddrList(mem_no);
+		System.out.println("내주소 리스트"+myAddrList);
 		
-		 * if(session!=null) { //회원인 경우 세션에 아이디 담기 session.setAttribute("id", id);
-		 * return "order_dc/purchase"; }else {
-		 */
-		/*
-		//int a = Integer.parseInt(chkbox.get(0));
-		ArrayList<ProductVo> purchaseList = new ArrayList<ProductVo>();
-		/*for (int i = 0; i < chkbox.size(); i++) {
-			purchaseList.addAll(productservice.purchaseList(chkbox.get(i)));
-		}
-
-		System.out.println(purchaseList);
-		
-		
-		mv.addObject("purchaseList", purchaseList);
-		//mv.addObject("cnt", cnt);
-		*/
 		System.out.println(cart_nos);
 		ModelAndView mv = new ModelAndView("frontend/order/purchase");
 		ArrayList<CartVo> purchaseList=new ArrayList<CartVo>();
@@ -94,6 +106,7 @@ public class PurchaseController {
 			purchaseList.addAll(cartservice.cartnoSearch(Integer.parseInt(cart_nos.get(i))));	
 		}
 		System.out.println(purchaseList);
+		mv.addObject("myAddrList", myAddrList);
 		mv.addObject("purchaseList", purchaseList);
 		return mv;
 
@@ -110,6 +123,7 @@ public class PurchaseController {
 			CustomUserDetails cud = (CustomUserDetails) authentication.getPrincipal();
 			MemberVo mvo = cud.getMemberVo();
 			int mem_no = mvo.getMem_no();
+
 			vo.setMem_no(mem_no);
 			System.out.println(order_price[0]+"원"+product_count[0]+": 개수");
 			// 주문 번호 만들기(ex:210817 + order_no )
@@ -170,6 +184,7 @@ public class PurchaseController {
 			omservice.updateno(map3);
 			ModelAndView mv = new ModelAndView("frontend/order/purchase2");
 			mv.addObject("order_no", order_num_update);
+			mv.addObject("tot_price", vo.getTot_price());
 			mv.addObject("orderer_name",vo.getOrderer_name());
 			mv.addObject("zip_code",vo.getZip_code());
 			mv.addObject("order_address",vo.getOrder_address());

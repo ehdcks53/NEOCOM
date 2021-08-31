@@ -73,7 +73,7 @@
 		</div>	
 		<div class="form-group input-group">	
 			비밀번호			
-			<input class="form-control" type="password" name="password" placeholder="비밀번호를 입력하세요">
+			<input class="form-control" type="password" name="password" id="password"placeholder="비밀번호를 입력하세요">
 		</div>	
 		<div class="text-center text-sm-right">
 			<button class="btn btn-primary margin-bottom-none" type="submit">회원탈퇴</button>

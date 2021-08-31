@@ -22,7 +22,6 @@ import com.jhta.neocom.service.PaymentService;
 import com.jhta.neocom.service.SendBackService;
 import com.jhta.neocom.util.PageUtil;
 
-
 @RestController
 public class MyPageController {
     @Autowired
@@ -37,7 +36,6 @@ public class MyPageController {
 
     @RequestMapping(value = "/account/mypage_order", produces = { MediaType.APPLICATION_JSON_VALUE })
     public ModelAndView frontendMyPageOrder(Authentication authentication) {
-
         CustomUserDetails cud = (CustomUserDetails) authentication.getPrincipal();
         MemberVo vo = cud.getMemberVo();
         int mem_no = vo.getMem_no();
@@ -52,7 +50,30 @@ public class MyPageController {
         List<OrderMainVo> myOrderList = service.myOrderList(map2);
         ModelAndView mv = new ModelAndView("frontend/account/mypage_order");
         mv.addObject("pu",pu);
-        System.out.println(pu+"puuuuu");
+        mv.addObject("myOrderList", myOrderList);
+        
+        return mv;
+
+    }
+    
+    @RequestMapping(value = "/account/mypage_order3", produces = { MediaType.APPLICATION_JSON_VALUE })
+    public ModelAndView frontendMyPageOrder3(Authentication authentication,int pageNum) {
+        CustomUserDetails cud = (CustomUserDetails) authentication.getPrincipal();
+        MemberVo vo = cud.getMemberVo();
+        int mem_no = vo.getMem_no();
+        System.out.println("mem_no은 :"+mem_no);
+        int totalRowCount =service.getCount(mem_no);
+        System.out.println("페이지넘:"+pageNum);
+        PageUtil pu = new PageUtil(pageNum, 10, 10, totalRowCount);
+        int startRow = pu.getStartRow() - 1;
+		int endRow = pu.getEndRow();
+        HashMap<String, Object> map2 = new HashMap<String, Object>();
+        map2.put("mem_no", mem_no);
+        map2.put("startRow", startRow);
+        List<OrderMainVo> myOrderList = service.myOrderList(map2);
+        ModelAndView mv = new ModelAndView("frontend/account/mypage_order");
+        mv.addObject("pu",pu);
+        mv.addObject("pageNum3",pageNum);
         mv.addObject("myOrderList", myOrderList);
         
         return mv;
@@ -71,6 +92,7 @@ public class MyPageController {
         HashMap<String, Object> map2 = new HashMap<String, Object>();
         map2.put("mem_no", mem_no);
         map2.put("startRow", startRow);
+        System.out.println(pageNum);
         System.out.println(pu+"puuuuu");
         HashMap<String, Object> map = new HashMap<String, Object>();
         

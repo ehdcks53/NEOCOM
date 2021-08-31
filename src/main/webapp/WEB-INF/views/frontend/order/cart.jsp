@@ -169,13 +169,13 @@
 						<tr>
 							<td class="text-center"><input type="checkbox"
 								name="cart_no" class="cart_nos" value="${vo.cart_no}"></td>
-							<td class="text-center text-lg"><img width=100; height=100;
+							<td class="text-center text-lg"><img width=70px; height=70px;
 								src="<c:url value='/upload/product_img/${vo.img_name_save}' />"
 								alt="<c:url value='/upload/product_img/${vo.img_name_save}' />" />
 							</td>
-							<td class="text-center text-lg" style="font-size: 21px;">
+							<td class="text-center text-lg" style="font-size: 15px;">
 								${vo.product_name }</td>
-							<td class="text-center text-lg">${vo.selling_price } 원</td>
+							<td class="text-center text-lg" style="font-size: 15px;">${vo.selling_price } 원</td>
 							<td class="text-center">
 								<div class="count-input">
 									<p style="display: table; margin: 0 auto;">
@@ -193,7 +193,7 @@
 									</a>
 								</div>
 							</td>
-							<td class="text-center text-lg">${vo.product_count*vo.selling_price } 원</td>
+							<td class="text-center text-lg" style="font-size: 15px;">${vo.product_count*vo.selling_price } 원</td>
 							<td class="text-center text-lg"><a class="remove-from-cart"
 								onclick="remove(${vo.cart_no})" data-toggle="tooltip" title="삭제"><i
 									class="icon-x"></i></a></td>
@@ -210,31 +210,12 @@
 			<div class="column">
 				<form class="coupon-form" method="post">
 					<input class="form-control form-control-sm" type="text"
-						placeholder="Coupon code" required>
-					<button class="btn btn-outline-primary btn-sm" type="submit">Apply
-						Coupon</button>
+						placeholder="쿠폰 번호" required>
+					<button class="btn btn-outline-primary btn-sm" type="submit">쿠폰 조회
+						</button>
 				</form>
 			</div>
 
-			<!--  <button type="button" class="btn btn-outline btn-primary pull-right" id="selectBtn">선택</button>	
-	        <table>
-	        	<thead>
-	        		<tr>
-	        			<th>상품 금액</th>
-	        			<th>배송비</th>
-	        			<th>할인 금액</th>
-	        			<th>총 결제금액</th>	
-	        		</tr>
-	        	</thead>
-	        	<tr>
-	        		<td>ab</td>
-	        		<td>2500원</td>
-	        		<td></td>
-	        		<td> 원</td>
-	        	</tr>
-	        </table>
-	        <div id="ex1"></div>
-	        <div id="ex2"></div>	-->
 
 			<div class="column text-lg">
 				<span class="text-muted">총액 :&nbsp;<input type="text"
@@ -576,13 +557,13 @@
 							<tr>
 									<td class="text-center"><input type="checkbox" name="cart_no" class="cart_nos" value="\${cart_no}" ></td>
 									<td class="text-center text-lg">
-										<img width=100; height=100; src="<c:url value='/upload/product_img/\${img_name_save}' />" alt="<c:url value='/upload/product_img/\${img_name_save}' />" />
+										<img width=70px; height=70px; src="<c:url value='/upload/product_img/\${img_name_save}' />" alt="<c:url value='/upload/product_img/\${img_name_save}' />" />
 									</td>
-									<td class="text-center text-lg" style="font-size: 21px;">
+									<td class="text-center text-lg"  style="font-size: 15px;">
 										<input type="hidden" name="product_name" class="product_names" value="\${product_name}">
 										\${product_name }
 									</td>
-									<td class="text-center text-lg">\${selling_price } 원</td>									
+									<td class="text-center text-lg" style="font-size: 15px;">\${selling_price } 원</td>								
 									<td class="text-center">
 										<div class="count-input">
 											<p style="display:table;margin:0 auto;">
@@ -595,7 +576,7 @@
 											</a>	
 										</div>
 									</td>
-									<td class="text-center text-lg">\${product_count*selling_price } 원</td>
+									<td class="text-center text-lg" style="font-size: 15px;">\${product_count*selling_price } 원</td>
 									<td class="text-center text-lg">
 										<a class="remove-from-cart" onclick="remove(\${cart_no})" data-toggle="tooltip" title="삭제"><i class="icon-x"></i></a>
 									</td>	

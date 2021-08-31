@@ -35,4 +35,6 @@ public interface MemberMapper {
 	int update(MemberVo vo);
 
 	int delete(int mem_no);
+	
+	String findId(String phone);
 }

@@ -65,9 +65,29 @@
           <div class="steps flex-sm-nowrap mb-5"><a class="step" href="checkout-address.html">
               <h4 class="step-title"><i class="icon-check-circle"></i>1. 주소</h4></a><a class="step active" href="checkout-shipping.html">
               <h4 class="step-title">2. 결제</h4></a></div>
-          <h4>Choose Payment Method</h4>
+          <h4>결제 정보</h4>
+          
+          
           <hr class="padding-bottom-1x">
           <div class="accordion" id="accordion" role="tablist">
+          <div class="col-xl-12  col-lg-8">
+	      	<table class="table table-hover">
+	        	<thead>
+	          		<tr>
+	          			<th class="text-center">상품금액</th>
+	          			<th class="text-center">배송비</th>
+	          			<th class="text-center">총 결제하실 금액</th>          			
+	          		</tr>
+	          	</thead>
+	          	<tbody>
+	          		<tr>
+	          			<th class="text-center">${tot_price} 원</th>
+	          			<th class="text-center">0 원</th>
+	          			<th class="text-center">${tot_price} 원</th>
+	          		</tr>
+	          	</tbody>
+	      	</table>
+          </div>
             <div class="card">
               <div class="card-header" role="tab">
                 <h6><a href="#card" data-toggle="collapse"><i class="icon-credit-card"></i>Pay with Credit Card</a></h6>
@@ -96,47 +116,8 @@
                 </div>
               </div>
             </div>
-            <div class="card">
-              <div class="card-header" role="tab">
-                <h6><a class="collapsed" href="#paypal" data-toggle="collapse"><i class="socicon-paypal"></i>Pay with PayPal</a></h6>
-              </div>
-              <div class="collapse" id="paypal" data-parent="#accordion" role="tabpanel">
-                <div class="card-body">
-                  <p>PayPal - the safer, easier way to pay</p>
-                  <form class="row" method="post">
-                    <div class="col-sm-6">
-                      <div class="form-group">
-                        <input class="form-control" type="email" placeholder="E-mail" required>
-                      </div>
-                    </div>
-                    <div class="col-sm-6">
-                      <div class="form-group">
-                        <input class="form-control" type="password" placeholder="Password" required>
-                      </div>
-                    </div>
-                    <div class="col-12">
-                      <div class="d-flex flex-wrap justify-content-between align-items-center"><a class="navi-link" href="#"><u>Forgot password?</u></a>
-                        <button class="btn btn-outline-primary margin-top-none" type="submit">Log In</button>
-                      </div>
-                    </div>
-                  </form>
-                </div>
-              </div>
-            </div>
-            <div class="card">
-              <div class="card-header" role="tab">
-                <h6><a class="collapsed" href="#points" data-toggle="collapse"><i class="icon-award"></i>Redeem Reward Points</a></h6>
-              </div>
-              <div class="collapse" id="points" data-parent="#accordion" role="tabpanel">
-                <div class="card-body">
-                  <p>You currently have<span class="text-medium"> 2,549</span> Reward Points to spend.</p>
-                  <div class="custom-control custom-checkbox d-block">
-                    <input class="custom-control-input" type="checkbox" id="use_points">
-                    <label class="custom-control-label" for="use_points">Use my Reward Points to pay for this order.</label>
-                  </div>
-                </div>
-              </div>
-            </div>
+            
+            
           </div>
       		<div class="d-flex justify-content-between paddin-top-1x mt-4">
 					<a class="btn btn-outline-secondary" href="cart.html"><i
@@ -147,75 +128,107 @@
 						class="icon-arrow-right"></i></button>
 			</div>
        </div>
+        
         <!-- Sidebar          -->
-        <div class="col-xl-3 col-lg-4">
-          <aside class="sidebar">
-            <div class="padding-top-2x hidden-lg-up"></div>
-            <!-- Order Summary Widget-->
-            <section class="widget widget-order-summary">
-              <h3 class="widget-title">Order Summary</h3>
-              <table class="table">
-                <tr>
-                  <td>Cart Subtotal:</td>
-                  <td class="text-gray-dark">$2,548.50</td>
-                </tr>
-                <tr>
-                  <td>Shipping:</td>
-                  <td class="text-gray-dark">$26.50</td>
-                </tr>
-                <tr>
-                  <td>Estimated tax:</td>
-                  <td class="text-gray-dark">$9.72</td>
-                </tr>
-                <tr>
-                  <td></td>
-                  <td class="text-lg text-gray-dark">$2,584.72</td>
-                </tr>
-              </table>
-            </section>
-            <!-- Featured Products Widget-->
-            <section class="widget widget-featured-products">
-              <h3 class="widget-title">Recently Viewed</h3>
-              <!-- Entry-->
-              <div class="entry">
-                <div class="entry-thumb"><a href="shop-single.html"><img src="img/shop/widget/01.jpg" alt="Product"></a></div>
-                <div class="entry-content">
-                  <h4 class="entry-title"><a href="shop-single.html">GoPro Hero4 Silver</a></h4><span class="entry-meta">$287.99</span>
-                </div>
-              </div>
-              <!-- Entry-->
-              <div class="entry">
-                <div class="entry-thumb"><a href="shop-single.html"><img src="img/shop/widget/02.jpg" alt="Product"></a></div>
-                <div class="entry-content">
-                  <h4 class="entry-title"><a href="shop-single.html">Puro Sound Labs BT2200</a></h4><span class="entry-meta">$95.99</span>
-                </div>
-              </div>
-              <!-- Entry-->
-              <div class="entry">
-                <div class="entry-thumb"><a href="shop-single.html"><img src="img/shop/widget/03.jpg" alt="Product"></a></div>
-                <div class="entry-content">
-                  <h4 class="entry-title"><a href="shop-single.html">HP OfficeJet Pro 8710</a></h4><span class="entry-meta">$89.70</span>
-                </div>
-              </div>
-              <!-- Entry-->
-              <div class="entry pb-2">
-                <div class="entry-thumb"><a href="shop-single.html"><img src="img/shop/widget/05.jpg" alt="Product"></a></div>
-                <div class="entry-content">
-                  <h4 class="entry-title"><a href="shop-single.html">iPhone X 256 GB Space Gray</a></h4><span class="entry-meta">$1,450.00</span>
-                </div>
-              </div>
-            </section>
-            <!-- Promo Banner--><a class="card border-0 bg-secondary" href="shop-grid-ls.html">
-              <div class="card-body"><span class="d-block text-lg text-thin mb-2">Limited Time Deals</span>
-                <h3>Surface Pro 4</h3>
-                <p class="d-inline-block bg-warning text-white">&nbsp;&nbsp;Shop Now&nbsp;<i class="icon-chevron-right d-inline-block align-middle"></i>&nbsp;</p>
-              </div><img class="d-block mx-auto" src="img/shop/widget/promo.jpg" alt="Surface Pro"></a>
-          </aside>
-        </div>
+			<div class="col-xl-3 col-lg-4" id="sidebar">
+				<aside class="sidebar" >
+					<div class="padding-top-2x hidden-lg-up"></div>
+					<!-- Order Summary Widget-->
+					<section class="widget widget-order-summary">
+						<h3 class="widget-title">주문정보(Order Summary)</h3>
+						<table class="table">
+							<tr>
+								<td>총 결제금액 : </td>
+								<td class="text-gray-dark">${tot_price } 원</td>
+							</tr>		
+							<tr>
+								<td>배송비(Shipping):  </td>
+								<td class="text-gray-dark">0원</td>
+							</tr>
+							<tr>
+								<td></td>
+								<td class="text-lg text-gray-dark">${tot_price } 원</td>
+							</tr>
+						</table>
+					</section>
+					<!-- Featured Products Widget-->
+					<section class="widget widget-featured-products">
+						<h3 class="widget-title">최근 본 상품</h3>
+						<!-- Entry-->
+						<div class="entry">
+							<div class="entry-thumb">
+								<a href="shop-single.html"><img src="img/shop/widget/01.jpg"
+									alt="Product"></a>
+							</div>
+							<div class="entry-content">
+								<h4 class="entry-title">
+									<a href="shop-single.html">GoPro Hero4 Silver</a>
+								</h4>
+								<span class="entry-meta">150000 원</span>
+							</div>
+						</div>
+						<!-- Entry-->
+						<div class="entry">
+							<div class="entry-thumb">
+								<a href="shop-single.html"><img src="img/shop/widget/02.jpg"
+									alt="Product"></a>
+							</div>
+							<div class="entry-content">
+								<h4 class="entry-title">
+									<a href="shop-single.html">키보드</a>
+								</h4>
+								<span class="entry-meta">250000 원</span>
+							</div>
+						</div>
+						<!-- Entry-->
+						<div class="entry">
+							<div class="entry-thumb">
+								<a href="shop-single.html"><img src="img/shop/widget/03.jpg"
+									alt="Product"></a>
+							</div>
+							<div class="entry-content">
+								<h4 class="entry-title">
+									<a href="shop-single.html">HP OfficeJet Pro 8710</a>
+								</h4>
+								<span class="entry-meta">$89.70</span>
+							</div>
+						</div>
+						<!-- Entry-->
+						<div class="entry pb-2">
+							<div class="entry-thumb">
+								<a href="shop-single.html"><img src="img/shop/widget/05.jpg"
+									alt="Product"></a>
+							</div>
+							<div class="entry-content">
+								<h4 class="entry-title">
+									<a href="shop-single.html">iPhone X 256 GB Space Gray</a>
+								</h4>
+								<span class="entry-meta">$1,450.00</span>
+							</div>
+						</div>
+					</section>
+					<!-- Promo Banner-->
+					<a class="card border-0 bg-secondary" href="shop-grid-ls.html">
+						<div class="card-body">
+							<span class="d-block text-lg text-thin mb-2">Limited Time
+								Deals</span>
+							<h3>Surface Pro 4</h3>
+							<p class="d-inline-block bg-warning text-white">
+								&nbsp;&nbsp;Shop Now&nbsp;<i
+									class="icon-chevron-right d-inline-block align-middle"></i>&nbsp;
+							</p>
+						</div>
+						<img class="d-block mx-auto" src="img/shop/widget/promo.jpg"
+						alt="Surface Pro">
+					</a>
+				</aside>
+			</div>
+        
       </div>	
 				<div>
 					주문번호 보내기<input type="text" id="order_no" value="${order_no }">
 					<input type="hidden" id="orderer_name" value="${orderer_name }">
+					<input type="hidden" id="tot_price" value="${tot_price }">
 					<input type="hidden" id="zip_code" value="${zip_code }">
 					<input type="hidden" id="order_address" value="${order_address }">
 					<input type="hidden" id="order_address_detail" value="${order_address_detail }">
@@ -240,6 +253,42 @@
 
 
 <script>
+	
+	$(function(){
+		const scrollHeight = 260;
+		var body = document.body,
+	
+	    html = document.documentElement;
+		var height = Math.max( body.scrollHeight, body.offsetHeight, 
+			 html.clientHeight, html.scrollHeight, html.offsetHeight );
+		$(".sidebar").css({
+			"top":-height+1703
+		});
+		var endScroll=height-1221
+		var endPx=height-1471
+		//사이드바 스크롤
+	
+		function sidebar(){
+			if($(window).scrollTop()>endScroll){
+				document.getElementById('sidebar').style.top = endPx + 'px';
+			}else if($(window).scrollTop() > scrollHeight){
+				let top = $(window).scrollTop() - scrollHeight + 10;
+				document.getElementById('sidebar').style.top = top + 'px';
+				console.log($(window).scrollTop());
+				console.log(height);
+			}else if($(window).scrollTop()<scrollHeight){
+				document.getElementById('sidebar').style.top = '0px';
+			}
+		}
+	
+		sidebar();
+	
+		$(window).scroll(()=>{
+			sidebar();
+		});
+	
+	});
+
 	$("#check_module").click(function() {
 		var IMP = window.IMP; // 생략가능
 		var order_no=$("#order_no").val();
@@ -278,7 +327,7 @@
 			 참고하세요.
 			 나중에 포스팅 해볼게요.
 			 */
-			name : '상품',
+			name : 'Neocom',
 			//결제창에서 보여질 이름
 			amount : 100,
 			//가격
@@ -333,8 +382,9 @@
 				var msg = '결제에 실패하였습니다.';
 				msg += '에러내용 : ' + rsp.error_msg;
 				location.href = "${pageContext.request.contextPath}/paymentFail?order_no="+order_no;
+				alert(msg);
 			}
-			alert(msg);
+			
 		});
 	});
 	

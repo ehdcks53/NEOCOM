@@ -6,24 +6,35 @@ import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
+import org.hibernate.internal.build.AllowSysOut;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.security.core.Authentication;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.jhta.neocom.model.AddressVo;
 import com.jhta.neocom.model.CustomUserDetails;
 import com.jhta.neocom.model.MemberVo;
 import com.jhta.neocom.model.WishlistVo;
+import com.jhta.neocom.service.AddressService;
 import com.jhta.neocom.service.MemberService;
 import com.jhta.neocom.service.QnABoardService;
 import com.jhta.neocom.service.WishlistService;
+
+import ch.qos.logback.classic.Logger;
 
 // MyPageController AJAX때문에 컨트롤러 분리했습니다!!
 
@@ -31,15 +42,73 @@ import com.jhta.neocom.service.WishlistService;
 public class MyPageOtherController {
 	@Autowired
     private MemberService memberService;
-	
-	@Autowired private QnABoardService qna_service;
-	@Autowired private WishlistService wishlist_service;
+	@Autowired 
+	private QnABoardService qna_service;
+	@Autowired 
+	private WishlistService wishlist_service;
+	@Autowired
+	private AddressService adressService;
 	@Autowired
 	private BCryptPasswordEncoder bCryptPasswordEncoder;	
+	
+	//마이페이지 배송지관리
 	@RequestMapping(value = "/account/mypage_delivery")
-    public String frontendMyPageDelivery() {
+    public String frontendMyPageDelivery(Authentication auth, Model model) {
+		
+		CustomUserDetails cud=(CustomUserDetails) auth.getPrincipal();
+		String id=cud.getUsername();
+		System.out.println(id);
+		List<AddressVo> list=adressService.addrList(id);
+		model.addAttribute("list",list); 
+		System.out.println("리스트:"+list);
         return "frontend/account/mypage_delivery";
-    }
+    
+	}
+	//마이페이지 배송지추가
+	@GetMapping("/account/delivery")
+	public String PlusdeliveryForm(Model model) {
+		return "frontend/account/mypage_plusDelivery";
+	}
+	//배송지 추가,리스트 재출력
+	@PostMapping("/account/delivery")
+	public String Plusdelivery(AddressVo vo,Model model,Authentication auth) {
+		System.out.println("auth:"+auth);
+		System.out.println("우편추가시작");
+		System.out.println("우편:"+vo.getZip_code()+"주소1:"+vo.getAddress()+"주소2:"+vo.getAdress_detail());
+
+		CustomUserDetails cud=(CustomUserDetails) auth.getPrincipal();
+		MemberVo mvo=cud.getMemberVo();
+		String id=cud.getUsername();
+		int mem_no=mvo.getMem_no();
+		vo.setMem_no(mem_no);
+		adressService.addrTest(vo);
+		List<AddressVo> list=adressService.addrList(id);
+		model.addAttribute("list",list); 
+		return "frontend/account/mypage_delivery";
+	}
+	//배송지 수정
+	@GetMapping("/yongupdate")
+	public ModelAndView dddefsdf(Authentication auth, int addr_no) {
+		System.out.println(addr_no);
+		ModelAndView mv=new ModelAndView("frontend/account/mypage_modifyDelivery");
+		mv.addObject("vo",adressService.zipSelect(addr_no));
+		return mv;
+	}
+	//배송지 수정및 리스트 재출력
+	@PostMapping("/account/modifyDel")
+	public String modifyDel(AddressVo vo, Authentication auth, Model model, int addr_no) {
+		System.out.println(addr_no);
+		System.out.println(vo);
+		
+		CustomUserDetails cud=(CustomUserDetails) auth.getPrincipal();
+		String id=cud.getUsername();
+		adressService.addrModify(vo);
+		System.out.println("MODIFY VO:"+vo);
+		List<AddressVo> list=adressService.addrList(id);
+		model.addAttribute("list",list); 
+
+		return "frontend/account/mypage_delivery";
+	}
 
 	// 나의 문의내역
     @RequestMapping(value = "/account/mypage_question")
@@ -146,7 +215,7 @@ public class MyPageOtherController {
         return "frontend/account/mypage_pwdmodify";
     }
     @RequestMapping(value = "/account/pwdmodify", method = RequestMethod.POST)
-    public String pwdModify() {
+    public String pwdModify(Model model) {
         return "frontend/account/mypage_pwdmodify";
     }
     @RequestMapping(value = "/account/memberDel", method = RequestMethod.GET)
@@ -156,10 +225,7 @@ public class MyPageOtherController {
         return mv;
     }
     @RequestMapping(value = "/account/memberDel", method = RequestMethod.POST)
-    public String memberDel( HttpSession session,MemberVo memberVo, Model model,String password) {
-    	
-
-    	
+    public String memberDel( HttpSession session,MemberVo memberVo, Model model,String password,HttpServletRequest req) {
     	//memberVo.setPassword(bCryptPasswordEncoder.encode(memberVo.getPassword()));
     	//password=req.getParameter("password");	
     	String encode = bCryptPasswordEncoder.encode(password);
@@ -183,7 +249,5 @@ public class MyPageOtherController {
     		session.invalidate();
     		return "redirect:/";
     	}
-    }
-	
-	
-}
+    }	
+ }

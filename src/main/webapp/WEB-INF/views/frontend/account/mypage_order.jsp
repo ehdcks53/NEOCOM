@@ -128,6 +128,7 @@
 					
 				</tbody>
 			</table>
+				<div id="paging"></div>
 			</div>
 			
 		</div>
@@ -135,7 +136,7 @@
 	
 	
 </div>
-	<div id="paging"></div>
+	
 	<div>
 		<iframe title="하단광고" scrolling="no" frameborder="0" marginheight="0" parginwidth="0"
 		width="100%" style="margin-top:50px;" src="http://ad.danawa.com/RealMedia/ads/adstream_sx.ads/www.danawa.com/blog_BABY@Middle1"></iframe>
@@ -156,7 +157,6 @@
 	<script src="${pageContext.request.contextPath}/static/frontend/assets/js/jquery-3.6.0.min.js"></script>
 	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
 	<script type="text/javascript">
-	
 	function order_cc(order_no){
 		var result = confirm("주문을 취소하시겠습니까?");
 		if (result) {
@@ -504,14 +504,15 @@
 	function purchase(order_no){
 		location.href="${pageContext.request.contextPath}/purchase2?order_no="+order_no;
 	}
-
-
+	
+	var pageNum=1;
+	
 	function list(){
 		console.log("here");
 		$("#myOrderList").empty();
 		
 		$.ajax({
-			url:"${pageContext.request.contextPath}/account/mypage_order2?pageNum=1",
+			url:"${pageContext.request.contextPath}/account/mypage_order2?pageNum="+pageNum,
 			dataType:"json",
 			success:function(data){
 				console.log("success");
@@ -519,7 +520,9 @@
 					$(data.pu).each(function(i,d){
 						console.log("aa");
 						let startPageNum=d.startPageNum;
-						let pageNum=d.pageNum;
+						let endPageNum=d.endPageNum;
+						pageNum=d.pageNum;
+						console.log(d.pageNum);
 						let prevPage=d.prevPage;
 						let nextPage=d.nextPage;
 						console.log(startPageNum);
@@ -541,21 +544,32 @@
 									</div>
 									<div class="column">
 									<ul class="pages" style="margin-top:20px;">
-									<c:forEach var="i" begin="1" end="12">
-										\${pageNum+ i}
-										<c:choose>
-											<c:when test="\${pageNum==i }">
-												<li class="active">
-													<a href="${pageContext.request.contextPath}/account/mypage_order2?pageNum=\${i }">\${i }</a>
-												</li>
-											</c:when>
-											<c:otherwise>
-												<li>
-													<a href="${pageContext.request.contextPath}/account/mypage_order2?pageNum=\${i }">\${i }</a>
-												</li>
-											</c:otherwise>
-										</c:choose>
-									</c:forEach>
+									</ul>
+									`
+									);
+									 for(var i=startPageNum;i<endPageNum;i++){
+										if(pageNum==i){
+											$(".pages").append(
+											`
+											<li class="active">
+											<a href="${pageContext.request.contextPath}/account/mypage_order3?pageNum=\${i }">\${i }</a>
+											</li>
+											`
+											);
+										}else{
+											$(".pages").append(
+											`
+											<li>
+												<a href="${pageContext.request.contextPath}/account/mypage_order3?pageNum=\${i }">\${i }</a>
+											</li>
+											`
+											);
+										}
+									}
+									+
+									`
+									
+									
 									</ul>
 									</div>
 									<div class="column">
@@ -570,7 +584,7 @@
 									</div>
 								</nav>
 								`
-							);
+							
 					});
 	
 				$(data.myOrderList).each(function(i,d){
@@ -857,9 +871,15 @@
 			}
 		}
 	});
-
+	
 	window.onload = function () { 
+		var a = '${pageNum3}';
+		if(a){
+			pageNum=a;
+		}
+		
 		list();
+		
 
 	}
 
