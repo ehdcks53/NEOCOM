@@ -800,34 +800,7 @@
 			
 			</c:otherwise>
 			</c:choose>
-			<!-- 브랜드 필터 -->
-			<section class="widget">
-			<h3 class="widget-title">브랜드</h3>
-				<div class="custom-control ustom-checkbox">
-					<input class="custom-control-input" type="checkbox" id="brand1">
-					<label class="custom-control-label" for="brand1">
-						brand1 &nbsp;<span class="text-muted">(100)</span>
-					</label>
-				</div>
-				<div class="custom-control ustom-checkbox">
-					<input class="custom-control-input" type="checkbox" id="brand2">
-					<label class="custom-control-label" for="brand2">
-						brand2 &nbsp;<span class="text-muted">(200)</span>
-					</label>
-				</div>
-				<div class="custom-control ustom-checkbox">
-					<input class="custom-control-input" type="checkbox" id="brand3">
-					<label class="custom-control-label" for="brand3">
-						brand3 &nbsp;<span class="text-muted">(300)</span>
-					</label>
-				</div>
-				<div class="custom-control ustom-checkbox">
-					<input class="custom-control-input" type="checkbox" id="brand4">
-					<label class="custom-control-label" for="brand4">
-						brand4 &nbsp;<span class="text-muted">(400)</span>
-					</label>
-				</div>
-			</section>
+		
 		</aside>
 	</div>
 	<!-- ///////////////////// 상품리스트 사이드바 끝 ///////////////////// -->
@@ -969,7 +942,7 @@ $(function(){
 						<!-- forEach 시작 부분 -->
 						let html= " <div class='product-card product-list mb-30'>";
 						html+=		"<a class='product-thumb' href='${pageContext.request.contextPath}/shop/product_detail"+"?n="+d.product_id+"&"+"m="+d.category_id+"'>";
-						html+=		"	<img src='<c:url value='/upload/product_img/"+d.img_name_save+"' />' alt='<c:url value='/upload/product_img/"+d.img_name_save+"' />' />";
+						html+=		"	<img src='<c:url value='/upload/product_img/"+d.uploadPath+"/"+d.img_name_save+"' />' alt='<c:url value='/upload/product_img/"+d.uploadPath+"/"+d.img_name_save+"' />' />";
 										html+=	"	</a> ";
 										html+= "<div class='product-card-inner'>";
 										html+=	"	<div class='product-card-body'>";

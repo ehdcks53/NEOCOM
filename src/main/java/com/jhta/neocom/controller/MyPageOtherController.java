@@ -212,8 +212,9 @@ public class MyPageOtherController {
 			map.put("startRow", startRow);
 
 
-			model.addAttribute("list", r_service.mylist(mvo.getMem_no()));
+			model.addAttribute("list", r_service.mylist(map));
 			model.addAttribute("pu", pu);
+			System.out.println("list 찍히나?"+r_service.mylist(map));
 			
 		
 		

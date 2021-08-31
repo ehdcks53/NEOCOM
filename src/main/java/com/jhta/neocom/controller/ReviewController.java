@@ -120,7 +120,7 @@ public class ReviewController {
 			dir.mkdir();
 
 		}
-		System.out.println(img_path);
+		
 
 		String review_img_origin = file1.getOriginalFilename(); // 전송된 파일명
 		String review_img = UUID.randomUUID() + "_" + review_img_origin;

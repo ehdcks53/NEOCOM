@@ -80,29 +80,71 @@
 				<thead>
 					<tr>
 						<th width="10%" class="text-center">상품번호</th>
-						<th width="60%" class="text-center">제목</th>
+						<th width="30%" class="text-center">제목</th>
 						<th width="25%" class="text-center">등록일자</th>
-						<th width="15%" class="text-center">이미지 </th>
+						<th width="55%" class="text-center">이미지 </th>
 					</tr>
 				</thead>
 				<tbody>
 				<c:forEach var="vo" items="${list }">
 					<tr>
-						<td></td>
-						<td>
-							<a href="${pageContext.request.contextPath }/reivew_detail?board_num=${vo.board_num}">
+						<td class="text-center">${vo.product_id }</td>
+						<td class="text-center">	
+							<a href="${pageContext.request.contextPath }/review_detail?board_num=${vo.board_num}">
 								${vo.review_title }
 							</a>
 						</td>
 						<td class="text-center"><fmt:parseDate value="${vo.regdate }" var="regdate" pattern="yyyy-MM-dd'T'HH:mm:ss" /><fmt:formatDate value="${regdate }" pattern="yyyy-MM-dd HH:mm:ss" /></td>
 						<td class="text-center">
-							<img  src="<c:url value='/upload/review_img/${vo.review_img}' />"
+							<img width=80; height=80; src="<c:url value='/upload/review_img/${vo.review_img}' />"
 							alt="<c:url value='/upload/product_img/${vo.review_img}' />" />
 						</td>
 					</tr>
 				</c:forEach>
 				</tbody>
 			</table>
+					<!-- 페이징 -->
+		<nav class="pagination" style="margin-top:20px;">
+			<div class="column">
+				<c:choose>
+					<c:when test="${pu.prevPage }">
+						<a class="btn btn-outline-secondary btn-sm" href="${pageContext.request.contextPath}/account/mypage_myreview?pageNum=${pu.pageNum-1 }"><i class="icon-chevron-left"></i> 이전</a>
+					</c:when>
+					<c:otherwise>
+						<a class="btn btn-outline-secondary btn-sm disabled"><i class="icon-chevron-left"></i> 이전</a>
+					</c:otherwise>
+				</c:choose>
+			</div>
+			<div class="column">
+			<ul class="pages" style="margin-top:20px;">
+			
+			<c:forEach var="i" begin="${pu.startPageNum }" end="${pu.endPageNum }">
+				<c:choose>
+					<c:when test="${pu.pageNum==i }">
+						<li class="active">
+							<a href="${pageContext.request.contextPath}/account/mypage_myreview?pageNum=${i }">${i }</a>
+						</li>
+					</c:when>
+					<c:otherwise>
+						<li>
+							<a href="${pageContext.request.contextPath}/account/mypage_myreview?pageNum=${i }">${i }</a>
+						</li>
+					</c:otherwise>
+				</c:choose>
+			</c:forEach>
+			</ul>
+			</div>
+			<div class="column">
+				<c:choose>
+					<c:when test="${pu.nextPage }">
+						<a class="btn btn-outline-secondary btn-sm" href="${pageContext.request.contextPath}/account/mypage_myreview?pageNum=${pu.pageNum+1 }">다음 <i class="icon-chevron-right"></i></a>
+					</c:when>
+					<c:otherwise>
+						<a class="btn btn-outline-secondary btn-sm disabled">다음 <i class="icon-chevron-right"></i></a>
+					</c:otherwise>
+				</c:choose>
+			</div>
+		</nav>
 		
 		</div>
 		</div>
