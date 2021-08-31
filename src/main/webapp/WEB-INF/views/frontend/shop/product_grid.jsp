@@ -41,9 +41,9 @@
 		</div>
 		<div class="column">
 			<ul class="breadcrumbs">
-				<li><a href="#">Home</a></li>
+				<li><a href="${pageContext.request.contextPath}/">Home</a></li>
 				<li class="separator">&nbsp;</li>
-				<li><a href="#">Shop</a></li>
+				<li><a href="${pageContext.request.contextPath}/shop/product_grid?category_id=20000">Shop</a></li>
 				<li class="separator">&nbsp;</li>
 				<li>Goods list</li>
 			</ul>
@@ -826,6 +826,24 @@
 	<script src="${pageContext.request.contextPath}/static/frontend/assets/js/modernizr.min.js"></script>
 	
 	<script type="text/javascript">
+	//장바구니 담기
+	function insertCart(product_id){
+		
+		console.log(product_id)
+			$.ajax({
+				url:"${pageContext.request.contextPath}/member/insertCart",
+				dataType:"json",
+				data:{"product_id" : product_id},
+				Type:'post',
+				success:function(data){
+					
+				},error:function(request, status, error){
+
+					alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
+				}
+			});	
+	};
+	
 $(function(){
 	
 	
@@ -942,10 +960,9 @@ $(function(){
 										html+=		"	</div> ";
 										html+=	"	<div class='product-button-group'>";
 									<!-- 위시리스트 토스트 수정은 scripts.min.js 파일 -->
-									html+=			"	<a class='product-button btn-wishlist' href='#'><i class='icon-heart'></i><span>관심상품</span></a>";
-									html+=	"	<a class='product-button' href='#'" ;
-										html+=		"	data-toast " ;
-										html+=		"	data-toast-type='success'" ;
+							 		html+=			"	<a class='product-button btn-wishlist' href='#'><i class='icon-heart'></i><span>관심상품</span></a>";
+									html+=	"	<a class='product-button' href='javascript:insertCart("+d.product_id+");'" ;
+										html+=		"	data-toast data-toast-type='success'" ;
 											html+=		"	data-toast-position='topRight'" ;
 												html+=		"	data-toast-icon='icon-check-circle' " ;
 													html+=		"	data-toast-title=' ' " ;

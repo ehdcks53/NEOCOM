@@ -35,7 +35,6 @@ public class VisitorCounter implements HttpSessionListener {
         vo.setVisit_ip(req.getRemoteAddr());
         vo.setVisit_agent(req.getHeader("User-Agent"));// 브라우저 정보
         vo.setVisit_refer(req.getHeader("referer"));// 접속 전 사이트 정보
-        service.insert(vo);
         int visitor_hit = service.selectAll().size();
 
         session.setAttribute("visitor_hit", visitor_hit);

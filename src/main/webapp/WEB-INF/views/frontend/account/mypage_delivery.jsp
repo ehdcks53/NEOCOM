@@ -83,7 +83,7 @@
 				<tbody>
 				<c:forEach var="vo" items="${list }">
 					<tr>
-						<th>${vo.addr_no }</th>
+						<th></th>
 						<th>${vo.zip_code }</th>
 						<th>${vo.address }</th>
 						<th>${vo.adress_detail }</th>

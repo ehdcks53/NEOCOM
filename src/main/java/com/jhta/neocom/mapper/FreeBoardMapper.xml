@@ -26,8 +26,11 @@
 	
 	<!-- 답글 -->
 	<insert id="insertReply" parameterType="freeboard">
+		<selectKey keyProperty="free_board_no" order="BEFORE" resultType="int">
+			select get_seq('freeboardSeq') as free_board_no from dual
+		</selectKey>
 		insert into free_board values
-		(get_seq('freeboardSeq'),
+		(#{free_board_no},
 		#{mem_no},
 		null,
 		0,

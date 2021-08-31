@@ -49,11 +49,9 @@
 		</div>
 		<div class="column">
 			<ul class="breadcrumbs">
-				<li><a href="#">Home</a></li>
+				<li><a href="${pageContext.request.contextPath}/">Home</a></li>
 				<li class="separator">&nbsp;</li>
-				<li><a href="#">Community</a></li>
-				<li class="separator">&nbsp;</li>
-				<li><a href="#">QnA Board</a></li>
+				<li><a href="${pageContext.request.contextPath }/review_list?product_id=${rvo.product_id}">review</a></li>
 				<li class="separator">&nbsp;</li>
 				<li>No.${rvo.board_num }</li>
 			</ul>
@@ -113,7 +111,7 @@
 				<div class="entry-navigation">
 					<div class="column text-left"></div>
 					<div class="column">
-						<a class="btn btn-outline-secondary view-all" href="${pageContext.request.contextPath }/review_list">
+						<a class="btn btn-outline-secondary view-all" href="${pageContext.request.contextPath }/review_list?product_id=${rvo.product_id}">
 							<i class="icon-menu"></i>
 						</a>
 					</div>

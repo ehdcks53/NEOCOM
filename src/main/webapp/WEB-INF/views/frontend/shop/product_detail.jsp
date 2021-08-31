@@ -95,7 +95,7 @@
 				<ul class="breadcrumbs">
 					<li><a href="${pageContext.request.contextPath}/">Home</a></li>
 					<li class="separator">&nbsp;</li>
-					<li><a href="#">Shop</a></li>
+					<li><a href="${pageContext.request.contextPath}/shop/product_grid?category_id=20000">Shop</a></li>
 					<li class="separator">&nbsp;</li>
 					<li>Product Detail</li>
 				</ul>
@@ -148,13 +148,17 @@
 				</div>
 
 				<h2 class="mb-3">${goods.product_name }</h2>
-				<span class="h3 d-block"><del class="text-muted">
+				<span class="h2 d-block" style="color:blue;"><del class="text-muted">
 						
-					</del>&nbsp; <fmt:formatNumber pattern="###,###,###"
-							value="${goods.selling_price *0.9}" />원</span>
+					</del>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <fmt:formatNumber pattern="###,###,###"
+							value="${goods.selling_price}" />원</span>
+				<h5>제품 코드&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  ${goods.product_code }</h5>	
+				<h5>제조사 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ${goods.brand } </h5>
+						
 				<c:forEach var="clist" items="${clist }">
-					<p class="text-muted">${clist.category_name }</p>
+					<div >${clist.category_name }</div>
 				</c:forEach>
+					
 					
 				<form name="form1">
 					<fieldset>
@@ -170,7 +174,7 @@
 						<div class="row align-items-end pb-4">
 							<div class="col-sm-6">
 								<div class="form-group mb-0">
-									<label for="quantity" style="font-size: 15px;">수량</label> <input
+									<label for="quantity" style="font-size: 15px; margin-top:20px;">수량</label> <input
 										type="number" class="form-control" name="product_count"
 										id="quantity" value="1" min="1" max="100">
 								</div>
@@ -316,9 +320,10 @@
 				<form id="addreview" enctype="multipart/form-data">
 				<input type="hidden" id="product_id" value="${goods.product_id }">
 				
-				<input type="text" class="d-inline align-baseline display-5 mr-4"name="title" placeholder="간단한 제목을 적어주세요!" >
-				<div class="rating-stars">
-						
+				<input type="text" class="form-control d-inline align-baseline display-5 mr-4"name="title" placeholder="간단한 제목을 적어주세요!" >
+
+				<textarea class="form-control d-inline align-baseline display-5 mr-4" rows="3" cols="50" placeholder="후기" id="content" name="review_content"></textarea>
+				<div class="rating-stars">		
 						<i class="icon-star" id="stars1" onmouseover=show(1) onclick=mark(1) onmouseout=noshow(1)></i>
 						<i class="icon-star" id="stars2" onmouseover=show(2) onclick=mark(2) onmouseout=noshow(2)></i>
 						<i class="icon-star" id="stars3" onmouseover=show(3) onclick=mark(3) onmouseout=noshow(3)></i> 
@@ -326,10 +331,8 @@
 						<i class="icon-star" id="stars5" onmouseover=show(5) onclick=mark(5) onmouseout=noshow(5)></i>
 				</div><br>
 				<input type="hidden" id="star" name="star">
-				후기<br>
-				<textarea class="d-inline align-baseline display-5 mr-4" rows="2" cols="50" id="content" name="review_content"></textarea><br>
 				이미지첨부<br>
-				<input type="file" name="file1" id="selectImg"><br> 
+				<input class="form-control" type="file" name="file1" id="selectImg"><br> 
 				<div>
     				   <div class="select_img" >
          				  <img id="" />

@@ -2,15 +2,12 @@ package com.jhta.neocom.admin.controller;
 
 import java.util.HashMap;
 
-import javax.servlet.http.HttpSession;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 
 import com.jhta.neocom.model.AdvBoardVo;
 import com.jhta.neocom.model.CustomUserDetails;
@@ -20,41 +17,40 @@ import com.jhta.neocom.model.NoticeBoardVo;
 import com.jhta.neocom.model.QnABoardVo;
 import com.jhta.neocom.service.AdvBoardService;
 import com.jhta.neocom.service.FreeBoardService;
-import com.jhta.neocom.service.MemberService;
 import com.jhta.neocom.service.NoticeBoardService;
 import com.jhta.neocom.service.QnABoardService;
-import com.jhta.neocom.util.PageUtil;
 
 @Controller
 public class CommunityController {
-	@Autowired private NoticeBoardService nn_service;
-	@Autowired private QnABoardService qq_service;
-	@Autowired private FreeBoardService ff_service;
-	@Autowired private AdvBoardService aa_service;
-	@Autowired private MemberService mm_service;
-	
+	@Autowired
+	private NoticeBoardService nn_service;
+	@Autowired
+	private QnABoardService qq_service;
+	@Autowired
+	private FreeBoardService ff_service;
+	@Autowired
+	private AdvBoardService aa_service;
+
 	// board_list 내용
 	@RequestMapping(value = "/admin/community/board_list", method = RequestMethod.GET)
-	public String boardList(Model nn_model, HashMap<String, Object> nn_map,
-							Model qq_model, HashMap<String, Object> qq_map,
-							Model ff_model, HashMap<String, Object> ff_map,
-							Model aa_model, HashMap<String, Object> aa_map) {
+	public String boardList(Model nn_model, HashMap<String, Object> nn_map, Model qq_model,
+			HashMap<String, Object> qq_map, Model ff_model, HashMap<String, Object> ff_map, Model aa_model,
+			HashMap<String, Object> aa_map) {
 		// 공지사항 리스트
 		nn_model.addAttribute("nn_list", nn_service.nn_list(nn_map));
 
 		// 문의게시판 리스트
 		qq_model.addAttribute("qq_list", qq_service.qq_list(qq_map));
-		
+
 		// 자유게시판 리스트
 		ff_model.addAttribute("ff_list", ff_service.ff_list(ff_map));
-		
+
 		// 견적게시판 리스트
 		aa_model.addAttribute("aa_list", aa_service.aa_list(aa_map));
-		
+
 		return "/admin/menu/community/board_list";
 	}
-	
-	
+
 	// -------------------------------- 공지사항 --------------------------------
 	// 공지사항 등록 페이지 이동
 	@RequestMapping(value = "/admin/community/noticeboard_insert", method = RequestMethod.GET)
@@ -89,10 +85,9 @@ public class CommunityController {
 		nn_service.update(vo);
 		return "redirect:/admin/community/board_list";
 	}
-	
+
 	// -------------------------------- 공지사항 끝 --------------------------------
-	
-	
+
 	// -------------------------------- 문의게시판 ----------------------------------
 	// 문의게시판 상세보기 페이지 이동
 	@RequestMapping(value = "/admin/community/qnaboard_detail", method = RequestMethod.GET)
@@ -160,22 +155,22 @@ public class CommunityController {
 		int groupNo = Integer.parseInt(map.get("qna_group_no").toString());
 		int mem_no = Integer.parseInt(map.get("mem_no").toString());
 		int groupOrder = Integer.parseInt(map.get("qna_group_order").toString());
-		
+
 		int countReply = qq_service.countReply(groupNo);
-		
-		if(countReply == (groupOrder+1)) {
+
+		if (countReply == (groupOrder + 1)) {
 			vo.setQna_group_no(groupNo);
-			vo.setQna_status(0);  // 답변 삭제하면 답변상태는 다시 답변대기로 바꾸기
-			
+			vo.setQna_status(0); // 답변 삭제하면 답변상태는 다시 답변대기로 바꾸기
+
 			qq_service.delete(qna_board_no);
 			qq_service.status(vo);
-		}else if(mem_no == 1 || mem_no == 2) {
+		} else if (mem_no == 1 || mem_no == 2) {
 			vo.setQna_group_no(groupNo);
-			vo.setQna_status(0);  // 답변 삭제하면 답변상태는 다시 답변대기로 바꾸기
-			
+			vo.setQna_status(0); // 답변 삭제하면 답변상태는 다시 답변대기로 바꾸기
+
 			qq_service.delete(qna_board_no);
 			qq_service.status(vo);
-		}else {
+		} else {
 			qq_service.showDeletePost(qna_board_no);
 		}
 
@@ -191,9 +186,7 @@ public class CommunityController {
 		return "redirect:/admin/community/board_list";
 	}
 	// -------------------------------- 문의게시판 끝 --------------------------------
-	
-	
-	
+
 	// -------------------------------- 자유게시판 ----------------------------------
 	// 자유게시판 상세보기 페이지 이동
 	@RequestMapping(value = "/admin/community/freeboard_detail", method = RequestMethod.GET)
@@ -204,6 +197,7 @@ public class CommunityController {
 
 		return "/admin/menu/community/freeboard_detail";
 	}
+
 	// 자유게시판 답글 페이지 이동
 	@RequestMapping(value = "/admin/community/freeboard_reply", method = RequestMethod.GET)
 	public String freeboardReply(Model model, int free_board_no) {
@@ -212,7 +206,7 @@ public class CommunityController {
 
 		return "/admin/menu/community/freeboard_reply";
 	}
-	
+
 	// 자유게시판 답변 작성
 	@RequestMapping(value = "/admin/community/freeboard_reply", method = RequestMethod.POST)
 	public String freeboardReplyOk(Model model, FreeBoardVo vo, Authentication auth, int free_board_no) {
@@ -228,7 +222,7 @@ public class CommunityController {
 		int groupNo = Integer.parseInt(map.get("free_group_no").toString());
 		int groupOrder = Integer.parseInt(map.get("free_group_order").toString());
 		int groupDepth = Integer.parseInt(map.get("free_group_depth").toString());
-		
+
 		vo.setFree_group_no(groupNo);
 		vo.setFree_group_order(groupOrder);
 		vo.setFree_group_depth(groupDepth);
@@ -238,45 +232,46 @@ public class CommunityController {
 
 		return "redirect:/admin/community/board_list";
 	}
-	
+
 	// 자유게시판 글 삭제
 	@RequestMapping(value = "/admin/community/freeboard_delete", method = RequestMethod.GET)
 	public String freeboardDelete(int free_board_no, FreeBoardVo vo, Authentication auth) {
 		CustomUserDetails cud = (CustomUserDetails) auth.getPrincipal();
 		MemberVo mvo = cud.getMemberVo();
 		int mem_no = mvo.getMem_no();
-		
-		HashMap<String,Object> map = ff_service.detail(free_board_no);
+
+		HashMap<String, Object> map = ff_service.detail(free_board_no);
 		int groupNo = Integer.parseInt(map.get("free_group_no").toString());
 		int groupOrder = Integer.parseInt(map.get("free_group_order").toString());
-		
+
 		int countReply = ff_service.countReply(groupNo);
-		
-		if(countReply == (groupOrder+1)) {  // 답글이 없거나, 맨 마지막 group_no 일 경우 바로 삭제
+
+		if (countReply == (groupOrder + 1)) { // 답글이 없거나, 맨 마지막 group_no 일 경우 바로 삭제
 			ff_service.delete(free_board_no);
-		}else if(mem_no == 1 || mem_no ==2 ){  // 관리자일 경우 바로 삭제
+		} else if (mem_no == 1 || mem_no == 2) { // 관리자일 경우 바로 삭제
 			ff_service.delete(free_board_no);
-		}else {  // 답글 있을 경우 삭제글로 표시
+		} else { // 답글 있을 경우 삭제글로 표시
 			ff_service.showDeletePost(free_board_no);
 		}
-		System.out.println("ㅇㅇㅇㅇㅇㅇㅇㅇㅇ" + countReply + "," + groupOrder  + "ㅇㅇㅇㅇㅇㅇㅇㅇㅇ");
-		
+		System.out.println("ㅇㅇㅇㅇㅇㅇㅇㅇㅇ" + countReply + "," + groupOrder + "ㅇㅇㅇㅇㅇㅇㅇㅇㅇ");
+
 		return "redirect:/admin/community/board_list";
 	}
-	
+
 	// 자유게시판 블라인드 처리
 	@RequestMapping(value = "/admin/community/freeboard_blind", method = RequestMethod.GET)
 	public String freeboardBlind(int free_board_no) {
 		ff_service.blindPost(free_board_no);
 		return "redirect:/admin/community/board_list";
 	}
-	
+
 	// 자유게시판 블라인드 해제
 	@RequestMapping(value = "/admin/community/freeboard_showpost", method = RequestMethod.GET)
 	public String freeboardShowPost(int free_board_no) {
 		ff_service.showPost(free_board_no);
 		return "redirect:/admin/community/board_list";
 	}
+
 	// 자유게시판 수정
 	@RequestMapping(value = "/admin/community/freeboard_update", method = RequestMethod.POST)
 	public String freeboardUpdate(FreeBoardVo vo) {
@@ -286,8 +281,7 @@ public class CommunityController {
 		return "redirect:/admin/community/board_list";
 	}
 	// -------------------------------- 자유게시판 끝 --------------------------------
-	
-	
+
 	// -------------------------------- 견적문의게시판 ----------------------------------
 	// 견적문의게시판 상세보기 페이지 이동
 	@RequestMapping(value = "/admin/community/advboard_detail", method = RequestMethod.GET)
@@ -298,7 +292,7 @@ public class CommunityController {
 
 		return "/admin/menu/community/advboard_detail";
 	}
-	
+
 	// 견적문의게시판 답변 페이지 이동
 	@RequestMapping(value = "/admin/community/advboard_reply", method = RequestMethod.GET)
 	public String advboardReply(Model model, int adv_board_no) {
@@ -307,7 +301,7 @@ public class CommunityController {
 
 		return "/admin/menu/community/advboard_reply";
 	}
-	
+
 	// 견적문의게시판 답변 작성
 	@RequestMapping(value = "/admin/community/advboard_reply", method = RequestMethod.POST)
 	public String advboardReplyOk(Model model, AdvBoardVo vo, Authentication auth, int adv_board_no) {
@@ -347,7 +341,6 @@ public class CommunityController {
 
 		return "redirect:/admin/community/board_list";
 	}
-	
 
 	// 문의게시판 답변 삭제
 	@RequestMapping(value = "/admin/community/advboard_delete", method = RequestMethod.GET)
@@ -356,29 +349,28 @@ public class CommunityController {
 		int groupNo = Integer.parseInt(map.get("adv_group_no").toString());
 		int mem_no = Integer.parseInt(map.get("mem_no").toString());
 		int groupOrder = Integer.parseInt(map.get("adv_group_order").toString());
-		
+
 		int countReply = qq_service.countReply(groupNo);
-		
-		if(countReply == (groupOrder+1)) {
+
+		if (countReply == (groupOrder + 1)) {
 			vo.setAdv_group_no(groupNo);
-			vo.setAdv_status(0);  // 답변 삭제하면 답변상태는 다시 답변대기로 바꾸기
-			
+			vo.setAdv_status(0); // 답변 삭제하면 답변상태는 다시 답변대기로 바꾸기
+
 			aa_service.delete(adv_board_no);
 			aa_service.status(vo);
-		}else if(mem_no == 1 || mem_no == 2) {
+		} else if (mem_no == 1 || mem_no == 2) {
 			vo.setAdv_group_no(groupNo);
-			vo.setAdv_status(0);  // 답변 삭제하면 답변상태는 다시 답변대기로 바꾸기
-			
+			vo.setAdv_status(0); // 답변 삭제하면 답변상태는 다시 답변대기로 바꾸기
+
 			aa_service.delete(adv_board_no);
 			aa_service.status(vo);
-		}else {
+		} else {
 			aa_service.showDeletePost(adv_board_no);
 		}
 
 		return "redirect:/admin/community/board_list";
 	}
 
-	
 	// 견적문의게시판 수정
 	@RequestMapping(value = "/admin/community/advboard_update", method = RequestMethod.POST)
 	public String advboardUpdate(AdvBoardVo vo) {

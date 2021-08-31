@@ -303,7 +303,6 @@
 					cache: false,           
 					timeout: 600000,       
 					success: function (result) {        
-						console.log("result:" + result);
 						showUploadedFile(result);
 
 						$(".uploadDiv").html(cloneObj.html());

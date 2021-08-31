@@ -63,7 +63,7 @@
 									alt="">
 								<div class="h2 text-body mb-2 pt-1">AMD 라이젠7-4세대 5800X<br> (버미어) (멀티팩)</div>
 								<div class="h2 text-body mb-4 pb-1">
-									판매가 &nbsp;<span class="text-medium">432,900 원</span>
+									판매가 &nbsp;<span class="text-medium">481,000 원</span>
 								</div>
 							</div>
 							<a class="btn btn-primary scale-up delay-1" href="${pageContext.request.contextPath}/shop/product_detail?n=95&m=3">

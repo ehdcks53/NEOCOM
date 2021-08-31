@@ -1,6 +1,5 @@
 package com.jhta.neocom.mapper;
 
-import java.util.HashMap;
 import java.util.List;
 
 import com.jhta.neocom.model.MemberVo;
