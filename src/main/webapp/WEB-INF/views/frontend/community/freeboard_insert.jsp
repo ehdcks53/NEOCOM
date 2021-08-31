@@ -280,6 +280,19 @@ opacity: 0;
 		fn_deleteFile($(this));
 	});
 	
+	function fn_addFile(){
+		var str = "<p>" +
+				  "<input type='file' class='' multiple='multiple' name='file_0' >" +
+				  "<a href='#this' class='btn btn-secondary btn-sm' name='delFile'>삭제</a>" +
+				  "</p>";
+		$("#fileDiv").append(str);
+		$("a[name='delFile']").on("click",function(e){
+			e.preventDefault();
+			fn_deleteFile($(this));
+		});
+	}
+	
+	/*
 	var f_count = 1;
 	function fn_addFile(){
 		var str = "<p>" +
@@ -291,7 +304,7 @@ opacity: 0;
 			e.preventDefault();
 			fn_deleteFile($(this));
 		});
-	}
+	}*/
 	
 	function fn_deleteFile(obj){
 		obj.parent().remove();

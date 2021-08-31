@@ -159,8 +159,8 @@
 						<a class="product-thumb" 
 							href="${pageContext.request.contextPath}/shop/product_detail?n=${vo.product_id}&m=${vo.category_id}">
 
-							<img   src="<c:url value='/upload/product_img/${vo.img_name_save}' />"
-							alt="<c:url value='/upload/product_img/${vo.img_name_save}' />" />
+							<img   src="<c:url value='/upload/product_img/${vo.uploadPath}/${vo.img_name_save}' />"
+							alt="<c:url value='/upload/product_img/${vo.uploadPath}/${vo.img_name_save}' />" />
 						</a>
 						<div class="product-card-body">
 							<div class="product-category">

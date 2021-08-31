@@ -16,7 +16,7 @@
 	<!-- 검색 및 카테고리 -->
 	<div class="search-box-wrap d-flex">
 		<div class="search-box-inner align-self-center">
-			<div class="search-box d-flex col-md-10">
+			<div class="search-box d-flex">
 				<!-- 카테고리 -->
 				<div class="btn-group categories-btn">
 					<button class="btn btn-secondary dropdown-toggle" data-toggle="dropdown"><i class="icon-menu text-lg"></i>&nbsp;카테고리</button>
@@ -31,19 +31,19 @@
 							<div class="col-sm-3"><a class="d-block navi-link text-center mb-30" href="${pageContext.request.contextPath }/shop/product_grid?category_id=7"><img class="d-block" src="${pageContext.request.contextPath}/static/frontend/assets/img/shop/header-categories/ssd.png"><span class="text-gray-dark">SSD</span></a></div>
 							<div class="col-sm-3"><a class="d-block navi-link text-center mb-30" href="${pageContext.request.contextPath }/shop/product_grid?category_id=8"><img class="d-block" src="${pageContext.request.contextPath}/static/frontend/assets/img/shop/header-categories/hdd.png"><span class="text-gray-dark">HDD</span></a></div>
 							<div class="col-sm-3"><a class="d-block navi-link text-center mb-30" href="${pageContext.request.contextPath }/shop/product_grid?category_id=9"><img class="d-block" src="${pageContext.request.contextPath}/static/frontend/assets/img/shop/header-categories/power.png"><span class="text-gray-dark">파워</span></a></div>
-							<div class="col-sm-3"><a class="d-block navi-link text-center mb-30" href="${pageContext.request.contextPath }/shop/product_grid?category_id=3"><img class="d-block" src="${pageContext.request.contextPath}/static/frontend/assets/img/shop/header-categories/peripherals.jpg"><span class="text-gray-dark">주변기기</span></a></div>
+							<div class="col-sm-3"><a class="d-block navi-link text-center mb-30" href="${pageContext.request.contextPath }/shop/product_grid?category_id=1500"><img class="d-block" src="${pageContext.request.contextPath}/static/frontend/assets/img/shop/header-categories/peripherals.jpg"><span class="text-gray-dark">주변기기</span></a></div>
 						</div>
 					</div>
 				</div>
 				<!-- 카테고리 끝 -->
 				<!-- 헤더 검색창 -->
 
-				<form class="input-group" method="get" action="${pageContext.request.contextPath }/shop/product_grid">
-					<input class="form-control" type="search" placeholder="검색어를 입력하세요." name="keyword" value=${keyword }>
-					<input type="hidden" name="category_id" value="10000">
+				<form class="input-group" method="get" action="${pageContext.request.contextPath }/shop/product_list">
 					<span class="input-group-btn">
 						<button type="submit"><i class="icon-search"></i></button>
 					</span>
+					<input class="form-control" type="search" placeholder="검색어를 입력하세요." name="keyword" value=${keyword }>
+					<input type="hidden" name="category_id" value="10000">
 				</form>
 				<!-- 헤더 검색창 끝 -->
 			</div>
@@ -136,16 +136,16 @@
 		<button class="btn btn-secondary dropdown-toggle" data-toggle="dropdown"><i class="icon-menu text-lg"></i>&nbsp;카테고리</button>
 		<div class="dropdown-menu mega-dropdown">
 		<div class="row">
-				<div class="col-sm-3"><a class="d-block navi-link text-center mb-30" href="${pageContext.request.contextPath }/shop/product_list?category_id=3"><img class="d-block" src="${pageContext.request.contextPath}/static/frontend/assets/img/shop/header-categories/cpu.png"><span class="text-gray-dark">CPU</span></a></div>
-				<div class="col-sm-3"><a class="d-block navi-link text-center mb-30" href="${pageContext.request.contextPath }/shop/product_list?category_id=4"><img class="d-block" src="${pageContext.request.contextPath}/static/frontend/assets/img/shop/header-categories/mainboard.png"><span class="text-gray-dark">메인보드</span></a></div>
-				<div class="col-sm-3"><a class="d-block navi-link text-center mb-30" href="${pageContext.request.contextPath }/shop/product_list?category_id=5"><img class="d-block" src="${pageContext.request.contextPath}/static/frontend/assets/img/shop/header-categories/ram.png"><span class="text-gray-dark">RAM</span></a></div>
-				<div class="col-sm-3"><a class="d-block navi-link text-center mb-30" href="${pageContext.request.contextPath }/shop/product_list?category_id=6"><img class="d-block" src="${pageContext.request.contextPath}/static/frontend/assets/img/shop/header-categories/vga.png"><span class="text-gray-dark">그래픽카드</span></a></div>
+				<div class="col-sm-3"><a class="d-block navi-link text-center mb-30" href="${pageContext.request.contextPath }/shop/product_grid?category_id=3"><img class="d-block" src="${pageContext.request.contextPath}/static/frontend/assets/img/shop/header-categories/cpu.png"><span class="text-gray-dark">CPU</span></a></div>
+				<div class="col-sm-3"><a class="d-block navi-link text-center mb-30" href="${pageContext.request.contextPath }/shop/product_grid?category_id=4"><img class="d-block" src="${pageContext.request.contextPath}/static/frontend/assets/img/shop/header-categories/mainboard.png"><span class="text-gray-dark">메인보드</span></a></div>
+				<div class="col-sm-3"><a class="d-block navi-link text-center mb-30" href="${pageContext.request.contextPath }/shop/product_grid?category_id=5"><img class="d-block" src="${pageContext.request.contextPath}/static/frontend/assets/img/shop/header-categories/ram.png"><span class="text-gray-dark">RAM</span></a></div>
+				<div class="col-sm-3"><a class="d-block navi-link text-center mb-30" href="${pageContext.request.contextPath }/shop/product_grid?category_id=6"><img class="d-block" src="${pageContext.request.contextPath}/static/frontend/assets/img/shop/header-categories/vga.png"><span class="text-gray-dark">그래픽카드</span></a></div>
 		</div>
 		<div class="row">
-				<div class="col-sm-3"><a class="d-block navi-link text-center mb-30" href="${pageContext.request.contextPath }/shop/product_list?category_id=7"><img class="d-block" src="${pageContext.request.contextPath}/static/frontend/assets/img/shop/header-categories/ssd.png"><span class="text-gray-dark">SSD</span></a></div>
-				<div class="col-sm-3"><a class="d-block navi-link text-center mb-30" href="${pageContext.request.contextPath }/shop/product_list?category_id=8"><img class="d-block" src="${pageContext.request.contextPath}/static/frontend/assets/img/shop/header-categories/hdd.png"><span class="text-gray-dark">HDD</span></a></div>
-				<div class="col-sm-3"><a class="d-block navi-link text-center mb-30" href="${pageContext.request.contextPath }/shop/product_list?category_id=9"><img class="d-block" src="${pageContext.request.contextPath}/static/frontend/assets/img/shop/header-categories/power.png"><span class="text-gray-dark">파워</span></a></div>
-				<div class="col-sm-3"><a class="d-block navi-link text-center mb-30" href="${pageContext.request.contextPath }/shop/product_list?category_id=3"><img class="d-block" src="${pageContext.request.contextPath}/static/frontend/assets/img/shop/header-categories/peripherals.jpg"><span class="text-gray-dark">주변기기</span></a></div>
+				<div class="col-sm-3"><a class="d-block navi-link text-center mb-30" href="${pageContext.request.contextPath }/shop/product_grid?category_id=7"><img class="d-block" src="${pageContext.request.contextPath}/static/frontend/assets/img/shop/header-categories/ssd.png"><span class="text-gray-dark">SSD</span></a></div>
+				<div class="col-sm-3"><a class="d-block navi-link text-center mb-30" href="${pageContext.request.contextPath }/shop/product_grid?category_id=8"><img class="d-block" src="${pageContext.request.contextPath}/static/frontend/assets/img/shop/header-categories/hdd.png"><span class="text-gray-dark">HDD</span></a></div>
+				<div class="col-sm-3"><a class="d-block navi-link text-center mb-30" href="${pageContext.request.contextPath }/shop/product_grid?category_id=9"><img class="d-block" src="${pageContext.request.contextPath}/static/frontend/assets/img/shop/header-categories/power.png"><span class="text-gray-dark">파워</span></a></div>
+				<div class="col-sm-3"><a class="d-block navi-link text-center mb-30" href="${pageContext.request.contextPath }/shop/product_grid?category_id=1500"><img class="d-block" src="${pageContext.request.contextPath}/static/frontend/assets/img/shop/header-categories/peripherals.jpg"><span class="text-gray-dark">주변기기</span></a></div>
 		</div>
 		</div>
 	</div>

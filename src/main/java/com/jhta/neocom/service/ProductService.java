@@ -56,5 +56,8 @@ public class ProductService {
 		return mapper.purchaseList(product_id);
 	}
 
+	public List<HashMap<String, Object>> findcate(HashMap<String, Object> map){
+		return mapper.findcate(map);
+	}
 
 }
