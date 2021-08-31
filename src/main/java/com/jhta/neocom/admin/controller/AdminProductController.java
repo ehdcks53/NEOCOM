@@ -77,7 +77,13 @@ public class AdminProductController {
 		model.addAttribute("img_list", service1.list());
 		model.addAttribute("product_list", service.selectAll());
 		return "/admin/menu/product/productlist";
+	}
 
+	@PostMapping("/admin/product/update")
+	public String update(ProductVo vo) {
+
+		service.update(vo);
+		return "redirect:/admin/product/productlist";
 	}
 
 	@GetMapping("/admin/product/addimg")
@@ -91,7 +97,6 @@ public class AdminProductController {
 	@GetMapping("/admin/product/imgdisplay")
 	@ResponseBody
 	public ResponseEntity<byte[]> getFile(String fileName) {
-		System.out.println(fileName);
 
 		File file = new File(fileName);
 
