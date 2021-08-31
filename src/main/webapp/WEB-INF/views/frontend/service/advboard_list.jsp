@@ -42,17 +42,14 @@ a {
 	text-decoration: none;
 	color: black;
 }
-
 .table {
 	margin-left: auto;
 	margin-right: auto;
 }
-
 .table tbody tr td {
 	height: 50px;
 	vertical-align: middle;
 }
-
 .table tbody tr td img {
 	width: 20px;
 }
