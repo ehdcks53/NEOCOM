@@ -45,7 +45,7 @@
 		</div>
 		<div class="column">
 			<ul class="breadcrumbs">
-				<li><a href="#">Home</a></li>
+				<li><a href="${pageContext.request.contextPath}/">Home</a></li>
 				<li class="separator">&nbsp;</li>
 				<li>My Page</li>
 			</ul>
@@ -75,6 +75,8 @@
 			</div>
 			
 			
+		
+		
 			
 			<table class="table">
 				<thead>
@@ -103,6 +105,7 @@
 				</c:forEach>
 				</tbody>
 			</table>
+			
 					<!-- 페이징 -->
 		<nav class="pagination" style="margin-top:20px;">
 			<div class="column">

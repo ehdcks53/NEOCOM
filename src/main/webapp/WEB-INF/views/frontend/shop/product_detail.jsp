@@ -95,7 +95,7 @@
 				<ul class="breadcrumbs">
 					<li><a href="${pageContext.request.contextPath}/">Home</a></li>
 					<li class="separator">&nbsp;</li>
-					<li><a href="#">Shop</a></li>
+					<li><a href="${pageContext.request.contextPath}/shop/product_grid?category_id=20000">Shop</a></li>
 					<li class="separator">&nbsp;</li>
 					<li>Product Detail</li>
 				</ul>
@@ -148,13 +148,17 @@
 				</div>
 
 				<h2 class="mb-3">${goods.product_name }</h2>
-				<span class="h3 d-block"><del class="text-muted">
+				<span class="h2 d-block" style="color:blue;"><del class="text-muted">
 						
-					</del>&nbsp; <fmt:formatNumber pattern="###,###,###"
-							value="${goods.selling_price *0.9}" />원</span>
+					</del>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <fmt:formatNumber pattern="###,###,###"
+							value="${goods.selling_price}" />원</span>
+				<h5>제품 코드&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  ${goods.product_code }</h5>	
+				<h5>제조사 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ${goods.brand } </h5>
+						
 				<c:forEach var="clist" items="${clist }">
-					<p class="text-muted">${clist.category_name }</p>
+					<div >${clist.category_name }</div>
 				</c:forEach>
+					
 					
 				<form name="form1">
 					<fieldset>
@@ -170,7 +174,7 @@
 						<div class="row align-items-end pb-4">
 							<div class="col-sm-6">
 								<div class="form-group mb-0">
-									<label for="quantity" style="font-size: 15px;">수량</label> <input
+									<label for="quantity" style="font-size: 15px; margin-top:20px;">수량</label> <input
 										type="number" class="form-control" name="product_count"
 										id="quantity" value="1" min="1" max="100">
 								</div>

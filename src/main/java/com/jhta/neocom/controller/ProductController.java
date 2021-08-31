@@ -65,7 +65,7 @@ public class ProductController {
 
 		map.put("next", pu.isNextPage());
 		map.put("prev", pu.isPrevPage());
-		if (category_id > 100 && category_id != 20000 && category_id != 10000) {
+		if (category_id > 100 && category_id != 20000 && category_id != 10000 && category_id!=1500) {
 			map.put("list", detail);
 
 		} else {

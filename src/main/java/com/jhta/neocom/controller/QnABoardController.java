@@ -82,10 +82,11 @@ public class QnABoardController {
 		vo.setQna_group_depth(groupDepth);
 		vo.setQna_status(1);
 
-		System.out.println();
-		System.out.println("콘솔ㅇㅇㅇㅇㅇㅇㅇㅇ" + vo);
-		System.out.println("콘솔ㅇㅇㅇㅇㅇㅇㅇㅇ" + groupNo + "ㅇㅇㅇ" + groupOrder + "ㅇㅇㅇ" + groupDepth);
-		System.out.println();
+		// System.out.println();
+		// System.out.println("콘솔ㅇㅇㅇㅇㅇㅇㅇㅇ" + vo);
+		// System.out.println("콘솔ㅇㅇㅇㅇㅇㅇㅇㅇ" + groupNo + "ㅇㅇㅇ" + groupOrder + "ㅇㅇㅇ" +
+		// groupDepth);
+		// System.out.println();
 
 		service.ReRe(vo);
 		service.insertReply(vo);

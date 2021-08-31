@@ -49,11 +49,11 @@
 		</div>
 		<div class="column">
 			<ul class="breadcrumbs">
-				<li><a href="#">Home</a></li>
+				<li><a href="${pageContext.request.contextPath}/">Home</a></li>
 				<li class="separator">&nbsp;</li>
-				<li><a href="#">Community</a></li>
+				<li><a href="${pageContext.request.contextPath }/review_list?product_id=${rvo.product_id}">review</a></li>
 				<li class="separator">&nbsp;</li>
-				<li>Review Board</li>
+				<li>No.${rvo.board_num }</li>
 			</ul>
 		</div>
 	</div>
