@@ -289,7 +289,7 @@ public class MyPageOtherController {
 		mv.addObject("vo", memberService.selectid(id));
 		return mv;
 	}
-
+	//회원탈퇴
 	@RequestMapping(value = "/account/memberDel", method = RequestMethod.POST)
 	public String memberDel(HttpSession session, MemberVo memberVo, Model model, String password,
 			HttpServletRequest req) {

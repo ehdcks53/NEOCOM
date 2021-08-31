@@ -76,7 +76,7 @@
 					</div>
 					<div class="form-group input-group">
 						비밀번호 확인
-						<form:input class="form-control" type="password" path="password" id="pwd2"/>
+						<input class="form-control" type="password" id="pwd2"/>
 					</div>	
 					<div class="form-group input-group">
 						닉네임
