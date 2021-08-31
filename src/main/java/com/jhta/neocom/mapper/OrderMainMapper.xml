@@ -18,6 +18,10 @@
 	<select id="searchno" resultType="int" parameterType="Hashmap">
  		select order_no from order_main where order_num=#{order_num} and mem_no=#{mem_no}
  	</select>
+ 	
+ 	<select id="searchOrderMain" resultType="com.jhta.neocom.model.OrderMainVo" parameterType="int">
+ 		select * from order_main where order_no=#{order_no}
+ 	</select>
 
 	<select id="searchRndNo" resultType="com.jhta.neocom.model.OrderMainVo" parameterType="Hashmap">
  		select * from order_main where order_num=#{order_num} and mem_no=#{mem_no}

@@ -149,9 +149,7 @@
 
 				<h2 class="mb-3">${goods.product_name }</h2>
 				<span class="h3 d-block"><del class="text-muted">
-						<fmt:formatNumber pattern="###,###,###"
-							value="${goods.selling_price }" />
-						원
+						
 					</del>&nbsp; <fmt:formatNumber pattern="###,###,###"
 							value="${goods.selling_price *0.9}" />원</span>
 				<c:forEach var="clist" items="${clist }">
