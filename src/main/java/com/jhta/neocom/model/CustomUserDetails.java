@@ -33,16 +33,6 @@ public class CustomUserDetails implements UserDetails {
         return authorities;
     }
     
-//    public Collection<? extends GrantedAuthority> updateAuthorities() {
-//    	Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-//        //Set<MemberRole> roles = memberVo.getRoles();
-//        List<GrantedAuthority> updatedAuthorities  = new ArrayList<>(auth.getAuthorities());;
-//        updatedAuthorities.add("ROLE_NOTUSER")
-//       
-//        }
-//
-//        
-//    }
     
 
     @Override

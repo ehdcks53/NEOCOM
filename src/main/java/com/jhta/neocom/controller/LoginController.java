@@ -37,19 +37,10 @@ public class LoginController {
 
 	@RequestMapping(value = "/account/login", method = RequestMethod.GET)
 	public String loginForm(Model model, HttpSession session, boolean error) {
-
-
-		/* 네이버아이디로 인증 URL을 생성하기 위하여 naverLoginBO클래스의 getAuthorizationUrl메소드 호출 
-		String naverAuthUrl = naverLoginVo.getAuthorizationUrl(session);
-
-		// 네이버
-		model.addAttribute("url", naverAuthUrl);
 		if (error == true) {
 			String errMsg = "아이디 또는 비밀번호가 틀렸습니다.";
 			model.addAttribute("errMsg", errMsg);
 		}
-		 */
-
 		return "frontend/account/login";
 	}
 	
@@ -94,18 +85,23 @@ public class LoginController {
 		return "frontend/account/findId_Pwd";
 	}
 	@RequestMapping(value = "/account/findId", method = RequestMethod.POST)
-	public String find_id(HttpServletResponse response, @RequestParam("phone") String phone, Model md) throws Exception{
-		md.addAttribute("id", service.find_id(response, phone));
-		System.out.println("result:"+phone);
+	public String find_id(HttpServletResponse response, @RequestParam("email") String email, Model md) throws Exception{
+		md.addAttribute("id", service.find_id(response, email));
+		System.out.println("result:"+email);
 		return "frontend/account/find_IdResult";
 		
 	}
+	
 	@RequestMapping(value = "/account/findPwd", method = RequestMethod.POST)
-	public String find_pwd(HttpServletResponse response, @RequestParam("id") String id, Model md) throws Exception{
+	public String find_Pwd(HttpServletResponse response, @RequestParam("id") String id, Model md) throws Exception{
 		md.addAttribute("pwd", service.find_pwd(response, id));
 		System.out.println("result:"+id);
 		return "frontend/account/find_PwdResult";
+		
 	}
+	
+	
+
 	
 
 

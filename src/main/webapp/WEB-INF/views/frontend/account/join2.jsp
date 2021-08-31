@@ -71,14 +71,16 @@
 					</div>
 					<div class="form-group input-group">
 						비밀번호
-						<form:input class="form-control" type="password" path="password" id="pwd1" placeholder="5~12자 사이의 영문 숫자로 입력하세요"/>
-						<form:errors path="password" cssClass="errormsg" /><br>
-						비밀번호 확인
-						<form:input class="form-control" type="password" path="password" id="pwd2"/>
+						<form:input class="form-control" type="password" path="password" id="pwd1" placeholder="5~12자 사이의 영문 숫자 특수문자를 포함 해주세요"/>
+						<form:errors path="password" cssClass="errormsg" />						
 					</div>
 					<div class="form-group input-group">
+						비밀번호 확인
+						<form:input class="form-control" type="password" path="password" id="pwd2"/>
+					</div>	
+					<div class="form-group input-group">
 						닉네임
-						<form:input class="form-control" type="text" path="nickname" placeholder="5~12자 사이의 영문 또는 한글로 입력하세요"/>
+						<form:input class="form-control" type="text" path="nickname" placeholder="4~8자 사이의 영문 또는 한글로 입력하세요"/>
 						<form:errors path="nickname" cssClass="errormsg"/>
 					</div>
 					<div class="form-group input-group">
@@ -99,7 +101,7 @@
 					</div>
 					<div class="form-group input-group">
 						생년월일
-						<form:input class="form-control" type="text" path="birth_date" id="#masked-input-date"/>
+						<form:input class="form-control" type="text" path="birth_date" id="#masked-input-date" placeholder="ex) 2021/11/11"/>
 						<form:errors path="birth_date" cssClass="errormsg"/>
 					</div>
 					<!-- regdate잇던자리 -->

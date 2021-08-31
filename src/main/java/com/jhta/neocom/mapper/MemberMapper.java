@@ -23,8 +23,12 @@ public interface MemberMapper {
 	int updateName(MemberVo vo);
 
 	int updatePhone(MemberVo vo);
+	
+	int updateEmail(MemberVo vo);
 
 	MemberVo selectid(String id);
+	
+	String selectpwd(String id);
 
 	int memberDel(MemberVo vo);
 	
@@ -38,9 +42,11 @@ public interface MemberMapper {
 
 	int delete(int mem_no);
 	
-	String findId(String phone);
+	String findId(String email);
 	
-	String findPwd(String id);
+	String find_Pwd(String email);
+	
+	MemberVo findPwd(String id);
 	
 	int idcheck(String id);
 	

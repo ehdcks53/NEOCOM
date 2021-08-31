@@ -1,8 +1,11 @@
 package com.jhta.neocom.controller;
 
+import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.HashMap;
 import java.util.List;
 
+import javax.servlet.ServletResponse;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -107,7 +110,9 @@ public class MyPageOtherController {
 		System.out.println("MODIFY VO:"+vo);
 		List<AdressVo> list=adressService.addrList(id);
 		model.addAttribute("list",list); 
-
+		
+		
+		
 		return "frontend/account/mypage_delivery";
 	}
 
@@ -206,27 +211,77 @@ public class MyPageOtherController {
     }
     //회원정보수정
     @PostMapping("/account/update")
-    public String update(MemberVo vo) {  	
+    public String update(MemberVo vo, HttpSession session, String id, HttpServletResponse response) throws IOException {  	
     		memberService.updateNickname(vo);  	
     		memberService.updateName(vo);
     		memberService.updatePhone(vo);
-    	return "frontend/account/mypage_order";
+    		memberService.updateEmail(vo);
+    		session.setAttribute("vo",memberService.selectid(id));
+
+        	response.setContentType("text/html; charset=UTF-8");
+    		PrintWriter out=response.getWriter();
+    		out.println("<script>alert('회원정보가 수정되었습니다.');</script>");
+    		out.flush();
+    	return "frontend/account/mypage_modify";
     }
+    //비번수정 
     @RequestMapping(value = "/account/pwdmodify", method = RequestMethod.GET)
-    public ModelAndView pwdModifyForm() {
-        return new ModelAndView("frontend/account/find_PwdResult");
+    public ModelAndView pwdModifyForm(String id) {
+    	ModelAndView mv=new ModelAndView("frontend/account/mypage_pwdmodify");
+    	mv.addObject("vo",memberService.selectid(id));
+        return mv;
     }
-    //test===============================================================
+    //비번수정완료
     @RequestMapping(value = "/account/pwdmodify", method = RequestMethod.POST)
-    public String update_pw(@ModelAttribute MemberVo member, @RequestParam("old_pw") String old_pw, HttpSession session, 
-    		HttpServletResponse response, RedirectAttributes rttr) throws Exception{
+    public String update_pw(@ModelAttribute MemberVo memberVo,String id,String old_pw,HttpSession session,HttpServletResponse response, RedirectAttributes rttr, Authentication authentication) throws Exception{
+    	String password=bCryptPasswordEncoder.encode("password");
+    	//String old_pw=bCryptPasswordEncoder.encode("old_pw");
+    	String opwd=memberService.selectpwd(id);
     	
-		session.setAttribute("member", memberService.update_pw(member, old_pw, response));
-		rttr.addFlashAttribute("msg", "비밀번호 수정 완료");
-		return "redirect:/member/find_PwdResult";
+    	
+    	
+    	
+    	System.out.println("old비번:"+old_pw);
+    	System.out.println("vo비번:"+opwd);
+		//기존비번 비교해야함
+		
+		if(bCryptPasswordEncoder.matches(old_pw, opwd )) {
+			memberVo.setPassword(bCryptPasswordEncoder.encode(memberVo.getPassword()));
+    		
+    		MemberVo vo=new MemberVo(memberVo.getMem_no(), memberVo.getNickname(), 
+    				memberVo.getEmail(),memberVo.getPhone(), memberVo.getBirth_date(), 
+    				null, memberVo.getName(), memberVo.getId(), memberVo.getPassword(), memberVo.getRoles());
+    		session.setAttribute("member",memberService.updatePwd(vo));
+    		
+    		response.setContentType("text/html; charset=UTF-8");
+			PrintWriter out=response.getWriter();
+			out.println("<script>alert('비밀번호가 수정되었습니다.');</script>");
+			out.flush();
+    	
+		session.setAttribute("vo",memberService.selectid(id));
+
+		return "frontend/account/mypage_modify";
+			
+    	}else {
+    		response.setContentType("text/html; charset=UTF-8");
+			PrintWriter out=response.getWriter();
+			out.println("<script>");
+			out.println("alert('기존 비밀번호가 틀립니다');");
+			out.println("history.go(-1);");
+			out.println("</script>");
+			out.close();
+			return null;
+			
+			
+    	}
+			
+		
+    		
 	}
     
-    //========================================================================
+
+    
+    
     @RequestMapping(value = "/account/memberDel", method = RequestMethod.GET)
     public ModelAndView memberDelForm(String id) {
     	ModelAndView mv=new ModelAndView("frontend/account/mypage_memberDelete");

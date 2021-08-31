@@ -87,7 +87,9 @@
 						<th>${vo.zip_code }</th>
 						<th>${vo.address }</th>
 						<th>${vo.adress_detail }</th>
-						<th><a href="${pageContext.request.contextPath }/yongupdate?addr_no=${vo.addr_no}">수정</a></th>
+						<th><a href="${pageContext.request.contextPath }/yongupdate?addr_no=${vo.addr_no}">					
+						<input type="button" class="btn btn-primary btn-sm" value="수정">
+						</a></th>	
 					</tr>
 				</c:forEach>
 				</tbody>
