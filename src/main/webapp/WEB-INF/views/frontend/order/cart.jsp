@@ -142,10 +142,10 @@
 	<div class="container padding-bottom-3x mb-1">
 		<!-- Alert-->
 		<div class="alert alert-info alert-dismissible fade show text-center"
-			style="margin-bottom: 30px;">
+			style="margin-bottom: 30px; font-weight:bolder;">
 			<span class="alert-close" data-dismiss="alert"></span><i
-				class="icon-award"></i>&nbsp;&nbsp;With this purchase you will earn
-			<span class='text-medium'>2,549</span> Reward Points.
+				class="icon-award"></i>&nbsp;&nbsp;제품의 품절로 상품발송이 부득이하게 이루어지지 못하는 경우가 있으므로 이점 미리 양해해주시기 바랍니다. 빠른 배송을 위해 최선을 다하겠습니다.
+			<span class='text-medium'></span>
 		</div>
 		<!-- Shopping Cart-->
 		<div class="table-responsive shopping-cart" id="checkbox_group">
