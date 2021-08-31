@@ -170,8 +170,8 @@
 							<td class="text-center"><input type="checkbox"
 								name="cart_no" class="cart_nos" value="${vo.cart_no}"></td>
 							<td class="text-center text-lg"><img width=100; height=100;
-								src="<c:url value='/upload/product_img/${vo.img_name_save}' />"
-								alt="<c:url value='/upload/product_img/${vo.img_name_save}' />" />
+								src="<c:url value='/upload/product_img/${vo.uploadPath}/${vo.img_name_save}' />"
+								alt="<c:url value='/upload/product_img/${vo.uploadPath}/${vo.img_name_save}' />" />
 							</td>
 							<td class="text-center text-lg" style="font-size: 21px;">
 								${vo.product_name }</td>

@@ -89,7 +89,7 @@
 		       	  			
 		       	    		<c:forEach var="vo" items="${purchaseList }"  varStatus="i">
 			       	    		<tr>	
-			       	    			<td><img width=45; height=45; src="<c:url value='/upload/product_img/${vo.img_name_save}' />" alt="<c:url value='/upload/product_img/${vo.img_name_save}' />" /></td>
+			       	    			<td><img width=45; height=45; src="<c:url value='/upload/product_img/${vo.uploadPath}/${vo.img_name_save}' />" alt="<c:url value='/upload/product_img/${vo.uploadPath}/${vo.img_name_save}' />" /></td>
 				       	    		<td>${vo.product_name }</td>
 				       	    		<td>${vo.selling_price } 원</td>
 				       	    		<td>${vo.product_count }</td>
@@ -106,7 +106,7 @@
 		       	    	</c:when>
 		       	        	<c:otherwise>
 			       	    	<tr>
-			       	    		<td><img width=45; height=45; src="<c:url value='/upload/product_img/${img_name_save}' />" alt="<c:url value='/upload/product_img/${img_name_save}' />" /></td>
+			       	    		<td><img width=45; height=45; src="<c:url value='/upload/product_img/${uploadPath}/${img_name_save}' />" alt="<c:url value='/upload/product_img/${uploadPath}/${img_name_save}' />" /></td>
 			       	    		<td>${product_name }</td>
 			       	    		<td>${selling_price }</td>
 			       	    		<td>${product_count }</td>
