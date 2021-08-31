@@ -922,7 +922,6 @@ $(function(){
 });
 	var currentPage=1; 
 	function list(pageNum,order,category_id,keyword,minPrice,maxPrice){ 
-		
 		Number.prototype.format = function(){
 		    if(this==0) return 0;
 		    var reg = /(^[+-]?\d+)(\d{3})/;
@@ -1011,6 +1010,9 @@ $(function(){
 				let pageHtml="";
 				let pageHtml2="";
 				let pageHtml3="";
+				if(keyword==null || keyword==""){
+					keyword=undefined;
+				}
 				if(prev==true){
 					pageHtml += "<a class='btn btn-outline-secondary btn-sm' href=\"javascript:list("+ (startPage-1)+",'"+order+"',"+category_id+",'"+keyword+"',"+minPrice+","+maxPrice+");\"><i class='icon-chevron-left'></i>이전</a>";
 				}else{

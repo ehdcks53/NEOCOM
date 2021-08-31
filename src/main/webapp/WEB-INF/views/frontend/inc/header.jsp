@@ -16,7 +16,7 @@
 	<!-- 검색 및 카테고리 -->
 	<div class="search-box-wrap d-flex">
 		<div class="search-box-inner align-self-center">
-			<div class="search-box d-flex col-md-10">
+			<div class="search-box d-flex">
 				<!-- 카테고리 -->
 				<div class="btn-group categories-btn">
 					<button class="btn btn-secondary dropdown-toggle" data-toggle="dropdown"><i class="icon-menu text-lg"></i>&nbsp;카테고리</button>
@@ -38,12 +38,12 @@
 				<!-- 카테고리 끝 -->
 				<!-- 헤더 검색창 -->
 
-				<form class="input-group" method="get" action="${pageContext.request.contextPath }/shop/product_grid">
-					<input class="form-control" type="search" placeholder="검색어를 입력하세요." name="keyword" value=${keyword }>
-					<input type="hidden" name="category_id" value="10000">
+				<form class="input-group" method="get" action="${pageContext.request.contextPath }/shop/product_list">
 					<span class="input-group-btn">
 						<button type="submit"><i class="icon-search"></i></button>
 					</span>
+					<input class="form-control" type="search" placeholder="검색어를 입력하세요." name="keyword" value=${keyword }>
+					<input type="hidden" name="category_id" value="10000">
 				</form>
 				<!-- 헤더 검색창 끝 -->
 			</div>
