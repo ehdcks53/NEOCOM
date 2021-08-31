@@ -25,6 +25,10 @@ public class OrderMainService {
 	public int searchno(HashMap<String, Object> map) {
 		return mapper.searchno(map);
 	}
+	
+	public OrderMainVo searchOrderMain(int order_no) {
+		return mapper.searchOrderMain(order_no);
+	}
 
 	public OrderMainVo searchRndNo(HashMap<String, Object> map) {
 		return mapper.searchRndNo(map);

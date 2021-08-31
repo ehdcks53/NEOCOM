@@ -22,28 +22,28 @@ public class CustomUserDetails implements UserDetails {
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         Set<MemberRole> roles = memberVo.getRoles();
-        System.out.println("CUD"+memberVo.getRoles());
+        // System.out.println("CUD"+memberVo.getRoles());
         List<SimpleGrantedAuthority> authorities = new ArrayList<>();
 
         for (MemberRole role : roles) {
             authorities.add(new SimpleGrantedAuthority(role.getRoleName()));
-            
+
         }
-        
+
         return authorities;
     }
-    
-//    public Collection<? extends GrantedAuthority> updateAuthorities() {
-//    	Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-//        //Set<MemberRole> roles = memberVo.getRoles();
-//        List<GrantedAuthority> updatedAuthorities  = new ArrayList<>(auth.getAuthorities());;
-//        updatedAuthorities.add("ROLE_NOTUSER")
-//       
-//        }
-//
-//        
-//    }
-    
+
+    // public Collection<? extends GrantedAuthority> updateAuthorities() {
+    // Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+    // //Set<MemberRole> roles = memberVo.getRoles();
+    // List<GrantedAuthority> updatedAuthorities = new
+    // ArrayList<>(auth.getAuthorities());;
+    // updatedAuthorities.add("ROLE_NOTUSER")
+    //
+    // }
+    //
+    //
+    // }
 
     @Override
     public String getPassword() {

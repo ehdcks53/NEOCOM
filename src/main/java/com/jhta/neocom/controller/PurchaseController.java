@@ -5,7 +5,6 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.HashMap;
 import java.util.List;
-
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
@@ -69,7 +68,7 @@ public class PurchaseController {
 	// 직접 상품페이지에서 주문
 	@PostMapping("/member/purchase0")
 	public ModelAndView purchase0(int product_count, int product_id, String product_name, int selling_price,
-			String img_name_save, Model model,Authentication authentication) {
+			String img_name_save, String uploadPath, Model model,Authentication authentication) {
 		CustomUserDetails cud = (CustomUserDetails) authentication.getPrincipal();
 		MemberVo mvo = cud.getMemberVo();
 		int mem_no = mvo.getMem_no();
@@ -83,11 +82,13 @@ public class PurchaseController {
 		mv.addObject("product_name", product_name);
 		mv.addObject("selling_price", selling_price);
 		mv.addObject("img_name_save", img_name_save);
-		System.out.println(product_id+"aa"+img_name_save);
+		mv.addObject("uploadPath", uploadPath);
+
+		System.out.println(product_id + "aa" + img_name_save);
 		return mv;
 		/* } */
 
-	   }
+	}
 
 	// 장바구니에서 주문
 	@PostMapping("/member/purchase1")
@@ -98,12 +99,11 @@ public class PurchaseController {
 		int mem_no = mvo.getMem_no();
 		List<AddressVo> myAddrList=addrservice.myAddrList(mem_no);
 		System.out.println("내주소 리스트"+myAddrList);
-		
 		System.out.println(cart_nos);
 		ModelAndView mv = new ModelAndView("frontend/order/purchase");
-		ArrayList<CartVo> purchaseList=new ArrayList<CartVo>();
-		for(int i=0;i<cart_nos.size();i++) {			
-			purchaseList.addAll(cartservice.cartnoSearch(Integer.parseInt(cart_nos.get(i))));	
+		ArrayList<CartVo> purchaseList = new ArrayList<CartVo>();
+		for (int i = 0; i < cart_nos.size(); i++) {
+			purchaseList.addAll(cartservice.cartnoSearch(Integer.parseInt(cart_nos.get(i))));
 		}
 		System.out.println(purchaseList);
 		mv.addObject("cart_no", cart_nos);
@@ -127,7 +127,7 @@ public class PurchaseController {
 			
 			
 			vo.setMem_no(mem_no);
-			System.out.println(order_price[0]+"원"+product_count[0]+": 개수");
+			System.out.println(order_price[0] + "원" + product_count[0] + ": 개수");
 			// 주문 번호 만들기(ex:210817 + order_no )
 			Calendar cal = Calendar.getInstance();
 			int year = cal.get(Calendar.YEAR);
@@ -214,11 +214,11 @@ public class PurchaseController {
 			
 			System.out.println("id랭쓰"+product_id.length);
 			OrderDetailVo odvo1 = new OrderDetailVo();
-			if(product_id.length==1) {
+			if (product_id.length == 1) {
 				int a = Integer.parseInt(product_count[0]);
 				System.out.println(a + 2 + "count");
 				int b = Integer.parseInt(product_id[0]);
-				int c =Integer.parseInt(order_price[0]);
+				int c = Integer.parseInt(order_price[0]);
 				System.out.println(b + 2 + "id");
 				odvo1.setProduct_count(a);
 				odvo1.setProduct_id(b);
@@ -233,7 +233,7 @@ public class PurchaseController {
 				int a = Integer.parseInt(product_count[i]);
 				System.out.println(a + 2 + "count");
 				int b = Integer.parseInt(product_id[i]);
-				int c =Integer.parseInt(order_price[i]);
+				int c = Integer.parseInt(order_price[i]);
 				System.out.println(b + 2 + "id");
 				odvo1.setProduct_count(a);
 				odvo1.setProduct_id(b);
@@ -252,8 +252,8 @@ public class PurchaseController {
 		}
 
 	}
-	
-	//결제 페이지
+
+	// 결제 페이지
 	@GetMapping("/purchase2")
 	public String purchase(String id, int order_no, HttpServletRequest request
 			,Authentication authentication, Model model) {
@@ -269,7 +269,9 @@ public class PurchaseController {
 				}
 		}
 		model.addAttribute("order_no", order_no);
-		model.addAttribute("mem_no",mem_no);
+		model.addAttribute("mem_no", mem_no);
+		OrderMainVo vo=omservice.searchOrderMain(order_no);
+		model.addAttribute("vo",vo);
 		System.out.println(order_no);
 		return "frontend/order/purchase2";
 	}
@@ -279,10 +281,10 @@ public class PurchaseController {
 	public HashMap<String, Object> insert(PaymentVo vo) {
 		HashMap<String, Object> map = new HashMap<String, Object>();
 		HashMap<String, Object> map2 = new HashMap<String, Object>();
-		
+
 		try {
 			map2.put("order_no", vo.getOrder_no());
-			map2.put("mid_num",vo.getMid_num());
+			map2.put("mid_num", vo.getMid_num());
 			System.out.println(vo);
 			pservice.insert(vo);
 			omservice.updateMidNum(map2);
@@ -293,7 +295,7 @@ public class PurchaseController {
 		}
 		return map;
 	}
-	
+
 	@GetMapping("/paymentSuccess")
 	public String paymentSuccess(@RequestParam String cart_no, Model model,int order_no,String mid_num) {
 		HashMap<String, Object> map = new HashMap<String, Object>();
@@ -311,13 +313,13 @@ public class PurchaseController {
 			}
 		}
 		HashMap<String, Object> map2 = new HashMap<String, Object>();
-		map2.put("order_no",order_no );	
-		map2.put("payment_status","결제 완료" );
+		map2.put("order_no", order_no);
+		map2.put("payment_status", "결제 완료");
 		pservice.update(map);
 		model.addAttribute("order_no", order_no);
 		return "frontend/order/paymentSuccess";
 	}
-	
+
 	@RequestMapping(value = "/paymentCCtest", produces = { MediaType.APPLICATION_JSON_VALUE })
 	@ResponseBody
 	public HashMap<String, Object> paymentCC(PaymentVo vo) {
@@ -332,11 +334,11 @@ public class PurchaseController {
 		}
 		return map;
 	}
-	
+
 	@GetMapping("/paymentFail")
-	public String paymentFail(HttpSession session, Model model,String payment_status,int order_no) {
+	public String paymentFail(HttpSession session, Model model, String payment_status, int order_no) {
 		model.addAttribute("order_no", order_no);
 		return "frontend/order/paymentFail";
 	}
-	
+
 }

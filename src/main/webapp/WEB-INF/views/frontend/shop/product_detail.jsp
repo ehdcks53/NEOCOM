@@ -127,8 +127,8 @@
 							<a
 								href="${pageContext.request.contextPath}/static/frontend/assets/img/shop/single/01.jpg"
 								data-size="1000x667"><img
-								src="<c:url value='/upload/product_img/${list[0].img_name_save}' />"
-								alt="<c:url value='/upload/product_img/${img.img_name_save}' />" /></a>
+								src="<c:url value='/upload/product_img/${list[0].uploadPath}/${list[0].img_name_save}' />"
+								alt="<c:url value='/upload/product_img/${list[0].uploadPath}/${list[0].img_name_save}' />" /></a>
 						</div>
 
 
@@ -160,12 +160,11 @@
 					
 				<form name="form1">
 					<fieldset>
-						<input type="hidden" name="product_id"
-							value="${goods.product_id }"> <input type="hidden"
-							name="product_name" value="${goods.product_name }"> <input
-							type="hidden" name="selling_price"
-							value="${goods.selling_price }"> <input type="hidden"
-							name="img_name_save" value="${list[0].img_name_save }">
+						<input type="hidden" name="product_id" value="${goods.product_id }">
+						<input type="hidden" name="product_name" value="${goods.product_name }">
+						<input type="hidden" name="selling_price" value="${goods.selling_price }">
+						<input type="hidden" name="img_name_save" value="${list[0].img_name_save }">
+						<input type="hidden" name="uploadPath" value="${list[0].uploadPath }">
 
 
 						
@@ -220,8 +219,8 @@
 					<h3 class="h4">상품정보</h3>
 					<div class="mb-4"></div>
 					<img
-						src="<c:url value='/upload/product_img/${list[1].img_name_save}' />"
-						alt="<c:url value='/upload/product_img/${img.img_name_save}' />" />
+						src="<c:url value='/upload/product_img/${list[1].uploadPath}/${list[1].img_name_save}' />"
+						alt="<c:url value='/upload/product_img/${list[1].uploadPath}/${list[1].img_name_save}' />" />
 				</div>
 
 			</div>

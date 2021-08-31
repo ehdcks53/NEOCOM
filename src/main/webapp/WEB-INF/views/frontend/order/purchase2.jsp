@@ -35,7 +35,25 @@
 		src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
 	<script type="text/javascript"
 		src="https://service.iamport.kr/js/iamport.payment-1.1.5.js"></script>
-
+<style>
+	.myth {
+		font-size: 23px;
+		line-height:100px;
+	}
+	.mytable {
+		height: 250px;
+		margin-top: 30px;
+		margin-bottom: 150px;
+		border:none;
+	}
+	.mytable th{
+		border:none;
+	}
+	.mytable thead td{
+		border:none;
+	}
+	
+</style>
 </head>
 <body>
 	<jsp:include page="/WEB-INF/views/frontend/inc/header.jsp"/>
@@ -72,51 +90,36 @@
           <hr class="padding-bottom-1x">
           <div class="accordion" id="accordion" role="tablist">
           <div class="col-xl-12  col-lg-8">
-	      	<table class="table table-hover">
-	        	<thead>
+	      	<table class="table mytable table-hover">
+	        	<thead style="height:125px;">
 	          		<tr>
-	          			<th class="text-center">상품금액</th>
-	          			<th class="text-center">배송비</th>
-	          			<th class="text-center">총 결제하실 금액</th>          			
+	          			<th class="myth text-center">상품금액</th>
+	          			<th class="myth text-center">배송비</th>
+	          			<th class="myth text-center">총 결제하실 금액</th>          			
 	          		</tr>
 	          	</thead>
-	          	<tbody>
-	          		<tr>
-	          			<th class="text-center">${tot_price} 원</th>
-	          			<th class="text-center">0 원</th>
-	          			<th class="text-center">${tot_price} 원</th>
-	          		</tr>
+	          	<tbody style="height:100%">
+	          		<c:choose>
+	          			<c:when test="${!empty vo }">
+	          				<tr>
+			          			<th class="myth text-center">${vo.tot_price} 원</th>
+			          			<th class="myth text-center">0 원</th>
+			          			<th class="myth text-center">${vo.tot_price} 원</th>
+			          		</tr>
+	          			</c:when>
+	          			<c:otherwise>
+	          				<tr>
+			          			<th class="myth text-center">${tot_price} 원</th>
+			          			<th class="myth text-center">0 원</th>
+			          			<th class="myth text-center">${tot_price} 원</th>
+			          		</tr>
+	          			</c:otherwise>
+	          		
+	          		</c:choose>
 	          	</tbody>
 	      	</table>
           </div>
-            <div class="card">
-              <div class="card-header" role="tab">
-                <h6><a href="#card" data-toggle="collapse"><i class="icon-credit-card"></i>Pay with Credit Card</a></h6>
-              </div>
-              <div class="collapse show" id="card" data-parent="#accordion" role="tabpanel">
-                <div class="card-body">
-                  <p>We accept following credit cards:&nbsp;&nbsp;<img class="d-inline-block align-middle" src="img/credit-cards.png" style="width: 120px;" alt="Cerdit Cards"></p>
-                  <div class="card-wrapper"></div>
-                  <form class="interactive-credit-card row">
-                    <div class="form-group col-sm-6">
-                      <input class="form-control" type="text" name="number" placeholder="Card Number" required>
-                    </div>
-                    <div class="form-group col-sm-6">
-                      <input class="form-control" type="text" name="name" placeholder="Full Name" required>
-                    </div>
-                    <div class="form-group col-sm-3">
-                      <input class="form-control" type="text" name="expiry" placeholder="MM/YY" required>
-                    </div>
-                    <div class="form-group col-sm-3">
-                      <input class="form-control" type="text" name="cvc" placeholder="CVC" required>
-                    </div>
-                    <div class="col-sm-6">
-                      <button class="btn btn-outline-primary btn-block mt-0" type="submit">Submit</button>
-                    </div>
-                  </form>
-                </div>
-              </div>
-            </div>
+            
             
             
           </div>
@@ -227,15 +230,15 @@
         
       </div>	
 				<div>
-					주문번호 보내기<input type="text" id="order_no" value="${order_no }">
+					<input type="text" id="order_no" value="${order_no }">
 					<input type="hidden" id="orderer_name" value="${orderer_name }">
 					<input type="hidden" id="tot_price" value="${tot_price }">
 					<input type="hidden" id="zip_code" value="${zip_code }">
 					<input type="hidden" id="order_address" value="${order_address }">
 					<input type="hidden" id="order_address_detail" value="${order_address_detail }">
-					<input type="text" id="request_item" value="${request_item }">
+					<input type="hidden" id="request_item" value="${request_item }">
 					<c:forEach items="${cart_no }" varStatus="i">
-						<input type="text" name="cart_no" id="cart_no" value=${cart_no[i.index] }>
+						<input type="hidden" name="cart_no" id="cart_no" value=${cart_no[i.index] }>
 					</c:forEach>
 					
 					</div>
