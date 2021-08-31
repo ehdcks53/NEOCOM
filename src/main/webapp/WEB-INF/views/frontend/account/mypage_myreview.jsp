@@ -45,7 +45,7 @@
 		</div>
 		<div class="column">
 			<ul class="breadcrumbs">
-				<li><a href="#">Home</a></li>
+				<li><a href="${pageContext.request.contextPath}/">Home</a></li>
 				<li class="separator">&nbsp;</li>
 				<li>My Page</li>
 			</ul>
@@ -75,7 +75,7 @@
 			</div>
 			
 			
-			
+			<c:when test=""></c:when>
 			<table class="table">
 				<thead>
 					<tr>

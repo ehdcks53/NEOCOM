@@ -113,7 +113,7 @@
 				<div class="entry-navigation">
 					<div class="column text-left"></div>
 					<div class="column">
-						<a class="btn btn-outline-secondary view-all" href="${pageContext.request.contextPath }/review_list">
+						<a class="btn btn-outline-secondary view-all" href="${pageContext.request.contextPath }/review_list?product_id=${rvo.product_id}">
 							<i class="icon-menu"></i>
 						</a>
 					</div>

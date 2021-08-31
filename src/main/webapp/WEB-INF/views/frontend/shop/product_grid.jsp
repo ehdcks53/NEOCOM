@@ -41,9 +41,9 @@
 		</div>
 		<div class="column">
 			<ul class="breadcrumbs">
-				<li><a href="#">Home</a></li>
+				<li><a href="${pageContext.request.contextPath}/">Home</a></li>
 				<li class="separator">&nbsp;</li>
-				<li><a href="#">Shop</a></li>
+				<li><a href="${pageContext.request.contextPath}/shop/product_grid?category_id=20000">Shop</a></li>
 				<li class="separator">&nbsp;</li>
 				<li>Goods list</li>
 			</ul>
