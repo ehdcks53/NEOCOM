@@ -25,6 +25,7 @@ public class ProductService {
 	}
 
 	public List<HashMap<String, Object>> list(HashMap<String, Object> map) {
+		
 		return mapper.list(map);
 
 	}

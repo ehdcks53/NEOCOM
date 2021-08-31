@@ -28,7 +28,6 @@ import com.jhta.neocom.dto.Product_ImgDTO;
 import com.jhta.neocom.model.CategoryVo;
 import com.jhta.neocom.model.Category_relVo;
 import com.jhta.neocom.model.ProductVo;
-import com.jhta.neocom.model.Product_ImgVo;
 import com.jhta.neocom.service.CategoryService;
 import com.jhta.neocom.service.Category_relService;
 import com.jhta.neocom.service.ImgFileService;

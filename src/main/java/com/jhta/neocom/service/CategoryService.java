@@ -1,5 +1,6 @@
 package com.jhta.neocom.service;
 
+
 import java.util.HashMap;
 import java.util.List;
 
@@ -39,16 +40,17 @@ public class CategoryService {
 		return mapper.list();
 	}
 
-	public String selectone(HashMap<String, Integer> map) {
-		map.get("category_id");
-		map.get("product_id");
-		System.out.println(map.get("category_id") + "=========" + map.get("product_id"));
+	public String selectone(HashMap<String, Integer> map) {	
 		return mapper.selectone(map);
 
 	}
 
 	public List<HashMap<String, Integer>> selectjoin(int product_id) {
 		return mapper.selectjoin(product_id);
+		
+	}
+	public List<CategoryVo> classification(int category_id){
+		return mapper.classification(category_id);
 	}
 
 }

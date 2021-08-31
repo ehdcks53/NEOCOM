@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -60,7 +62,55 @@
 	<jsp:include page="/WEB-INF/views/frontend/account/inc/mypage_sidebar.jsp"/>
 	
 	<!-- 관심상품 여기서부터 -->
-	
+	<div class="col-lg-9 col-md-8 order-md-2">
+		<h6 class="text-muted text-lg text-uppercase">관심상품</h6>
+		<hr class="margin-bottom-1x">
+		<table class="table text-center" style="display:table;">
+			<thead>
+			<tr>
+				<th width="10%"><input type="checkbox" name="chkAll" id="chkAll"></th>
+				<th></th>
+				<th width="5%"></th>
+			</tr>
+			</thead>
+			<tbody>
+			<c:forEach var="vo" items="${list }">
+			<tr>
+				<td><input type="checkbox" name="chk" id="chk"></td>
+				<td>
+					<div class="product-card product-list mb-30" style="width:800px; display:table-cell; vertical-align:middle;">
+						<a class="product-thumb" href="${pageContext.request.contextPath}/shop/product_detail?n=${vo.product_id}&m=${vo.category_id}">
+							<img src="<c:url value='/upload/product_img/${vo.img_name_save}' />" alt="<c:url value='/upload/product_img/${vo.img_name_save}' />">
+						</a>
+						<div class="product-card-inner">
+							<div class="product-card-body">
+								<div class="product-category">
+									<a>${vo.brand }</a>
+								</div>
+								<h3 class="product-title">${vo.product_name }</h3>
+								<h4 class="product-price">
+									<fmt:formatNumber pattern="###,###,###" value="${vo.selling_price }" /> 원
+								</h4>
+							</div>
+						</div>
+					</div>
+				</td>
+				<td>
+					<a class="remove-from-cart" 
+					   style="text-decoration:none; color:black;" 
+					   href="${pageContext.request.contextPath}/account/mypage_wishdelete?product_id=${vo.product_id }"
+					   data-toggle="tooltip" 
+					   title="지우기">
+						<i class="icon-x"></i>
+					</a>
+				</td>
+			</tr>
+			</c:forEach>
+			</tbody>
+		</table>
+		<hr class="margin-bottom-1x">
+	</div>
+
 	
 </div>
 </div>
@@ -76,5 +126,14 @@
 	<!-- JavaScript (jQuery) libraries, plugins and custom scripts-->
 	<script src="${pageContext.request.contextPath}/static/frontend/assets/js/vendor.min.js"></script>
 	<script src="${pageContext.request.contextPath}/static/frontend/assets/js/scripts.min.js"></script>
+<script>
+	$("#chkAll").click(function(){
+		if($("#chkAll").prop("checked")){
+			$("input[name=chk]").prop("checked",true);
+		}else{
+			$("input[name=chk]").prop("checked",false);
+		}
+	});
+</script>
 </body>
 </html>
