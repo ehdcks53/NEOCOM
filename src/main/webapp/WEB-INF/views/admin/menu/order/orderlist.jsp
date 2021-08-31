@@ -272,7 +272,7 @@
 			if(result){
 				$.ajax({
 			    	// 예: http://www.myservice.com/payments/cancel
-			      "url": "${pageContext.request.contextPath}/order/payback2",
+			      "url": "${pageContext.request.contextPath}/order/payback1",
 			      "type": "POST",
 			      "data": { "mid" : mid, 
 				        // 예: ORD20180131-0000011

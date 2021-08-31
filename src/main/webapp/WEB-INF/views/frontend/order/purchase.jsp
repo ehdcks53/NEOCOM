@@ -77,7 +77,7 @@
 	        	<thead class="thead-default">
 	           	 	<tr>
 	            		<th class="text-center">이미지</th>
-	           			<th class="text-center">상품명</th>
+	           			<th class="text-center col-md-6">상품명</th>
 	            		<th class="text-center">상품금액</th>
 	            		<th class="text-center">수량</th>
 	            		<th class="text-center">주문금액</th>
@@ -89,11 +89,11 @@
 		       	  			
 		       	    		<c:forEach var="vo" items="${purchaseList }"  varStatus="i">
 			       	    		<tr>	
-			       	    			<td><img width=45; height=45; src="<c:url value='/upload/product_img/${vo.uploadPath}/${vo.img_name_save}' />" alt="<c:url value='/upload/product_img/${vo.uploadPath}/${vo.img_name_save}' />" /></td>
-				       	    		<td>${vo.product_name }</td>
-				       	    		<td>${vo.selling_price } 원</td>
-				       	    		<td>${vo.product_count }</td>
-				       	    		<td>${vo.selling_price * vo.product_count} 원</td>
+			       	    			<td class="text-center"><img width=45; height=45; src="<c:url value='/upload/product_img/${vo.uploadPath}/${vo.img_name_save}' />" alt="<c:url value='/upload/product_img/${vo.uploadPath}/${vo.img_name_save}' />" /></td>
+				       	    		<td class="text-center">${vo.product_name }</td>
+				       	    		<td class="text-center">${vo.selling_price } 원</td>
+				       	    		<td class="text-center">${vo.product_count }</td>
+				       	    		<td class="text-center">${vo.selling_price * vo.product_count} 원</td>
 				       	    		
 			       	    		</tr>
 			       	    		<c:set var= "total" value="${total + vo.selling_price * vo.product_count }"/>
@@ -103,16 +103,16 @@
 			       	    		
 			       	    	</c:forEach>
 			       	    		<c:forEach items="${cart_no }" varStatus="i">
-			       	    			<input type="text" name="cart_no" value=${cart_no[i.index] }>
+			       	    			<input type="hidden" name="cart_no" value=${cart_no[i.index] }>
 			       	    		</c:forEach>
 		       	    	</c:when>
 		       	        	<c:otherwise>
 			       	    	<tr>
-			       	    		<td><img width=45; height=45; src="<c:url value='/upload/product_img/${uploadPath}/${img_name_save}' />" alt="<c:url value='/upload/product_img/${uploadPath}/${img_name_save}' />" /></td>
-			       	    		<td>${product_name }</td>
-			       	    		<td>${selling_price }</td>
-			       	    		<td>${product_count }</td>
-			       	    		<td>${selling_price * product_count }</td>
+			       	    		<td class="text-center"><img width=45; height=45; src="<c:url value='/upload/product_img/${uploadPath}/${img_name_save}' />" alt="<c:url value='/upload/product_img/${uploadPath}/${img_name_save}' />" /></td>
+			       	    		<td class="text-center">${product_name }</td>
+			       	    		<td class="text-center">${selling_price }</td>
+			       	    		<td class="text-center">${product_count }</td>
+			       	    		<td class="text-center">${selling_price * product_count }</td>
 			       	    	</tr>
 			       	    	<c:set var= "total" value="${total + selling_price * product_count }"/>
 		       	    	</c:otherwise>
@@ -237,15 +237,10 @@
 							</div>
 						</div>
 					</div>-->
-					<h4>Shipping Address</h4>
-					<hr class="padding-bottom-1x">
+					
+					<hr class="padding-bottom-2x" style="margin-top:50px;">
 					<div class="form-group">
-						<div class="custom-control custom-checkbox">
-							<input class="custom-control-input" type="checkbox"
-								id="same_address" checked> <label
-								class="custom-control-label" for="same_address">Same as
-								billing address</label>
-						</div>
+						
 					</div>
 					<div class="d-flex justify-content-between paddin-top-1x mt-4">
 						<a class="btn btn-outline-secondary" href="${pageContext.request.contextPath }/member/cart"><i
@@ -286,12 +281,14 @@
 						<!-- Entry-->
 						<div class="entry">
 							<div class="entry-thumb">
-								<a href="shop-single.html"><img src="img/shop/widget/01.jpg"
-									alt="Product"></a>
+								<a href="shop-single.html">
+									<img   src="<c:url value='/upload/product_img/2021\08\31/0531dcae-2721-4cdf-afe2-f4a5fe205420_ASRock B560M PRO4 에즈윈.jpg' />"
+									alt="<c:url value='/upload/product_img/2021\08\31/0531dcae-2721-4cdf-afe2-f4a5fe205420_ASRock B560M PRO4 에즈윈.jpg' />" />
+								</a>
 							</div>
 							<div class="entry-content">
 								<h4 class="entry-title">
-									<a href="shop-single.html">GoPro Hero4 Silver</a>
+									<a href="shop-single.html">ASRock B560M PRO4 에즈윈</a>
 								</h4>
 								<span class="entry-meta">150000 원</span>
 							</div>
@@ -299,12 +296,14 @@
 						<!-- Entry-->
 						<div class="entry">
 							<div class="entry-thumb">
-								<a href="shop-single.html"><img src="img/shop/widget/02.jpg"
-									alt="Product"></a>
+								<a href="shop-single.html">
+									<img   src="<c:url value='/upload/product_img/2021\08\31/f11b59b4-b7e1-422d-8473-396a5720877a_삼성전자 DDR4 8G PC4-25600 (정품).jpg' />"
+									alt="<c:url value='/upload/product_img/2021\08\31/f11b59b4-b7e1-422d-8473-396a5720877a_삼성전자 DDR4 8G PC4-25600 (정품).jpg' />" />
+								</a>
 							</div>
 							<div class="entry-content">
 								<h4 class="entry-title">
-									<a href="shop-single.html">키보드</a>
+									<a href="shop-single.html">삼성전자 DDR4 8G PC4-25600 (정품)</a>
 								</h4>
 								<span class="entry-meta">250000 원</span>
 							</div>
@@ -312,27 +311,16 @@
 						<!-- Entry-->
 						<div class="entry">
 							<div class="entry-thumb">
-								<a href="shop-single.html"><img src="img/shop/widget/03.jpg"
-									alt="Product"></a>
+								<a href="shop-single.html">
+									<img   src="<c:url value='/upload/product_img/2021\08\31/1c8a65ae-e3db-4641-91be-28d2e25ec077_MSI 지포스 GTX1050 Ti OC D5 4GB 윈드스톰.jpg' />"
+									alt="<c:url value='/upload/product_img/2021\08\31/1c8a65ae-e3db-4641-91be-28d2e25ec077_MSI 지포스 GTX1050 Ti OC D5 4GB 윈드스톰.jpg' />" />
+								</a>
 							</div>
 							<div class="entry-content">
 								<h4 class="entry-title">
-									<a href="shop-single.html">HP OfficeJet Pro 8710</a>
+									<a href="shop-single.html">MSI 지포스 GTX1050 Ti OC D5 4GB 윈드스톰.jpg</a>
 								</h4>
-								<span class="entry-meta">$89.70</span>
-							</div>
-						</div>
-						<!-- Entry-->
-						<div class="entry pb-2">
-							<div class="entry-thumb">
-								<a href="shop-single.html"><img src="img/shop/widget/05.jpg"
-									alt="Product"></a>
-							</div>
-							<div class="entry-content">
-								<h4 class="entry-title">
-									<a href="shop-single.html">iPhone X 256 GB Space Gray</a>
-								</h4>
-								<span class="entry-meta">$1,450.00</span>
+								<span class="entry-meta">410400원</span>
 							</div>
 						</div>
 					</section>
@@ -341,14 +329,16 @@
 						<div class="card-body">
 							<span class="d-block text-lg text-thin mb-2">Limited Time
 								Deals</span>
-							<h3>Surface Pro 4</h3>
+								<img   src="<c:url value='/upload/product_img/2021\08\31/a7cdfca9-ca62-4dd8-a53a-f98eaf2d655e_잘만 CNPS9X OPTIMA WHITE LED.jpg' />"
+									alt="<c:url value='/upload/product_img/2021\08\31/a7cdfca9-ca62-4dd8-a53a-f98eaf2d655e_잘만 CNPS9X OPTIMA WHITE LED.jpg' />" />
+							
 							<p class="d-inline-block bg-warning text-white">
 								&nbsp;&nbsp;Shop Now&nbsp;<i
 									class="icon-chevron-right d-inline-block align-middle"></i>&nbsp;
 							</p>
 						</div>
-						<img class="d-block mx-auto" src="img/shop/widget/promo.jpg"
-						alt="Surface Pro">
+							
+						
 					</a>
 				</aside>
 			</div>
@@ -388,10 +378,10 @@
 		var height = Math.max( body.scrollHeight, body.offsetHeight, 
 			 html.clientHeight, html.scrollHeight, html.offsetHeight );
 		$(".sidebar").css({
-			"top":-height+1703
+			"top":-height+1670
 		});
-		var endScroll=height-1221
-		var endPx=height-1471
+		var endScroll=height-1321
+		var endPx=height-1571
 		//사이드바 스크롤
 
 		function sidebar(){

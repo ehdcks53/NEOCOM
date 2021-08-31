@@ -195,7 +195,7 @@
 							</td>
 							<td class="text-center text-lg" style="font-size: 15px;">${vo.product_count*vo.selling_price } 원</td>
 							<td class="text-center text-lg"><a class="remove-from-cart"
-								onclick="remove(${vo.cart_no})" data-toggle="tooltip" title="삭제"><i
+								onclick="remove(${vo.cart_no})"  ><i
 									class="icon-x"></i></a></td>
 							</form>
 						</tr>
@@ -252,14 +252,17 @@
 			<!-- Product-->
 			<div class="product-card">
 				<div class="product-badge bg-danger">Sale</div>
-				<a class="product-thumb" href="shop-single.html"><img src="#"
-					alt="Product"></a>
+				<a class="product-thumb" href="shop-single.html">
+					<img width=100; height=100; src="<c:url value='/upload/product_img/2021\08\31/f442b9b8-1c62-469c-b960-6de0ef97d5fb_이엠텍 REDBIT 280 ARGB.jpg' />"
+					alt="<c:url value='/upload/product_img/2021\08\31/f442b9b8-1c62-469c-b960-6de0ef97d5fb_이엠텍 REDBIT 280 ARGB.jpg' />" />
+					
+				</a>
 				<div class="product-card-body">
 					<div class="product-category">
-						<a href="#">Smart home</a>
+						<a href="#">슈퍼 세일!</a>
 					</div>
 					<h3 class="product-title">
-						<a href="shop-single.html">무선 마우스</a>
+						<a href="shop-single.html">이엠텍 REDBIT 280 ARGB</a>
 					</h3>
 					<h4 class="product-price">
 						<del>5900 원</del>
@@ -278,14 +281,17 @@
 			</div>
 			<!-- Product-->
 			<div class="product-card">
-				<a class="product-thumb" href="shop-single.html"><img src="#"
-					alt="Product"></a>
+				<a class="product-thumb" href="shop-single.html">
+					<img width=100; height=100; src="<c:url value='/upload/product_img/2021\08\31/067403be-cdbb-49c0-b67b-91a4c7554a57_GIGABYTE AORUS Master 지포스 RTX 3090 D6X 24GB 피씨디렉트.jpg' />"
+					alt="<c:url value='/upload/product_img/2021\08\31/067403be-cdbb-49c0-b67b-91a4c7554a57_GIGABYTE AORUS Master 지포스 RTX 3090 D6X 24GB 피씨디렉트.jpg' />" />
+			
+				</a>
 				<div class="product-card-body">
 					<div class="product-category">
-						<a href="#">헤드폰</a>
+						<a href="#">NVIDIA</a>
 					</div>
 					<h3 class="product-title">
-						<a href="shop-single.html">헤드폰 W855BT Bluetooth</a>
+						<a href="shop-single.html">지포스 RTX 3090 D6X 24GB 피씨디렉트</a>
 					</h3>
 					<h4 class="product-price">50 원</h4>
 				</div>
@@ -306,14 +312,18 @@
 						class="icon-star filled"></i><i class="icon-star filled"></i><i
 						class="icon-star filled"></i>
 				</div>
-				<a class="product-thumb" href="shop-single.html"><img src="#"
-					alt="Product"></a>
+				<a class="product-thumb" href="shop-single.html">
+					<img width=100; height=100; src="<c:url value='/upload/product_img/2021\08\31/4ea4d78d-8e25-464b-bc5b-b2214987c40f_삼성전자 노트북 DDR4 16G PC4-25600 (정품).jpg' />"
+					alt="<c:url value='/upload/product_img/2021\08\31/4ea4d78d-8e25-464b-bc5b-b2214987c40f_삼성전자 노트북 DDR4 16G PC4-25600 (정품).jpg' />" />
+			
+				
+				</a>
 				<div class="product-card-body">
 					<div class="product-category">
-						<a href="#">lg 모니터</a>
+						<a href="#">삼성전자</a>
 					</div>
 					<h3 class="product-title">
-						<a href="shop-single.html">LG 최신모니터</a>
+						<a href="shop-single.html">삼성전자 노트북 DDR4 16G PC4-25600</a>
 					</h3>
 					<h4 class="product-price">50000 원</h4>
 				</div>
@@ -329,14 +339,18 @@
 			</div>
 			<!-- Product-->
 			<div class="product-card">
-				<a class="product-thumb" href="shop-single.html"><img src="#"
-					alt="Product"></a>
+				<a class="product-thumb" href="shop-single.html">
+				<img width=100; height=100; src="<c:url value='/upload/product_img/2021\08\31/4b58c1f1-5a25-4ff7-b110-423ea70cd892_AMD 라이젠7-4세대 5800X (버미어) (멀티팩).jpg' />"
+					alt="<c:url value='/upload/product_img/2021\08\31/4b58c1f1-5a25-4ff7-b110-423ea70cd892_AMD 라이젠7-4세대 5800X (버미어) (멀티팩).jpg' />" />
+			
+				
+				</a>
 				<div class="product-card-body">
 					<div class="product-category">
-						<a href="#">스피커</a>
+						<a href="#">AMD</a>
 					</div>
 					<h3 class="product-title">
-						<a href="shop-single.html">퍼팩트 사운드바 스피커</a>
+						<a href="shop-single.html">AMD 라이젠7-4세대 5800X (버미어)</a>
 					</h3>
 					<h4 class="product-price">5500 원</h4>
 				</div>
@@ -436,7 +450,6 @@
 	<a class="scroll-to-top-btn" href="#"><i class="icon-chevron-up"></i></a>
 	<!-- Backdrop-->
 	<div class="site-backdrop"></div>
-	<button id="purchase_btn2">aaa</button>
 
 	<!-- JavaScript (jQuery) libraries, plugins and custom scripts-->
 	<script
@@ -543,13 +556,14 @@
 						let selling_price=d.selling_price;
 						let product_count=d.product_count;
 						let img_name_save=d.img_name_save;
+						let uploadPath=d.uploadPath;
 						cart_no=d.cart_no;
 							$("#cart_list").append(
 							`		
 							<tr>
 									<td class="text-center"><input type="checkbox" name="cart_no" class="cart_nos" value="\${cart_no}" ></td>
 									<td class="text-center text-lg">
-										<img width=70px; height=70px; src="<c:url value='/upload/product_img/\${img_name_save}' />" alt="<c:url value='/upload/product_img/\${img_name_save}' />" />
+										<img width=100px; height=100px; src="<c:url value='/upload/product_img/\${uploadPath}/\${img_name_save}' />" alt="<c:url value='/upload/product_img/\${uploadPath}/\${img_name_save}' />" />
 									</td>
 									<td class="text-center text-lg"  style="font-size: 15px;">
 										<input type="hidden" name="product_name" class="product_names" value="\${product_name}">
@@ -570,7 +584,7 @@
 									</td>
 									<td class="text-center text-lg" style="font-size: 15px;">\${product_count*selling_price } 원</td>
 									<td class="text-center text-lg">
-										<a class="remove-from-cart" onclick="remove(\${cart_no})" data-toggle="tooltip" title="삭제"><i class="icon-x"></i></a>
+										<a class="remove-from-cart" onclick="remove(\${cart_no})"><i class="icon-x"></i></a>
 									</td>	
 							</tr>					
 							`

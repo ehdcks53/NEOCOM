@@ -70,8 +70,8 @@
 										<th class="text-nowrap">결제 날짜</th>
 										<th class="text-nowrap">결제 상태</th>
 										<th>상세보기</th>
-										<th width="5%"></th>
-										<th width="5%"></th>
+										<!--<th width="5%"></th>
+										<th width="5%"></th>-->
 									</tr>
 								</thead>
 								<tbody>
@@ -84,10 +84,10 @@
 											<td>${vo.payment_date }</td>
 											<td>${vo.payment_status }</td>
 											<td>상세보기</td>
-											<td><a href="${pageContext.request.contextPath }/admin/cate/delete?order_no=${vo.order_no }" class="btn btn-sm btn-primary w-60px me-1">삭제</a></td>
+											<!--  <td><a href="${pageContext.request.contextPath }/admin/cate/delete?order_no=${vo.order_no }" class="btn btn-sm btn-primary w-60px me-1">삭제</a></td>
 											<td><a href="#modal-dialog" class="open_modal btn btn-sm btn-white w-60px" data-bs-toggle="modal" 
 											data-order_no="${vo.order_no}" data-payment_status="${vo.payment_status}"
-											>수정...?</a></td>
+											>수정...?</a></td>-->
 										</tr>
 									</c:forEach>
 								</tbody>

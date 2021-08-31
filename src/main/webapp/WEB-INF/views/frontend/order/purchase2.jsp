@@ -114,7 +114,6 @@
 			          			<th class="myth text-center">${tot_price} 원</th>
 			          		</tr>
 	          			</c:otherwise>
-	          		
 	          		</c:choose>
 	          	</tbody>
 	      	</table>
@@ -124,7 +123,7 @@
             
           </div>
       		<div class="d-flex justify-content-between paddin-top-1x mt-4">
-					<a class="btn btn-outline-secondary" href="cart.html"><i
+					<a class="btn btn-outline-secondary" href="${pageContext.request.contextPath }/member/cart"><i
 						class="icon-arrow-left"></i><span class="hidden-xs-down">&nbsp;장바구니로
 						</span></a><button id="check_module" class="btn btn-primary" 
 							type="button"><span
@@ -141,18 +140,36 @@
 					<section class="widget widget-order-summary">
 						<h3 class="widget-title">주문정보(Order Summary)</h3>
 						<table class="table">
-							<tr>
-								<td>총 결제금액 : </td>
-								<td class="text-gray-dark">${tot_price } 원</td>
-							</tr>		
-							<tr>
-								<td>배송비(Shipping):  </td>
-								<td class="text-gray-dark">0원</td>
-							</tr>
-							<tr>
-								<td></td>
-								<td class="text-lg text-gray-dark">${tot_price } 원</td>
-							</tr>
+							<c:choose>
+			          			<c:when test="${!empty vo }">
+			          				<tr>
+										<td>총 결제금액 : </td>
+										<td class="text-gray-dark">${vo.tot_price } 원</td>
+									</tr>		
+									<tr>
+										<td>배송비(Shipping):  </td>
+										<td class="text-gray-dark">0원</td>
+									</tr>
+									<tr>
+										<td></td>
+										<td class="text-lg text-gray-dark">${vo.tot_price } 원</td>
+									</tr>
+			          			</c:when>
+			          			<c:otherwise>
+			          				<tr>
+										<td>총 결제금액 : </td>
+										<td class="text-gray-dark">${tot_price } 원</td>
+									</tr>		
+									<tr>
+										<td>배송비(Shipping):  </td>
+										<td class="text-gray-dark">0원</td>
+									</tr>
+									<tr>
+										<td></td>
+										<td class="text-lg text-gray-dark">${tot_price } 원</td>
+									</tr>
+			          			</c:otherwise>
+			          		</c:choose>
 						</table>
 					</section>
 					<!-- Featured Products Widget-->
@@ -161,12 +178,14 @@
 						<!-- Entry-->
 						<div class="entry">
 							<div class="entry-thumb">
-								<a href="shop-single.html"><img src="img/shop/widget/01.jpg"
-									alt="Product"></a>
+								<a href="shop-single.html">
+									<img   src="<c:url value='/upload/product_img/2021\08\31/0531dcae-2721-4cdf-afe2-f4a5fe205420_ASRock B560M PRO4 에즈윈.jpg' />"
+									alt="<c:url value='/upload/product_img/2021\08\31/0531dcae-2721-4cdf-afe2-f4a5fe205420_ASRock B560M PRO4 에즈윈.jpg' />" />
+								</a>
 							</div>
 							<div class="entry-content">
 								<h4 class="entry-title">
-									<a href="shop-single.html">GoPro Hero4 Silver</a>
+									<a href="shop-single.html">ASRock B560M PRO4 에즈윈</a>
 								</h4>
 								<span class="entry-meta">150000 원</span>
 							</div>
@@ -174,12 +193,14 @@
 						<!-- Entry-->
 						<div class="entry">
 							<div class="entry-thumb">
-								<a href="shop-single.html"><img src="img/shop/widget/02.jpg"
-									alt="Product"></a>
+								<a href="shop-single.html">
+									<img   src="<c:url value='/upload/product_img/2021\08\31/f11b59b4-b7e1-422d-8473-396a5720877a_삼성전자 DDR4 8G PC4-25600 (정품).jpg' />"
+									alt="<c:url value='/upload/product_img/2021\08\31/f11b59b4-b7e1-422d-8473-396a5720877a_삼성전자 DDR4 8G PC4-25600 (정품).jpg' />" />
+								</a>
 							</div>
 							<div class="entry-content">
 								<h4 class="entry-title">
-									<a href="shop-single.html">키보드</a>
+									<a href="shop-single.html">삼성전자 DDR4 8G PC4-25600 (정품)</a>
 								</h4>
 								<span class="entry-meta">250000 원</span>
 							</div>
@@ -187,27 +208,16 @@
 						<!-- Entry-->
 						<div class="entry">
 							<div class="entry-thumb">
-								<a href="shop-single.html"><img src="img/shop/widget/03.jpg"
-									alt="Product"></a>
+								<a href="shop-single.html">
+									<img   src="<c:url value='/upload/product_img/2021\08\31/1c8a65ae-e3db-4641-91be-28d2e25ec077_MSI 지포스 GTX1050 Ti OC D5 4GB 윈드스톰.jpg' />"
+									alt="<c:url value='/upload/product_img/2021\08\31/1c8a65ae-e3db-4641-91be-28d2e25ec077_MSI 지포스 GTX1050 Ti OC D5 4GB 윈드스톰.jpg' />" />
+								</a>
 							</div>
 							<div class="entry-content">
 								<h4 class="entry-title">
-									<a href="shop-single.html">HP OfficeJet Pro 8710</a>
+									<a href="shop-single.html">MSI 지포스 GTX1050 Ti OC D5 4GB 윈드스톰.jpg</a>
 								</h4>
-								<span class="entry-meta">$89.70</span>
-							</div>
-						</div>
-						<!-- Entry-->
-						<div class="entry pb-2">
-							<div class="entry-thumb">
-								<a href="shop-single.html"><img src="img/shop/widget/05.jpg"
-									alt="Product"></a>
-							</div>
-							<div class="entry-content">
-								<h4 class="entry-title">
-									<a href="shop-single.html">iPhone X 256 GB Space Gray</a>
-								</h4>
-								<span class="entry-meta">$1,450.00</span>
+								<span class="entry-meta">410400원</span>
 							</div>
 						</div>
 					</section>
@@ -216,22 +226,29 @@
 						<div class="card-body">
 							<span class="d-block text-lg text-thin mb-2">Limited Time
 								Deals</span>
-							<h3>Surface Pro 4</h3>
+								<img   src="<c:url value='/upload/product_img/2021\08\31/a7cdfca9-ca62-4dd8-a53a-f98eaf2d655e_잘만 CNPS9X OPTIMA WHITE LED.jpg' />"
+									alt="<c:url value='/upload/product_img/2021\08\31/a7cdfca9-ca62-4dd8-a53a-f98eaf2d655e_잘만 CNPS9X OPTIMA WHITE LED.jpg' />" />
+							
 							<p class="d-inline-block bg-warning text-white">
 								&nbsp;&nbsp;Shop Now&nbsp;<i
 									class="icon-chevron-right d-inline-block align-middle"></i>&nbsp;
 							</p>
 						</div>
-						<img class="d-block mx-auto" src="img/shop/widget/promo.jpg"
-						alt="Surface Pro">
 					</a>
 				</aside>
 			</div>
         
       </div>	
 				<div>
-					<input type="text" id="order_no" value="${order_no }">
-					<input type="hidden" id="orderer_name" value="${orderer_name }">
+					<input type="hidden" id="order_no" value="${order_no }">
+					<c:choose>
+						<c:when test="${!empty vo }">
+							<input type="text" name="orderer_name" id="orderer_name" value=${vo.orderer_name }>
+						</c:when>
+						<c:otherwise>
+							<input type="hidden" id="orderer_name" value="${orderer_name }">
+						</c:otherwise>
+					</c:choose>
 					<input type="hidden" id="tot_price" value="${tot_price }">
 					<input type="hidden" id="zip_code" value="${zip_code }">
 					<input type="hidden" id="order_address" value="${order_address }">
@@ -261,7 +278,6 @@
 
 
 <script>
-	
 	$(function(){
 		const scrollHeight = 260;
 		var body = document.body,
@@ -272,8 +288,8 @@
 		$(".sidebar").css({
 			"top":-height+1703
 		});
-		var endScroll=height-1221
-		var endPx=height-1471
+		var endScroll=height-1321
+		var endPx=height-1571
 		//사이드바 스크롤
 	
 		function sidebar(){
@@ -306,7 +322,10 @@
 	        	cart_no[i]=$("input[name='cart_no']").eq(i).attr("value");
 	        	console.log(cart_no[i]);
 	        }
-	        console.log("cartno!!"+cart_no);
+			if(cart_no_size==0){
+				cart_no=0;
+				console.log("cart_no은" +cart_no);
+			}
 		var orderer_name=$("#orderer_name").val();
 		console.log(order_no+" A "+cart_no);
 		IMP.init('imp55782149');
@@ -380,12 +399,12 @@
 				}).done(function(data) {
 					//[2] 서버에서 REST API로 결제정보확인 및 서비스루틴이 정상적인 경우
 		    		if ( rsp.success ) {
-						var msg = '결제가 완료되었습니다.';
+						var msg = '결제가 완료되었습니다.  ';
 						msg += '주문번호 : ' + order_no;
-						msg += ' 결제자 성함: ' + orderer_name;
-						msg += ' 결제 금액 : ' + rsp.paid_amount + ' 원' ;
+						msg += '  결제자 성함: ' + orderer_name;
+						msg += '  결제 금액 : ' + rsp.paid_amount + '원' ;
 						
-						msg += ' pay_method : ' + rsp.pay_method;
+						msg += ' 결제 수단 : ' + rsp.pay_method;
 						
 						alert(msg);
 						location.href = "${pageContext.request.contextPath}/paymentSuccess?order_no="+order_no+"&cart_no="+cart_no;
