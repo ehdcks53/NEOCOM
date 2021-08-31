@@ -172,7 +172,7 @@ public class AdvBoardController {
 	}
 
 	// 견적문의게시판 상세 페이지 이동
-
+	@RequestMapping(value = "/service/advboard_detail", method = RequestMethod.GET)
 	public String advboard_detail(int adv_board_no, boolean adv_secret_chk, Model model, Authentication auth) { //auth = 로그인을 하면 그 정보가 들어올거고 로그인을 안하면 null로 들어와진다!
 
 		HashMap<String, Object> map = service.detail(adv_board_no);
@@ -196,7 +196,21 @@ public class AdvBoardController {
 
 		} else { // 비밀글일 경우 비밀번호 확인 페이지로 이동
 
-			return "frontend/service/advboard_detail";
+			return "frontend/service/advboard_detailLock";
 		}
 	}
+	// 문의게시판 비밀글 확인
+		@RequestMapping(value = "/service/advboard_detailLock")
+		public String qnaboard_detailLock(int adv_board_no, Model model, Authentication auth) {
+			CustomUserDetails cud = (CustomUserDetails) auth.getPrincipal();
+			MemberVo mvo = cud.getMemberVo();
+			
+			HashMap<String, Object> map = service.detail(adv_board_no);
+			model.addAttribute("map", map);
+			model.addAttribute("mvo", mvo);
+			service.cntHit(adv_board_no);  // 조회수 증가 쿼리
+			
+			return "frontend/service/advboard_detail";
+		}
+
 }
