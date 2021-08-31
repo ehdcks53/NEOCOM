@@ -553,8 +553,8 @@
 					html+=	"	</div>";
 					html+="	</div>";
 					html+= "<p class='comment-text'>";
-					html+="<img width=45px; height=45px; src='<c:url value='/upload/product_img/"+d.review_img +"' />'";
-					html+="alt='<c:url value='/upload/product_img/${img.img_name_save}' />' />";
+					html+="<img width=45px; height=45px; src='<c:url value='/upload/review_img/"+d.review_img +"' />'";
+					html+="alt='<c:url value='/upload/review_img/${img.img_name_save}' />' />";
 					html+="</p>";
 					html+=	"<p class='comment-text'>"+d.review_content+"</p>";
 					html+="	<div class='comment-footer'>";

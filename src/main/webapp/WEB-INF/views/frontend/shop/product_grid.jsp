@@ -104,7 +104,7 @@
 			<!-- forEach 끝 부분 -->
 		</div>
 		<!-- 페이징  -->
-			<nav class="pagination" style="margin-top:20px;">
+			<nav class="pagination" style="margin-top:20px; ">
 		<div class="column" id="page"></div>
 		<div class="column" id="page1"></div>
 		<div class="column" id="page2"></div>
@@ -126,47 +126,47 @@
 			<section class="widget widget-categories">
 			<h3 class="widget-title">카테고리</h3>
 			
-			<ul>
-					<!-- cpu 시작 -->
-				<li class="has-children expanded"><a href="#">${clist[1].category_name }</a>
+			<ul class="sec-ul"> 
+					<!-- cpu 시작 --> 
+				<li class="has-children" id="cpu_li" ><a href="#" >${clist[1].category_name }</a>
 					<ul>
 						<li><a href="#">${clist[8].category_name }</a>
 							<ul>
-								<li><a href="#">${clist[41].category_name }</a></li> 
-								<li><a href="#">${clist[42].category_name }</a></li>
-								<li><a href="#">${clist[43].category_name }</a></li>
-								<li><a href="#">${clist[44].category_name }</a></li>
-								<li><a href="#">${clist[45].category_name }</a></li>
-								<li><a href="#">${clist[46].category_name }</a></li>
+								<li><a href="${pageContext.request.contextPath }/shop/product_grid?category_id=101">${clist[41].category_name }</a></li> 
+								<li><a href="${pageContext.request.contextPath }/shop/product_grid?category_id=102">${clist[42].category_name }</a></li>
+								<li><a href="${pageContext.request.contextPath }/shop/product_grid?category_id=103">${clist[43].category_name }</a></li>
+								<li><a href="${pageContext.request.contextPath }/shop/product_grid?category_id=104">${clist[44].category_name }</a></li>
+								<li><a href="${pageContext.request.contextPath }/shop/product_grid?category_id=105">${clist[45].category_name }</a></li>
+								<li><a href="${pageContext.request.contextPath }/shop/product_grid?category_id=106">${clist[46].category_name }</a></li>
 							</ul> 
 						</li>
 				
 			
 						<li><a href="#">${clist[9].category_name }</a>
 							<ul>
-								<li><a href="#">${clist[47].category_name }</a></li>
-								<li><a href="#">${clist[48].category_name }</a></li>
-								<li><a href="#">${clist[49].category_name }</a></li>
-								<li><a href="#">${clist[50].category_name }</a></li>
+								<li><a href="${pageContext.request.contextPath }/shop/product_grid?category_id=107">${clist[47].category_name }</a></li>
+								<li><a href="${pageContext.request.contextPath }/shop/product_grid?category_id=108">${clist[48].category_name }</a></li>
+								<li><a href="${pageContext.request.contextPath }/shop/product_grid?category_id=109">${clist[49].category_name }</a></li>
+								<li><a href="${pageContext.request.contextPath }/shop/product_grid?category_id=110">${clist[50].category_name }</a></li>
 							</ul>
 						</li>
 						<li><a href="#">${clist[10].category_name }</a>
 							<ul>
-								<li><a href="#">${clist[51].category_name }</a></li>
-								<li><a href="#">${clist[52].category_name }</a></li>
-								<li><a href="#">${clist[53].category_name }</a></li>
-								<li><a href="#">${clist[54].category_name }</a></li>
-								<li><a href="#">${clist[55].category_name }</a></li>
-								<li><a href="#">${clist[56].category_name }</a></li>
-								<li><a href="#">${clist[57].category_name }</a></li>
+								<li><a href="${pageContext.request.contextPath }/shop/product_grid?category_id=111">${clist[51].category_name }</a></li>
+								<li><a href="${pageContext.request.contextPath }/shop/product_grid?category_id=112">${clist[52].category_name }</a></li>
+								<li><a href="${pageContext.request.contextPath }/shop/product_grid?category_id=113">${clist[53].category_name }</a></li>
+								<li><a href="${pageContext.request.contextPath }/shop/product_grid?category_id=114">${clist[54].category_name }</a></li>
+								<li><a href="${pageContext.request.contextPath }/shop/product_grid?category_id=115">${clist[55].category_name }</a></li>
+								<li><a href="${pageContext.request.contextPath }/shop/product_grid?category_id=116">${clist[56].category_name }</a></li>
+								<li><a href="${pageContext.request.contextPath }/shop/product_grid?category_id=117">${clist[57].category_name }</a></li>
 							</ul>
 						</li>
 						<li><a href="#">${clist[11].category_name }</a>
 							<ul>
-								<li><a href="#">${clist[58].category_name }</a></li>
-								<li><a href="#">${clist[59].category_name }</a></li>
-								<li><a href="#">${clist[60].category_name }</a></li>
-								<li><a href="#">${clist[61].category_name }</a></li>
+								<li><a href="${pageContext.request.contextPath }/shop/product_grid?category_id=118">${clist[58].category_name }</a></li>
+								<li><a href="${pageContext.request.contextPath }/shop/product_grid?category_id=119">${clist[59].category_name }</a></li>
+								<li><a href="${pageContext.request.contextPath }/shop/product_grid?category_id=120">${clist[60].category_name }</a></li>
+								<li><a href="${pageContext.request.contextPath }/shop/product_grid?category_id=121">${clist[61].category_name }</a></li>
 							</ul>
 						</li>
 						
@@ -174,55 +174,55 @@
 				</li> 
 				<!-- cpu 끝 -->
 				<!-- 메인보드 시작 -->
-				<li class="has-children"><a href="#">${clist[2].category_name }</a>
+				<li class="has-children" id="main_li"><a href="#">${clist[2].category_name }</a>
 					<ul>
 						<li><a href="#">${clist[12].category_name }</a>
 							<ul>
-								<li><a href="#">${clist[62].category_name }</a></li>
-								<li><a href="#">${clist[63].category_name }</a></li>
+								<li><a href="${pageContext.request.contextPath }/shop/product_grid?category_id=122">${clist[62].category_name }</a></li>
+								<li><a href="${pageContext.request.contextPath }/shop/product_grid?category_id=123">${clist[63].category_name }</a></li>
 								
 							</ul>
 						</li>
 						<li><a href="#">${clist[13].category_name }</a>
 							<ul>
-								<li><a href="#">${clist[64].category_name }</a></li> 
-								<li><a href="#">${clist[65].category_name }</a></li>
-								<li><a href="#">${clist[66].category_name }</a></li>
-								<li><a href="#">${clist[67].category_name }</a></li>
-								<li><a href="#">${clist[68].category_name }</a></li>
-								<li><a href="#">${clist[69].category_name }</a></li>
-								<li><a href="#">${clist[70].category_name }</a></li>
-								<li><a href="#">${clist[71].category_name }</a></li>
+								<li><a href="${pageContext.request.contextPath }/shop/product_grid?category_id=124">${clist[64].category_name }</a></li> 
+								<li><a href="${pageContext.request.contextPath }/shop/product_grid?category_id=125">${clist[65].category_name }</a></li>
+								<li><a href="${pageContext.request.contextPath }/shop/product_grid?category_id=126">${clist[66].category_name }</a></li>
+								<li><a href="${pageContext.request.contextPath }/shop/product_grid?category_id=127">${clist[67].category_name }</a></li>
+								<li><a href="${pageContext.request.contextPath }/shop/product_grid?category_id=128">${clist[68].category_name }</a></li>
+								<li><a href="${pageContext.request.contextPath }/shop/product_grid?category_id=129">${clist[69].category_name }</a></li>
+								<li><a href="${pageContext.request.contextPath }/shop/product_grid?category_id=130">${clist[70].category_name }</a></li>
+								<li><a href="${pageContext.request.contextPath }/shop/product_grid?category_id=131">${clist[71].category_name }</a></li>
 							
 								
 							</ul> 
 						</li>
 						<li><a href="#">${clist[14].category_name }</a>
 							<ul>
-								<li><a href="#">${clist[72].category_name }</a></li> 
-								<li><a href="#">${clist[73].category_name }</a></li>
-								<li><a href="#">${clist[74].category_name }</a></li>
-								<li><a href="#">${clist[75].category_name }</a></li>
-								<li><a href="#">${clist[76].category_name }</a></li>
-								<li><a href="#">${clist[77].category_name }</a></li>
-								<li><a href="#">${clist[78].category_name }</a></li>
-								<li><a href="#">${clist[79].category_name }</a></li>
+								<li><a href="${pageContext.request.contextPath }/shop/product_grid?category_id=132">${clist[72].category_name }</a></li> 
+								<li><a href="${pageContext.request.contextPath }/shop/product_grid?category_id=133">${clist[73].category_name }</a></li>
+								<li><a href="${pageContext.request.contextPath }/shop/product_grid?category_id=134">${clist[74].category_name }</a></li>
+								<li><a href="${pageContext.request.contextPath }/shop/product_grid?category_id=135">${clist[75].category_name }</a></li>
+								<li><a href="${pageContext.request.contextPath }/shop/product_grid?category_id=136">${clist[76].category_name }</a></li>
+								<li><a href="${pageContext.request.contextPath }/shop/product_grid?category_id=137">${clist[77].category_name }</a></li>
+								<li><a href="${pageContext.request.contextPath }/shop/product_grid?category_id=138">${clist[78].category_name }</a></li>
+								<li><a href="${pageContext.request.contextPath }/shop/product_grid?category_id=139">${clist[79].category_name }</a></li>
 								
 							</ul> 
 						</li>
 						<li><a href="#">${clist[15].category_name }</a>
 							<ul>
-								<li><a href="#">${clist[80].category_name }</a></li> 
-								<li><a href="#">${clist[81].category_name }</a></li>
-								<li><a href="#">${clist[82].category_name }</a></li>
-								<li><a href="#">${clist[83].category_name }</a></li>
+								<li><a href="${pageContext.request.contextPath }/shop/product_grid?category_id=140">${clist[80].category_name }</a></li> 
+								<li><a href="${pageContext.request.contextPath }/shop/product_grid?category_id=141">${clist[81].category_name }</a></li>
+								<li><a href="${pageContext.request.contextPath }/shop/product_grid?category_id=142">${clist[82].category_name }</a></li>
+								<li><a href="${pageContext.request.contextPath }/shop/product_grid?category_id=143">${clist[83].category_name }</a></li>
 								
 							</ul> 
 						</li>
 						<li><a href="#">${clist[16].category_name }</a>
 							<ul>
-								<li><a href="#">${clist[84].category_name }</a></li> 
-								<li><a href="#">${clist[85].category_name }</a></li>
+								<li><a href="${pageContext.request.contextPath }/shop/product_grid?category_id=144">${clist[84].category_name }</a></li> 
+								<li><a href="${pageContext.request.contextPath }/shop/product_grid?category_id=145">${clist[85].category_name }</a></li>
 								
 								
 							</ul> 
@@ -232,41 +232,41 @@
 				</li>
 				<!-- 메인보드 끝 -->
 				<!-- 램 시작-->
-				<li class="has-children"><a href="#">${clist[3].category_name }</a>
+				<li class="has-children" id="ram_li"><a href="#">${clist[3].category_name }</a>
 					<ul>
 						<li><a href="#">${clist[17].category_name }</a>
 							<ul>
-								<li><a href="#">${clist[86].category_name }</a></li>
-								<li><a href="#">${clist[87].category_name }</a></li>
+								<li><a href="${pageContext.request.contextPath }/shop/product_grid?category_id=149">${clist[86].category_name }</a></li>
+								<li><a href="${pageContext.request.contextPath }/shop/product_grid?category_id=150">${clist[87].category_name }</a></li>
 							
 							</ul>
 						</li>
 						<li><a href="#">${clist[18].category_name }</a>
 							<ul>
-								<li><a href="#">${clist[88].category_name }</a></li>
-								<li><a href="#">${clist[89].category_name }</a></li>
-								<li><a href="#">${clist[90].category_name }</a></li>
-								<li><a href="#">${clist[91].category_name }</a></li>
-								<li><a href="#">${clist[92].category_name }</a></li>
-								<li><a href="#">${clist[93].category_name }</a></li>
+								<li><a href="${pageContext.request.contextPath }/shop/product_grid?category_id=151">${clist[88].category_name }</a></li>
+								<li><a href="${pageContext.request.contextPath }/shop/product_grid?category_id=152">${clist[89].category_name }</a></li>
+								<li><a href="${pageContext.request.contextPath }/shop/product_grid?category_id=153">${clist[90].category_name }</a></li>
+								<li><a href="${pageContext.request.contextPath }/shop/product_grid?category_id=154">${clist[91].category_name }</a></li>
+								<li><a href="${pageContext.request.contextPath }/shop/product_grid?category_id=155">${clist[92].category_name }</a></li>
+								<li><a href="${pageContext.request.contextPath }/shop/product_grid?category_id=156">${clist[93].category_name }</a></li>
 							</ul>
 						</li>
 						<li><a href="#">${clist[19].category_name }</a>
 							<ul>
-								<li><a href="#">${clist[94].category_name }</a></li>
-								<li><a href="#">${clist[95].category_name }</a></li>
-								<li><a href="#">${clist[96].category_name }</a></li>
+								<li><a href="${pageContext.request.contextPath }/shop/product_grid?category_id=157">${clist[94].category_name }</a></li>
+								<li><a href="${pageContext.request.contextPath }/shop/product_grid?category_id=158">${clist[95].category_name }</a></li>
+								<li><a href="${pageContext.request.contextPath }/shop/product_grid?category_id=159">${clist[96].category_name }</a></li>
 							</ul>
 						</li>
 						<li><a href="#">${clist[20].category_name }</a>
 							<ul>
-								<li><a href="#">${clist[97].category_name }</a></li>
+								<li><a href="${pageContext.request.contextPath }/shop/product_grid?category_id=160">${clist[97].category_name }</a></li>
 							
 							</ul>
 						</li>
 						<li><a href="#">${clist[21].category_name }</a>
 							<ul>
-								<li><a href="#">${clist[98].category_name }</a></li>
+								<li><a href="${pageContext.request.contextPath }/shop/product_grid?category_id=161">${clist[98].category_name }</a></li>
 								
 							</ul>
 						</li>
@@ -274,256 +274,256 @@
 				</li>
 				<!-- 램 끝 -->
 				<!-- 그래픽카드 시작 -->
-				<li class="has-children"><a href="#">${clist[4].category_name }</a>
+				<li class="has-children" id="vga_li"><a href="#">${clist[4].category_name }</a>
 					<ul>
 						<li><a href="#">${clist[22].category_name }</a>
 							<ul>
-								<li><a href="#">${clist[99].category_name }</a></li>
-								<li><a href="#">${clist[100].category_name }</a></li>
+								<li><a href="${pageContext.request.contextPath }/shop/product_grid?category_id=162">${clist[99].category_name }</a></li>
+								<li><a href="${pageContext.request.contextPath }/shop/product_grid?category_id=163">${clist[100].category_name }</a></li>
 							
 							</ul>
 						</li>
 						<li><a href="#">${clist[23].category_name }</a>
 							<ul>
-								<li><a href="#">${clist[101].category_name }</a></li>
-								<li><a href="#">${clist[102].category_name }</a></li>
-								<li><a href="#">${clist[103].category_name }</a></li>
-								<li><a href="#">${clist[104].category_name }</a></li>
-								<li><a href="#">${clist[105].category_name }</a></li>
-								<li><a href="#">${clist[106].category_name }</a></li>
-								<li><a href="#">${clist[107].category_name }</a></li>
+								<li><a href="${pageContext.request.contextPath }/shop/product_grid?category_id=164">${clist[101].category_name }</a></li>
+								<li><a href="${pageContext.request.contextPath }/shop/product_grid?category_id=165">${clist[102].category_name }</a></li>
+								<li><a href="${pageContext.request.contextPath }/shop/product_grid?category_id=166">${clist[103].category_name }</a></li>
+								<li><a href="${pageContext.request.contextPath }/shop/product_grid?category_id=167">${clist[104].category_name }</a></li>
+								<li><a href="${pageContext.request.contextPath }/shop/product_grid?category_id=168">${clist[105].category_name }</a></li>
+								<li><a href="${pageContext.request.contextPath }/shop/product_grid?category_id=169">${clist[106].category_name }</a></li>
+								<li><a href="${pageContext.request.contextPath }/shop/product_grid?category_id=170">${clist[107].category_name }</a></li>
 							</ul>
 						</li>
 						<li><a href="#">${clist[24].category_name }</a>
 							<ul>
-								<li><a href="#">${clist[108].category_name }</a></li>
-								<li><a href="#">${clist[109].category_name }</a></li>
+								<li><a href="${pageContext.request.contextPath }/shop/product_grid?category_id=171">${clist[108].category_name }</a></li>
+								<li><a href="${pageContext.request.contextPath }/shop/product_grid?category_id=172">${clist[109].category_name }</a></li>
 								
 							</ul>
 						</li>
 						<li><a href="#">${clist[25].category_name }</a>
 							<ul>
-								<li><a href="#">${clist[110].category_name }</a></li>
-								<li><a href="#">${clist[111].category_name }</a></li>
-								<li><a href="#">${clist[112].category_name }</a></li>
-								<li><a href="#">${clist[113].category_name }</a></li>
-								<li><a href="#">${clist[114].category_name }</a></li>
+								<li><a href="${pageContext.request.contextPath }/shop/product_grid?category_id=173">${clist[110].category_name }</a></li>
+								<li><a href="${pageContext.request.contextPath }/shop/product_grid?category_id=174">${clist[111].category_name }</a></li>
+								<li><a href="${pageContext.request.contextPath }/shop/product_grid?category_id=175">${clist[112].category_name }</a></li>
+								<li><a href="${pageContext.request.contextPath }/shop/product_grid?category_id=176">${clist[113].category_name }</a></li>
+								<li><a href="${pageContext.request.contextPath }/shop/product_grid?category_id=177">${clist[114].category_name }</a></li>
 							
 							</ul>
 						</li>
 						<li><a href="#">${clist[26].category_name }</a>
 							<ul>
-								<li><a href="#">${clist[115].category_name }</a></li>
-								<li><a href="#">${clist[116].category_name }</a></li>
-								<li><a href="#">${clist[117].category_name }</a></li>
-								<li><a href="#">${clist[118].category_name }</a></li>
+								<li><a href="${pageContext.request.contextPath }/shop/product_grid?category_id=178">${clist[115].category_name }</a></li>
+								<li><a href="${pageContext.request.contextPath }/shop/product_grid?category_id=179">${clist[116].category_name }</a></li>
+								<li><a href="${pageContext.request.contextPath }/shop/product_grid?category_id=180">${clist[117].category_name }</a></li>
+								<li><a href="${pageContext.request.contextPath }/shop/product_grid?category_id=181">${clist[118].category_name }</a></li>
 								
 							</ul>
 						</li>
-					</ul>
+					</ul>   
 				</li>
 				<!-- 그래픽카드 끝 -->
 				<!--  ssd 시작 -->
-				<li class="has-children"><a href="#">${clist[5].category_name }</a>
+				<li class="has-children" id="ssd_li"><a href="#">${clist[5].category_name }</a>
 					<ul>
 						<li><a href="#">${clist[27].category_name }</a>
 							<ul>
-								<li><a href="#">${clist[119].category_name }</a></li>
-								<li><a href="#">${clist[120].category_name }</a></li>
-								<li><a href="#">${clist[121].category_name }</a></li>
+								<li><a href="${pageContext.request.contextPath }/shop/product_grid?category_id=182">${clist[119].category_name }</a></li>
+								<li><a href="${pageContext.request.contextPath }/shop/product_grid?category_id=183">${clist[120].category_name }</a></li>
+								<li><a href="${pageContext.request.contextPath }/shop/product_grid?category_id=184">${clist[121].category_name }</a></li>
 							
 							</ul>
 						</li>
 						<li><a href="#">${clist[28].category_name }</a>
 							<ul>
-								<li><a href="#">${clist[122].category_name }</a></li>
-								<li><a href="#">${clist[123].category_name }</a></li>
+								<li><a href="${pageContext.request.contextPath }/shop/product_grid?category_id=185">${clist[122].category_name }</a></li>
+								<li><a href="${pageContext.request.contextPath }/shop/product_grid?category_id=186">${clist[123].category_name }</a></li>
 							</ul>
 						</li>
 						<li><a href="#">${clist[29].category_name }</a>
 							<ul>
-								<li><a href="#">${clist[124].category_name }</a></li>
-								<li><a href="#">${clist[125].category_name }</a></li>
-								<li><a href="#">${clist[126].category_name }</a></li>
-								<li><a href="#">${clist[127].category_name }</a></li>
-								<li><a href="#">${clist[128].category_name }</a></li>
-								<li><a href="#">${clist[129].category_name }</a></li>
-								<li><a href="#">${clist[130].category_name }</a></li>
-								<li><a href="#">${clist[131].category_name }</a></li>
-								<li><a href="#">${clist[132].category_name }</a></li>
-								<li><a href="#">${clist[133].category_name }</a></li>
+								<li><a href="${pageContext.request.contextPath }/shop/product_grid?category_id=187">${clist[124].category_name }</a></li>
+								<li><a href="${pageContext.request.contextPath }/shop/product_grid?category_id=188">${clist[125].category_name }</a></li>
+								<li><a href="${pageContext.request.contextPath }/shop/product_grid?category_id=189">${clist[126].category_name }</a></li>
+								<li><a href="${pageContext.request.contextPath }/shop/product_grid?category_id=190">${clist[127].category_name }</a></li>
+								<li><a href="${pageContext.request.contextPath }/shop/product_grid?category_id=191">${clist[128].category_name }</a></li>
+								<li><a href="${pageContext.request.contextPath }/shop/product_grid?category_id=192">${clist[129].category_name }</a></li>
+								<li><a href="${pageContext.request.contextPath }/shop/product_grid?category_id=193">${clist[130].category_name }</a></li>
+								<li><a href="${pageContext.request.contextPath }/shop/product_grid?category_id=194">${clist[131].category_name }</a></li>
+								<li><a href="${pageContext.request.contextPath }/shop/product_grid?category_id=195">${clist[132].category_name }</a></li>
+								<li><a href="${pageContext.request.contextPath }/shop/product_grid?category_id=196">${clist[133].category_name }</a></li>
 							</ul>
 						</li>
 						<li><a href="#">${clist[30].category_name }</a>
 							<ul>
-								<li><a href="#">${clist[134].category_name }</a></li>
-								<li><a href="#">${clist[135].category_name }</a></li>
-								<li><a href="#">${clist[136].category_name }</a></li>
+								<li><a href="${pageContext.request.contextPath }/shop/product_grid?category_id=198">${clist[134].category_name }</a></li>
+								<li><a href="${pageContext.request.contextPath }/shop/product_grid?category_id=199">${clist[135].category_name }</a></li>
+								<li><a href="${pageContext.request.contextPath }/shop/product_grid?category_id=200">${clist[136].category_name }</a></li>
 							</ul>
 						</li>
 						<li><a href="#">${clist[31].category_name }</a>
 							<ul>
-								<li><a href="#">${clist[137].category_name }</a></li>
-								<li><a href="#">${clist[138].category_name }</a></li>
-								<li><a href="#">${clist[139].category_name }</a></li>
-								<li><a href="#">${clist[140].category_name }</a></li>
-								<li><a href="#">${clist[141].category_name }</a></li>
-								<li><a href="#">${clist[142].category_name }</a></li>
-								<li><a href="#">${clist[143].category_name }</a></li>
+								<li><a href="${pageContext.request.contextPath }/shop/product_grid?category_id=201">${clist[137].category_name }</a></li>
+								<li><a href="${pageContext.request.contextPath }/shop/product_grid?category_id=202">${clist[138].category_name }</a></li>
+								<li><a href="${pageContext.request.contextPath }/shop/product_grid?category_id=203">${clist[139].category_name }</a></li>
+								<li><a href="${pageContext.request.contextPath }/shop/product_grid?category_id=204">${clist[140].category_name }</a></li>
+								<li><a href="${pageContext.request.contextPath }/shop/product_grid?category_id=205">${clist[141].category_name }</a></li>
+								<li><a href="${pageContext.request.contextPath }/shop/product_grid?category_id=206">${clist[142].category_name }</a></li>
+								<li><a href="${pageContext.request.contextPath }/shop/product_grid?category_id=207">${clist[143].category_name }</a></li>
 							</ul>
 						</li>
 					</ul>
 				</li>
 				<!-- ssd 끝 -->
 				<!-- hdd 시작 -->
-				<li class="has-children"><a href="#">${clist[6].category_name }</a>
+				<li class="has-children" id="hdd_li"><a href="#">${clist[6].category_name }</a>
 					<ul>
 						<li><a href="#">${clist[32].category_name }</a>
 							<ul>
-								<li><a href="#">${clist[144].category_name }</a></li>
-								<li><a href="#">${clist[145].category_name }</a></li>
-								<li><a href="#">${clist[146].category_name }</a></li>
-								<li><a href="#">${clist[147].category_name }</a></li>
-								<li><a href="#">${clist[148].category_name }</a></li>
-								<li><a href="#">${clist[149].category_name }</a></li>
+								<li><a href="${pageContext.request.contextPath }/shop/product_grid?category_id=208">${clist[144].category_name }</a></li>
+								<li><a href="${pageContext.request.contextPath }/shop/product_grid?category_id=209">${clist[145].category_name }</a></li>
+								<li><a href="${pageContext.request.contextPath }/shop/product_grid?category_id=210">${clist[146].category_name }</a></li>
+								<li><a href="${pageContext.request.contextPath }/shop/product_grid?category_id=211">${clist[147].category_name }</a></li>
+								<li><a href="${pageContext.request.contextPath }/shop/product_grid?category_id=212">${clist[148].category_name }</a></li>
+								<li><a href="${pageContext.request.contextPath }/shop/product_grid?category_id=213">${clist[149].category_name }</a></li>
 							</ul>
 						</li>
 						<li><a href="#">${clist[33].category_name }</a>
 							<ul>
-								<li><a href="#">${clist[150].category_name }</a></li>
-								<li><a href="#">${clist[151].category_name }</a></li>
-								<li><a href="#">${clist[152].category_name }</a></li>
-								<li><a href="#">${clist[153].category_name }</a></li>
-								<li><a href="#">${clist[154].category_name }</a></li>
-								<li><a href="#">${clist[155].category_name }</a></li>
-								<li><a href="#">${clist[156].category_name }</a></li>
-								<li><a href="#">${clist[157].category_name }</a></li>
+								<li><a href="${pageContext.request.contextPath }/shop/product_grid?category_id=214">${clist[150].category_name }</a></li>
+								<li><a href="${pageContext.request.contextPath }/shop/product_grid?category_id=215">${clist[151].category_name }</a></li>
+								<li><a href="${pageContext.request.contextPath }/shop/product_grid?category_id=216">${clist[152].category_name }</a></li>
+								<li><a href="${pageContext.request.contextPath }/shop/product_grid?category_id=217">${clist[153].category_name }</a></li>
+								<li><a href="${pageContext.request.contextPath }/shop/product_grid?category_id=218">${clist[154].category_name }</a></li>
+								<li><a href="${pageContext.request.contextPath }/shop/product_grid?category_id=219">${clist[155].category_name }</a></li>
+								<li><a href="${pageContext.request.contextPath }/shop/product_grid?category_id=220">${clist[156].category_name }</a></li>
+								<li><a href="${pageContext.request.contextPath }/shop/product_grid?category_id=221">${clist[157].category_name }</a></li>
 							</ul>
 						</li>
 						<li><a href="#">${clist[34].category_name }</a>
 							<ul>
-								<li><a href="#">${clist[158].category_name }</a></li>
-								<li><a href="#">${clist[159].category_name }</a></li>
-								<li><a href="#">${clist[160].category_name }</a></li>
+								<li><a href="${pageContext.request.contextPath }/shop/product_grid?category_id=222">${clist[158].category_name }</a></li>
+								<li><a href="${pageContext.request.contextPath }/shop/product_grid?category_id=223">${clist[159].category_name }</a></li>
+								<li><a href="${pageContext.request.contextPath }/shop/product_grid?category_id=224">${clist[160].category_name }</a></li>
 							</ul>
 						</li>
 						<li><a href="#">${clist[35].category_name }</a>
 							<ul>
-								<li><a href="#">${clist[161].category_name }</a></li>
-								<li><a href="#">${clist[162].category_name }</a></li>
-								<li><a href="#">${clist[163].category_name }</a></li>
+								<li><a href="${pageContext.request.contextPath }/shop/product_grid?category_id=225">${clist[161].category_name }</a></li>
+								<li><a href="${pageContext.request.contextPath }/shop/product_grid?category_id=226">${clist[162].category_name }</a></li>
+								<li><a href="${pageContext.request.contextPath }/shop/product_grid?category_id=227">${clist[163].category_name }</a></li>
 							</ul>
 						</li>
 						<li><a href="#">${clist[36].category_name }</a>
 							<ul>
-								<li><a href="#">${clist[164].category_name }</a></li>
-								<li><a href="#">${clist[165].category_name }</a></li>
-								<li><a href="#">${clist[166].category_name }</a></li>
-								<li><a href="#">${clist[167].category_name }</a></li>
-								<li><a href="#">${clist[168].category_name }</a></li>
+								<li><a href="${pageContext.request.contextPath }/shop/product_grid?category_id=228">${clist[164].category_name }</a></li>
+								<li><a href="${pageContext.request.contextPath }/shop/product_grid?category_id=229">${clist[165].category_name }</a></li>
+								<li><a href="${pageContext.request.contextPath }/shop/product_grid?category_id=230">${clist[166].category_name }</a></li>
+								<li><a href="${pageContext.request.contextPath }/shop/product_grid?category_id=231">${clist[167].category_name }</a></li>
+								<li><a href="${pageContext.request.contextPath }/shop/product_grid?category_id=232">${clist[168].category_name }</a></li>
 							</ul>
 						</li>
 					</ul>
 				</li>
 				<!-- hdd 끝 -->
 				<!-- power 시작 -->
-				<li class="has-children"><a href="#">${clist[7].category_name }</a>
+				<li class="has-children" id="power_li"><a href="#">${clist[7].category_name }</a>
 					<ul>
 						<li><a href="#">${clist[37].category_name }</a>
 							<ul>
-								<li><a href="#">${clist[169].category_name }</a></li>
-								<li><a href="#">${clist[170].category_name }</a></li>
-								<li><a href="#">${clist[171].category_name }</a></li>
-								<li><a href="#">${clist[172].category_name }</a></li>
-								<li><a href="#">${clist[173].category_name }</a></li>
+								<li><a href="${pageContext.request.contextPath }/shop/product_grid?category_id=233">${clist[169].category_name }</a></li>
+								<li><a href="${pageContext.request.contextPath }/shop/product_grid?category_id=234">${clist[170].category_name }</a></li>
+								<li><a href="${pageContext.request.contextPath }/shop/product_grid?category_id=235">${clist[171].category_name }</a></li>
+								<li><a href="${pageContext.request.contextPath }/shop/product_grid?category_id=236">${clist[172].category_name }</a></li>
+								<li><a href="${pageContext.request.contextPath }/shop/product_grid?category_id=237">${clist[173].category_name }</a></li>
 							</ul>
 						</li>
 						<li><a href="#">${clist[38].category_name }</a>
 							<ul>
-								<li><a href="#">${clist[174].category_name }</a></li>
-								<li><a href="#">${clist[175].category_name }</a></li>
+								<li><a href="${pageContext.request.contextPath }/shop/product_grid?category_id=238">${clist[174].category_name }</a></li>
+								<li><a href="${pageContext.request.contextPath }/shop/product_grid?category_id=239">${clist[175].category_name }</a></li>
 							</ul>
 						</li>
 						<li><a href="#">${clist[39].category_name }</a>
 							<ul>
-								<li><a href="#">${clist[176].category_name }</a></li>
-								<li><a href="#">${clist[177].category_name }</a></li>
-								<li><a href="#">${clist[178].category_name }</a></li>
-								<li><a href="#">${clist[179].category_name }</a></li>
+								<li><a href="${pageContext.request.contextPath }/shop/product_grid?category_id=240">${clist[176].category_name }</a></li>
+								<li><a href="${pageContext.request.contextPath }/shop/product_grid?category_id=241">${clist[177].category_name }</a></li>
+								<li><a href="${pageContext.request.contextPath }/shop/product_grid?category_id=242">${clist[178].category_name }</a></li>
+								<li><a href="${pageContext.request.contextPath }/shop/product_grid?category_id=243">${clist[179].category_name }</a></li>
 							</ul>
 						</li>
 						<li><a href="#">${clist[40].category_name }</a>
 							<ul>
-								<li><a href="#">${clist[180].category_name }</a></li>
-								<li><a href="#">${clist[181].category_name }</a></li>
-								<li><a href="#">${clist[182].category_name }</a></li>
-								<li><a href="#">${clist[183].category_name }</a></li>
-								<li><a href="#">${clist[184].category_name }</a></li>
+								<li><a href="${pageContext.request.contextPath }/shop/product_grid?category_id=244">${clist[180].category_name }</a></li>
+								<li><a href="${pageContext.request.contextPath }/shop/product_grid?category_id=245">${clist[181].category_name }</a></li>
+								<li><a href="${pageContext.request.contextPath }/shop/product_grid?category_id=246">${clist[182].category_name }</a></li>
+								<li><a href="${pageContext.request.contextPath }/shop/product_grid?category_id=247">${clist[183].category_name }</a></li>
+								<li><a href="${pageContext.request.contextPath }/shop/product_grid?category_id=248">${clist[184].category_name }</a></li>
 							</ul>
 						</li>
 					</ul>
 				</li>
 				<!-- 쿨러 시작 -->
-				<li class="has-children"><a href="#">${all[1].category_name }</a>
+				<li class="has-children" id="cool_li"><a href="#">${all[1].category_name }</a>
 					<ul>
 						<li><a href="#">${all[6].category_name }</a>
 							<ul>
-								<li><a href="#">${all[24].category_name }</a></li>
-								<li><a href="#">${all[25].category_name }</a></li>
-								<li><a href="#">${all[26].category_name }</a></li>
-								<li><a href="#">${all[27].category_name }</a></li>
-								<li><a href="#">${all[28].category_name }</a></li>
-								<li><a href="#">${all[29].category_name }</a></li>
-								<li><a href="#">${all[30].category_name }</a></li>
-								<li><a href="#">${all[31].category_name }</a></li>
-								<li><a href="#">${all[32].category_name }</a></li>
-								<li><a href="#">${all[33].category_name }</a></li>
-								<li><a href="#">${all[34].category_name }</a></li>
-								<li><a href="#">${all[35].category_name }</a></li>
-								<li><a href="#">${all[36].category_name }</a></li>
-								<li><a href="#">${all[37].category_name }</a></li>
-								<li><a href="#">${all[38].category_name }</a></li>
-								<li><a href="#">${all[39].category_name }</a></li>
-								<li><a href="#">${all[40].category_name }</a></li>
-								<li><a href="#">${all[41].category_name }</a></li>
-								<li><a href="#">${all[42].category_name }</a></li>
+								<li><a href="${pageContext.request.contextPath }/shop/product_grid?category_id=249">${all[24].category_name }</a></li>
+								<li><a href="${pageContext.request.contextPath }/shop/product_grid?category_id=250">${all[25].category_name }</a></li>
+								<li><a href="${pageContext.request.contextPath }/shop/product_grid?category_id=251">${all[26].category_name }</a></li>
+								<li><a href="${pageContext.request.contextPath }/shop/product_grid?category_id=252">${all[27].category_name }</a></li>
+								<li><a href="${pageContext.request.contextPath }/shop/product_grid?category_id=253">${all[28].category_name }</a></li>
+								<li><a href="${pageContext.request.contextPath }/shop/product_grid?category_id=254">${all[29].category_name }</a></li>
+								<li><a href="${pageContext.request.contextPath }/shop/product_grid?category_id=255">${all[30].category_name }</a></li>
+								<li><a href="${pageContext.request.contextPath }/shop/product_grid?category_id=256">${all[31].category_name }</a></li>
+								<li><a href="${pageContext.request.contextPath }/shop/product_grid?category_id=257">${all[32].category_name }</a></li>
+								<li><a href="${pageContext.request.contextPath }/shop/product_grid?category_id=258">${all[33].category_name }</a></li>
+								<li><a href="${pageContext.request.contextPath }/shop/product_grid?category_id=259">${all[34].category_name }</a></li>
+								<li><a href="${pageContext.request.contextPath }/shop/product_grid?category_id=260">${all[35].category_name }</a></li>
+								<li><a href="${pageContext.request.contextPath }/shop/product_grid?category_id=261">${all[36].category_name }</a></li>
+								<li><a href="${pageContext.request.contextPath }/shop/product_grid?category_id=262">${all[37].category_name }</a></li>
+								<li><a href="${pageContext.request.contextPath }/shop/product_grid?category_id=263">${all[38].category_name }</a></li>
+								<li><a href="${pageContext.request.contextPath }/shop/product_grid?category_id=264">${all[39].category_name }</a></li>
+								<li><a href="${pageContext.request.contextPath }/shop/product_grid?category_id=265">${all[40].category_name }</a></li>
+								<li><a href="${pageContext.request.contextPath }/shop/product_grid?category_id=266">${all[41].category_name }</a></li>
+								<li><a href="${pageContext.request.contextPath }/shop/product_grid?category_id=267">${all[42].category_name }</a></li>
 								
 							
 							</ul>
 						</li>
 						<li><a href="#">${all[7].category_name }</a>
 							<ul>
-								<li><a href="#">${all[43].category_name }</a></li>
-								<li><a href="#">${all[44].category_name }</a></li>
+								<li><a href="${pageContext.request.contextPath }/shop/product_grid?category_id=268">${all[43].category_name }</a></li>
+								<li><a href="${pageContext.request.contextPath }/shop/product_grid?category_id=269">${all[44].category_name }</a></li>
 								
 							</ul>
 						</li>
 						<li><a href="#">${clist[8].category_name }</a>
 							<ul>
-								<li><a href="#">${all[45].category_name }</a></li>
-								<li><a href="#">${all[46].category_name }</a></li>
-								<li><a href="#">${all[47].category_name }</a></li>
-								<li><a href="#">${all[48].category_name }</a></li>								
+								<li><a href="${pageContext.request.contextPath }/shop/product_grid?category_id=270">${all[45].category_name }</a></li>
+								<li><a href="${pageContext.request.contextPath }/shop/product_grid?category_id=271">${all[46].category_name }</a></li>
+								<li><a href="${pageContext.request.contextPath }/shop/product_grid?category_id=272">${all[47].category_name }</a></li>
+								<li><a href="${pageContext.request.contextPath }/shop/product_grid?category_id=273">${all[48].category_name }</a></li>								
 							</ul>
 						</li>
 						<li><a href="#">${all[9].category_name }</a>
 							<ul>
-								<li><a href="#">${all[49].category_name }</a></li>
-								<li><a href="#">${all[50].category_name }</a></li>
-								<li><a href="#">${all[51].category_name }</a></li>
+								<li><a href="${pageContext.request.contextPath }/shop/product_grid?category_id=274">${all[49].category_name }</a></li>
+								<li><a href="${pageContext.request.contextPath }/shop/product_grid?category_id=275">${all[50].category_name }</a></li>
+								<li><a href="${pageContext.request.contextPath }/shop/product_grid?category_id=276">${all[51].category_name }</a></li>
 								
 							
 							</ul>
 						</li>
 						<li><a href="#">${all[10].category_name }</a>
 							<ul>
-								<li><a href="#">${all[52].category_name }</a></li>
-								<li><a href="#">${all[53].category_name }</a></li>
-								<li><a href="#">${all[54].category_name }</a></li>
-								<li><a href="#">${all[55].category_name }</a></li>
-								<li><a href="#">${all[56].category_name }</a></li>
-								<li><a href="#">${all[57].category_name }</a></li>
-								<li><a href="#">${all[58].category_name }</a></li>								
+								<li><a href="${pageContext.request.contextPath }/shop/product_grid?category_id=277">${all[52].category_name }</a></li>
+								<li><a href="${pageContext.request.contextPath }/shop/product_grid?category_id=278">${all[53].category_name }</a></li>
+								<li><a href="${pageContext.request.contextPath }/shop/product_grid?category_id=279">${all[54].category_name }</a></li>
+								<li><a href="${pageContext.request.contextPath }/shop/product_grid?category_id=280">${all[55].category_name }</a></li>
+								<li><a href="${pageContext.request.contextPath }/shop/product_grid?category_id=281">${all[56].category_name }</a></li>
+								<li><a href="${pageContext.request.contextPath }/shop/product_grid?category_id=282">${all[57].category_name }</a></li>
+								<li><a href="${pageContext.request.contextPath }/shop/product_grid?category_id=283">${all[58].category_name }</a></li>								
 							</ul>
 						</li>
 					</ul>
@@ -531,23 +531,23 @@
 				<!-- 쿨러 끝 -->
 
 			<!-- 컨트롤러 시작 -->
-				<li class="has-children"><a href="#">${all[2].category_name }</a>
+				<li class="has-children" id="con_li"><a href="#">${all[2].category_name }</a>
 					<ul>
 						<li><a href="#">${all[11].category_name }</a>
 							<ul>
-								<li><a href="#">${all[59].category_name }</a></li>
-								<li><a href="#">${all[60].category_name }</a></li>
-								<li><a href="#">${all[61].category_name }</a></li>
-								<li><a href="#">${all[62].category_name }</a></li>
-								<li><a href="#">${all[63].category_name }</a></li>
-								<li><a href="#">${all[64].category_name }</a></li>
-								<li><a href="#">${all[65].category_name }</a></li>
-								<li><a href="#">${all[66].category_name }</a></li>
-								<li><a href="#">${all[67].category_name }</a></li>
-								<li><a href="#">${all[68].category_name }</a></li>
-								<li><a href="#">${all[69].category_name }</a></li>
-								<li><a href="#">${all[70].category_name }</a></li>
-								<li><a href="#">${all[71].category_name }</a></li>
+								<li><a href="${pageContext.request.contextPath }/shop/product_grid?category_id=284">${all[59].category_name }</a></li>
+								<li><a href="${pageContext.request.contextPath }/shop/product_grid?category_id=285">${all[60].category_name }</a></li>
+								<li><a href="${pageContext.request.contextPath }/shop/product_grid?category_id=286">${all[61].category_name }</a></li>
+								<li><a href="${pageContext.request.contextPath }/shop/product_grid?category_id=287">${all[62].category_name }</a></li>
+								<li><a href="${pageContext.request.contextPath }/shop/product_grid?category_id=288">${all[63].category_name }</a></li>
+								<li><a href="${pageContext.request.contextPath }/shop/product_grid?category_id=289">${all[64].category_name }</a></li>
+								<li><a href="${pageContext.request.contextPath }/shop/product_grid?category_id=290">${all[65].category_name }</a></li>
+								<li><a href="${pageContext.request.contextPath }/shop/product_grid?category_id=291">${all[66].category_name }</a></li>
+								<li><a href="${pageContext.request.contextPath }/shop/product_grid?category_id=292">${all[67].category_name }</a></li>
+								<li><a href="${pageContext.request.contextPath }/shop/product_grid?category_id=293">${all[68].category_name }</a></li>
+								<li><a href="${pageContext.request.contextPath }/shop/product_grid?category_id=294">${all[69].category_name }</a></li>
+								<li><a href="${pageContext.request.contextPath }/shop/product_grid?category_id=295">${all[70].category_name }</a></li>
+								<li><a href="${pageContext.request.contextPath }/shop/product_grid?category_id=296">${all[71].category_name }</a></li>
 								
 								
 							
@@ -555,53 +555,53 @@
 						</li>
 						<li><a href="#">${all[12].category_name }</a>
 							<ul>
-								<li><a href="#">${all[72].category_name }</a></li>
-								<li><a href="#">${all[73].category_name }</a></li>
-								<li><a href="#">${all[74].category_name }</a></li>
-								<li><a href="#">${all[75].category_name }</a></li>
-								<li><a href="#">${all[76].category_name }</a></li>
-								<li><a href="#">${all[77].category_name }</a></li>
-								<li><a href="#">${all[78].category_name }</a></li>
-								<li><a href="#">${all[79].category_name }</a></li>
-								<li><a href="#">${all[80].category_name }</a></li>
-								<li><a href="#">${all[81].category_name }</a></li>
-								<li><a href="#">${all[82].category_name }</a></li>
-								<li><a href="#">${all[83].category_name }</a></li>
-								<li><a href="#">${all[84].category_name }</a></li>
-								<li><a href="#">${all[85].category_name }</a></li>
-								<li><a href="#">${all[86].category_name }</a></li>
-								<li><a href="#">${all[87].category_name }</a></li>
-								<li><a href="#">${all[88].category_name }</a></li>
-								<li><a href="#">${all[89].category_name }</a></li>
-								<li><a href="#">${all[90].category_name }</a></li>
-								<li><a href="#">${all[91].category_name }</a></li>
-								<li><a href="#">${all[92].category_name }</a></li>
+								<li><a href="${pageContext.request.contextPath }/shop/product_grid?category_id=297">${all[72].category_name }</a></li>
+								<li><a href="${pageContext.request.contextPath }/shop/product_grid?category_id=298">${all[73].category_name }</a></li>
+								<li><a href="${pageContext.request.contextPath }/shop/product_grid?category_id=299">${all[74].category_name }</a></li>
+								<li><a href="${pageContext.request.contextPath }/shop/product_grid?category_id=300">${all[75].category_name }</a></li>
+								<li><a href="${pageContext.request.contextPath }/shop/product_grid?category_id=301">${all[76].category_name }</a></li>
+								<li><a href="${pageContext.request.contextPath }/shop/product_grid?category_id=302">${all[77].category_name }</a></li>
+								<li><a href="${pageContext.request.contextPath }/shop/product_grid?category_id=303">${all[78].category_name }</a></li>
+								<li><a href="${pageContext.request.contextPath }/shop/product_grid?category_id=304">${all[79].category_name }</a></li>
+								<li><a href="${pageContext.request.contextPath }/shop/product_grid?category_id=305">${all[80].category_name }</a></li>
+								<li><a href="${pageContext.request.contextPath }/shop/product_grid?category_id=306">${all[81].category_name }</a></li>
+								<li><a href="${pageContext.request.contextPath }/shop/product_grid?category_id=307">${all[82].category_name }</a></li>
+								<li><a href="${pageContext.request.contextPath }/shop/product_grid?category_id=308">${all[83].category_name }</a></li>
+								<li><a href="${pageContext.request.contextPath }/shop/product_grid?category_id=309">${all[84].category_name }</a></li>
+								<li><a href="${pageContext.request.contextPath }/shop/product_grid?category_id=310">${all[85].category_name }</a></li>
+								<li><a href="${pageContext.request.contextPath }/shop/product_grid?category_id=311">${all[86].category_name }</a></li>
+								<li><a href="${pageContext.request.contextPath }/shop/product_grid?category_id=312">${all[87].category_name }</a></li>
+								<li><a href="${pageContext.request.contextPath }/shop/product_grid?category_id=313">${all[88].category_name }</a></li>
+								<li><a href="${pageContext.request.contextPath }/shop/product_grid?category_id=314">${all[89].category_name }</a></li>
+								<li><a href="${pageContext.request.contextPath }/shop/product_grid?category_id=315">${all[90].category_name }</a></li>
+								<li><a href="${pageContext.request.contextPath }/shop/product_grid?category_id=316">${all[91].category_name }</a></li>
+								<li><a href="${pageContext.request.contextPath }/shop/product_grid?category_id=317">${all[92].category_name }</a></li>
 															
 							</ul>
 						</li>
 						<li><a href="#">${clist[13].category_name }</a>
 							<ul>
-								<li><a href="#">${all[93].category_name }</a></li>
-								<li><a href="#">${all[94].category_name }</a></li>
-								<li><a href="#">${all[95].category_name }</a></li>
-								<li><a href="#">${all[96].category_name }</a></li>
-								<li><a href="#">${all[97].category_name }</a></li>
-								<li><a href="#">${all[98].category_name }</a></li>
-								<li><a href="#">${all[99].category_name }</a></li>
-								<li><a href="#">${all[100].category_name }</a></li>
-								<li><a href="#">${all[101].category_name }</a></li>
-								<li><a href="#">${all[102].category_name }</a></li>
-								<li><a href="#">${all[103].category_name }</a></li>
-								<li><a href="#">${all[104].category_name }</a></li>
-								<li><a href="#">${all[105].category_name }</a></li>
-								<li><a href="#">${all[106].category_name }</a></li>
-								<li><a href="#">${all[107].category_name }</a></li>
-								<li><a href="#">${all[108].category_name }</a></li>									
+								<li><a href="${pageContext.request.contextPath }/shop/product_grid?category_id=318">${all[93].category_name }</a></li>
+								<li><a href="${pageContext.request.contextPath }/shop/product_grid?category_id=319">${all[94].category_name }</a></li>
+								<li><a href="${pageContext.request.contextPath }/shop/product_grid?category_id=320">${all[95].category_name }</a></li>
+								<li><a href="${pageContext.request.contextPath }/shop/product_grid?category_id=321">${all[96].category_name }</a></li>
+								<li><a href="${pageContext.request.contextPath }/shop/product_grid?category_id=322">${all[97].category_name }</a></li>
+								<li><a href="${pageContext.request.contextPath }/shop/product_grid?category_id=323">${all[98].category_name }</a></li>
+								<li><a href="${pageContext.request.contextPath }/shop/product_grid?category_id=324">${all[99].category_name }</a></li>
+								<li><a href="${pageContext.request.contextPath }/shop/product_grid?category_id=325">${all[100].category_name }</a></li>
+								<li><a href="${pageContext.request.contextPath }/shop/product_grid?category_id=326">${all[101].category_name }</a></li>
+								<li><a href="${pageContext.request.contextPath }/shop/product_grid?category_id=327">${all[102].category_name }</a></li>
+								<li><a href="${pageContext.request.contextPath }/shop/product_grid?category_id=328">${all[103].category_name }</a></li>
+								<li><a href="${pageContext.request.contextPath }/shop/product_grid?category_id=329">${all[104].category_name }</a></li>
+								<li><a href="${pageContext.request.contextPath }/shop/product_grid?category_id=330">${all[105].category_name }</a></li>
+								<li><a href="${pageContext.request.contextPath }/shop/product_grid?category_id=331">${all[106].category_name }</a></li>
+								<li><a href="${pageContext.request.contextPath }/shop/product_grid?category_id=332">${all[107].category_name }</a></li>
+								<li><a href="${pageContext.request.contextPath }/shop/product_grid?category_id=333">${all[108].category_name }</a></li>									
 							</ul>
 						</li>
 						<li><a href="#">${all[14].category_name }</a>
 							<ul>
-								<li><a href="#">${all[109].category_name }</a></li>
+								<li><a href="${pageContext.request.contextPath }/shop/product_grid?category_id=334">${all[109].category_name }</a></li>
 							</ul>
 						</li>
 						
@@ -610,16 +610,16 @@
 				<!-- 컨트롤러 끝 -->
 
 			<!-- 외장하드 시작 -->
-				<li class="has-children"><a href="#">${all[3].category_name }</a>
+				<li class="has-children" id="ext_li"><a href="#">${all[3].category_name }</a>
 					<ul>
 						<li><a href="#">${all[15].category_name }</a>
 							<ul>
-								<li><a href="#">${all[110].category_name }</a></li>
-								<li><a href="#">${all[111].category_name }</a></li>
-								<li><a href="#">${all[112].category_name }</a></li>
-								<li><a href="#">${all[113].category_name }</a></li>
-								<li><a href="#">${all[114].category_name }</a></li>
-								<li><a href="#">${all[115].category_name }</a></li>
+								<li><a href="${pageContext.request.contextPath }/shop/product_grid?category_id=335">${all[110].category_name }</a></li>
+								<li><a href="${pageContext.request.contextPath }/shop/product_grid?category_id=336">${all[111].category_name }</a></li>
+								<li><a href="${pageContext.request.contextPath }/shop/product_grid?category_id=337">${all[112].category_name }</a></li>
+								<li><a href="${pageContext.request.contextPath }/shop/product_grid?category_id=338">${all[113].category_name }</a></li>
+								<li><a href="${pageContext.request.contextPath }/shop/product_grid?category_id=339">${all[114].category_name }</a></li>
+								<li><a href="${pageContext.request.contextPath }/shop/product_grid?category_id=340">${all[115].category_name }</a></li>
 
 								
 								
@@ -628,38 +628,38 @@
 						</li>
 						<li><a href="#">${all[16].category_name }</a>
 							<ul>
-								<li><a href="#">${all[116].category_name }</a></li>
-								<li><a href="#">${all[117].category_name }</a></li>
-								<li><a href="#">${all[118].category_name }</a></li>
-								<li><a href="#">${all[119].category_name }</a></li>
-								<li><a href="#">${all[120].category_name }</a></li>
-								<li><a href="#">${all[121].category_name }</a></li>
+								<li><a href="${pageContext.request.contextPath }/shop/product_grid?category_id=341">${all[116].category_name }</a></li>
+								<li><a href="${pageContext.request.contextPath }/shop/product_grid?category_id=342">${all[117].category_name }</a></li>
+								<li><a href="${pageContext.request.contextPath }/shop/product_grid?category_id=343">${all[118].category_name }</a></li>
+								<li><a href="${pageContext.request.contextPath }/shop/product_grid?category_id=344">${all[119].category_name }</a></li>
+								<li><a href="${pageContext.request.contextPath }/shop/product_grid?category_id=345">${all[120].category_name }</a></li>
+								<li><a href="${pageContext.request.contextPath }/shop/product_grid?category_id=346">${all[121].category_name }</a></li>
 								
 															
 							</ul>
 						</li>
 						<li><a href="#">${clist[17].category_name }</a>
 							<ul>
-								<li><a href="#">${all[122].category_name }</a></li>
-								<li><a href="#">${all[123].category_name }</a></li>
-								<li><a href="#">${all[124].category_name }</a></li>
-								<li><a href="#">${all[125].category_name }</a></li>
-								<li><a href="#">${all[126].category_name }</a></li>
-								<li><a href="#">${all[127].category_name }</a></li>
-								<li><a href="#">${all[128].category_name }</a></li>
-								<li><a href="#">${all[129].category_name }</a></li>
-								<li><a href="#">${all[130].category_name }</a></li>
-								<li><a href="#">${all[131].category_name }</a></li>
-								<li><a href="#">${all[132].category_name }</a></li>
-								<li><a href="#">${all[133].category_name }</a></li>
-								<li><a href="#">${all[134].category_name }</a></li>
+								<li><a href="${pageContext.request.contextPath }/shop/product_grid?category_id=347">${all[122].category_name }</a></li>
+								<li><a href="${pageContext.request.contextPath }/shop/product_grid?category_id=348">${all[123].category_name }</a></li>
+								<li><a href="${pageContext.request.contextPath }/shop/product_grid?category_id=349">${all[124].category_name }</a></li>
+								<li><a href="${pageContext.request.contextPath }/shop/product_grid?category_id=350">${all[125].category_name }</a></li>
+								<li><a href="${pageContext.request.contextPath }/shop/product_grid?category_id=351">${all[126].category_name }</a></li>
+								<li><a href="${pageContext.request.contextPath }/shop/product_grid?category_id=352">${all[127].category_name }</a></li>
+								<li><a href="${pageContext.request.contextPath }/shop/product_grid?category_id=353">${all[128].category_name }</a></li>
+								<li><a href="${pageContext.request.contextPath }/shop/product_grid?category_id=354">${all[129].category_name }</a></li>
+								<li><a href="${pageContext.request.contextPath }/shop/product_grid?category_id=355">${all[130].category_name }</a></li>
+								<li><a href="${pageContext.request.contextPath }/shop/product_grid?category_id=356">${all[131].category_name }</a></li>
+								<li><a href="${pageContext.request.contextPath }/shop/product_grid?category_id=357">${all[132].category_name }</a></li>
+								<li><a href="${pageContext.request.contextPath }/shop/product_grid?category_id=358">${all[133].category_name }</a></li>
+								<li><a href="${pageContext.request.contextPath }/shop/product_grid?category_id=359">${all[134].category_name }</a></li>
 									
 							</ul>
 						</li>
 						<li><a href="#">${all[18].category_name }</a>
 							<ul>
-								<li><a href="#">${all[135].category_name }</a></li>
-								<li><a href="#">${all[136].category_name }</a></li>
+								<li><a href="${pageContext.request.contextPath }/shop/product_grid?category_id=360">${all[135].category_name }</a></li>
+								<li><a href="${pageContext.request.contextPath }/shop/product_grid?category_id=361">${all[136].category_name }</a></li>
 							</ul>
 						</li>
 						
@@ -667,13 +667,13 @@
 				</li>
 				<!-- 외장하드 끝 -->
 			<!-- 케이블 시작 -->
-				<li class="has-children"><a href="#">${all[4].category_name }</a>
+				<li class="has-children" id="cab_li"><a href="#">${all[4].category_name }</a>
 					<ul>
 						<li><a href="#">${all[19].category_name }</a>
 							<ul>
-								<li><a href="#">${all[137].category_name }</a></li>
-								<li><a href="#">${all[138].category_name }</a></li>
-								<li><a href="#">${all[139].category_name }</a></li>
+								<li><a href="${pageContext.request.contextPath }/shop/product_grid?category_id=362">${all[137].category_name }</a></li>
+								<li><a href="${pageContext.request.contextPath }/shop/product_grid?category_id=363">${all[138].category_name }</a></li>
+								<li><a href="${pageContext.request.contextPath }/shop/product_grid?category_id=364">${all[139].category_name }</a></li>
 								
 
 								
@@ -683,8 +683,8 @@
 						</li>
 						<li><a href="#">${all[20].category_name }</a>
 							<ul>
-								<li><a href="#">${all[140].category_name }</a></li>
-								<li><a href="#">${all[141].category_name }</a></li>
+								<li><a href="${pageContext.request.contextPath }/shop/product_grid?category_id=365">${all[140].category_name }</a></li>
+								<li><a href="${pageContext.request.contextPath }/shop/product_grid?category_id=366">${all[141].category_name }</a></li>
 								
 							</ul>
 						</li>
@@ -695,17 +695,17 @@
 				<!-- 케이블 끝 -->
 
 				<!-- usb 시작 -->
-				<li class="has-children"><a href="#">${all[5].category_name }</a>
+				<li class="has-children" id="usb_li"><a href="#">${all[5].category_name }</a>
 					<ul>
 						<li><a href="#">${all[21].category_name }</a>
 							<ul>
-								<li><a href="#">${all[142].category_name }</a></li>
-								<li><a href="#">${all[143].category_name }</a></li>
-								<li><a href="#">${all[144].category_name }</a></li>
-								<li><a href="#">${all[145].category_name }</a></li>
-								<li><a href="#">${all[146].category_name }</a></li>
-								<li><a href="#">${all[147].category_name }</a></li>								
-								<li><a href="#">${all[148].category_name }</a></li>
+								<li><a href="${pageContext.request.contextPath }/shop/product_grid?category_id=367">${all[142].category_name }</a></li>
+								<li><a href="${pageContext.request.contextPath }/shop/product_grid?category_id=368">${all[143].category_name }</a></li>
+								<li><a href="${pageContext.request.contextPath }/shop/product_grid?category_id=369">${all[144].category_name }</a></li>
+								<li><a href="${pageContext.request.contextPath }/shop/product_grid?category_id=370">${all[145].category_name }</a></li>
+								<li><a href="${pageContext.request.contextPath }/shop/product_grid?category_id=371">${all[146].category_name }</a></li>
+								<li><a href="${pageContext.request.contextPath }/shop/product_grid?category_id=372">${all[147].category_name }</a></li>								
+								<li><a href="${pageContext.request.contextPath }/shop/product_grid?category_id=373">${all[148].category_name }</a></li>
 								
 								
 							
@@ -713,8 +713,8 @@
 						</li>
 						<li><a href="#">${all[22].category_name }</a>
 							<ul>
-								<li><a href="#">${all[149].category_name }</a></li>
-								<li><a href="#">${all[150].category_name }</a></li>
+								<li><a href="${pageContext.request.contextPath }/shop/product_grid?category_id=374">${all[149].category_name }</a></li>
+								<li><a href="${pageContext.request.contextPath }/shop/product_grid?category_id=375">${all[150].category_name }</a></li>
 								
 							</ul>
 						</li>
@@ -738,9 +738,9 @@
 				class="price-range-slider" id="priceCheck"
 				data-start-min="${minPrice1 }"
 				data-start-max="${maxPrice1 }"
-				data-min="0"
-				data-max="10000000"
-				data-step="5000">
+				data-min="10"
+				data-max="5000000"
+				data-step="10000">
 					<div class="ui-range-slider"></div>
 					<footer class="ui-range-slider-footer">
 						<div class="column">
@@ -771,11 +771,11 @@
 			<h3 class="widget-title">가격</h3>
 				<form 
 				class="price-range-slider" id="priceCheck"
-				data-start-min="0"
-				data-start-max="10000000"
-				data-min="0"
-				data-max="10000000"
-				data-step="5000">
+				data-start-min="10"
+				data-start-max="5000000"
+				data-min="10"
+				data-max="5000000"
+				data-step="10000">
 					<div class="ui-range-slider"></div>
 					<footer class="ui-range-slider-footer">
 						<div class="column">
@@ -853,12 +853,45 @@
 	
 	<script type="text/javascript">
 $(function(){
+	
+	
+	var g=${param.category_id}; 
+	if(g>=101 && g<=121){
+		$("#cpu_li").addClass("expanded");
+	}else if(g>=122 && g<=145){
+		$("#main_li").addClass("expanded");
+	}else if(g>=149 && g<=161){
+		$("#ram_li").addClass("expanded");
+	}else if(g>=162 && g<=181) {
+		$("#vga_li").addClass("expanded");
+	}else if(g>=182 && g<=207){
+		$("#ssd_li").addClass("expanded");
+	}else if(g>=208 && g<=232){
+		$("#hdd_li").addClass("expanded");
+	}else if(g>=233 && g<=248){
+		$("#power_li").addClass("expanded");
+	}else if(g>=249 && g<=283) {
+		$("#cool_li").addClass("expanded");
+	}else if(g>=284 && g<=334){
+		$("#con_li").addClass("expanded");
+	}else if(g>=335 && g<=361) {
+		$("#ext_li").addClass("expanded");
+	}else if(g>=362 && g<=366) {
+		$("#cab_li").addClass("expanded");
+	}else if(g>=367 && g<=375) {
+		$("#usb_li").addClass("expanded");
+	}else {
+		$(".sec-ul li").removeClass("expanded");
+	}
+	
+	
+	
 	var category_id=$("#category_id").val();
 	var a='${param.category_id}';
 	var keyword='${param.keyword}';
 	var minPrice=$("input[name=minPrice]").val();
 	console.log("minPrice===="+minPrice);
-	var maxPrice=$("input[name=maxPrice]").val();
+	var maxPrice=$("input[name=maxPrice]").val(); 
 	function check(){
 		var theForm = document.priceCheck;
 		
@@ -913,15 +946,10 @@ $(function(){
 			dataType:"json", 
 			Type:"GET", 
 			success:function(data){ 
-				//console.log(data.list);	
+				console.log(data.list);	
 				if(data.list.length==0) {
-					let	html=	"<div class='col-md-4 col-sm-6'>";			
-					html+=	"<div class='product-card mb-30'>";
-					html+=		"<h1>찾으시는 물품이 없습니다. </h1>"
+					let	html=	"<span> 찾으시는 물품이 없습니다. </span>"		
 					
-					html+=	"</div>";
-				
-					html+=	"</div>	";	
 					$("#commList").append(html);
 					
 				}
@@ -984,7 +1012,7 @@ $(function(){
 				let pageHtml2="";
 				let pageHtml3="";
 				if(prev==true){
-					pageHtml += "<a class='btn btn-outline-secondary btn-sm' href='javascript:list("+ (startPage-1)+",order,category_id,keyword,minPrice,maxPrice)'><i class='icon-chevron-left'></i>이전</a>";
+					pageHtml += "<a class='btn btn-outline-secondary btn-sm' href=\"javascript:list("+ (startPage-1)+",'"+order+"',"+category_id+",'"+keyword+"',"+minPrice+","+maxPrice+");\"><i class='icon-chevron-left'></i>이전</a>";
 				}else{
 					pageHtml += "<a class='btn btn-outline-secondary btn-sm disabled'><i class='icon-chevron-left'></i> 이전</a>";
 				}
@@ -994,15 +1022,19 @@ $(function(){
 					if(pageNum==i){
 						
 						pageHtml2 +="<li class='active'>";
-						pageHtml2 += "<a href='javascript:list("+ i +","+order+","+category_id+","+keyword+","+minPrice+","+maxPrice+");'>"+ i + "</a> ";
+						pageHtml2 += "<a href=\"javascript:list("+ i +",'"+order+"',"+category_id+",'"+keyword+"',"+minPrice+","+maxPrice+");\">"+ i + "</a> ";
+
 						pageHtml2 +="</li>";
-					}else{                                 
-						pageHtml2 += "<a href='javascript:list("+ i +","+order+","+category_id+","+keyword+","+minPrice+","+maxPrice+");'>"+ i + "</a> ";
+					}else{
+						pageHtml2 +="<li>";
+						pageHtml2 += "<a href=\"javascript:list("+ i +",'"+order+"',"+category_id+",'"+keyword+"',"+minPrice+","+maxPrice+");\">"+ i + "</a> ";
+						pageHtml2 +="</li>";
 					}	
 				}
+				pageHtml2 +="</ul>";
 				
 				if(next==true){
-					pageHtml3 += "<a class='btn btn-outline-secondary btn-sm' href='javascript:list("+ (endPage+1)+",order,category_id,keyword,minPrice,maxPrice)'>다음<i class='icon-chevron-right'></i></a>";
+					pageHtml3 += "<a class='btn btn-outline-secondary btn-sm' href=\"javascript:list("+ (endPage+1)+",'"+order+"',"+category_id+",'"+keyword+"',"+minPrice+","+maxPrice+");\"><i class='icon-chevron-right'></i>다음</a>";
 				}else{
 					pageHtml3 += "<a class='btn btn-outline-secondary btn-sm disabled'>다음 <i class='icon-chevron-right'></i></a>";
 				}
@@ -1013,6 +1045,6 @@ $(function(){
 		});	
 	}
 	
-</script>
+</script>  
 </body>
 </html>
