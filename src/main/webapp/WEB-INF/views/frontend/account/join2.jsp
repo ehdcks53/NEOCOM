@@ -58,18 +58,22 @@
 		<div class="col-md-3"></div>
 		<div class="col-md-6">
 		
-			<form:form class="card" method="post" modelAttribute="memberVo" action="${pageContext.request.contextPath }/account/join2">
+			<form:form class="card" method="post" modelAttribute="memberVo" id="form" action="${pageContext.request.contextPath }/account/join2">
 				<div class="card-body">
 					<h4 class="margin-bottom-1x text-center">회원가입</h4>
-					<div class="form-group input-group">
+					<div class="form-group input-group" id="idbox">
 						아이디
-						<form:input class="form-control" type="text" path="id" placeholder="아이디를 입력하세요"/>
-						<form:errors path="id" cssClass="errormsg" />
+						<form:input class="form-control" type="text" path="id" id="id" name="id" placeholder="아이디를 입력하세요"/>
+						<form:errors path="id" cssClass="errormsg" />					
+						<!--  <input type="button" class="btn btn-default" id="idck" style="width: 30%;" value="중복확인"/>-->
+						
 					</div>
 					<div class="form-group input-group">
 						비밀번호
-						<form:input class="form-control" type="password" path="password" placeholder="5~12자 사이의 영문 숫자로 입력하세요"/>
-						<form:errors path="password" cssClass="errormsg" />
+						<form:input class="form-control" type="password" path="password" id="pwd1" placeholder="5~12자 사이의 영문 숫자로 입력하세요"/>
+						<form:errors path="password" cssClass="errormsg" /><br>
+						비밀번호 확인
+						<form:input class="form-control" type="password" path="password" id="pwd2"/>
 					</div>
 					<div class="form-group input-group">
 						닉네임
@@ -80,6 +84,11 @@
 						이름
 						<form:input class="form-control" type="text" path="name" placeholder="ex) 홍길동"/>
 						<form:errors path="name" cssClass="errormsg"/>
+					</div>
+					<div class="form-group input-group">
+						이메일
+						<form:input class="form-control" type="text" path="email" placeholder="ex) aaa@aaa.com"/>
+						<form:errors path="email" cssClass="errormsg"/>
 					</div>
 					<div class="form-group input-group">
 						전화번호
@@ -98,7 +107,7 @@
 					
 					</div>
 					<div class="text-center text-sm-right">
-						<button class="btn btn-primary margin-bottom-none" type="submit">가입</button>
+						<button class="btn btn-primary margin-bottom-none" id="joinBtn" type="submit">가입</button>
 					</div>
 				</div>
 			</form:form>
@@ -117,5 +126,108 @@
 	<!-- JavaScript (jQuery) libraries, plugins and custom scripts-->
 	<script src="${pageContext.request.contextPath}/static/frontend/assets/js/vendor.min.js"></script>
 	<script src="${pageContext.request.contextPath}/static/frontend/assets/js/scripts.min.js"></script>
+	<script type="text/javascript" src="${pageContext.request.contextPath}/static/frontend/assets/js/jquery-3.6.0.min.js"></script>
+	<script type="text/javascript">
+	var idck = 0;
+	$(function() {
+		$("#idck").click(function() {
+	        
+	        //userid 를 param.
+	        var id =  $("#id").val(); 
+	        
+	        $.ajax({
+	            async: true,
+	            type : 'POST',
+	            data : id,
+	            url : "{pageContext.request.contextPath}/idcheck.do",
+	            dataType : "json",
+	            contentType: "application/json; charset=UTF-8",
+	            success : function(data) {
+	                if (data.cnt > 0) {
+	                    
+	                    alert("아이디가 존재합니다. 다른 아이디를 입력해주세요.");
+	                    //아이디가 존제할 경우 빨깡으로 , 아니면 파랑으로 처리하는 디자인
+	                    $("#idbox").addClass("has-error")
+	                    $("#idbox").removeClass("has-success")
+	                    $("#id").focus();
+	                    
+	                
+	                } else {
+	                    alert("사용가능한 아이디입니다.");
+	                    //아이디가 존제할 경우 빨깡으로 , 아니면 파랑으로 처리하는 디자인
+	                    $("#divInputId").addClass("has-success")
+	                    $("#divInputId").removeClass("has-error")
+	                    $("#pwd1").focus();
+	                    //아이디가 중복하지 않으면  idck = 1 
+	                    idck = 1;
+	                    
+	                }
+	            },
+	            error : function(error) {
+	                
+	                alert("error : " + error);
+	            }
+	        });
+	    });
+		/*
+		$("#id").keyup(function() {
+			let id=$("#id").val();
+			$.ajax({
+				url : "${pageContext.request.contextPath}/isMember?"+id,
+				type : "json",
+				
+				success : function(data) {
+					
+					if (result == 1) {
+						$("#id_check").html("중복된 아이디가 있습니다.");
+						$("#joinBtn").attr("disabled", "disabled");
+					} else {
+						$("#id_check").html("");
+						$("#joinBtn").removeAttr("disabled");
+					}
+					
+					if(data.using==true){
+						$("#idcheck").html("사용중인 아이디입니다.");
+					}else{
+						$("#idcheck").html("사용가능한 아이디입니다.");
+					}
+				},
+			})
+		});
+		
+		$('.id_input').on("propertychange change keyup paste input", function(){
+			var id = $('.id_input').val();			// .id_input에 입력되는 값
+			var data = {memberId : memberId}				// '컨트롤에 넘길 데이터 이름' : '데이터(.id_input에 입력되는 값)'
+			
+			$.ajax({
+				type : "post",
+				url : "{pageContext.request.contextPath}/memberIdChk",
+				data : data,
+				success : function(result){
+					 console.log("성공 여부" + result);
+					 if(result != 'fail'){
+							$('.id_input_re_1').css("display","inline-block");
+							$('.id_input_re_2').css("display", "none");				
+						} else {
+							$('.id_input_re_2').css("display","inline-block");
+							$('.id_input_re_1').css("display", "none");				
+						}
+				}
+			});
+
+		});*/
+	    if($("#form").submit(function(){
+	    	if($("#pwd1").val() != $("#pwd2").val()){
+	    		alert("비밀번호가 일치하지 않습니다.");
+	    		$("#pwd1").val("").focus();
+				$("#pwd2").val("");
+				return false;
+	    	}
+	    }));
+	});
+ 
+ 
+</script>
+
 </body>
 </html>

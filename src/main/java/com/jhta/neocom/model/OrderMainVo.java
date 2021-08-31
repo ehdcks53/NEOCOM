@@ -31,4 +31,6 @@ public class OrderMainVo {
 	private String order_detail_no;
 	private String img_name_save;
 	private String product_name;
+	private int product_id;
+	private int category_id;
 }

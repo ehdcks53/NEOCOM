@@ -1,6 +1,6 @@
 package com.jhta.neocom.service;
 
-import java.util.ArrayList;
+
 import java.util.HashMap;
 import java.util.List;
 
@@ -40,10 +40,7 @@ public class CategoryService {
 		return mapper.list();
 	}
 
-	public String selectone(HashMap<String, Integer> map) {
-		map.get("category_id");
-		map.get("product_id");
-		System.out.println(map.get("category_id") + "=========" + map.get("product_id"));
+	public String selectone(HashMap<String, Integer> map) {	
 		return mapper.selectone(map);
 
 	}
