@@ -62,8 +62,8 @@
 				<div class="card-body">
 					<h4 class="margin-bottom-1x text-center">아이디 찾기</h4>
 					<div class="form-group input-group">
-						아이디
-						<input class="form-control" type="text" id="phone" name="phone" placeholder="일단전번입력"/>
+						이메일
+						<input class="form-control" type="text" id="email" name="email" placeholder="가입한 이메일을 입력하세요"/>
 					</div>					
 					<div class="text-center text-sm-right">
 						<button class="btn btn-primary margin-bottom-none" type="submit">아이디찾기</button>
@@ -84,7 +84,7 @@
 					<h4 class="margin-bottom-1x text-center">비밀번호 찾기</h4>
 					<div class="form-group input-group">
 						아이디
-						<input class="form-control" type="text" path="id" id="id" name="id" placeholder="아이디를 입력하세요"/>												
+						<input class="form-control" type="text" path="id" id="id" name="id" placeholder="가입한 아이디를 입력하세요"/>												
 					</div>					
 					<div class="text-center text-sm-right">
 						<button class="btn btn-primary margin-bottom-none" type="submit">비밀번호찾기</button>

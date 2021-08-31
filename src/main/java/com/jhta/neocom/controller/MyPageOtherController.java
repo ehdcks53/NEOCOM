@@ -1,8 +1,11 @@
 package com.jhta.neocom.controller;
 
+import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.HashMap;
 import java.util.List;
 
+import javax.servlet.ServletResponse;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -12,7 +15,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
@@ -45,145 +47,142 @@ import ch.qos.logback.classic.Logger;
 @Controller
 public class MyPageOtherController {
 	@Autowired
-    private MemberService memberService;	
-	@Autowired private QnABoardService qna_service;
-	@Autowired private WishlistService wishlist_service;
+	private MemberService memberService;
+	@Autowired
+	private QnABoardService qna_service;
+	@Autowired
+	private WishlistService wishlist_service;
 	@Autowired
 	private AdressService adressService;
 	@Autowired
 	private BCryptPasswordEncoder bCryptPasswordEncoder;
 	@Autowired private ReviewService r_service;
-	
-	//마이페이지 배송지관리
+	// 마이페이지 배송지관리
 	@RequestMapping(value = "/account/mypage_delivery")
-    public String frontendMyPageDelivery(Authentication auth, Model model) {
-		
-		CustomUserDetails cud=(CustomUserDetails) auth.getPrincipal();
-		String id=cud.getUsername();
+	public String frontendMyPageDelivery(Authentication auth, Model model) {
+
+		CustomUserDetails cud = (CustomUserDetails) auth.getPrincipal();
+		String id = cud.getUsername();
 		System.out.println(id);
-		List<AdressVo> list=adressService.addrList(id);
-		model.addAttribute("list",list); 
-		System.out.println("리스트:"+list);
-        return "frontend/account/mypage_delivery";
-    
+		List<AdressVo> list = adressService.addrList(id);
+		model.addAttribute("list", list);
+		System.out.println("리스트:" + list);
+		return "frontend/account/mypage_delivery";
+
 	}
-	//마이페이지 배송지추가
+
+	// 마이페이지 배송지추가
 	@GetMapping("/account/delivery")
 	public String PlusdeliveryForm(Model model) {
 		return "frontend/account/mypage_plusDelivery";
 	}
-	//배송지 추가,리스트 재출력
-	@PostMapping("/account/delivery")
-	public String Plusdelivery(AdressVo vo,Model model,Authentication auth) {
-		System.out.println("auth:"+auth);
-		System.out.println("우편추가시작");
-		System.out.println("우편:"+vo.getZip_code()+"주소1:"+vo.getAddress()+"주소2:"+vo.getAdress_detail());
 
-		CustomUserDetails cud=(CustomUserDetails) auth.getPrincipal();
-		MemberVo mvo=cud.getMemberVo();
-		String id=cud.getUsername();
-		int mem_no=mvo.getMem_no();
+	// 배송지 추가,리스트 재출력
+	@PostMapping("/account/delivery")
+	public String Plusdelivery(AdressVo vo, Model model, Authentication auth) {
+		System.out.println("auth:" + auth);
+		System.out.println("우편추가시작");
+		System.out.println("우편:" + vo.getZip_code() + "주소1:" + vo.getAddress() + "주소2:" + vo.getAdress_detail());
+
+		CustomUserDetails cud = (CustomUserDetails) auth.getPrincipal();
+		MemberVo mvo = cud.getMemberVo();
+		String id = cud.getUsername();
+		int mem_no = mvo.getMem_no();
 		vo.setMem_no(mem_no);
 		adressService.addrTest(vo);
-		List<AdressVo> list=adressService.addrList(id);
-		model.addAttribute("list",list); 
+		List<AdressVo> list = adressService.addrList(id);
+		model.addAttribute("list", list);
 		return "frontend/account/mypage_delivery";
 	}
-	//배송지 수정
+
+	// 배송지 수정
 	@GetMapping("/yongupdate")
 	public ModelAndView dddefsdf(Authentication auth, int addr_no) {
 		System.out.println(addr_no);
-		ModelAndView mv=new ModelAndView("frontend/account/mypage_modifyDelivery");
-		mv.addObject("vo",adressService.zipSelect(addr_no));
+		ModelAndView mv = new ModelAndView("frontend/account/mypage_modifyDelivery");
+		mv.addObject("vo", adressService.zipSelect(addr_no));
 		return mv;
 	}
-	//배송지 수정및 리스트 재출력
+
+	// 배송지 수정및 리스트 재출력
 	@PostMapping("/account/modifyDel")
 	public String modifyDel(AdressVo vo, Authentication auth, Model model, int addr_no) {
 		System.out.println(addr_no);
 		System.out.println(vo);
-		
-		CustomUserDetails cud=(CustomUserDetails) auth.getPrincipal();
-		String id=cud.getUsername();
+
+		CustomUserDetails cud = (CustomUserDetails) auth.getPrincipal();
+		String id = cud.getUsername();
 		adressService.addrModify(vo);
-		System.out.println("MODIFY VO:"+vo);
 		List<AdressVo> list=adressService.addrList(id);
 		model.addAttribute("list",list); 
-
 		return "frontend/account/mypage_delivery";
 	}
 
 	// 나의 문의내역
-    @RequestMapping(value = "/account/mypage_question")
-    public String frontendMyPageQuestion(Model model, Authentication auth) throws Exception {
-    	CustomUserDetails cud = (CustomUserDetails) auth.getPrincipal();
+	@RequestMapping(value = "/account/mypage_question")
+	public String frontendMyPageQuestion(Model model, Authentication auth) throws Exception {
+		CustomUserDetails cud = (CustomUserDetails) auth.getPrincipal();
 		MemberVo mvo = cud.getMemberVo();
 		int mem_no = mvo.getMem_no();
-		//System.out.println(mvo);
-		List<HashMap<String, Object>> list = qna_service.myqna(mem_no);
-		
-		model.addAttribute("list", list);
-		
-        return "frontend/account/mypage_question";
-    }
-    
-//    @RequestMapping(value = "/account/mypage_qnadetail")
-//    public String frontendMyPageQnADetail(Model model, Authentication auth) throws Exception {
-//    	
-//    	return "frontend/account/mypage_qnadetail";
-//    }
 
-    // 관심상품 리스트 출력
-    @RequestMapping(value = "/account/mypage_wishlist")
-    public String frontendMyPageWishlist(Model model, Authentication auth) throws Exception {
-    	CustomUserDetails cud = (CustomUserDetails) auth.getPrincipal();
-		MemberVo mvo = cud.getMemberVo();
-		int mem_no = mvo.getMem_no();
-		List<HashMap<String,Object>> list = wishlist_service.list(mem_no);
-		
+		List<HashMap<String, Object>> list = qna_service.myqna(mem_no);
+
 		model.addAttribute("list", list);
-    	
-        return "frontend/account/mypage_wishlist";
-    }
-    
-    // 관심상품 db 저장 / db 삭제
-    @RequestMapping(value = "/account/mypage_wishinsert", produces = {MediaType.APPLICATION_JSON_VALUE})
-    public @ResponseBody HashMap<String, Object> frontendMyPageWishInsert(Authentication auth, int product_id) {
-    	CustomUserDetails cud = (CustomUserDetails) auth.getPrincipal();
+
+		return "frontend/account/mypage_question";
+	}
+
+	// 관심상품 리스트 출력
+	@RequestMapping(value = "/account/mypage_wishlist")
+	public String frontendMyPageWishlist(Model model, Authentication auth) throws Exception {
+		CustomUserDetails cud = (CustomUserDetails) auth.getPrincipal();
 		MemberVo mvo = cud.getMemberVo();
 		int mem_no = mvo.getMem_no();
-		
+		List<HashMap<String, Object>> list = wishlist_service.list(mem_no);
+
+		model.addAttribute("list", list);
+
+		return "frontend/account/mypage_wishlist";
+	}
+
+	// 관심상품 db 저장 / db 삭제
+	@RequestMapping(value = "/account/mypage_wishinsert", produces = { MediaType.APPLICATION_JSON_VALUE })
+	public @ResponseBody HashMap<String, Object> frontendMyPageWishInsert(Authentication auth, int product_id) {
+		CustomUserDetails cud = (CustomUserDetails) auth.getPrincipal();
+		MemberVo mvo = cud.getMemberVo();
+		int mem_no = mvo.getMem_no();
+
 		WishlistVo vo = new WishlistVo();
 		vo.setMem_no(mem_no);
 		vo.setProduct_id(product_id);
-		
+
 		int n = wishlist_service.getCount(vo);
-		
-		HashMap<String,Object> map = new HashMap<String,Object>();
+
+		HashMap<String, Object> map = new HashMap<String, Object>();
 		System.out.println("회원번호:" + mem_no + ", " + "상품번호:" + product_id);
-				
-    	map.put("mem_no", mem_no);
-    	map.put("product_id", product_id);
-		
-		if(n != 0) {
+
+		map.put("mem_no", mem_no);
+		map.put("product_id", product_id);
+
+		if (n != 0) {
 			wishlist_service.delete(map);
-			map.put("status",0);
-		}else {
+			map.put("status", 0);
+		} else {
 			wishlist_service.insert(map);
-			map.put("status",1);
+			map.put("status", 1);
 		}
-		
-    	return map;
-    }
-    
-    // 관심상품 마이페이지 내에서 삭제
-    @RequestMapping(value = "/account/mypage_wishdelete", method = RequestMethod.GET)
-    public String frontendMyPageWishDelete(Authentication auth, int product_id) throws Exception {
-    	CustomUserDetails cud = (CustomUserDetails) auth.getPrincipal();
+
+		return map;
+	}
+
+	// 관심상품 마이페이지 내에서 삭제
+	@RequestMapping(value = "/account/mypage_wishdelete", method = RequestMethod.GET)
+	public String frontendMyPageWishDelete(Authentication auth, int product_id) throws Exception {
+		CustomUserDetails cud = (CustomUserDetails) auth.getPrincipal();
 		MemberVo mvo = cud.getMemberVo();
 		int mem_no = mvo.getMem_no();
-		
-		HashMap<String,Object> map = new HashMap<String,Object>();
+
+		HashMap<String, Object> map = new HashMap<String, Object>();
 		System.out.println("회원번호:" + mem_no + "," + "상품번호:" + product_id);
     	
     	map.put("mem_no", mem_no);
@@ -194,7 +193,9 @@ public class MyPageOtherController {
     	return "redirect:/account/mypage_wishlist";
     }
 
+	//여기부터 
     @RequestMapping(value = "/account/mypage_myreview")
+
     public String frontendMyPageMyreview(@RequestParam(value = "pageNum", defaultValue = "1") int pageNum, 
 			Model model, HashMap<String, Object> map, Authentication authentication) {
 		
@@ -214,7 +215,7 @@ public class MyPageOtherController {
 
 			model.addAttribute("list", r_service.mylist(map));
 			model.addAttribute("pu", pu);
-			System.out.println("list 찍히나?"+r_service.mylist(map));
+			
 			
 		
 		
@@ -223,6 +224,8 @@ public class MyPageOtherController {
 
 		return "frontend/account/mypage_myreview";
 	}
+    //여기까지 마이리뷰 입니다 충돌시 참고해주세요 
+    
     //회원정보수정페이지
     @RequestMapping(value = "/account/mypage_modify", method = RequestMethod.GET)
     public ModelAndView frontendMyPageModify(String id) {
@@ -233,27 +236,77 @@ public class MyPageOtherController {
     }
     //회원정보수정
     @PostMapping("/account/update")
-    public String update(MemberVo vo) {  	
+    public String update(MemberVo vo, HttpSession session, String id, HttpServletResponse response) throws IOException {  	
     		memberService.updateNickname(vo);  	
     		memberService.updateName(vo);
     		memberService.updatePhone(vo);
-    	return "frontend/account/mypage_order";
+    		memberService.updateEmail(vo);
+    		session.setAttribute("vo",memberService.selectid(id));
+
+        	response.setContentType("text/html; charset=UTF-8");
+    		PrintWriter out=response.getWriter();
+    		out.println("<script>alert('회원정보가 수정되었습니다.');</script>");
+    		out.flush();
+    	return "frontend/account/mypage_modify";
     }
+    //비번수정 
     @RequestMapping(value = "/account/pwdmodify", method = RequestMethod.GET)
-    public ModelAndView pwdModifyForm() {
-        return new ModelAndView("frontend/account/find_PwdResult");
+    public ModelAndView pwdModifyForm(String id) {
+    	ModelAndView mv=new ModelAndView("frontend/account/mypage_pwdmodify");
+    	mv.addObject("vo",memberService.selectid(id));
+        return mv;
     }
-    //test===============================================================
+    //비번수정완료
     @RequestMapping(value = "/account/pwdmodify", method = RequestMethod.POST)
-    public String update_pw(@ModelAttribute MemberVo member, @RequestParam("old_pw") String old_pw, HttpSession session, 
-    		HttpServletResponse response, RedirectAttributes rttr) throws Exception{
+    public String update_pw(@ModelAttribute MemberVo memberVo,String id,String old_pw,HttpSession session,HttpServletResponse response, RedirectAttributes rttr, Authentication authentication) throws Exception{
+    	String password=bCryptPasswordEncoder.encode("password");
+    	//String old_pw=bCryptPasswordEncoder.encode("old_pw");
+    	String opwd=memberService.selectpwd(id);
     	
-		session.setAttribute("member", memberService.update_pw(member, old_pw, response));
-		rttr.addFlashAttribute("msg", "비밀번호 수정 완료");
-		return "redirect:/member/find_PwdResult";
+    	
+    	
+    	
+    	System.out.println("old비번:"+old_pw);
+    	System.out.println("vo비번:"+opwd);
+		//기존비번 비교해야함
+		
+		if(bCryptPasswordEncoder.matches(old_pw, opwd )) {
+			memberVo.setPassword(bCryptPasswordEncoder.encode(memberVo.getPassword()));
+    		
+    		MemberVo vo=new MemberVo(memberVo.getMem_no(), memberVo.getNickname(), 
+    				memberVo.getEmail(),memberVo.getPhone(), memberVo.getBirth_date(), 
+    				null, memberVo.getName(), memberVo.getId(), memberVo.getPassword(), memberVo.getRoles());
+    		session.setAttribute("member",memberService.updatePwd(vo));
+    		
+    		response.setContentType("text/html; charset=UTF-8");
+			PrintWriter out=response.getWriter();
+			out.println("<script>alert('비밀번호가 수정되었습니다.');</script>");
+			out.flush();
+    	
+		session.setAttribute("vo",memberService.selectid(id));
+
+		return "frontend/account/mypage_modify";
+			
+    	}else {
+    		response.setContentType("text/html; charset=UTF-8");
+			PrintWriter out=response.getWriter();
+			out.println("<script>");
+			out.println("alert('기존 비밀번호가 틀립니다');");
+			out.println("history.go(-1);");
+			out.println("</script>");
+			out.close();
+			return null;
+			
+			
+    	}
+			
+		
+    		
 	}
     
-    //========================================================================
+
+    
+    
     @RequestMapping(value = "/account/memberDel", method = RequestMethod.GET)
     public ModelAndView memberDelForm(String id) {
     	ModelAndView mv=new ModelAndView("frontend/account/mypage_memberDelete");
