@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.hibernate.internal.build.AllowSysOut;
@@ -11,7 +12,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
@@ -22,14 +22,15 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
-
 import com.jhta.neocom.model.AddressVo;
 import com.jhta.neocom.model.CustomUserDetails;
 import com.jhta.neocom.model.MemberVo;
 import com.jhta.neocom.model.WishlistVo;
 import com.jhta.neocom.service.AddressService;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import com.jhta.neocom.service.MemberService;
 import com.jhta.neocom.service.QnABoardService;
 import com.jhta.neocom.service.WishlistService;
@@ -45,7 +46,7 @@ public class MyPageOtherController {
 	@Autowired 
 	private QnABoardService qna_service;
 	@Autowired 
-	private WishlistService wishlist_service;
+	private WishlistService wishlist_service;	
 	@Autowired
 	private AddressService adressService;
 	@Autowired
@@ -195,7 +196,7 @@ public class MyPageOtherController {
     public String frontendMyPageMyreview() {
         return "frontend/account/mypage_myreview";
     }
-
+    //회원정보수정페이지
     @RequestMapping(value = "/account/mypage_modify", method = RequestMethod.GET)
     public ModelAndView frontendMyPageModify(String id) {
     	ModelAndView mv=new ModelAndView("frontend/account/mypage_modify");
@@ -203,6 +204,7 @@ public class MyPageOtherController {
     	
         return mv;
     }
+    //회원정보수정
     @PostMapping("/account/update")
     public String update(MemberVo vo) {  	
     		memberService.updateNickname(vo);  	
@@ -211,13 +213,20 @@ public class MyPageOtherController {
     	return "frontend/account/mypage_order";
     }
     @RequestMapping(value = "/account/pwdmodify", method = RequestMethod.GET)
-    public String pwdModifyForm() {
-        return "frontend/account/mypage_pwdmodify";
+    public ModelAndView pwdModifyForm() {
+        return new ModelAndView("frontend/account/find_PwdResult");
     }
+    //test===============================================================
     @RequestMapping(value = "/account/pwdmodify", method = RequestMethod.POST)
-    public String pwdModify(Model model) {
-        return "frontend/account/mypage_pwdmodify";
-    }
+    public String update_pw(@ModelAttribute MemberVo member, @RequestParam("old_pw") String old_pw, HttpSession session, 
+    		HttpServletResponse response, RedirectAttributes rttr) throws Exception{
+    	
+		session.setAttribute("member", memberService.update_pw(member, old_pw, response));
+		rttr.addFlashAttribute("msg", "비밀번호 수정 완료");
+		return "redirect:/member/find_PwdResult";
+	}
+    
+    //========================================================================
     @RequestMapping(value = "/account/memberDel", method = RequestMethod.GET)
     public ModelAndView memberDelForm(String id) {
     	ModelAndView mv=new ModelAndView("frontend/account/mypage_memberDelete");
@@ -237,7 +246,7 @@ public class MyPageOtherController {
     	System.out.println("isMatches: "+isMatches);
     	memberVo.getMem_no();
     	System.out.println("기존vo넘버:"+memberVo.getMem_no());
-    	MemberVo vo=new MemberVo(memberVo.getMem_no(),memberVo.getNickname(), memberVo.getPhone(), memberVo.getBirth_date(), null, 
+    	MemberVo vo=new MemberVo(memberVo.getMem_no(),memberVo.getNickname(), memberVo.getEmail(),memberVo.getPhone(), memberVo.getBirth_date(), null, 
 				 memberVo.getName(), memberVo.getId(), memberVo.getPassword(), memberVo.getRoles());
     	System.out.println("새로운mem_no:"+memberVo.getMem_no());
     	if(isMatches==false) {
@@ -250,4 +259,6 @@ public class MyPageOtherController {
     		return "redirect:/";
     	}
     }	
+    
+    
  }

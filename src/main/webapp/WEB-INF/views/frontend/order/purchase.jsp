@@ -100,9 +100,11 @@
 			       	    		<input type="hidden" name="product_id" value="${vo.product_id }">
 			       	    		<input type="hidden" name="product_count" value="${vo.product_count }">
 			       	    		<input type="hidden" name="order_price" value="${vo.selling_price*vo.product_count }">
-			       	    	</c:forEach>
-			       	    	
 			       	    		
+			       	    	</c:forEach>
+			       	    		<c:forEach items="${cart_no }" varStatus="i">
+			       	    			<input type="text" name="cart_no" value=${cart_no[i.index] }>
+			       	    		</c:forEach>
 		       	    	</c:when>
 		       	        	<c:otherwise>
 			       	    	<tr>

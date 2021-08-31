@@ -100,5 +100,13 @@ public class LoginController {
 		return "frontend/account/find_IdResult";
 		
 	}
+	@RequestMapping(value = "/account/findPwd", method = RequestMethod.POST)
+	public String find_pwd(HttpServletResponse response, @RequestParam("id") String id, Model md) throws Exception{
+		md.addAttribute("pwd", service.find_pwd(response, id));
+		System.out.println("result:"+id);
+		return "frontend/account/find_PwdResult";
+	}
+	
+
 
 }

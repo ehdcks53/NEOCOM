@@ -1,5 +1,6 @@
 package com.jhta.neocom.controller;
 
+import java.io.File;
 import java.io.FileOutputStream;
 import java.io.InputStream;
 import java.util.HashMap;
@@ -49,7 +50,7 @@ public class ReviewController {
 	public String review_update(Model model ,int board_num) {
 	
 		ReviewVo vo = r_service.detail(board_num);
-		System.out.println(board_num);
+		
 	
 		model.addAttribute("vo", vo);
 		return "frontend/community/review_update";
@@ -93,7 +94,7 @@ public class ReviewController {
 		MemberVo mvo = cud.getMemberVo();
 		model.addAttribute("id", mvo.getId()); // 세션에 있는 로그인 정보 가져오기
 		}
-		System.out.println(map);
+		
 
 		return "frontend/community/review_list";
 	}
@@ -119,12 +120,20 @@ public class ReviewController {
 //		MemberVo mvo = service3.select(id);
 		CustomUserDetails cud = (CustomUserDetails) authentication.getPrincipal();
 		MemberVo mvo = cud.getMemberVo();
-		System.out.println("멤버 테스트"+mvo.getMem_no());
-		System.out.println("멤버 닉네임 테스트+===="+mvo.getNickname());
+		
+
+		
+	
 		
 		
+		String img_path = uploadFilePath + "\\review_img";
+		File dir =new File(img_path);
+		if(!dir.isDirectory()) {
+			dir.mkdir();
+			
+		}
+		System.out.println(img_path);
 		
-		String img_path = uploadFilePath + "\\product_img";
 		String review_img_origin=file1.getOriginalFilename(); //전송된 파일명
 		String review_img=UUID.randomUUID() + "_" +review_img_origin;
 	

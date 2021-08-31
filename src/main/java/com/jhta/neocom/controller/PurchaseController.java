@@ -6,6 +6,7 @@ import java.util.Calendar;
 import java.util.HashMap;
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,7 +28,6 @@ import com.jhta.neocom.model.MemberVo;
 import com.jhta.neocom.model.OrderDetailVo;
 import com.jhta.neocom.model.OrderMainVo;
 import com.jhta.neocom.model.PaymentVo;
-import com.jhta.neocom.model.ProductVo;
 import com.jhta.neocom.service.AddressService;
 import com.jhta.neocom.service.CartService;
 import com.jhta.neocom.service.OrderDetailService;
@@ -106,6 +106,7 @@ public class PurchaseController {
 			purchaseList.addAll(cartservice.cartnoSearch(Integer.parseInt(cart_nos.get(i))));	
 		}
 		System.out.println(purchaseList);
+		mv.addObject("cart_no", cart_nos);
 		mv.addObject("myAddrList", myAddrList);
 		mv.addObject("purchaseList", purchaseList);
 		return mv;
@@ -118,12 +119,13 @@ public class PurchaseController {
 	// 주문 번호 만들기..
 	@PostMapping("/purchase")
 	public ModelAndView purchase(OrderMainVo vo,String[] order_price, String[] product_count,
-			String[] product_id, Authentication authentication, Model model) {
+			String[] product_id,HttpServletRequest request, Authentication authentication, Model model) {
 		try {
 			CustomUserDetails cud = (CustomUserDetails) authentication.getPrincipal();
 			MemberVo mvo = cud.getMemberVo();
 			int mem_no = mvo.getMem_no();
-
+			
+			
 			vo.setMem_no(mem_no);
 			System.out.println(order_price[0]+"원"+product_count[0]+": 개수");
 			// 주문 번호 만들기(ex:210817 + order_no )
@@ -176,13 +178,22 @@ public class PurchaseController {
 			HashMap<String, Object> map3 = new HashMap<String, Object>();
 			String order_num_update2 = order_id2 + n2;
 			int order_num_update = Integer.parseInt(order_num_update2);
-
+			
+			
 			System.out.println("num값: " + order_num_update);
 			map3.put("order_no", order_num_update);
-
 			map3.put("order_no2", n2);
 			omservice.updateno(map3);
 			ModelAndView mv = new ModelAndView("frontend/order/purchase2");
+			
+			//장바구니에서 구매시 목록 삭제 위해 추가
+			String[] arrayParam = request.getParameterValues("cart_no");
+			if(arrayParam!=null) {
+				for (int i = 0; i < arrayParam.length; i++) {
+					System.out.println(arrayParam[i]);
+					mv.addObject("cart_no", arrayParam);
+					}
+			}
 			mv.addObject("order_no", order_num_update);
 			mv.addObject("tot_price", vo.getTot_price());
 			mv.addObject("orderer_name",vo.getOrderer_name());
@@ -244,10 +255,19 @@ public class PurchaseController {
 	
 	//결제 페이지
 	@GetMapping("/purchase2")
-	public String purchase(String id, int order_no,Authentication authentication, Model model) {
+	public String purchase(String id, int order_no, HttpServletRequest request
+			,Authentication authentication, Model model) {
 		CustomUserDetails cud = (CustomUserDetails) authentication.getPrincipal();
 		MemberVo mvo = cud.getMemberVo();
 		int mem_no = mvo.getMem_no();
+		System.out.println("aaaa :"+ request.getParameterValues("cart_no"));
+		String[] arrayParam = request.getParameterValues("cart_no");
+		if(arrayParam!=null) {
+			for (int i = 0; i < arrayParam.length; i++) {
+				System.out.println(arrayParam[i]+"ffff");
+				model.addAttribute("cart_no", arrayParam[i]);
+				}
+		}
 		model.addAttribute("order_no", order_no);
 		model.addAttribute("mem_no",mem_no);
 		System.out.println(order_no);
@@ -275,13 +295,21 @@ public class PurchaseController {
 	}
 	
 	@GetMapping("/paymentSuccess")
-	public String paymentSuccess(HttpSession session, Model model,int order_no,String mid_num) {
+	public String paymentSuccess(@RequestParam String cart_no, Model model,int order_no,String mid_num) {
 		HashMap<String, Object> map = new HashMap<String, Object>();
-		map.put("order_no",order_no );	
+		map.put("order_no",order_no );
 		map.put("order_status","배송 준비중" );
 		map.put("payment_status","결제 완료" );
 		omservice.update(map);
 		System.out.println(mid_num);
+		System.out.println(cart_no);
+		if(cart_no!=null) {
+			String[] array=cart_no.split(",");
+			for(int i=0;i<array.length;i++) {
+				int delCartNo=Integer.parseInt(array[i]);
+				cartservice.delete(delCartNo);
+			}
+		}
 		HashMap<String, Object> map2 = new HashMap<String, Object>();
 		map2.put("order_no",order_no );	
 		map2.put("payment_status","결제 완료" );

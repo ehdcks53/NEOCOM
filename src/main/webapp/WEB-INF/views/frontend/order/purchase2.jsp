@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -233,7 +234,11 @@
 					<input type="hidden" id="order_address" value="${order_address }">
 					<input type="hidden" id="order_address_detail" value="${order_address_detail }">
 					<input type="text" id="request_item" value="${request_item }">
-				</div>
+					<c:forEach items="${cart_no }" varStatus="i">
+						<input type="text" name="cart_no" id="cart_no" value=${cart_no[i.index] }>
+					</c:forEach>
+					
+					</div>
 			
 				
 				<form method="post">
@@ -292,8 +297,15 @@
 	$("#check_module").click(function() {
 		var IMP = window.IMP; // 생략가능
 		var order_no=$("#order_no").val();
+		var cart_no=[];
+		var cart_no_size = $("input[name='cart_no']").length;
+	        for(i=0;i< cart_no_size; i++){	           
+	        	cart_no[i]=$("input[name='cart_no']").eq(i).attr("value");
+	        	console.log(cart_no[i]);
+	        }
+	        console.log("cartno!!"+cart_no);
 		var orderer_name=$("#orderer_name").val();
-		console.log(order_no);
+		console.log(order_no+" A "+cart_no);
 		IMP.init('imp55782149');
 		// 'iamport' 대신 부여받은 "가맹점 식별코드"를 사용
 		// i'mport 관리자 페이지 -> 내정보 -> 가맹점식별코드
@@ -357,7 +369,8 @@
 			            "payment_amount":rsp.paid_amount,
 			            "payer_name":orderer_name,
 			            "payment_status":rsp.status,
-			            "mid_num":rsp.merchant_uid
+			            "mid_num":rsp.merchant_uid,
+			            "cart_no":cart_no
 			        },
 					type:"post",
 					dataType:"json",
@@ -365,14 +378,14 @@
 					//[2] 서버에서 REST API로 결제정보확인 및 서비스루틴이 정상적인 경우
 		    		if ( rsp.success ) {
 						var msg = '결제가 완료되었습니다.';
-						msg += '고유ID : ' + rsp.imp_uid;
-						msg += '상점 거래ID : ' + rsp.merchant_uid;
-						msg += '결제 금액 : ' + rsp.paid_amount;
-						msg += '카드 승인번호 : ' + rsp.apply_num;
-						msg += 'pay_method : ' + rsp.pay_method;
+						msg += '주문번호 : ' + order_no;
+						msg += ' 결제자 성함: ' + orderer_name;
+						msg += ' 결제 금액 : ' + rsp.paid_amount + ' 원' ;
+						
+						msg += ' pay_method : ' + rsp.pay_method;
 						
 						alert(msg);
-						location.href = "${pageContext.request.contextPath}/paymentSuccess?order_no="+order_no;
+						location.href = "${pageContext.request.contextPath}/paymentSuccess?order_no="+order_no+"&cart_no="+cart_no;
 		    		} else {
 		    			//[3] 아직 제대로 결제가 되지 않았습니다.
 		    			//[4] 결제된 금액이 요청한 금액과 달라 결제를 자동취소처리하였습니다.

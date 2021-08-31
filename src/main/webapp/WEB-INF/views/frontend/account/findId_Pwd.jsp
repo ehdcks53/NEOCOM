@@ -79,7 +79,7 @@
 		<div class="col-md-3"></div>
 		<div class="col-md-6">
 		
-			<form class="card" method="post" action="${pageContext.request.contextPath }/account/join2">
+			<form class="card" method="post" action="${pageContext.request.contextPath }/account/findPwd">
 				<div class="card-body">
 					<h4 class="margin-bottom-1x text-center">비밀번호 찾기</h4>
 					<div class="form-group input-group">

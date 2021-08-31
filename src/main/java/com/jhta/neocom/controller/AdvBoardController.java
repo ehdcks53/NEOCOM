@@ -185,8 +185,9 @@ public class AdvBoardController {
 				HashMap<String, Object> map = service.detail(adv_board_no);
 				model.addAttribute("map", map);
 				
-				if(auth!=null){    
-				 CustomUserDetails cud = (CustomUserDetails) auth.getPrincipal();
+				if(auth!=null){  //if를 not null을 줘야한다고 생각한 이유 - 로그인 하면 되고 로그인 안하면 null 포인트가 떠서 
+					             // 근데 로그인하고 안하고는 나눠야겠고 그럼 if밖에 없는거여서 if(auth!=null)을 준거다.
+				 CustomUserDetails cud = (CustomUserDetails) auth.getPrincipal(); //CustomUserDetails클래스에 auth.get~~를 쓰면 로그인 정보를 가져오는구나~
 		         MemberVo mvo = cud.getMemberVo();
 		         int mem_no = mvo.getMem_no();
 	                         model.addAttribute("mvo", mvo);

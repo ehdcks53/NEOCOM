@@ -25,6 +25,10 @@
 	<link id="mainStyles" rel="stylesheet" media="screen" href="${pageContext.request.contextPath}/static/frontend/assets/css/styles.min.css">
 	<!-- Modernizr-->
 	<script src="${pageContext.request.contextPath}/static/frontend/assets/js/modernizr.min.js"></script>
+	<style>
+.table thead tr td img{
+	width: 20px;
+}
 <style>
 .table tbody tr td p {
 	margin-top: 30px;
@@ -87,8 +91,13 @@
 					</tr> <!-- 이 변환 하는 과정이 궁금함. -->
 					<tr>
 						<th scope="row">제목</th>
-						<td colspan="3">${map.adv_title }</td>
-						<!-- 조회수가 있어야함. -->
+						<td colspan="3">${map.adv_title }
+						<c:if test="${map.adv_secret_chk==true }">
+								<img src="${pageContext.request.contextPath}/static/frontend/assets/favicon&icon/lockicon.png" class="lock_img">
+							</c:if>
+						</td>
+						<th scope="row">조회수</th>
+						<td>${map.adv_hit }</td>
 					</tr>
 				</thead>
 				<tbody> 

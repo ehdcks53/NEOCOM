@@ -13,5 +13,5 @@ public interface MemberRepository extends JpaRepository<MemberVo, Integer> {
     
     public boolean existsById(String id);
     
-
+   
 }
