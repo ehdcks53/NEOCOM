@@ -60,14 +60,17 @@ public class ProductController {
 		PageUtil pu = new PageUtil(pageNum, 5, 5, totalRowCount);
 		pmap.put("startRow", pu.getStartRow() - 1);
 
-		// map.put("order",order);
-		// map.put("category_id", category_id);
-		// map.put("keyword", keyword);
-
 		List<HashMap<String, Object>> list = service.list(pmap);
+		List<HashMap<String, Object>> detail = service.findcate(pmap);
+
 		map.put("next", pu.isNextPage());
 		map.put("prev", pu.isPrevPage());
-		map.put("list", list);
+		if (category_id > 100 && category_id != 20000 && category_id != 10000) {
+			map.put("list", detail);
+
+		} else {
+			map.put("list", list);
+		}
 		map.put("startPageNum", pu.getStartPageNum());
 		map.put("minPrice", min);
 		map.put("maxPrice", max);
@@ -75,11 +78,7 @@ public class ProductController {
 		map.put("pageCount", pu.getTotalPageCount());
 		map.put("pageNum", pageNum);
 		map.put("keyword", keyword);
-		System.out.println("order==" + order);
-		System.out.println("category_id==" + category_id);
-		System.out.println("keyword==" + keyword);
-		System.out.println(pu.isNextPage() + "==" + pu.isPrevPage() + "==" + pu.getStartPageNum() + "=="
-				+ pu.getEndPageNum() + "==" + pu.getTotalPageCount() + "==" + pageNum);
+
 		return map;
 
 	}

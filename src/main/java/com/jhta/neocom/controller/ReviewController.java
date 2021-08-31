@@ -1,5 +1,6 @@
 package com.jhta.neocom.controller;
 
+import java.io.File;
 import java.io.FileOutputStream;
 import java.io.InputStream;
 import java.util.HashMap;
@@ -112,7 +113,14 @@ public class ReviewController {
 		CustomUserDetails cud = (CustomUserDetails) authentication.getPrincipal();
 		MemberVo mvo = cud.getMemberVo();
 
-		String img_path = uploadFilePath + "\\product_img";
+		String img_path = uploadFilePath + "\\review_img";
+		File dir = new File(img_path);
+		if (!dir.isDirectory()) {
+			dir.mkdir();
+
+		}
+		System.out.println(img_path);
+
 		String review_img_origin = file1.getOriginalFilename(); // 전송된 파일명
 		String review_img = UUID.randomUUID() + "_" + review_img_origin;
 
