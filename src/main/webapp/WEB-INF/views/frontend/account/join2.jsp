@@ -71,7 +71,7 @@
 					</div>
 					<div class="form-group input-group">
 						비밀번호
-						<form:input class="form-control" type="password" path="password" id="pwd1" placeholder="5~12자 사이의 영문 숫자 특수문자를 포함 해주세요"/>
+						<form:input class="form-control" type="password" path="password" id="pwd1" placeholder="6~12자 사이의 영문 숫자 특수문자를 포함 해주세요"/>
 						<form:errors path="password" cssClass="errormsg" />						
 					</div>
 					<div class="form-group input-group">

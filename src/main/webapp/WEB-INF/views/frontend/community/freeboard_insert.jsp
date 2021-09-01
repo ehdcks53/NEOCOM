@@ -174,7 +174,7 @@ opacity: 0;
 				<a href="#this" class="btn btn-secondary btn-sm" id="addFile" name="addFile">파일추가</a>
 				</div>
 			</div> -->
-			
+		
 			<div id="fileDiv" class="col-md-9">
 				<p>
 					<input type="file" class="" multiple="multiple" id="file" name="file_0">
@@ -291,20 +291,6 @@ opacity: 0;
 			fn_deleteFile($(this));
 		});
 	}
-	
-	/*
-	var f_count = 1;
-	function fn_addFile(){
-		var str = "<p>" +
-				  "<input type='file' class='' multiple='multiple' name='file_" + (f_count++) + "' >" +
-				  "<a href='#this' class='btn btn-secondary btn-sm' name='delFile'>삭제</a>" +
-				  "</p>";
-		$("#fileDiv").append(str);
-		$("a[name='delFile']").on("click",function(e){
-			e.preventDefault();
-			fn_deleteFile($(this));
-		});
-	}*/
 	
 	function fn_deleteFile(obj){
 		obj.parent().remove();

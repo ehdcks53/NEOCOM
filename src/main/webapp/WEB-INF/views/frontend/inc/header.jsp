@@ -38,12 +38,14 @@
 				<!-- 카테고리 끝 -->
 				<!-- 헤더 검색창 -->
 
-				<form class="input-group" method="get" action="${pageContext.request.contextPath }/shop/product_list">
+				<form class="input-group" name="formsearch">
+					<fieldset>
 					<span class="input-group-btn">
-						<button type="submit"><i class="icon-search"></i></button>
+						<button type="button" onclick="twocheck()"><i class="icon-search"></i></button>
 					</span>
 					<input class="form-control" type="search" placeholder="검색어를 입력하세요." name="keyword" value=${keyword }>
 					<input type="hidden" name="category_id" value="10000">
+					</fieldset>
 				</form>
 				<!-- 헤더 검색창 끝 -->
 			</div>
@@ -300,5 +302,21 @@
 		$("#aboutus-li").addClass("active");
 	}else{
 		$(".nav-ul li").removeClass("active");
+	}
+	
+	
+	function twocheck(){
+		var theForm =document.formsearch;
+		if ($("input[name=keyword]").val().length <= 1) {
+
+			alert("검색은 2글자 이상 입력해주세요");
+
+			return false;
+
+
+		}
+		theForm.method ="get";
+		theForm.action ="${pageContext.request.contextPath }/shop/product_grid";
+		theForm.submit();
 	}
 </script>

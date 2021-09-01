@@ -25,7 +25,11 @@ public class WishlistService {
 		return mapper.getCount(vo);
 	}
 	
-	public List<HashMap<String,Object>> list(int mem_no) {
-		return mapper.list(mem_no);
+	public List<HashMap<String,Object>> list(HashMap<String, Object> map) {
+		return mapper.list(map);
+	}
+	
+	public int myCount(int mem_no) {
+		return mapper.myCount(mem_no);
 	}
 }

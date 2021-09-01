@@ -173,14 +173,24 @@ public class AdvBoardController {
 
 	// 견적문의게시판 상세 페이지 이동
 	@RequestMapping(value = "/service/advboard_detail", method = RequestMethod.GET)
-	public String advboard_detail(int adv_board_no, boolean adv_secret_chk, Model model, Authentication auth) { //auth = 로그인을 하면 그 정보가 들어올거고 로그인을 안하면 null로 들어와진다!
+	public String advboard_detail(int adv_board_no, boolean adv_secret_chk, Model model, Authentication auth) { // auth
+																												// =
+																												// 로그인을
+																												// 하면 그
+																												// 정보가
+																												// 들어올거고
+																												// 로그인을
+																												// 안하면
+																												// null로
+																												// 들어와진다!
 
 		HashMap<String, Object> map = service.detail(adv_board_no);
 		model.addAttribute("map", map);
 
-		if (auth != null) { //if를 not null을 줘야한다고 생각한 이유 - 로그인 하면 되고 로그인 안하면 null 포인트가 떠서 
+		if (auth != null) { // if를 not null을 줘야한다고 생각한 이유 - 로그인 하면 되고 로그인 안하면 null 포인트가 떠서
 							// 근데 로그인하고 안하고는 나눠야겠고 그럼 if밖에 없는거여서 if(auth!=null)을 준거다.
-			CustomUserDetails cud = (CustomUserDetails) auth.getPrincipal(); //CustomUserDetails클래스에 auth.get~~를 쓰면 로그인 정보를 가져오는구나~
+			CustomUserDetails cud = (CustomUserDetails) auth.getPrincipal(); // CustomUserDetails클래스에 auth.get~~를 쓰면 로그인
+																				// 정보를 가져오는구나~
 			MemberVo mvo = cud.getMemberVo();
 			int mem_no = mvo.getMem_no();
 			model.addAttribute("mvo", mvo);
@@ -199,18 +209,19 @@ public class AdvBoardController {
 			return "frontend/service/advboard_detailLock";
 		}
 	}
+
 	// 문의게시판 비밀글 확인
-		@RequestMapping(value = "/service/advboard_detailLock")
-		public String qnaboard_detailLock(int adv_board_no, Model model, Authentication auth) {
-			CustomUserDetails cud = (CustomUserDetails) auth.getPrincipal();
-			MemberVo mvo = cud.getMemberVo();
-			
-			HashMap<String, Object> map = service.detail(adv_board_no);
-			model.addAttribute("map", map);
-			model.addAttribute("mvo", mvo);
-			service.cntHit(adv_board_no);  // 조회수 증가 쿼리
-			
-			return "frontend/service/advboard_detail";
-		}
+	@RequestMapping(value = "/service/advboard_detailLock")
+	public String qnaboard_detailLock(int adv_board_no, Model model, Authentication auth) {
+		CustomUserDetails cud = (CustomUserDetails) auth.getPrincipal();
+		MemberVo mvo = cud.getMemberVo();
+
+		HashMap<String, Object> map = service.detail(adv_board_no);
+		model.addAttribute("map", map);
+		model.addAttribute("mvo", mvo);
+		service.cntHit(adv_board_no); // 조회수 증가 쿼리
+
+		return "frontend/service/advboard_detail";
+	}
 
 }

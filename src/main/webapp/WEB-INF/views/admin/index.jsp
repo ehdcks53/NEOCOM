@@ -214,7 +214,7 @@
 											신규 방문자
 										</div>
 										<div class="d-flex align-items-center ms-auto">
-											<div class="w-50px text-end ps-2 fw-bold"><span  data-value="0">0</span></div>
+											<div class="w-50px text-end ps-2 fw-bold"><span  data-value="0">${visit_count}</span></div>
 										</div>
 									</div>
 									<!-- END info-row -->
@@ -334,14 +334,12 @@
 	};
 
 	var sendDates = function (startDate, endDate) {
-		console.log(startDate + " to " + endDate);
 		$.ajax({
 				url:"${pageContext.request.contextPath}/admin/stats/totsales",
 				data:{"startDate":startDate , "endDate":endDate},
 				type:"post",
 				dataType:"json",
 				success:function(result){
-					console.log(result);
 					if(result.totSales == null || result.totSales == ""){
 						alert("선택한 기간에는 판매한 상품이 없습니다.");
 						return;
@@ -409,10 +407,7 @@
 		$('#daterange-filter').on('apply.daterangepicker', function(ev, picker) {
 			var startDate = picker.startDate.format('YYYY-MM-DD');
 			var endDate = picker.endDate.format('YYYY-MM-DD');
-  			console.log(startDate);
-  			console.log(endDate);
 			sendDates(startDate,endDate);
-			
 		});
 	});
 	</script>
