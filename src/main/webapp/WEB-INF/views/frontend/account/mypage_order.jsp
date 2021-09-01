@@ -83,7 +83,7 @@
 						<th class="text-center col-md-2">이미지</th>
 						<th class="text-center col-md-2">주문상품</th>
 						<th class="text-center col-md-2">주문일시</th>
-						<th class="text-center col-md-1">주문금액</th>
+						<th class="text-center col-md-2">주문금액</th>
 						<th class="text-center col-md-2">상태</th>
 						<th class="text-center col-md-2"></th>
 					</tr>
@@ -734,6 +734,25 @@
 										
 									<td class="text-center text-lg">
 										<a class="btn btn-sm btn-outline-info" href="${pageContext.request.contextPath}/orderCCInfo?order_no=\${order_no }" style=margin-bottom:5px;>상세 보기</a>
+									<td class="text-center text-lg"></td>
+								</tr>
+								`
+							);
+						}
+						
+						if(order_status=="반품 완료"){
+							$("#myOrderList").append(
+								`
+								<tr>
+									<td class="text-center text-lg">\${order_no }</td>
+									<td class="text-center text-lg"><img width=100; height=100; src="<c:url value='/upload/product_img/\${uploadPath}/\${img_name_save}' />" alt="<c:url value='/upload/product_img/\${uploadPath}/\${img_name_save}' />" /></td>
+									<td class="text-center text-lg" style="font-size:12px;">\${product_name }</td>
+									<td class="text-center text-lg">\${order_date }</td>
+									<td class="text-center text-lg">\${tot_price }</td>
+									<td class="text-center text-lg">\${order_status }</td>
+										
+									<td class="text-center text-lg">
+										<a class="btn btn-sm btn-outline-info" href="#" style=margin-bottom:5px;>상세 보기</a>
 									<td class="text-center text-lg"></td>
 								</tr>
 								`

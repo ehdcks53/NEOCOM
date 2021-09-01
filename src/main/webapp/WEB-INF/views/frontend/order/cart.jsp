@@ -154,6 +154,7 @@
 			<table class="table">
 				<thead>
 					<tr>
+						
 						<th class="text-center"><input type="checkbox" name="allchk"
 							id="allchk"></th>
 						<th class="text-center">상품이미지</th>

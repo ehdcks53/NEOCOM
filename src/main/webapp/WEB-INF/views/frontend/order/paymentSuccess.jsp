@@ -111,7 +111,7 @@ font-family: 'Noto Serif KR', serif;
           <p class="card-text">주문 정보는 마이페이지 > 주문내역 에서 확인 가능합니다. 
             
           </p>
-          <div class="padding-top-1x padding-bottom-1x"><a class="btn btn-outline-secondary" href="${pageContext.request.contextPath}/shop/product_list?category_id=20000">계속 쇼핑하기</a><a class="btn btn-outline-primary" href="${pageContext.request.contextPath}/account/mypage_order">주문내역 보기</a></div>
+          <div class="padding-top-1x padding-bottom-1x"><a class="btn btn-outline-secondary" href="${pageContext.request.contextPath }/shop/product_grid?category_id=20000">계속 쇼핑하기</a><a class="btn btn-outline-primary" href="${pageContext.request.contextPath}/account/mypage_order">주문내역 보기</a></div>
         </div>
       </div>
     </div>

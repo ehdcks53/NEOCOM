@@ -243,7 +243,7 @@
 					<input type="hidden" id="order_no" value="${order_no }">
 					<c:choose>
 						<c:when test="${!empty vo }">
-							<input type="text" name="orderer_name" id="orderer_name" value=${vo.orderer_name }>
+							<input type="hidden" name="orderer_name" id="orderer_name" value=${vo.orderer_name }>
 						</c:when>
 						<c:otherwise>
 							<input type="hidden" id="orderer_name" value="${orderer_name }">
