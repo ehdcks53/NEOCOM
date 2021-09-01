@@ -25,6 +25,7 @@ import org.springframework.web.servlet.ModelAndView;
 import com.jhta.neocom.model.AddressVo;
 import com.jhta.neocom.model.CustomUserDetails;
 import com.jhta.neocom.model.MemberVo;
+import com.jhta.neocom.model.ProductVo;
 import com.jhta.neocom.model.WishlistVo;
 import com.jhta.neocom.service.AddressService;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
@@ -110,29 +111,47 @@ public class MyPageOtherController {
 		return "frontend/account/mypage_delivery";
 	}
 
-	// 나의 문의내역
+	// 나의 문의내역 리스트
 	@RequestMapping(value = "/account/mypage_question")
-	public String frontendMyPageQuestion(Model model, Authentication auth) throws Exception {
+	public String frontendMyPageQuestion(@RequestParam(value = "pageNum", defaultValue = "1") int pageNum,
+										 Model model, Authentication auth, HashMap<String,Object> map) throws Exception {
+		
 		CustomUserDetails cud = (CustomUserDetails) auth.getPrincipal();
 		MemberVo mvo = cud.getMemberVo();
 		int mem_no = mvo.getMem_no();
-
-		List<HashMap<String, Object>> list = qna_service.myqna(mem_no);
+		
+		int totalRowCount = qna_service.myCount(mem_no);  // 전체 글 개수
+		PageUtil pu = new PageUtil(pageNum, 5, 5, totalRowCount);
+		int startRow = pu.getStartRow() -1 ;
+		
+		map.put("mem_no", mem_no);
+		map.put("startRow", startRow);
+		List<HashMap<String, Object>> list = qna_service.myqna(map);
 
 		model.addAttribute("list", list);
+		model.addAttribute("pu", pu);
 
 		return "frontend/account/mypage_question";
 	}
 
 	// 관심상품 리스트 출력
 	@RequestMapping(value = "/account/mypage_wishlist")
-	public String frontendMyPageWishlist(Model model, Authentication auth) throws Exception {
+	public String frontendMyPageWishlist(@RequestParam(value = "pageNum", defaultValue = "1") int pageNum,
+										 Model model, Authentication auth, HashMap<String, Object> map) throws Exception {
+		
 		CustomUserDetails cud = (CustomUserDetails) auth.getPrincipal();
 		MemberVo mvo = cud.getMemberVo();
 		int mem_no = mvo.getMem_no();
-		List<HashMap<String, Object>> list = wishlist_service.list(mem_no);
-
-		model.addAttribute("list", list);
+		
+		int totalRowCount = wishlist_service.myCount(mem_no);  //전체 글 개수
+		PageUtil pu = new PageUtil(pageNum, 5, 5, totalRowCount);
+		int startRow = pu.getStartRow() -1 ;
+		
+		map.put("mem_no", mem_no);
+		map.put("startRow", startRow);
+		
+		model.addAttribute("list", wishlist_service.list(map));
+		model.addAttribute("pu", pu);
 
 		return "frontend/account/mypage_wishlist";
 	}

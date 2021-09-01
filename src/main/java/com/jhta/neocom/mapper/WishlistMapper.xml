@@ -18,17 +18,22 @@
 	</delete>
 	
 	<select id="getCount" resultType="int" parameterType="wishlist">
-		select count(*) from wishlist where mem_no=#{mem_no} and product_id=#{product_id}
+		select IFnull(count(*),0) from wishlist where mem_no=#{mem_no} and product_id=#{product_id}
 	</select>
 	
-	<select id="list" resultType="hashmap" parameterType="int">
+	<select id="list" resultType="hashmap" parameterType="hashmap">
 		select ww.*,mm.mem_no,mm.id,mm.Nickname,pp.*,pi.*
 		from wishlist ww 
 		left join member_Info mm on ww.mem_no=mm.mem_no
 		left join product pp on ww.product_id=pp.product_id 
 		left join product_img pi on ww.product_id=pi.product_id 
 		where mm.mem_no=#{mem_no} and pi.img_category='main' 
-		order by wish_date desc
+		order by wish_date desc 
+		limit #{startRow},5
+	</select>
+	
+	<select id="myCount" resultType="int" parameterType="int">
+		select IFnull(count(*),0) from wishlist where mem_no=#{mem_no}
 	</select>
 
 </mapper>
