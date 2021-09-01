@@ -91,12 +91,12 @@
 				<div>
 					<span class="cart-icon">
 						<i class="icon-shopping-cart"></i>
-						<span class="count-label">0</span>
+						<!--<span class="count-label">0</span>-->
 					</span>
 					<span class="text-label">장바구니</span>
 				</div>
 			</a>
-			<!-- 장바구니 아이콘 드롭다운(기능 구현 가능하면 유지, 불가할 경우 지우기) -->
+			<!-- 장바구니 아이콘 드롭다운(기능 구현 가능하면 유지, 불가할 경우 지우기) 
 			<div class="toolbar-dropdown cart-dropdown widget-cart">
 				<div class="entry">
 					<div class="entry-thumb"><a href="#"><img src="${pageContext.request.contextPath}/static/frontend/assets/img/shop/widget/04.jpg" alt=""></a></div>
@@ -121,7 +121,7 @@
 					<div class="pr-2 w-50"><a class="btn btn-secondary btn-sm btn-block mb-0" href="#">버튼1</a></div>
 					<div class="pr-2 w-50"><a class="btn btn-primary btn-sm btn-block mb-0" href="#">버튼2</a></div>
 				</div>
-			</div>
+			</div> -->
 			<!-- 장바구니 아이콘 드롭다운 끝 -->
 		</div>
 	</div>
@@ -244,12 +244,12 @@
 					<div>
 						<span class="cart-icon">
 							<i class="icon-shopping-cart"></i>
-							<span class="count-label">0</span>
+							<!--  <span class="count-label">0</span>-->
 						</span>
 						<span class="text-label">장바구니</span>
 					</div>
 				</a>
-				<!-- 장바구니 아이콘 드롭다운(기능 구현 가능하면 유지, 불가할 경우 지우기) -->
+				<!-- 장바구니 아이콘 드롭다운(기능 구현 가능하면 유지, 불가할 경우 지우기) 
 				<div class="toolbar-dropdown cart-dropdown widget-cart">
 					<div class="entry">
 						<div class="entry-thumb"><a href="#"><img src="${pageContext.request.contextPath}/static/frontend/assets/img/shop/widget/04.jpg" alt=""></a></div>
@@ -274,7 +274,7 @@
 						<div class="pr-2 w-50"><a class="btn btn-secondary btn-sm btn-block mb-0" href="#">버튼1</a></div>
 						<div class="pr-2 w-50"><a class="btn btn-primary btn-sm btn-block mb-0" href="#">버튼2</a></div>
 					</div>
-				</div>
+				</div>-->
 				<!-- 장바구니 아이콘 드롭다운 끝 -->
 			</div>
 		</div>

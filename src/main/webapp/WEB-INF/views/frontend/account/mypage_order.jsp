@@ -614,7 +614,7 @@
 								<tr>
 									<td class="od_no text-center text-lg">\${order_no }</td>
 									<td class="text-center text-lg"><img width=100; height=100; src="<c:url value='/upload/product_img/\${uploadPath}/\${img_name_save}' />" alt="<c:url value='/upload/product_img/\${uploadPath}/\${img_name_save}' />" /></td>
-									<td class="text-center text-lg">\${product_name }</td>
+									<td class="text-center text-lg" style="font-size:12px;">\${product_name }</td>
 									<td class="text-center text-lg">\${order_date }</td>
 									<td class="text-center text-lg">\${tot_price }</td>
 									<td class="text-center text-lg">\${order_status }</td>
@@ -632,7 +632,7 @@
 								<tr>
 									<td class="text-center text-lg">\${order_no }</td>
 									<td class="text-center text-lg"><img width=100; height=100; src="<c:url value='/upload/product_img/\${uploadPath}/\${img_name_save}' />" alt="<c:url value='/upload/product_img/\${uploadPath}/\${img_name_save}' />" /></td>
-									<td class="text-center text-lg">\${product_name }</td>
+									<td class="text-center text-lg" style="font-size:12px;">\${product_name }</td>
 									<td class="text-center text-lg">\${order_date }</td>
 									<td class="text-center text-lg">\${tot_price }</td>
 									<td class="text-center text-lg">\${order_status }</td>
@@ -651,7 +651,7 @@
 								<tr>
 									<td class="text-center text-lg">\${order_no }</td>
 									<td class="text-center text-lg"><img width=100; height=100; src="<c:url value='/upload/product_img/\${uploadPath}/\${img_name_save}' />" alt="<c:url value='/upload/product_img/\${uploadPath}/\${img_name_save}' />" /></td>
-									<td class="text-center text-lg">\${product_name }</td>
+									<td class="text-center text-lg" style="font-size:12px;">\${product_name }</td>
 									<td class="text-center text-lg">\${order_date }</td>
 									<td class="text-center text-lg">\${tot_price }</td>
 									<td class="text-center text-lg">\${order_status }</td>
@@ -670,7 +670,7 @@
 								<tr>
 									<td class="text-center text-lg">\${order_no }</td>
 									<td class="text-center text-lg"><img width=100; height=100; src="<c:url value='/upload/product_img/\${uploadPath}/\${img_name_save}' />" alt="<c:url value='/upload/product_img/\${uploadPath}/\${img_name_save}' />" /></td>
-									<td class="text-center text-lg">\${product_name }</td>
+									<td class="text-center text-lg" style="font-size:12px;">\${product_name }</td>
 									<td class="text-center text-lg">\${order_date }</td>
 									<td class="text-center text-lg">\${tot_price }</td>
 									<td class="text-center text-lg">\${order_status }</td>
@@ -689,7 +689,7 @@
 								<tr>
 									<td class="text-center text-lg">\${order_no }</td>
 									<td class="text-center text-lg"><img width=100; height=100; src="<c:url value='/upload/product_img/\${uploadPath}/\${img_name_save}' />" alt="<c:url value='/upload/product_img/\${uploadPath}/\${img_name_save}' />" /></td>
-									<td class="text-center text-lg">\${product_name }</td>
+									<td class="text-center text-lg" style="font-size:12px;">\${product_name }</td>
 									<td class="text-center text-lg">\${order_date }</td>
 									<td class="text-center text-lg">\${tot_price }</td>
 									<td class="text-center text-lg">\${order_status }</td>
@@ -708,7 +708,7 @@
 								<tr>
 									<td class="text-center text-lg">\${order_no }</td>
 									<td class="text-center text-lg"><img width=100; height=100; src="<c:url value='/upload/product_img/\${uploadPath}/\${img_name_save}' />" alt="<c:url value='/upload/product_img/\${uploadPath}/\${img_name_save}' />" /></td>
-									<td class="text-center text-lg">\${product_name }</td>
+									<td class="text-center text-lg" style="font-size:12px;">\${product_name }</td>
 									<td class="text-center text-lg">\${order_date }</td>
 									<td class="text-center text-lg">\${tot_price }</td>
 									<td class="text-center text-lg">\${order_status }</td>
@@ -727,7 +727,7 @@
 								<tr>
 									<td class="text-center text-lg">\${order_no }</td>
 									<td class="text-center text-lg"><img width=100; height=100; src="<c:url value='/upload/product_img/\${uploadPath}/\${img_name_save}' />" alt="<c:url value='/upload/product_img/\${uploadPath}/\${img_name_save}' />" /></td>
-									<td class="text-center text-lg">\${product_name }</td>
+									<td class="text-center text-lg" style="font-size:12px;">\${product_name }</td>
 									<td class="text-center text-lg">\${order_date }</td>
 									<td class="text-center text-lg">\${tot_price }</td>
 									<td class="text-center text-lg">\${order_status }</td>
@@ -773,6 +773,7 @@
 			document.getElementById("cancelReason").readOnly= false;
 			$("#cancelReason").val("");
 			document.getElementById("cancelReason").focus();
+			document.getElementById("cancelReason").style.cursor="text";
 		}
 		
 	}
@@ -814,6 +815,7 @@
 			document.getElementById("returnReason").readOnly= false;
 			$("#returnReason").val("");
 			document.getElementById("returnReason").focus();
+			document.getElementById("returnReason").style.cursor="text";
 		}
 		
 	}
