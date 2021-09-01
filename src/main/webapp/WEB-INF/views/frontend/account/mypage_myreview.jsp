@@ -107,7 +107,7 @@
 			</table>
 			
 					<!-- 페이징 -->
-		<nav class="pagination" style="margin-top:20px;">
+		<nav class="pagination text-center" style="margin-top:20px;">
 			<div class="column">
 				<c:choose>
 					<c:when test="${pu.prevPage }">

@@ -9,5 +9,6 @@ public interface WishlistMapper {
 	int insert(HashMap<String, Object> map);
 	int delete(HashMap<String, Object> map);
 	int getCount(WishlistVo vo);
-	List<HashMap<String,Object>> list(int mem_no);
+	List<HashMap<String,Object>> list(HashMap<String, Object> map);
+	int myCount(int mem_no);
 }

@@ -141,8 +141,7 @@ public class QnABoardController {
 	public String qnaboard_list(@RequestParam(value = "pageNum", defaultValue = "1") int pageNum, String field,
 			String keyword, Model model, HashMap<String, Object> map, Authentication auth, HttpSession session) {
 
-		// String id = (String) session.getAttribute("id"); // 로그인 되있는 상태에서만 문의하기 버튼 사용
-		// 가능
+		// String id = (String) session.getAttribute("id"); // 로그인 되있는 상태에서만 문의하기 버튼 사용 가능
 		// CustomUserDetails cud = (CustomUserDetails) auth.getPrincipal();
 		// MemberVo mvo = cud.getMemberVo();
 		// int mem_no = mvo.getMem_no();
