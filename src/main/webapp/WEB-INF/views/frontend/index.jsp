@@ -150,7 +150,7 @@
 	<!-- New Arrivals -->
 
 	<section class="container padding-top-4x padding-bottom-3x mb-2">
-		<h2 class="h3 pb-3 text-center">《《 &nbsp;&nbsp; 신상품 &nbsp;&nbsp; 》》</h2>
+		<h2 class="h3 pb-3 text-center">《《 &nbsp;&nbsp; 상품 &nbsp;&nbsp; 》》</h2>
 		<div class="row">
 			<c:forEach var="vo" items="${list }" end="7">
 
